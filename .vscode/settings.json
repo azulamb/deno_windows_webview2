@@ -1,0 +1,29 @@
+{
+	"deno.enablePaths": [
+		"./"
+	],
+	"deno.disablePaths": [
+		"./webview2/"
+	],
+	"cSpell.words": [
+		"COREWEBVIEW",
+		"HINSTANCE",
+		"HREDRAW",
+		"HRESULT",
+		"HWND",
+		"LPCWSTR",
+		"lpsz",
+		"LPVOID",
+		"LPWSTR",
+		"LRESULT",
+		"MAKEINTRESOURCE",
+		"OVERLAPPEDWINDOW",
+		"PCWSTR",
+		"USEDEFAULT",
+		"vcproj",
+		"VREDRAW",
+		"Weapn",
+		"winapi",
+		"Windowproc"
+	]
+}
