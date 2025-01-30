@@ -75,7 +75,9 @@ function parseFunc(func: string) {
 }
 
 async function parse(src: string) {
-  const lines = (await Deno.readTextFile(src)).replace(/\r\n/g, '\n').split('\n');
+  const lines = (await Deno.readTextFile(src)).replace(/\r\n/g, '\n').split(
+    '\n',
+  );
   while (!lines[0].match(/^EXPORT/)) {
     lines.shift();
   }

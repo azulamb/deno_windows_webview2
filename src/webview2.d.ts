@@ -6,7 +6,13 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly _CreateCoreWebView2EnvironmentWithOptions: {
-    readonly parameters: ['pointer', 'pointer', 'pointer', 'pointer', 'function'];
+    readonly parameters: [
+      'pointer',
+      'pointer',
+      'pointer',
+      'pointer',
+      'function',
+    ];
     readonly result: 'i32';
   };
   readonly _CompareBrowserVersions: {
