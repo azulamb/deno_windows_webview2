@@ -1,36 +1,51 @@
 import { createDLLPath } from './dll_path.ts';
 
+interface COMPILE_OPTION {
+  dllPath?: string;
+  isDebug?: boolean;
+  // version?: string;
+}
+
+function createCompileArgs(
+  args: string[],
+  option?: COMPILE_OPTION,
+) {
+  const commandArgs = [
+    'compile',
+    '--include',
+    createDLLPath(option?.isDebug).toString(),
+    '--allow-ffi',
+  ];
+  if (option?.dllPath) {
+    commandArgs.push(
+      `--allow-write=${option.dllPath}`,
+    );
+  }
+  commandArgs.push(...args);
+  return commandArgs;
+}
+
 export function createCompileCommand(
   args: string[],
-  option?: {
-    isDebug?: boolean;
-    // version?: string;
-  },
+  option?: COMPILE_OPTION,
 ) {
-  return `deno compile --include ${createDLLPath(option?.isDebug)} ${
-    args.join(' ')
-  }`;
+  return `deno ${createCompileArgs(args, option).join(' ')}`;
 }
 
 export async function compile(
   args: string[],
-  option?: {
-    isDebug?: boolean;
-  },
+  option?: COMPILE_OPTION,
 ) {
+  const commandArgs = createCompileArgs(args, option);
   const { stdout, stderr } = await new Deno.Command(
-    'deno' as string,
+    'deno',
     {
-      args: [
-        'compile',
-        '--include',
-        createDLLPath(option?.isDebug).toString(),
-        ...args,
-      ],
+      args: commandArgs,
     },
   ).output();
 
   return {
+    command: ['deno', ...commandArgs],
     stdout: new TextDecoder().decode(stdout),
     stderr: new TextDecoder().decode(stderr),
   };

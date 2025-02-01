@@ -7,19 +7,25 @@ import {
 import { createDLLPath } from './tools/dll_path.ts';
 export type { WEBVIEW2_FUNCS } from './src/webview2.d.ts';
 
+export type PREPARE_WEBVIEW2_DLL_OPTION = {
+  includePath?: boolean | string | URL; // deno compile --include [includePath] ..., true: default path.
+  download?: boolean | string | URL; // true: download from GitHub
+  //update?: boolean; // TODO: update DLL and version check.
+};
+
 export async function prepareWebview2DLL(
   dllPath: string,
-  option?: {
-    includePath?: boolean | string | URL; // deno compile --include [includePath] ..., true: default path.
-    download?: boolean | string | URL; // true: download from GitHub
-    //update?: boolean; // TODO: update DLL and version check.
-  },
-): Promise<string> { // TODO: return version.
+  option?: PREPARE_WEBVIEW2_DLL_OPTION,
+): Promise<{
+  path: string;
+}> {
   // TODO: DLL check.
   try {
     const stat = Deno.statSync(dllPath);
     if (stat.isFile) {
-      return '';
+      return {
+        path: dllPath,
+      };
     }
     throw new Error(`[Failure] Not a file: ${dllPath}`);
   } catch (error) {
@@ -30,16 +36,31 @@ export async function prepareWebview2DLL(
   // DLL not found.
   if (option?.includePath) {
     try {
-      const includePath = option.includePath === true
-        ? createDLLPath()
-        : (typeof option.includePath === 'string'
-          ? new URL(import.meta.resolve(option.includePath))
-          : option.includePath);
+      if (option.includePath === true) {
+        option.includePath = createDLLPath();
+        try {
+          const stat = await Deno.stat(option.includePath);
+          if (stat.mode !== 0) {
+            return {
+              path: option.includePath.pathname.substring(1), // TODO:
+            };
+          }
+        } catch (_error) {
+          // Not exists dll in local.
+        }
+      }
+      const includePath = typeof option.includePath === 'string'
+        ? new URL(import.meta.resolve(option.includePath))
+        : option.includePath;
+
       await Deno.writeFile(
         dllPath,
         new Uint8Array(await Deno.readFile(includePath)),
       );
-      return '0.0.0';
+
+      return {
+        path: dllPath,
+      };
     } catch (error) {
       if (!option.download) {
         throw error;
@@ -62,7 +83,9 @@ export async function prepareWebview2DLL(
     const file = await Deno.open(dllPath, { create: true, write: true });
     await response.body.pipeTo(file.writable);
     file.close();
-    return '0.0.0';
+    return {
+      path: dllPath,
+    };
   }
   throw new Error(`[Failure] Create: ${dllPath}`);
 }

@@ -35,3 +35,5 @@ VisualStudio 2022
 
 * Debug
 * Release
+* DebugWindow
+  * Sample C++ code.

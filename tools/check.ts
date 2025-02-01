@@ -16,7 +16,7 @@ async function Exec(command: string[]) {
 }
 
 function Exit(message: string) {
-  console.error(`%cError: ${message}`, 'color: red');
+  console.error(`%c[Error] ${message}`, 'color: red');
   Deno.exit(1);
 }
 
@@ -52,11 +52,18 @@ const list: {
     name: 'Deno version check',
     command: ['deno', 'upgrade', '--dry-run'],
     after: (result) => {
-      const version = result.stderr.replace(
-        /^Local deno version ([0-9.]+).+$/s,
-        '$1',
-      );
-      if (version.match(/[^0-9.]/)) {
+      let version = '';
+      result.stderr.split('\n').forEach((line) => {
+        line = line.trim();
+        const v = line.replace(
+          /^Found latest stable version .*v([0-9.]+).*$/,
+          '$1',
+        );
+        if (v !== line && !v.match(/[^0-9.]/)) {
+          version = v;
+        }
+      });
+      if (!version) {
         return Promise.resolve('This deno version is latest');
       }
       return Promise.reject(
