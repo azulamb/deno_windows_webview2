@@ -5,14 +5,26 @@ import {
   Microsoft_Windows_ImplementationLibrary,
 } from './src/version.ts';
 import { createDLLPath } from './tools/dll_path.ts';
-import { WEBVIEW2_FUNCS } from './src/webview2.d.ts';
+import type { WEBVIEW2_FUNCS } from './src/webview2.d.ts';
 export type { WEBVIEW2_FUNCS } from './src/webview2.d.ts';
 
 export type PREPARE_WEBVIEW2_DLL_OPTION = {
   includePath?: boolean | string | URL; // deno compile --include [includePath] ..., true: default path.
   download?: boolean | string | URL; // true: download from GitHub
   //update?: boolean; // TODO: update DLL and version check.
+  debugMode?: boolean; // TODO: debug mode.
 };
+
+async function copyFile(to: string, from: URL) {
+  const response = await fetch(from);
+  if (!response.ok || response.body === null) {
+    throw new Error(`[Failure] Load: ${response.statusText}`);
+  }
+
+  const file = await Deno.open(to, { create: true, write: true });
+  await response.body.pipeTo(file.writable);
+  file.close();
+}
 
 export async function prepareWebview2DLL(
   dllPath: string,
@@ -30,6 +42,9 @@ export async function prepareWebview2DLL(
     }
     throw new Error(`[Failure] Not a file: ${dllPath}`);
   } catch (error) {
+    if (option?.debugMode) {
+      console.error(error);
+    }
     if (!(error instanceof Deno.errors.NotFound)) {
       throw error;
     }
@@ -46,23 +61,25 @@ export async function prepareWebview2DLL(
               path: option.includePath.pathname.substring(1), // TODO:
             };
           }
-        } catch (_error) {
+        } catch (error) {
           // Not exists dll in local.
+          if (option?.debugMode) {
+            console.error(error);
+          }
         }
       }
       const includePath = typeof option.includePath === 'string'
         ? new URL(import.meta.resolve(option.includePath))
         : option.includePath;
 
-      await Deno.writeFile(
-        dllPath,
-        new Uint8Array(await Deno.readFile(includePath)),
-      );
-
+      await copyFile(dllPath, includePath);
       return {
         path: dllPath,
       };
     } catch (error) {
+      if (option?.debugMode) {
+        console.error(error);
+      }
       if (!option.download) {
         throw error;
       }
@@ -77,13 +94,8 @@ export async function prepareWebview2DLL(
     } else if (typeof option.download === 'string') {
       option.download = new URL(option.download);
     }
-    const response = await fetch(option.download);
-    if (!response.ok || response.body === null) {
-      throw new Error(`[Failure] Download: ${response.statusText}`);
-    }
-    const file = await Deno.open(dllPath, { create: true, write: true });
-    await response.body.pipeTo(file.writable);
-    file.close();
+
+    await copyFile(dllPath, option.download);
     return {
       path: dllPath,
     };
