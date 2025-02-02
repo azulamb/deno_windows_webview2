@@ -23,7 +23,6 @@ async function copyFile(to: string, from: URL) {
 
   const file = await Deno.open(to, { create: true, write: true });
   await response.body.pipeTo(file.writable);
-  file.close();
 }
 
 export async function prepareWebview2DLL(
@@ -52,13 +51,20 @@ export async function prepareWebview2DLL(
   // DLL not found.
   if (option?.includePath) {
     try {
+      let includePath: URL;
       if (option.includePath === true) {
-        option.includePath = createDLLPath();
+        includePath = createDLLPath();
+        if (option.debugMode) {
+          console.info(includePath);
+        }
         try {
-          const stat = await Deno.stat(option.includePath);
+          const stat = await Deno.stat(includePath);
+          if (option.debugMode) {
+            console.info(stat);
+          }
           if (stat.mode !== 0) {
             return {
-              path: option.includePath.pathname.substring(1), // TODO:
+              path: includePath.pathname.substring(1), // TODO:
             };
           }
         } catch (error) {
@@ -67,10 +73,11 @@ export async function prepareWebview2DLL(
             console.error(error);
           }
         }
+      } else {
+        includePath = typeof option.includePath === 'string'
+          ? new URL(import.meta.resolve(option.includePath))
+          : option.includePath;
       }
-      const includePath = typeof option.includePath === 'string'
-        ? new URL(import.meta.resolve(option.includePath))
-        : option.includePath;
 
       await copyFile(dllPath, includePath);
       return {
