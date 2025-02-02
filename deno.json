@@ -1,8 +1,9 @@
 {
   "name": "@azulamb/webview2",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "exports": "./mod.ts",
+  "lock": false,
   "tasks": {
     "convert": "deno run --allow-read --allow-write tools/convert.ts",
     "version": "deno run --allow-read --allow-write tools/version.ts",
@@ -14,7 +15,6 @@
       "dependencies": ["convert", "version"]
     }
   },
-  "lock": false,
   "lint": {
     "include": ["./src", "./tools", "deno.json", "mod.ts"]
   },

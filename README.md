@@ -1,5 +1,10 @@
 # deno_windows_webview2
 
+* GitHub
+  * https://github.com/azulamb/deno_windows_webview2
+* JSR
+  * https://jsr.io/@azulamb/webview2
+
 ## Develop
 
 * Deno
