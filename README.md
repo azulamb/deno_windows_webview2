@@ -1,5 +1,10 @@
 # deno_windows_webview2
 
+## Develop
+
+* Deno
+  * `2.1.9`
+
 ## DLL
 
 ### File

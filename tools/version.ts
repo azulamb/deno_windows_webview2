@@ -1,4 +1,5 @@
-const VERSION = '0.1.0';
+import data from '../deno.json' with { type: 'json' };
+const VERSION = data.version;
 const IMPORT_SRC = './webview2/packages.config';
 const EXPORT_VERSION = './src/version.ts';
 

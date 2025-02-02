@@ -9,3 +9,4 @@
 * `deno task check`
 * Set tag `vX.Y.Z`
 * Push.
+* `deno publish`
