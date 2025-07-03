@@ -5,8 +5,10 @@ import {
   Microsoft_Windows_ImplementationLibrary,
 } from './src/version.ts';
 import { createDLLPath } from './tools/dll_path.ts';
-import type { WEBVIEW2_FUNCS } from './src/webview2.d.ts';
-export type { WEBVIEW2_FUNCS } from './src/webview2.d.ts';
+import type { WEBVIEW2_FUNCS } from './src/webview2_types.ts';
+import { WebView2 } from './src/webview2.ts';
+export * from './src/webview2.ts';
+export type { WEBVIEW2_FUNCS } from './src/webview2_types.ts';
 
 export type PREPARE_WEBVIEW2_DLL_OPTION = {
   includePath?: boolean | string | URL; // deno compile --include [includePath] ..., true: default path.
@@ -110,13 +112,19 @@ export async function prepareWebview2DLL(
   throw new Error(`[Failure] Create: ${dllPath}`);
 }
 
-export function createWebView2(
+export function loadWebview2(
   dllPath = 'webview2.dll',
 ): Deno.DynamicLibrary<WEBVIEW2_FUNCS> {
   return Deno.dlopen(
     dllPath,
     params,
   );
+}
+
+export function createWebView2(
+  dllPath = 'webview2.dll',
+): WebView2 {
+  return new WebView2(loadWebview2(dllPath));
 }
 
 export const version = {
