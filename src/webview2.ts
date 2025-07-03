@@ -1,5 +1,5 @@
 import type { WEBVIEW2_FUNCS } from './webview2_types.ts';
-import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi';
+import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi@^0.1.6';
 import type { Rect } from 'jsr:@azulamb/winapi@^0.1.6';
 
 function createStringPointer(value: string) {
@@ -21,7 +21,7 @@ export class WebView2 {
 
   public CreateCoreWebView2Environment(
     callback: (result: HRESULT, env: LPVOID) => HRESULT, // HRESULT(*callback)(HRESULT result, ICoreWebView2Environment* env)
-  ) {
+  ): number {
     const func = new Deno.UnsafeCallback(
       {
         parameters: [
@@ -43,7 +43,7 @@ export class WebView2 {
     userDataFolder: string | null, // PCWSTR
     environmentOptions: LPVOID, // ICoreWebView2EnvironmentOptions*
     callback: (result: HRESULT, env: LPVOID) => HRESULT, // HRESULT(*callback)(HRESULT result, ICoreWebView2Environment* env)
-  ) {
+  ): number {
     const func = new Deno.UnsafeCallback(
       {
         parameters: [
@@ -77,7 +77,7 @@ export class WebView2 {
 
   public CreateWebView2Connector(
     env: LPVOID, // ICoreWebView2Environment*
-  ) {
+  ): LPVOID {
     this.webview2Connector = this.lib.symbols.CreateWebView2Connector(env);
     return this.webview2Connector;
   }
@@ -85,18 +85,18 @@ export class WebView2 {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'pointer';
   };*/
-  public InitSettings() {
+  public InitSettings(): LPVOID {
     return this.lib.symbols.InitSettings(this.webview2Connector);
   }
   public InitControllers(
     controller: LPVOID, // ICoreWebView2Controller*
-  ) {
+  ): LPVOID {
     return this.lib.symbols.InitControllers(this.webview2Connector, controller);
   }
   public CreateCoreWebView2Controller(
     hWnd: HWND,
     callback: (errorCode: HRESULT, controller: LPVOID) => HRESULT, // HRESULT(*callback)(HRESULT, ICoreWebView2Controller*)
-  ) {
+  ): number {
     const func = new Deno.UnsafeCallback(
       {
         parameters: [
@@ -272,7 +272,7 @@ export class WebView2 {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };*/
-  public CoreWebView2() {
+  public CoreWebView2(): number {
     return this.lib.symbols.get_CoreWebView2(this.webview2Connector);
   }
   /*readonly add_GotFocus: {
@@ -439,8 +439,11 @@ export class WebView2 {
     readonly parameters: ['pointer', 'buffer'];
     readonly result: 'i32';
   };*/
-  public Navigate(url: string) {
-    return this.lib.symbols.Navigate(this.webview2Connector, createStringPointer(url));
+  public Navigate(url: string): number {
+    return this.lib.symbols.Navigate(
+      this.webview2Connector,
+      createStringPointer(url),
+    );
   }
   /*readonly add_NavigationCompleted: {
     readonly parameters: ['pointer', 'function', 'pointer'];
@@ -566,7 +569,7 @@ export class WebView2 {
     readonly parameters: ['pointer', 'buffer'];
     readonly result: 'i32';
   };*/
-  public Settings() {
+  public Settings(): number {
     return this.lib.symbols.get_Settings(this.webview2Connector);
   }
   /*readonly CapturePreview: {
