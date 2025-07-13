@@ -34,22 +34,6 @@ export function copy(
   });
 }
 
-async function createPath(dest: string) {
-  try {
-    const stat = await Deno.stat(dest);
-    if (stat.isFile) {
-      return dest;
-    }
-    if (stat.isDirectory) {
-      return join(dest, 'webview2.dll');
-    }
-    throw new Error();
-  } catch (_error) {
-    console.error(`"${dest}" is not a file or directory`);
-    Deno.exit(1);
-  }
-}
-
 if (import.meta.main) {
   let isDebug = false;
   let dest = '';
@@ -68,12 +52,23 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 
-  dest = await createPath(dest).then((file) => {
-    if (!isAbsolute(file)) {
-      return join(Deno.cwd(), file);
+  // Directory check.
+  if (dest.match(/\/$/) || dest.match(/\\$/)) {
+    try {
+      const stat = await Deno.stat(dest);
+      if (!stat.isDirectory) {
+        throw new Error();
+      }
+    } catch (_error) {
+      console.error(`"${dest}" is not a directory`);
+      Deno.exit(1);
     }
-    return file;
-  });
+    dest = join(dest, 'webview2.dll');
+  }
+
+  if (!isAbsolute(dest)) {
+    dest = join(Deno.cwd(), dest);
+  }
 
   if (confirm(`Copy webview2.dll?\n${dest}`)) {
     console.log('Copying...');
