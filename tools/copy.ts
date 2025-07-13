@@ -16,7 +16,22 @@ export function copy(
     console.log(`To: ${toFilePath}`);
   }
 
-  return Deno.copyFile(fromFilePath, toFilePath);
+  if (!fromFilePath.toString().match(/^https:\/\//)) {
+    // File copy.
+    return Deno.copyFile(fromFilePath, toFilePath);
+  }
+
+  // Download file.
+  return fetch(fromFilePath).then((response) => {
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch ${fromFilePath}: ${response.statusText}`,
+      );
+    }
+    return response.arrayBuffer();
+  }).then((buffer) => {
+    return Deno.writeFile(toFilePath, new Uint8Array(buffer));
+  });
 }
 
 if (import.meta.main) {
