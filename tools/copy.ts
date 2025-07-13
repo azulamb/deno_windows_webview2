@@ -7,7 +7,7 @@ export function copy(
     isDebug?: boolean; // Copy Debug DLL.
     log?: boolean; // Output log.
   },
-) {
+): Promise<void> {
   const fromFilePath = createDLLPath(option?.isDebug);
 
   if (option?.log) {
