@@ -28,14 +28,18 @@ function createCompileArgs(
 export function createCompileCommand(
   args: string[],
   option?: COMPILE_OPTION,
-) {
+): string {
   return `deno ${createCompileArgs(args, option).join(' ')}`;
 }
 
 export async function compile(
   args: string[],
   option?: COMPILE_OPTION,
-) {
+): Promise<{
+  command: string[];
+  stdout: string;
+  stderr: string;
+}> {
   const commandArgs = createCompileArgs(args, option);
   const { stdout, stderr } = await new Deno.Command(
     'deno',
