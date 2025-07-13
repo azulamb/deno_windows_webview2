@@ -78,7 +78,9 @@ const list: {
       return Promise.resolve(result.stdout.replace(/\s/g, '')).then((tag) => {
         console.log(`Now tag: ${tag} Now ver: ${VERSION}`);
         if (!VersionCheck(tag, VERSION)) {
-          throw new Error('VERSION is not updated.');
+          throw new Error(
+            'VERSION is not updated. Update deno.json & deno task version',
+          );
         }
       });
     },

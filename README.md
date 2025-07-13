@@ -1,4 +1,4 @@
-# deno_windows_webview2
+# Deno Windows Webview2
 
 * GitHub
   * https://github.com/azulamb/deno_windows_webview2
@@ -19,13 +19,14 @@
 Copy command.
 
 ```sh
-deno task copy [--debug] directory/path
+deno run --allow-read --allow-net --allow-write jsr:@azulamb/webview2@0.2.4/copy [--debug] path
 ```
 
 * `--debug`
   * Copy from debug DLL.
-* `directory/path`
-  * Destination directory path.
+* `path`
+  * Destination directory path or file.
+  * If directory, copy to `path/webview2.dll`
 
 ### Copy code.
 
