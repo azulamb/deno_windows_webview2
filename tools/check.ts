@@ -76,7 +76,7 @@ const list: {
     command: ['deno', 'publish', '--dry-run'],
     after: (result) => {
       console.log('---');
-      console.log(result.stdout.trim());
+      console.log(result.stderr.trim());
       console.log('---');
       if (result.stdout.trim() === '') {
         console.log('===');
