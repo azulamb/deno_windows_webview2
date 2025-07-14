@@ -6,8 +6,7 @@
     ".": "./mod.ts",
     "./copy": "./tools/copy.ts",
     "./compile": "./tools/compile.ts",
-    "./webview2/release": "./webview2/webview2/Release/webview2.dll",
-    "./webview2/debug": "./webview2/webview2/Debug/webview2.dll"
+    "./webview2/": "./tools/webview2.ts"
   },
   "lock": false,
   "tasks": {
