@@ -2,7 +2,7 @@ import { version } from '../mod.ts';
 const VERSION = version.Deno.Webview2;
 
 async function Exec(command: string[]) {
-  const { stdout, stderr } = await new Deno.Command(
+  const { code, stdout, stderr } = await new Deno.Command(
     command.shift() as string,
     {
       args: command,
@@ -10,6 +10,7 @@ async function Exec(command: string[]) {
   ).output();
 
   return {
+    code: code,
     stdout: new TextDecoder().decode(stdout),
     stderr: new TextDecoder().decode(stderr),
   };
@@ -46,7 +47,9 @@ function VersionCheck(nowTag: string, noeVer: string) {
 const list: {
   name: string;
   command?: string[];
-  after: (result: { stdout: string; stderr: string }) => Promise<string | void>;
+  after: (
+    result: { code: number; stdout: string; stderr: string },
+  ) => Promise<string | void>;
 }[] = [
   {
     name: 'Deno version check',
@@ -75,11 +78,11 @@ const list: {
     name: 'JSR Publish check',
     command: ['deno', 'publish', '--dry-run'],
     after: (result) => {
-      if (result.stderr.trim() === '') {
+      if (result.code === 0) {
         return Promise.resolve();
       }
       return Promise.reject(new Error(result.stderr));
-    }
+    },
   },
   {
     name: 'VERSION check',
@@ -101,7 +104,7 @@ for (const check of list) {
   Start(check.name);
   const p = check.command
     ? Exec(check.command).then(check.after)
-    : check.after({ stdout: '', stderr: '' });
+    : check.after({ code: 0, stdout: '', stderr: '' });
   await p.then((msg) => {
     Complete(`OK ... ${check.name}${msg ? ': ' + msg : ''}`);
   }).catch((error) => {
