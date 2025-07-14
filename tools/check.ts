@@ -72,6 +72,16 @@ const list: {
     },
   },
   {
+    name: 'JSR Publish check',
+    command: ['deno', 'publish', '--dry-run'],
+    after: (result) => {
+      if (result.stdout.trim() === '') {
+        return Promise.reject(new Error(result.stderr));
+      }
+      return Promise.resolve();
+    }
+  },
+  {
     name: 'VERSION check',
     command: ['git', 'describe', '--tags', '--abbrev=0'],
     after: (result) => {
