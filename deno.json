@@ -6,7 +6,7 @@
     ".": "./mod.ts",
     "./copy": "./tools/copy.ts",
     "./compile": "./tools/compile.ts",
-    "./webview2/": "./tools/webview2.ts"
+    "./webview2": "./tools/webview2.ts"
   },
   "lock": false,
   "tasks": {
