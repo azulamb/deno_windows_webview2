@@ -75,16 +75,6 @@ const list: {
     },
   },
   {
-    name: 'JSR Publish check',
-    command: ['deno', 'publish', '--dry-run'],
-    after: (result) => {
-      if (result.code === 0) {
-        return Promise.resolve();
-      }
-      return Promise.reject(new Error(result.stderr));
-    },
-  },
-  {
     name: 'VERSION check',
     command: ['git', 'describe', '--tags', '--abbrev=0'],
     after: (result) => {
@@ -96,6 +86,16 @@ const list: {
           );
         }
       });
+    },
+  },
+  {
+    name: 'JSR Publish check',
+    command: ['deno', 'publish', '--dry-run'],
+    after: (result) => {
+      if (result.code === 0) {
+        return Promise.resolve();
+      }
+      return Promise.reject(new Error(result.stderr));
     },
   },
 ];
