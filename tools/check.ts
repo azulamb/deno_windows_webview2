@@ -78,6 +78,9 @@ const list: {
       if (result.stdout.trim() === '') {
         return Promise.reject(new Error(result.stderr));
       }
+      console.log('---');
+      console.log(result.stdout.trim());
+      console.log('---');
       return Promise.resolve();
     }
   },
