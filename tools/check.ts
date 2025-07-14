@@ -75,14 +75,10 @@ const list: {
     name: 'JSR Publish check',
     command: ['deno', 'publish', '--dry-run'],
     after: (result) => {
-      console.log('---');
-      console.log(result.stderr.trim());
-      console.log('---');
-      if (result.stdout.trim() === '') {
-        console.log('===');
-        return Promise.reject(new Error(result.stderr));
+      if (result.stderr.trim() === '') {
+        return Promise.resolve();
       }
-      return Promise.resolve();
+      return Promise.reject(new Error(result.stderr));
     }
   },
   {
