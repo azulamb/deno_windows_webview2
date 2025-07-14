@@ -1,4 +1,4 @@
-import { createDLLPath } from './dll_path.ts';
+import { createDllFile } from './webview2.ts';
 
 interface COMPILE_OPTION {
   dllPath?: string;
@@ -12,13 +12,16 @@ function createCompileArgs(
 ) {
   const commandArgs = [
     'compile',
-    '--include',
-    createDLLPath(option?.isDebug).toString(),
     '--allow-ffi',
   ];
   if (option?.dllPath) {
+    const dllPath = option?.dllPath;
+    createDllFile(dllPath, option?.isDebug).toString(),
+
     commandArgs.push(
-      `--allow-write=${option.dllPath}`,
+      `--allow-write=${dllPath}`,
+      '--include',
+      dllPath,
     );
   }
   commandArgs.push(...args);
