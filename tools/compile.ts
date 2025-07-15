@@ -16,8 +16,7 @@ function createCompileArgs(
   ];
   if (option?.dllPath) {
     const dllPath = option?.dllPath;
-    createDllFile(dllPath, option?.isDebug).toString(),
-
+    createDllFile(dllPath, option?.isDebug).toString();
     commandArgs.push(
       `--allow-write=${dllPath}`,
       '--include',
