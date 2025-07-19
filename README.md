@@ -8,9 +8,16 @@
 ## Develop
 
 * Deno
-  * `2.4.1`
+  * `2.4.2`
 
 ## DLL
+
+### Versions
+
+* Microsoft.Web.WebView2
+  * `1.0.3351.48`
+* Microsoft.Windows.ImplementationLibrary
+  * `1.0.250325.1`
 
 ### File
 

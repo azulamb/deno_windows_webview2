@@ -1,9 +1,10 @@
 import data from '../deno.json' with { type: 'json' };
 const VERSION = data.version;
-const IMPORT_SRC = './webview2/packages.config';
-const EXPORT_VERSION = './src/version.ts';
+const IMPORT_SRC = new URL(import.meta.resolve('../webview2/packages.config'));
+const EXPORT_VERSION = new URL(import.meta.resolve('../src/version.ts'));
+const README_SRC = new URL(import.meta.resolve('../README.md'));
 
-async function parse(src: string) {
+async function parse(src: URL) {
   const packages: {
     name: string;
     version: string;
@@ -42,5 +43,24 @@ await Deno.writeTextFile(
         data.name.replaceAll('.', '_')
       } = '${data.version}';`;
     }),
+  ].join('\n') + '\n',
+);
+
+const readme = await Deno.readTextFile(README_SRC);
+
+const [before, tmp] = readme.split(/### Versions/,2)
+const after = tmp.split(/### File/, 2)[1];
+const versions = packages.map((p) => {
+  return `* ${p.name}\n  * \`${p.version}\``;
+}).join('\n');
+
+await Deno.writeTextFile(
+  README_SRC,
+  [
+    before.trim(),
+    '\n### Versions\n',
+    versions,
+    '\n### File\n',
+    after.trim(),
   ].join('\n') + '\n',
 );
