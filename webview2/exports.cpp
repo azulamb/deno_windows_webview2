@@ -10,6 +10,51 @@ void Log(const WCHAR* message) {
 }
 
 /**
+* Original
+*/
+
+EXPORT const char* GetDllVersion() {
+	return "\\StringFileInfo\\040904b0\\FileVersion";
+}
+
+EXPORT WebView2Connector* CreateWebView2Connector(
+	ICoreWebView2Environment* env
+) {
+	Log(__FUNCTIONW__  L"\n");
+	if (!env) {
+		return new WC();
+	}
+	return (new WC())->setWebView2Environment(env);
+}
+
+EXPORT EventRegistrationToken* CreateEventRegistrationToken() {
+	return (EventRegistrationToken*)calloc(1, sizeof(EventRegistrationToken));
+}
+
+EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token) {
+	free(token);
+}
+
+EXPORT WebView2Connector* SetWebview2Environment(
+	WebView2Connector* webview2,
+	ICoreWebView2Environment* env
+) {
+	return webview2->setWebView2Environment(env);
+}
+
+EXPORT WebView2Connector* InitSettings(WebView2Connector* webview2)
+{
+	return webview2->initSettings();
+}
+
+EXPORT WebView2Connector* InitControllers(
+	WebView2Connector* webview2,
+	ICoreWebView2Controller* controller
+) {
+	return webview2->initControllers(controller);
+}
+
+/**
 * Global
 */
 
@@ -66,47 +111,6 @@ EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
 ) {
 	Log(__FUNCTIONW__  L"\n");
 	return ::GetAvailableCoreWebView2BrowserVersionString(browserExecutableFolder, versionInfo);
-}
-
-/**
-* Original
-*/
-
-EXPORT WebView2Connector* CreateWebView2Connector(
-	ICoreWebView2Environment* env
-) {
-	Log(__FUNCTIONW__  L"\n");
-	if (!env) {
-		return new WC();
-	}
-	return (new WC())->setWebView2Environment(env);
-}
-
-EXPORT EventRegistrationToken* CreateEventRegistrationToken() {
-	return (EventRegistrationToken*)calloc(1, sizeof(EventRegistrationToken));
-}
-
-EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token) {
-	free(token);
-}
-
-EXPORT WebView2Connector* SetWebview2Environment(
-	WebView2Connector* webview2,
-	ICoreWebView2Environment* env
-) {
-	return webview2->setWebView2Environment(env);
-}
-
-EXPORT WebView2Connector* InitSettings(WebView2Connector* webview2)
-{
-	return webview2->initSettings();
-}
-
-EXPORT WebView2Connector* InitControllers(
-	WebView2Connector* webview2,
-	ICoreWebView2Controller* controller
-) {
-	return webview2->initControllers(controller);
 }
 
 /**

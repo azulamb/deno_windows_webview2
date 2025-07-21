@@ -1,3 +1,8 @@
+/**
+ * This module provides functions to manage the webview2.dll file.
+ * @module @azulamb/webview2/webview2
+ */
+
 import { createDLLPath } from './dll_path.ts';
 // import webview2Release from '../webview2/x64/Release/webview2.dll' with { type: 'bytes' };
 // import webview2Debug from '../webview2/x64/Debug/webview2.dll' with { type: 'bytes' };

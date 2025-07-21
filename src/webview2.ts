@@ -33,6 +33,27 @@ export class WebView2 {
   }
 
   /**
+   * Creates a WebView2 connector.
+   * @param env The environment pointer.
+   * @returns The WebView2 connector pointer.
+   */
+  public CreateWebView2Connector(
+    env: LPVOID, // ICoreWebView2Environment*
+  ): LPVOID {
+    this.webview2Connector = this.lib.symbols.CreateWebView2Connector(env);
+    return this.webview2Connector;
+  }
+
+  public get dllVersion(): string {
+    const pointer = this.lib.symbols.GetDllVersion();
+    if (!pointer) {
+      return '';
+    }
+    const str = new Deno.UnsafePointerView(pointer);
+    return str.getCString();
+  }
+
+  /**
    * Creates a CoreWebView2Environment.
    * @param callback The callback to invoke when the operation completes.
    * @returns The HRESULT of the operation.
@@ -100,18 +121,6 @@ export class WebView2 {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
-
-  /**
-   * Creates a WebView2 connector.
-   * @param env The environment pointer.
-   * @returns The WebView2 connector pointer.
-   */
-  public CreateWebView2Connector(
-    env: LPVOID, // ICoreWebView2Environment*
-  ): LPVOID {
-    this.webview2Connector = this.lib.symbols.CreateWebView2Connector(env);
-    return this.webview2Connector;
-  }
 
   /*readonly SetWebview2Environment: {
     readonly parameters: ['pointer', 'pointer'];

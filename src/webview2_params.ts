@@ -4,21 +4,9 @@ import type { WEBVIEW2_FUNCS } from './webview2_types.ts';
 
 /** The parameters for the WebView2 functions. */
 export const params: WEBVIEW2_FUNCS = {
-  _CreateCoreWebView2Environment: {
-    parameters: ['pointer', 'function'],
-    result: 'i32',
-  },
-  _CreateCoreWebView2EnvironmentWithOptions: {
-    parameters: ['pointer', 'pointer', 'pointer', 'pointer', 'function'],
-    result: 'i32',
-  },
-  _CompareBrowserVersions: {
-    parameters: ['pointer', 'pointer', 'pointer'],
-    result: 'i32',
-  },
-  _GetAvailableCoreWebView2BrowserVersionString: {
-    parameters: ['pointer', 'pointer'],
-    result: 'i32',
+  GetDllVersion: {
+    parameters: [],
+    result: 'pointer',
   },
   CreateWebView2Connector: {
     parameters: ['pointer'],
@@ -43,6 +31,22 @@ export const params: WEBVIEW2_FUNCS = {
   InitControllers: {
     parameters: ['pointer', 'pointer'],
     result: 'pointer',
+  },
+  _CreateCoreWebView2Environment: {
+    parameters: ['pointer', 'function'],
+    result: 'i32',
+  },
+  _CreateCoreWebView2EnvironmentWithOptions: {
+    parameters: ['pointer', 'pointer', 'pointer', 'pointer', 'function'],
+    result: 'i32',
+  },
+  _CompareBrowserVersions: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  _GetAvailableCoreWebView2BrowserVersionString: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
   },
   CreateCoreWebView2Controller: {
     parameters: ['pointer', 'pointer', 'function'],

@@ -1,3 +1,8 @@
+/**
+ * Copy webview2.dll to a new location.
+ * @module @azulamb/webview2/copy
+ */
+
 import { isAbsolute, join } from 'jsr:@std/path@^1.0.8';
 import { createDLLPath } from './dll_path.ts';
 

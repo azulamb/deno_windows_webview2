@@ -4,6 +4,32 @@
 #define EXPORT extern "C" __declspec(dllexport)
 
 /**
+* Original
+*/
+
+EXPORT const char* GetDllVersion();
+
+EXPORT WebView2Connector* CreateWebView2Connector(
+	ICoreWebView2Environment* env
+);
+
+EXPORT EventRegistrationToken* CreateEventRegistrationToken();
+
+EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token);
+
+EXPORT WebView2Connector* SetWebview2Environment(
+	WebView2Connector* webview2,
+	ICoreWebView2Environment* env
+);
+
+EXPORT WebView2Connector* InitSettings(WebView2Connector* webview2);
+
+EXPORT WebView2Connector* InitControllers(
+	WebView2Connector* webview2,
+	ICoreWebView2Controller* controller
+);
+
+/**
 * Global
 */
 
@@ -29,30 +55,6 @@ EXPORT HRESULT _CompareBrowserVersions(
 EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
 	PCWSTR browserExecutableFolder,
 	LPWSTR* versionInfo
-);
-
-/**
-* Original
-*/
-
-EXPORT WebView2Connector* CreateWebView2Connector(
-	ICoreWebView2Environment* env
-);
-
-EXPORT EventRegistrationToken* CreateEventRegistrationToken();
-
-EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token);
-
-EXPORT WebView2Connector* SetWebview2Environment(
-	WebView2Connector* webview2,
-	ICoreWebView2Environment* env
-);
-
-EXPORT WebView2Connector* InitSettings(WebView2Connector* webview2);
-
-EXPORT WebView2Connector* InitControllers(
-	WebView2Connector* webview2,
-	ICoreWebView2Controller* controller
 );
 
 /**

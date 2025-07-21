@@ -5,27 +5,9 @@ export type EventRegistrationToken = Deno.PointerValue;
 
 /** The result type for WebView2 functions. */
 export type WEBVIEW2_FUNCS = {
-  readonly _CreateCoreWebView2Environment: {
-    readonly parameters: ['pointer', 'function'];
-    readonly result: 'i32';
-  };
-  readonly _CreateCoreWebView2EnvironmentWithOptions: {
-    readonly parameters: [
-      'pointer',
-      'pointer',
-      'pointer',
-      'pointer',
-      'function',
-    ];
-    readonly result: 'i32';
-  };
-  readonly _CompareBrowserVersions: {
-    readonly parameters: ['pointer', 'pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly _GetAvailableCoreWebView2BrowserVersionString: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
+  readonly GetDllVersion: {
+    readonly parameters: [];
+    readonly result: 'pointer';
   };
   readonly CreateWebView2Connector: {
     readonly parameters: ['pointer'];
@@ -50,6 +32,28 @@ export type WEBVIEW2_FUNCS = {
   readonly InitControllers: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'pointer';
+  };
+  readonly _CreateCoreWebView2Environment: {
+    readonly parameters: ['pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly _CreateCoreWebView2EnvironmentWithOptions: {
+    readonly parameters: [
+      'pointer',
+      'pointer',
+      'pointer',
+      'pointer',
+      'function',
+    ];
+    readonly result: 'i32';
+  };
+  readonly _CompareBrowserVersions: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly _GetAvailableCoreWebView2BrowserVersionString: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
   };
   readonly CreateCoreWebView2Controller: {
     readonly parameters: ['pointer', 'pointer', 'function'];

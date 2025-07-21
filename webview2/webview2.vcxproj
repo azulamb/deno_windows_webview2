@@ -119,7 +119,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="exports.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="WebView2.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="webview2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

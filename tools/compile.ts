@@ -1,3 +1,8 @@
+/**
+ * Create the command line arguments for the Deno compile command.
+ * @module @azulamb/webview2/compile
+ */
+
 import { createDllFile } from './webview2.ts';
 
 interface COMPILE_OPTION {

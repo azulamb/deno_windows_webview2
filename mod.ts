@@ -1,11 +1,12 @@
-/** 
+/**
  * This module provides a Windows WebView2 implementation for Deno.
  * @module @azulamb/webview2
-*/
+ */
 
 import { params } from './src/webview2_params.ts';
 import {
   Deno_Webview2,
+  Dll,
   Microsoft_Web_WebView2,
   Microsoft_Windows_ImplementationLibrary,
 } from './src/version.ts';
@@ -163,4 +164,5 @@ export const version = {
       ImplementationLibrary: Microsoft_Windows_ImplementationLibrary,
     },
   },
+  Dll: Dll,
 };

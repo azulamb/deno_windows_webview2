@@ -275,6 +275,10 @@ int InitWebView(HWND hWnd) {
 	return hresult;
 }
 
+/*HRESULT OnWebMessageReceived(ICoreWebView2* coreWebview2, ICoreWebView2WebMessageReceivedEventArgs* args) {
+	return 0;
+}*/
+
 //int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
 int main() {
 	LoadDLL();
@@ -292,9 +296,12 @@ int main() {
 	}
 
 	InitWebView(data.hWnd);
+	//data.webview2->get_Settings();
+	//data.webview2->initSettings();
+	//data.webview2->put_AreDevToolsEnabled(TRUE);
 
 	auto token = CreateEventRegistrationToken();
-	RemoveEventRegistrationToken(token);
+	//data.webview2->add_WebMessageReceived(OnWebMessageReceived, token);
 
 	DebugLog(L"Start loop.\n");
 	MSG msg;
@@ -304,6 +311,8 @@ int main() {
 		DispatchMessageW(&msg);
 	}
 
+	data.webview2->remove_WebMessageReceived(*token);
+	RemoveEventRegistrationToken(token);
 	return (int)msg.wParam;
 }
 #endif
