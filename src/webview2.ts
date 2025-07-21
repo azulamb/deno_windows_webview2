@@ -2,8 +2,8 @@ import type {
   EventRegistrationToken,
   WEBVIEW2_FUNCS,
 } from './webview2_types.ts';
-import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi@^0.1.6';
-import type { Rect } from 'jsr:@azulamb/winapi@^0.1.6';
+import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi@^0.2.0';
+import type { Rect } from 'jsr:@azulamb/winapi@^0.2.0';
 
 function createStringPointer(value: string) {
   const buffer = new Uint16Array(
