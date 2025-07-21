@@ -1,6 +1,12 @@
 import { isAbsolute, join } from 'jsr:@std/path@^1.0.8';
 import { createDLLPath } from './dll_path.ts';
 
+/**
+ * Copy webview2.dll to a new location.
+ * @param toFilePath The path to the destination file.
+ * @param option Options for the copy operation.
+ * @returns A promise that resolves when the copy is complete.
+ */
 export function copy(
   toFilePath: string,
   option?: {

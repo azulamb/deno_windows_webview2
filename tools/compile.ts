@@ -54,6 +54,14 @@ function createCompileArgs(
   return commandArgs;
 }
 
+/**
+ * Create the command line arguments for the Deno compile command.
+ * @param mainSource The main source file.
+ * @param output The output file.
+ * @param option Options for the compile operation.
+ * @param args Additional arguments for the compile operation.
+ * @returns The command line arguments for the Deno compile command.
+ */
 export function createCompileCommand(
   mainSource: string,
   output: string,
@@ -65,6 +73,14 @@ export function createCompileCommand(
   }`;
 }
 
+/**
+ * Create the command line arguments for the Deno compile command.
+ * @param mainSource The main source file.
+ * @param output The output file.
+ * @param args Additional arguments for the compile operation.
+ * @param option Options for the compile operation.
+ * @returns The command line arguments for the Deno compile command.
+ */
 export async function compile(
   mainSource: string,
   output: string,

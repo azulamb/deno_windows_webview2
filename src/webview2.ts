@@ -1,4 +1,4 @@
-import type { WEBVIEW2_FUNCS } from './webview2_types.ts';
+import type { EventRegistrationToken, WEBVIEW2_FUNCS } from './webview2_types.ts';
 import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi@^0.1.6';
 import type { Rect } from 'jsr:@azulamb/winapi@^0.1.6';
 
@@ -11,17 +11,32 @@ function createStringPointer(value: string) {
   return Deno.UnsafePointer.of(buffer);
 }
 
+/**
+ * The WebView2 class provides an interface for interacting with the WebView2 control.
+ */
 export class WebView2 {
   protected webview2Connector!: Deno.PointerValue<unknown>;
-  public lib: Deno.DynamicLibrary<WEBVIEW2_FUNCS>;
-  constructor(lib: Deno.DynamicLibrary<WEBVIEW2_FUNCS>, env: LPVOID = null) {
-    this.lib = lib;
+
+  /**
+   * Creates an instance of the WebView2 class.
+   * @param lib The dynamic library containing the WebView2 functions.
+   * @param env The environment pointer.
+   */
+  constructor(
+    readonly lib: Deno.DynamicLibrary<WEBVIEW2_FUNCS>,
+    env: LPVOID = null
+  ) {
     this.CreateWebView2Connector(env);
   }
 
+  /**
+   * Creates a CoreWebView2Environment.
+   * @param callback The callback to invoke when the operation completes.
+   * @returns The HRESULT of the operation.
+   */
   public CreateCoreWebView2Environment(
     callback: (result: HRESULT, env: LPVOID) => HRESULT, // HRESULT(*callback)(HRESULT result, ICoreWebView2Environment* env)
-  ): number {
+  ): HRESULT {
     const func = new Deno.UnsafeCallback(
       {
         parameters: [
@@ -38,12 +53,20 @@ export class WebView2 {
     );
   }
 
+  /**
+   * Creates a CoreWebView2Environment with options.
+   * @param browserExecutableFolder The path to the browser executable folder.
+   * @param userDataFolder The path to the user data folder.
+   * @param environmentOptions The environment options.
+   * @param callback The callback to invoke when the operation completes.
+   * @returns The HRESULT of the operation.
+   */
   public CreateCoreWebView2EnvironmentWithOptions(
     browserExecutableFolder: string | null, // PCWSTR
     userDataFolder: string | null, // PCWSTR
     environmentOptions: LPVOID, // ICoreWebView2EnvironmentOptions*
     callback: (result: HRESULT, env: LPVOID) => HRESULT, // HRESULT(*callback)(HRESULT result, ICoreWebView2Environment* env)
-  ): number {
+  ): HRESULT {
     const func = new Deno.UnsafeCallback(
       {
         parameters: [
@@ -75,28 +98,52 @@ export class WebView2 {
     readonly result: 'i32';
   };*/
 
+  /**
+   * Creates a WebView2 connector.
+   * @param env The environment pointer.
+   * @returns The WebView2 connector pointer.
+   */
   public CreateWebView2Connector(
     env: LPVOID, // ICoreWebView2Environment*
   ): LPVOID {
     this.webview2Connector = this.lib.symbols.CreateWebView2Connector(env);
     return this.webview2Connector;
   }
+
   /*readonly SetWebview2Environment: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'pointer';
   };*/
+
+  /**
+   * Initializes the settings for the WebView2 control.
+   * @returns The pointer to the initialized settings.
+   */
   public InitSettings(): LPVOID {
     return this.lib.symbols.InitSettings(this.webview2Connector);
   }
+
+  /**
+   * Initializes the controllers for the WebView2 control.
+   * @param controller The controller pointer.
+   * @returns The pointer to the initialized controllers.
+   */
   public InitControllers(
     controller: LPVOID, // ICoreWebView2Controller*
   ): LPVOID {
     return this.lib.symbols.InitControllers(this.webview2Connector, controller);
   }
+
+  /**
+   * Creates a CoreWebView2Controller.
+   * @param hWnd The window handle.
+   * @param callback The callback to invoke when the operation completes.
+   * @returns The HRESULT of the operation.
+   */
   public CreateCoreWebView2Controller(
     hWnd: HWND,
     callback: (errorCode: HRESULT, controller: LPVOID) => HRESULT, // HRESULT(*callback)(HRESULT, ICoreWebView2Controller*)
-  ): number {
+  ): HRESULT {
     const func = new Deno.UnsafeCallback(
       {
         parameters: [
@@ -113,98 +160,173 @@ export class WebView2 {
       func.pointer,
     );
   }
+
+  /**
+   * Creates an event registration token.
+   * @returns The event registration token.
+   */
+  public CreateEventRegistrationToken(): EventRegistrationToken {
+    return this.lib.symbols.CreateEventRegistrationToken();
+  }
+
+  /**
+   * Removes an event registration token.
+   * @param token The event registration token to remove.
+   */
+  public RemoveEventRegistrationToken(token: EventRegistrationToken): void {
+    this.lib.symbols.RemoveEventRegistrationToken(token);
+  }
+
   /*readonly get_IsScriptEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables script execution in the WebView2 control.
+   * @param enable True to enable script execution; false to disable it.
+   */
   public set IsScriptEnabled(enable: boolean) {
     this.lib.symbols.put_IsScriptEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
+  /**
+   * Gets whether script execution is enabled in the WebView2 control.
+   * @returns True if script execution is enabled; false otherwise.
+   */
   public get IsScriptEnabled(): boolean {
     const data = new Int32Array([0]);
     const bool = Deno.UnsafePointer.of(data);
     this.lib.symbols.get_IsScriptEnabled(this.webview2Connector, bool);
     return data[0] !== 0;
   }
+
+  /**
+   * Enables or disables web message handling in the WebView2 control.
+   * @param enable True to enable web message handling; false to disable it.
+   */
   public set IsWebMessageEnabled(enable: boolean) {
     this.lib.symbols.put_IsWebMessageEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_AreDefaultScriptDialogsEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables default script dialogs in the WebView2 control.
+   * @param enable True to enable default script dialogs; false to disable them.
+   */
   public set AreDefaultScriptDialogsEnabled(enable: boolean) {
     this.lib.symbols.put_AreDefaultScriptDialogsEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_IsStatusBarEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables the status bar in the WebView2 control.
+   * @param enable True to enable the status bar; false to disable it.
+   */
   public set IsStatusBarEnabled(enable: boolean) {
     this.lib.symbols.put_IsStatusBarEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_AreDevToolsEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables the Developer Tools in the WebView2 control.
+   * @param enable True to enable Developer Tools; false to disable them.
+   */
   public set AreDevToolsEnabled(enable: boolean) {
     this.lib.symbols.put_AreDevToolsEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_AreDefaultContextMenusEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables the default context menus in the WebView2 control.
+   * @param enable True to enable default context menus; false to disable them.
+   */
   public set AreDefaultContextMenusEnabled(enable: boolean) {
     this.lib.symbols.put_AreDefaultContextMenusEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_AreHostObjectsAllowed: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables host objects in the WebView2 control.
+   * @param enable True to allow host objects; false to disallow them.
+   */
   public set AreHostObjectsAllowed(enable: boolean) {
     this.lib.symbols.put_AreHostObjectsAllowed(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_IsZoomControlEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables the zoom control in the WebView2 control.
+   * @param enable True to enable the zoom control; false to disable it.
+   */
   public set IsZoomControlEnabled(enable: boolean) {
     this.lib.symbols.put_IsZoomControlEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_IsBuiltInErrorPageEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Enables or disables the built-in error page in the WebView2 control.
+   * @param enable True to enable the built-in error page; false to disable it.
+   */
   public set IsBuiltInErrorPageEnabled(enable: boolean) {
     this.lib.symbols.put_IsBuiltInErrorPageEnabled(
       this.webview2Connector,
       enable ? 1 : 0,
     );
   }
+
   /*readonly get_UserAgent: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
@@ -265,16 +387,28 @@ export class WebView2 {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Sets the bounds of the WebView2 control.
+   * @param bounds The new bounds for the control.
+   */
   public set Bounds(bounds: Rect) {
     this.lib.symbols.put_Bounds(this.webview2Connector, bounds.data);
   }
+
   /*readonly Close: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };*/
-  public CoreWebView2(): number {
+
+  /**
+   * Gets the CoreWebView2 instance associated with the WebView2 control.
+   * @returns The HRESULT result of the operation.
+   */
+  public CoreWebView2(): HRESULT {
     return this.lib.symbols.get_CoreWebView2(this.webview2Connector);
   }
+
   /*readonly add_GotFocus: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
@@ -422,29 +556,88 @@ export class WebView2 {
   readonly remove_HistoryChanged: {
     readonly parameters: ['pointer', 'buffer'];
     readonly result: 'i32';
-  };
-  readonly PostWebMessageAsJson: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly PostWebMessageAsString: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly add_WebMessageReceived: {
-    readonly parameters: ['pointer', 'function', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly remove_WebMessageReceived: {
-    readonly parameters: ['pointer', 'buffer'];
-    readonly result: 'i32';
   };*/
-  public Navigate(url: string): number {
+
+  /**
+   * Posts a message to the WebView2 control as JSON.
+   * @param json The JSON object to post.
+   * @returns The HRESULT result of the operation.
+   */
+  public PostWebMessageAsJson(
+    // deno-lint-ignore no-explicit-any
+    json: any
+  ): HRESULT {
+    return this.lib.symbols.PostWebMessageAsJson(
+      this.webview2Connector,
+      createStringPointer(JSON.stringify(json)),
+    );
+  }
+
+  /**
+   * Posts a message to the WebView2 control as a string.
+   * @param data The string to post.
+   * @returns The HRESULT result of the operation.
+   */
+  public PostWebMessageAsString(data: string): HRESULT {
+    return this.lib.symbols.PostWebMessageAsString(
+      this.webview2Connector,
+      createStringPointer(data),
+    );
+  }
+
+  /**
+   * Adds a handler for the WebMessageReceived event.
+   * @param callback The function to call when the event is raised.
+   * @returns The EventRegistrationToken for the event handler.
+   */
+  public add_WebMessageReceived(
+    callback: (coreWebView2: LPVOID, eventArgs: LPVOID) => HRESULT,
+  ): EventRegistrationToken {
+    const token = this.CreateEventRegistrationToken();
+    const func = new Deno.UnsafeCallback(
+      {
+        parameters: [
+          'pointer', // ICoreWebView2*
+          'pointer', // ICoreWebView2WebMessageReceivedEventArgs*
+        ],
+        result: 'i32', // HRESULT
+      },
+      callback,
+    );
+    this.lib.symbols.add_WebMessageReceived(
+      this.webview2Connector,
+      func.pointer,
+      token,
+    );
+    return token;
+  }
+
+  /**
+   * Removes a handler for the WebMessageReceived event.
+   * @param token The EventRegistrationToken for the event handler.
+   * @returns The HRESULT result of the operation.
+   */
+  public remove_WebMessageReceived(token: EventRegistrationToken): HRESULT {
+    const result = this.lib.symbols.remove_WebMessageReceived(
+      this.webview2Connector,
+      token,
+    );
+    this.RemoveEventRegistrationToken(token);
+    return result;
+  }
+
+  /**
+   * Navigates the WebView2 control to the specified URL.
+   * @param url The URL to navigate to.
+   * @returns The HRESULT result of the operation.
+   */
+  public Navigate(url: string): HRESULT {
     return this.lib.symbols.Navigate(
       this.webview2Connector,
       createStringPointer(url),
     );
   }
+
   /*readonly add_NavigationCompleted: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
@@ -569,9 +762,15 @@ export class WebView2 {
     readonly parameters: ['pointer', 'buffer'];
     readonly result: 'i32';
   };*/
-  public Settings(): number {
+
+  /**
+   * Gets the settings for the WebView2 control.
+   * @returns The result of the operation.
+   */
+  public Settings(): HRESULT {
     return this.lib.symbols.get_Settings(this.webview2Connector);
   }
+
   /*readonly CapturePreview: {
     readonly parameters: ['pointer', 'i32', 'pointer', 'function'];
     readonly result: 'i32';

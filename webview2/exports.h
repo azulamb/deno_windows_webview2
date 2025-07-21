@@ -39,6 +39,10 @@ EXPORT WebView2Connector* CreateWebView2Connector(
 	ICoreWebView2Environment* env
 );
 
+EXPORT EventRegistrationToken* CreateEventRegistrationToken();
+
+EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token);
+
 EXPORT WebView2Connector* SetWebview2Environment(
 	WebView2Connector* webview2,
 	ICoreWebView2Environment* env

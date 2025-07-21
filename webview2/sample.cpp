@@ -32,6 +32,12 @@ typedef HRESULT (*Imported_CreateCoreWebView2EnvironmentWithOptions)(
 );
 Imported_CreateCoreWebView2EnvironmentWithOptions _CreateCoreWebView2EnvironmentWithOptions;
 
+typedef EventRegistrationToken* (*ImportedCreateEventRegistrationToken)();
+ImportedCreateEventRegistrationToken CreateEventRegistrationToken;
+
+typedef void (*ImportedRemoveEventRegistrationToken)(EventRegistrationToken* token);
+ImportedRemoveEventRegistrationToken RemoveEventRegistrationToken;
+
 typedef HRESULT(*Importedput_Bounds)(WebView2Connector* webview2, RECT bounds);
 Importedput_Bounds put_Bounds;
 
@@ -91,6 +97,8 @@ void LoadDLL() {
 	CreateCoreWebView2Controller = (ImportedCreateCoreWebView2Controller)GetProcAddress(hModule, "CreateCoreWebView2Controller");
 	CreateWebView2Connector = (ImportedCreateWebView2Connector)GetProcAddress(hModule, "CreateWebView2Connector");
 	_CreateCoreWebView2EnvironmentWithOptions = (Imported_CreateCoreWebView2EnvironmentWithOptions)GetProcAddress(hModule, "_CreateCoreWebView2EnvironmentWithOptions");
+	CreateEventRegistrationToken = (ImportedCreateEventRegistrationToken)GetProcAddress(hModule, "CreateEventRegistrationToken");
+	RemoveEventRegistrationToken = (ImportedRemoveEventRegistrationToken)GetProcAddress(hModule, "RemoveEventRegistrationToken");
 	put_Bounds = (Importedput_Bounds)GetProcAddress(hModule, "put_Bounds");
 	InitControllers = (ImportedInitControllers)GetProcAddress(hModule, "InitControllers");
 	get_CoreWebView2 = (Importedget_CoreWebView2)GetProcAddress(hModule, "get_CoreWebView2");
@@ -284,6 +292,9 @@ int main() {
 	}
 
 	InitWebView(data.hWnd);
+
+	auto token = CreateEventRegistrationToken();
+	RemoveEventRegistrationToken(token);
 
 	DebugLog(L"Start loop.\n");
 	MSG msg;

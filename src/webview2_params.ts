@@ -2,6 +2,9 @@
 
 import type { WEBVIEW2_FUNCS } from './webview2_types.ts';
 
+/**
+ * The parameters for the WebView2 functions.
+ */
 export const params: WEBVIEW2_FUNCS = {
   _CreateCoreWebView2Environment: {
     parameters: ['pointer', 'function'],
@@ -22,6 +25,14 @@ export const params: WEBVIEW2_FUNCS = {
   CreateWebView2Connector: {
     parameters: ['pointer'],
     result: 'pointer',
+  },
+  CreateEventRegistrationToken: {
+    parameters: [],
+    result: 'pointer',
+  },
+  RemoveEventRegistrationToken: {
+    parameters: ['pointer'],
+    result: 'void',
   },
   SetWebview2Environment: {
     parameters: ['pointer', 'pointer'],
@@ -344,7 +355,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_WebMessageReceived: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   Navigate: {
