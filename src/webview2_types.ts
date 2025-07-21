@@ -180,7 +180,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_AcceleratorKeyPressed: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly get_Bounds: {
@@ -204,7 +204,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_GotFocus: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly get_IsVisible: {
@@ -220,7 +220,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_LostFocus: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly MoveFocus: {
@@ -232,7 +232,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_MoveFocusRequested: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly NotifyParentWindowPositionChanged: {
@@ -264,7 +264,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_ZoomFactorChanged: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly get_DefaultBackgroundColor: {
@@ -280,7 +280,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_RasterizationScaleChanged: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly get_BoundsMode: {
@@ -332,7 +332,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_DocumentTitleChanged: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly get_DocumentTitle: {
@@ -344,7 +344,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_HistoryChanged: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly PostWebMessageAsJson: {
@@ -372,7 +372,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_NavigationCompleted: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly add_NavigationStarting: {
@@ -380,7 +380,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_NavigationStarting: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly NavigateToString: {
@@ -392,7 +392,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_FrameNavigationCompleted: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly add_FrameNavigationStarting: {
@@ -400,7 +400,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_FrameNavigationStarting: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly add_PermissionRequested: {
@@ -408,7 +408,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_PermissionRequested: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly add_ScriptDialogOpening: {
@@ -416,7 +416,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_ScriptDialogOpening: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly AddScriptToExecuteOnDocumentCreated: {
@@ -448,7 +448,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_SourceChanged: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly Reload: {
@@ -480,7 +480,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_ContentLoading: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly add_ProcessFailed: {
@@ -488,7 +488,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_ProcessFailed: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly get_Settings: {
@@ -508,7 +508,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_NewWindowRequested: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly add_ContainsFullScreenElementChanged: {
@@ -516,7 +516,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_ContainsFullScreenElementChanged: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly get_ContainsFullScreenElement: {
@@ -528,7 +528,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_WebResourceRequested: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly AddWebResourceRequestedFilter: {
@@ -544,7 +544,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly remove_WindowCloseRequested: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
 };

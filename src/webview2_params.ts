@@ -2,9 +2,7 @@
 
 import type { WEBVIEW2_FUNCS } from './webview2_types.ts';
 
-/**
- * The parameters for the WebView2 functions.
- */
+/** The parameters for the WebView2 functions. */
 export const params: WEBVIEW2_FUNCS = {
   _CreateCoreWebView2Environment: {
     parameters: ['pointer', 'function'],
@@ -175,7 +173,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_AcceleratorKeyPressed: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   get_Bounds: {
@@ -199,7 +197,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_GotFocus: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   get_IsVisible: {
@@ -215,7 +213,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_LostFocus: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   MoveFocus: {
@@ -227,7 +225,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_MoveFocusRequested: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   NotifyParentWindowPositionChanged: {
@@ -259,7 +257,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_ZoomFactorChanged: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   get_DefaultBackgroundColor: {
@@ -275,7 +273,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_RasterizationScaleChanged: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   get_BoundsMode: {
@@ -327,7 +325,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_DocumentTitleChanged: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   get_DocumentTitle: {
@@ -339,7 +337,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_HistoryChanged: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   PostWebMessageAsJson: {
@@ -367,7 +365,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_NavigationCompleted: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   add_NavigationStarting: {
@@ -375,7 +373,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_NavigationStarting: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   NavigateToString: {
@@ -387,7 +385,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_FrameNavigationCompleted: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   add_FrameNavigationStarting: {
@@ -395,7 +393,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_FrameNavigationStarting: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   add_PermissionRequested: {
@@ -403,7 +401,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_PermissionRequested: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   add_ScriptDialogOpening: {
@@ -411,7 +409,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_ScriptDialogOpening: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   AddScriptToExecuteOnDocumentCreated: {
@@ -443,7 +441,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_SourceChanged: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   Reload: {
@@ -475,7 +473,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_ContentLoading: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   add_ProcessFailed: {
@@ -483,7 +481,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_ProcessFailed: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   get_Settings: {
@@ -503,7 +501,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_NewWindowRequested: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   add_ContainsFullScreenElementChanged: {
@@ -511,7 +509,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_ContainsFullScreenElementChanged: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   get_ContainsFullScreenElement: {
@@ -523,7 +521,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_WebResourceRequested: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   AddWebResourceRequestedFilter: {
@@ -539,7 +537,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   remove_WindowCloseRequested: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
 };

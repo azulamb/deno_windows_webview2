@@ -41,16 +41,14 @@ await Deno.writeTextFile(
     `export const Deno_Webview2 = '${VERSION}';`,
     ...packages.map((data) => {
       return `/** The version of the ${data.name} package. */
-export const ${
-        data.name.replaceAll('.', '_')
-      } = '${data.version}';`;
+export const ${data.name.replaceAll('.', '_')} = '${data.version}';`;
     }),
   ].join('\n') + '\n',
 );
 
 const readme = await Deno.readTextFile(README_SRC);
 
-const [before, tmp] = readme.split(/### Versions/,2)
+const [before, tmp] = readme.split(/### Versions/, 2);
 const after = tmp.split(/### File/, 2)[1];
 const versions = packages.map((p) => {
   return `* ${p.name}\n  * \`${p.version}\``;

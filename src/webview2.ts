@@ -1,4 +1,7 @@
-import type { EventRegistrationToken, WEBVIEW2_FUNCS } from './webview2_types.ts';
+import type {
+  EventRegistrationToken,
+  WEBVIEW2_FUNCS,
+} from './webview2_types.ts';
 import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi@^0.1.6';
 import type { Rect } from 'jsr:@azulamb/winapi@^0.1.6';
 
@@ -24,7 +27,7 @@ export class WebView2 {
    */
   constructor(
     readonly lib: Deno.DynamicLibrary<WEBVIEW2_FUNCS>,
-    env: LPVOID = null
+    env: LPVOID = null,
   ) {
     this.CreateWebView2Connector(env);
   }
@@ -565,7 +568,7 @@ export class WebView2 {
    */
   public PostWebMessageAsJson(
     // deno-lint-ignore no-explicit-any
-    json: any
+    json: any,
   ): HRESULT {
     return this.lib.symbols.PostWebMessageAsJson(
       this.webview2Connector,

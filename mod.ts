@@ -8,8 +8,10 @@ import { createDLLPath } from './tools/dll_path.ts';
 import type { WEBVIEW2_FUNCS } from './src/webview2_types.ts';
 import { WebView2 } from './src/webview2.ts';
 export * from './src/webview2.ts';
+/** The result type for WebView2 functions. */
 export type { WEBVIEW2_FUNCS } from './src/webview2_types.ts';
 
+/** The options for preparing the WebView2 DLL. */
 export type PREPARE_WEBVIEW2_DLL_OPTION = {
   includePath?: boolean | string | URL; // deno compile --include [includePath] ..., true: default path.
   download?: boolean | string | URL; // true: download from GitHub
@@ -27,6 +29,12 @@ async function copyFile(to: string, from: URL) {
   await response.body.pipeTo(file.writable);
 }
 
+/**
+ * Prepares the WebView2 DLL for use.
+ * @param dllPath The path to the WebView2 DLL.
+ * @param option The options for preparing the DLL.
+ * @returns An object containing the path to the prepared DLL.
+ */
 export async function prepareWebview2DLL(
   dllPath: string,
   option?: PREPARE_WEBVIEW2_DLL_OPTION,
@@ -112,6 +120,11 @@ export async function prepareWebview2DLL(
   throw new Error(`[Failure] Create: ${dllPath}`);
 }
 
+/**
+ * Loads the WebView2 DLL.
+ * @param dllPath The path to the WebView2 DLL.
+ * @returns A dynamic library instance for the WebView2 functions.
+ */
 export function loadWebview2(
   dllPath = 'webview2.dll',
 ): Deno.DynamicLibrary<WEBVIEW2_FUNCS> {
@@ -121,12 +134,18 @@ export function loadWebview2(
   );
 }
 
+/**
+ * Creates a new WebView2 instance.
+ * @param dllPath The path to the WebView2 DLL.
+ * @returns A new WebView2 instance.
+ */
 export function createWebView2(
   dllPath = 'webview2.dll',
 ): WebView2 {
   return new WebView2(loadWebview2(dllPath));
 }
 
+/** The version information for the WebView2 module. */
 export const version = {
   Deno: {
     Webview2: Deno_Webview2,
