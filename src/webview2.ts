@@ -44,6 +44,7 @@ export class WebView2 {
     return this.webview2Connector;
   }
 
+  /** Gets the version of the webview2.dll. */
   public get dllVersion(): string {
     const pointer = this.lib.symbols.GetDllVersion();
     if (!pointer) {

@@ -51,7 +51,11 @@ function createCompileArgs(
     }
   }
   if (includes.length > 0) {
-    commandArgs.push('--include', ...includes);
+    commandArgs.push(
+      ...includes.map((file) => {
+        return ['--include', file];
+      }).flat(),
+    );
   }
 
   commandArgs.push('--output', output, main);
