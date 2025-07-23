@@ -22,10 +22,10 @@ await checker.check(
         console.log(
           `Now version: ${DLL_VERSION} Now dll version: ${dllVersion}`,
         );
-        if (!checker.isUpdatedVersion(DLL_VERSION, dllVersion)) {
+        if (DLL_VERSION !== dllVersion) {
           return Promise.reject(
             new Error(
-              `Dll version invalid: ${dllVersion} Need update version in dll.`,
+              `Dll version invalid: Update deno.json & deno task version`,
             ),
           );
         }
