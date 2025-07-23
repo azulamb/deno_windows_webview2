@@ -655,3 +655,25 @@ EXPORT HRESULT remove_WindowCloseRequested(
 	WebView2Connector* webview2,
 	/* [in] */ EventRegistrationToken token
 );
+
+/**
+* ICoreWebView2WebMessageReceivedEventArgs
+*/
+
+EXPORT HRESULT MessageReceivedEventArgs_get_Source(
+	ICoreWebView2WebMessageReceivedEventArgs* args,
+	LPWSTR dest,
+	rsize_t* size
+);
+
+EXPORT HRESULT MessageReceivedEventArgs_get_WebMessageAsJson(
+	ICoreWebView2WebMessageReceivedEventArgs* args,
+	LPWSTR webMessageAsJson,
+	rsize_t* size
+);
+
+EXPORT HRESULT MessageReceivedEventArgs_TryGetWebMessageAsString(
+	ICoreWebView2WebMessageReceivedEventArgs* args,
+	LPWSTR webMessageAsString,
+	rsize_t* size
+);

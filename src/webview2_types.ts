@@ -551,4 +551,16 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
+  readonly MessageReceivedEventArgs_get_Source: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly MessageReceivedEventArgs_get_WebMessageAsJson: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly MessageReceivedEventArgs_TryGetWebMessageAsString: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
 };

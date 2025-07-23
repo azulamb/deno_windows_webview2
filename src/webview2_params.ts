@@ -544,4 +544,16 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
+  MessageReceivedEventArgs_get_Source: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  MessageReceivedEventArgs_get_WebMessageAsJson: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  MessageReceivedEventArgs_TryGetWebMessageAsString: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
 };

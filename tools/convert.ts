@@ -14,6 +14,7 @@ function convertType(type: string) {
       return 'void';
     case 'PCWSTR':
     case 'LPCWSTR':
+    case 'LPWSTR':
     case 'HWND':
     case 'EventRegistrationToken':
       return 'pointer';

@@ -961,4 +961,108 @@ EXPORT HRESULT remove_WindowCloseRequested(
 	return webview2->remove_WindowCloseRequested(token);
 }
 
+
+/**
+* ICoreWebView2WebMessageReceivedEventArgs
+*/
+
+EXPORT HRESULT MessageReceivedEventArgs_get_Source(
+	ICoreWebView2WebMessageReceivedEventArgs* args,
+	LPWSTR uri,
+	rsize_t* size
+) {
+	wil::unique_cotaskmem_string data;
+	HRESULT result = args->get_Source(&data);
+
+	if (FAILED(result)) {
+		if (size) {
+			*size = 0;
+		}
+		return result;
+	}
+
+	wchar_t const* source = data.get();
+
+	rsize_t wsize = wcslen(source);
+	if (size) {
+		*size = wsize;
+	}
+
+	if (uri) {
+		wcscpy_s(
+			uri,
+			wsize,
+			source
+		);
+	}
+
+	return result;
+}
+
+EXPORT HRESULT MessageReceivedEventArgs_get_WebMessageAsJson(
+	ICoreWebView2WebMessageReceivedEventArgs* args,
+	LPWSTR webMessageAsJson,
+	rsize_t* size
+) {
+	wil::unique_cotaskmem_string data;
+	HRESULT result = args->get_WebMessageAsJson(&data);
+
+	if (FAILED(result)) {
+		if (size) {
+			*size = 0;
+		}
+		return result;
+	}
+
+	wchar_t const* source = data.get();
+
+	rsize_t wsize = wcslen(source);
+	if (size) {
+		*size = wsize;
+	}
+
+	if (webMessageAsJson) {
+		wcscpy_s(
+			webMessageAsJson,
+			wsize,
+			source
+		);
+	}
+
+	return result;
+}
+
+EXPORT HRESULT MessageReceivedEventArgs_TryGetWebMessageAsString(
+	ICoreWebView2WebMessageReceivedEventArgs* args,
+	LPWSTR webMessageAsString,
+	rsize_t* size
+) {
+	wil::unique_cotaskmem_string data;
+	HRESULT result = args->TryGetWebMessageAsString(&data);
+
+	if (result == E_INVALIDARG) {
+		if (size) {
+			*size = 0;
+		}
+		return S_OK;
+	}
+
+	wchar_t const* source = data.get();
+
+	rsize_t wsize = wcslen(source);
+	if (size) {
+		*size = wsize;
+	}
+
+	if (webMessageAsString) {
+		wcscpy_s(
+			webMessageAsString,
+			wsize,
+			source
+		);
+	}
+
+	return result;
+}
+
 #endif
