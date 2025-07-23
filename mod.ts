@@ -166,3 +166,8 @@ export const version = {
   },
   Dll: Dll,
 };
+
+/**
+ * Exports support classes.
+ */
+export { WebMessageReceivedEventArgs } from './src/class/WebMessageReceivedEventArgs.ts';

@@ -1,6 +1,6 @@
 {
   "name": "@azulamb/webview2",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "dll_version": "0.3.5.0",
   "license": "MIT",
   "exports": {
