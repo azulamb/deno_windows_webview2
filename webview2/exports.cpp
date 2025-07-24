@@ -966,6 +966,21 @@ EXPORT HRESULT remove_WindowCloseRequested(
 * ICoreWebView2WebMessageReceivedEventArgs
 */
 
+void copyString(wchar_t const* source, rsize_t* size, LPWSTR target) {
+	rsize_t wsize = wcslen(source) + 1;
+	if (size) {
+		*size = wsize;
+	}
+
+	if (target) {
+		wcscpy_s(
+			target,
+			wsize,
+			source
+		);
+	}
+}
+
 EXPORT HRESULT MessageReceivedEventArgs_get_Source(
 	ICoreWebView2WebMessageReceivedEventArgs* args,
 	LPWSTR uri,
@@ -981,20 +996,7 @@ EXPORT HRESULT MessageReceivedEventArgs_get_Source(
 		return result;
 	}
 
-	wchar_t const* source = data.get();
-
-	rsize_t wsize = wcslen(source);
-	if (size) {
-		*size = wsize;
-	}
-
-	if (uri) {
-		wcscpy_s(
-			uri,
-			wsize,
-			source
-		);
-	}
+	copyString(data.get(), size, uri);
 
 	return result;
 }
@@ -1014,20 +1016,7 @@ EXPORT HRESULT MessageReceivedEventArgs_get_WebMessageAsJson(
 		return result;
 	}
 
-	wchar_t const* source = data.get();
-
-	rsize_t wsize = wcslen(source);
-	if (size) {
-		*size = wsize;
-	}
-
-	if (webMessageAsJson) {
-		wcscpy_s(
-			webMessageAsJson,
-			wsize,
-			source
-		);
-	}
+	copyString(data.get(), size, webMessageAsJson);
 
 	return result;
 }
@@ -1047,20 +1036,7 @@ EXPORT HRESULT MessageReceivedEventArgs_TryGetWebMessageAsString(
 		return S_OK;
 	}
 
-	wchar_t const* source = data.get();
-
-	rsize_t wsize = wcslen(source);
-	if (size) {
-		*size = wsize;
-	}
-
-	if (webMessageAsString) {
-		wcscpy_s(
-			webMessageAsString,
-			wsize,
-			source
-		);
-	}
+	copyString(data.get(), size, webMessageAsString);
 
 	return result;
 }

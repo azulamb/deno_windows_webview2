@@ -82,7 +82,11 @@ export class WebMessageReceivedEventArgs {
       throw new Error(`Failed to get WebMessageAsJson: ${hresult2}`);
     }
 
-    return JSON.parse(new TextDecoder().decode(buffer)) as T;
+    return JSON.parse(
+      JSON.parse(
+        String.fromCharCode.apply(null, Array.from(buffer.subarray(0, -1))),
+      ),
+    ) as T;
   }
 
   /**

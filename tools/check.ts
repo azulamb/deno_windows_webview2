@@ -16,6 +16,7 @@ await checker.check(
         return file.replace(/^.+(Debug|Release).+$/, '$1');
       });
       if (list.length <= 0) {
+        // Dll not updated.
         const dllVersion = (await checker.exec(
           ['powershell', './tools/dllver.ps1', 'Release'],
         )).stdout.trim();
@@ -33,6 +34,7 @@ await checker.check(
           'No DLL changes detected, skipping version check.',
         );
       }
+      // Need update DLL version.
       const versions = await Promise.all(list.map((mode) => {
         return checker.exec(
           ['powershell', './tools/dllver.ps1', mode],
