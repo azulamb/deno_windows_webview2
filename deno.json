@@ -1,7 +1,7 @@
 {
   "name": "@azulamb/webview2",
   "version": "0.3.8",
-  "dll_version": "0.3.6.0",
+  "dll_version": "0.3.8.0",
   "license": "MIT",
   "exports": {
     ".": "./mod.ts",
