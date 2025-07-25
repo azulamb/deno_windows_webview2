@@ -966,8 +966,15 @@ EXPORT HRESULT remove_WindowCloseRequested(
 * ICoreWebView2WebMessageReceivedEventArgs
 */
 
-void copyString(wchar_t const* source, rsize_t* size, LPWSTR target) {
+void copyString(wchar_t const* source, rsize_t* size, LPWSTR target, bool tmp = false) {
 	rsize_t wsize = wcslen(source) + 1;
+
+	// TryGetWebMessageAsString get string "XXX
+	// Bug ?
+	if (tmp && 0 < wsize) {
+		++wsize;
+	}
+
 	if (size) {
 		*size = wsize;
 	}
@@ -1036,7 +1043,7 @@ EXPORT HRESULT MessageReceivedEventArgs_TryGetWebMessageAsString(
 		return S_OK;
 	}
 
-	copyString(data.get(), size, webMessageAsString);
+	copyString(data.get(), size, webMessageAsString, true);
 
 	return result;
 }

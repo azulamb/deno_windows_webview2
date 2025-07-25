@@ -102,6 +102,7 @@ export class WebMessageReceivedEventArgs {
         null,
         Deno.UnsafePointer.of(size),
       );
+    console.log(size[0]);
     if (hresult !== 0) {
       throw new Error(`Failed to get StringMessage: ${hresult}`);
     }
@@ -120,6 +121,6 @@ export class WebMessageReceivedEventArgs {
       throw new Error(`Failed to get WebMessageAsJson: ${hresult2}`);
     }
 
-    return new TextDecoder().decode(buffer);
+    return String.fromCharCode.apply(null, Array.from(buffer.subarray(1, -1)));
   }
 }
