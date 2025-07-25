@@ -2,7 +2,7 @@
 /** The version of the Deno Webview2 module. */
 export const Deno_Webview2 = '0.3.8';
 /** The version of the webview2.dll. */
-export const Dll = '0.3.6.0';
+export const Dll = '0.3.8.0';
 /** The version of the Microsoft.Web.WebView2 package. */
 export const Microsoft_Web_WebView2 = '1.0.3351.48';
 /** The version of the Microsoft.Windows.ImplementationLibrary package. */
