@@ -595,6 +595,7 @@ EXPORT HRESULT remove_HistoryChanged(
 EXPORT HRESULT PostWebMessageAsJson(
 	WebView2Connector* webview2,
 	/* [in] */ LPCWSTR webMessageAsJson
+	// TODO: sender. if null, default.
 ) {
 	return webview2->PostWebMessageAsJson(webMessageAsJson);
 }
@@ -602,6 +603,7 @@ EXPORT HRESULT PostWebMessageAsJson(
 EXPORT HRESULT PostWebMessageAsString(
 	WebView2Connector* webview2,
 	/* [in] */ LPCWSTR webMessageAsString
+	// TODO: sender. if null, default.
 ) {
 	return webview2->PostWebMessageAsString(webMessageAsString);
 }

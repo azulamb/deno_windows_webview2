@@ -1,3 +1,4 @@
+import { utf16BufferToString } from '../libs/convert.ts';
 import type { WEBVIEW2_FUNCS } from '../webview2_types.ts';
 
 type ICoreWebView2WebMessageReceivedEventArgsPointer = Deno.PointerValue;
@@ -50,7 +51,7 @@ export class WebMessageReceivedEventArgs {
       throw new Error(`Failed to get Source: ${hresult2}`);
     }
 
-    return new TextDecoder().decode(buffer);
+    return utf16BufferToString(buffer);
   }
 
   /**
@@ -82,11 +83,7 @@ export class WebMessageReceivedEventArgs {
       throw new Error(`Failed to get WebMessageAsJson: ${hresult2}`);
     }
 
-    return JSON.parse(
-      JSON.parse(
-        String.fromCharCode.apply(null, Array.from(buffer.subarray(0, -1))),
-      ),
-    ) as T;
+    return JSON.parse(JSON.parse(utf16BufferToString(buffer))) as T;
   }
 
   /**
@@ -121,6 +118,6 @@ export class WebMessageReceivedEventArgs {
       throw new Error(`Failed to get WebMessageAsJson: ${hresult2}`);
     }
 
-    return String.fromCharCode.apply(null, Array.from(buffer.subarray(1, -1)));
+    return utf16BufferToString(buffer);
   }
 }

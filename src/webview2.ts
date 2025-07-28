@@ -580,6 +580,7 @@ export class WebView2 {
     // deno-lint-ignore no-explicit-any
     json: any,
   ): HRESULT {
+    // TODO: use sender.
     return this.lib.symbols.PostWebMessageAsJson(
       this.webview2Connector,
       createStringPointer(JSON.stringify(json)),
@@ -592,6 +593,7 @@ export class WebView2 {
    * @returns The HRESULT result of the operation.
    */
   public PostWebMessageAsString(data: string): HRESULT {
+    // TODO: use sender.
     return this.lib.symbols.PostWebMessageAsString(
       this.webview2Connector,
       createStringPointer(data),
