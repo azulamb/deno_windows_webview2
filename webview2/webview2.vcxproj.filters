@@ -21,18 +21,48 @@
     <ClCompile Include="sample.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="source\Global.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2Environment.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2Settings.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2Controller.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2WebMessageReceivedEventArgs.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WebView2.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2_2.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2_3.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Library.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WebView2.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="exports.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WebView2.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

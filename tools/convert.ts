@@ -23,6 +23,7 @@ function convertType(type: string) {
     case 'COREWEBVIEW2_BOUNDS_MODE':
     case 'COREWEBVIEW2_CAPTURE_PREVIEW_IMAGE_FORMAT':
     case 'COREWEBVIEW2_WEB_RESOURCE_CONTEXT':
+    case 'COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND':
     case 'HRESULT':
       return 'i32';
     case 'double':

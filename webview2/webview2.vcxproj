@@ -113,6 +113,16 @@
   <ItemGroup>
     <ClCompile Include="sample.cpp" />
     <ClCompile Include="exports.cpp" />
+    <ClCompile Include="source\Global.cpp" />
+    <ClCompile Include="source\ICoreWebView2.cpp" />
+    <ClCompile Include="source\ICoreWebView2Controller.cpp" />
+    <ClCompile Include="source\ICoreWebView2Environment.cpp" />
+    <ClCompile Include="source\ICoreWebView2Settings.cpp" />
+    <ClCompile Include="source\ICoreWebView2WebMessageReceivedEventArgs.cpp" />
+    <ClCompile Include="source\ICoreWebView2_2.cpp" />
+    <ClCompile Include="source\ICoreWebView2_3.cpp" />
+    <ClCompile Include="source\Library.cpp" />
+    <ClCompile Include="source\WebView2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -120,7 +130,7 @@
   <ItemGroup>
     <ClInclude Include="exports.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="WebView2.hpp" />
+    <ClInclude Include="source\WebView2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="webview2.rc" />

@@ -1,5 +1,5 @@
 #pragma once
-#include "./WebView2.hpp"
+#include "./source/WebView2.hpp"
 
 #define EXPORT extern "C" __declspec(dllexport)
 
@@ -54,6 +54,7 @@ EXPORT HRESULT _CompareBrowserVersions(
 
 EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
 	PCWSTR browserExecutableFolder,
+	// TODO: LPWSTR
 	LPWSTR* versionInfo
 );
 
@@ -70,6 +71,7 @@ EXPORT HRESULT CreateCoreWebView2Controller(
 /**
 * ICoreWebView2Settings
 */
+
 EXPORT HRESULT get_IsScriptEnabled(WebView2Connector* webview2, BOOL* isScriptEnabled);
 
 EXPORT HRESULT put_IsScriptEnabled(WebView2Connector* webview2, BOOL isScriptEnabled);
@@ -109,13 +111,15 @@ EXPORT HRESULT put_IsBuiltInErrorPageEnabled(WebView2Connector* webview2, BOOL e
 /**
 * ICoreWebView2Settings2
 */
-EXPORT HRESULT get_UserAgent(WebView2Connector* webview2, LPWSTR* userAgent);
+
+EXPORT HRESULT get_UserAgent(WebView2Connector* webview2, LPWSTR userAgent, rsize_t* size);
 
 EXPORT HRESULT put_UserAgent(WebView2Connector* webview2, LPCWSTR userAgent);
 
 /**
 * ICoreWebView2Settings3
 */
+
 EXPORT HRESULT get_AreBrowserAcceleratorKeysEnabled(WebView2Connector* webview2, BOOL* areBrowserAcceleratorKeysEnabled);
 
 EXPORT HRESULT put_AreBrowserAcceleratorKeysEnabled(WebView2Connector* webview2, BOOL areBrowserAcceleratorKeysEnabled);
@@ -123,6 +127,7 @@ EXPORT HRESULT put_AreBrowserAcceleratorKeysEnabled(WebView2Connector* webview2,
 /**
 * ICoreWebView2Settings4
 */
+
 EXPORT HRESULT get_IsPasswordAutosaveEnabled(WebView2Connector* webview2, BOOL* value);
 
 EXPORT HRESULT put_IsPasswordAutosaveEnabled(WebView2Connector* webview2, BOOL value);
@@ -134,6 +139,7 @@ EXPORT HRESULT put_IsGeneralAutofillEnabled(WebView2Connector* webview2, BOOL va
 /**
 * ICoreWebView2Settings5
 */
+
 EXPORT HRESULT get_IsPinchZoomEnabled(WebView2Connector* webview2, /* [retval][out] */ BOOL* enabled);
 
 EXPORT HRESULT put_IsPinchZoomEnabled(WebView2Connector* webview2, /* [in] */ BOOL enabled);
@@ -141,9 +147,34 @@ EXPORT HRESULT put_IsPinchZoomEnabled(WebView2Connector* webview2, /* [in] */ BO
 /**
 * ICoreWebView2Settings6
 */
+
 EXPORT HRESULT get_IsSwipeNavigationEnabled(WebView2Connector* webview2, /* [retval][out] */ BOOL* enabled);
 
 EXPORT HRESULT put_IsSwipeNavigationEnabled(WebView2Connector* webview2, /* [in] */ BOOL enabled);
+
+/**
+* ICoreWebView2Settings6
+*/
+
+//EXPORT HRESULT get_HiddenPdfToolbarItems(WebView2Connector* webview2, COREWEBVIEW2_PDF_TOOLBAR_ITEMS* value);
+
+//EXPORT HRESULT put_HiddenPdfToolbarItems(WebView2Connector* webview2, COREWEBVIEW2_PDF_TOOLBAR_ITEMS value);
+
+/**
+* ICoreWebView2Settings8
+*/
+
+EXPORT HRESULT get_IsReputationCheckingRequired(WebView2Connector* webview2, BOOL* value);
+
+EXPORT HRESULT put_IsReputationCheckingRequired(WebView2Connector* webview2, BOOL value);
+
+/**
+* ICoreWebView2Settings9
+*/
+
+EXPORT HRESULT get_IsNonClientRegionSupportEnabled(WebView2Connector* webview2, BOOL* value);
+
+EXPORT HRESULT put_IsNonClientRegionSupportEnabled(WebView2Connector* webview2, BOOL value);
 
 /*
 * ICoreWebView2Controller
@@ -370,6 +401,7 @@ EXPORT HRESULT remove_DocumentTitleChanged(
 
 EXPORT HRESULT get_DocumentTitle(
 	WebView2Connector* webview2,
+	// TODO: LPWSTR
 	/* [retval][out] */ LPWSTR* title
 );
 
@@ -523,7 +555,8 @@ EXPORT HRESULT RemoveHostObjectFromScript(
 
 EXPORT HRESULT get_Source(
 	WebView2Connector* webview2,
-	/* [retval][out] */ LPWSTR* uri
+	// TODO: LPWSTR
+	/* [retval][out] */ LPWSTR* uri 
 );
 
 EXPORT HRESULT add_SourceChanged(
@@ -655,6 +688,69 @@ EXPORT HRESULT remove_WindowCloseRequested(
 	WebView2Connector* webview2,
 	/* [in] */ EventRegistrationToken token
 );
+
+/**
+* ICoreWebView2_2
+*/
+
+EXPORT HRESULT add_DOMContentLoaded(
+	WebView2Connector* webview2,
+	HRESULT(*callback)(ICoreWebView2* sender, ICoreWebView2DOMContentLoadedEventArgs* args),
+	EventRegistrationToken* token
+);
+
+EXPORT HRESULT add_WebResourceResponseReceived(
+	WebView2Connector* webview2,
+	HRESULT(*callback)(ICoreWebView2* sender, ICoreWebView2WebResourceResponseReceivedEventArgs* args),
+	EventRegistrationToken* token
+);
+
+EXPORT HRESULT get_CookieManager(
+	WebView2Connector* webview2,
+	ICoreWebView2CookieManager** cookieManager
+);
+
+EXPORT HRESULT get_Environment(
+	WebView2Connector* webview2,
+	ICoreWebView2Environment** environment
+);
+
+EXPORT HRESULT NavigateWithWebResourceRequest(
+	WebView2Connector* webview2,
+	ICoreWebView2WebResourceRequest* request
+);
+
+EXPORT HRESULT remove_DOMContentLoaded(
+	WebView2Connector* webview2,
+	EventRegistrationToken token
+);
+
+EXPORT HRESULT remove_WebResourceResponseReceived(
+	WebView2Connector* webview2,
+	EventRegistrationToken token
+);
+
+/**
+* ICoreWebView2_3
+*/
+
+EXPORT HRESULT SetVirtualHostNameToFolderMapping(
+	WebView2Connector* webview2,
+	LPCWSTR hostName,
+	LPCWSTR folderPath,
+	COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND accessKind
+);
+
+EXPORT HRESULT ClearVirtualHostNameToFolderMapping(
+	WebView2Connector* webview2,
+	LPCWSTR hostName
+);
+
+EXPORT HRESULT get_IsSuspended(WebView2Connector* webview2, BOOL* isSuspended);
+
+EXPORT HRESULT TrySuspend(WebView2Connector* webview2, HRESULT(*callback)(HRESULT errorCode, BOOL isSuccessful));
+
+EXPORT HRESULT Resume(WebView2Connector* webview2);
 
 /**
 * ICoreWebView2WebMessageReceivedEventArgs
