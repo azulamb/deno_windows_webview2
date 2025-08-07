@@ -19,3 +19,4 @@ tmp/
 *.vcxproj.FileListAbsolute.txt
 *.vsidx
 _IsIncrementalBuild
+.cache/

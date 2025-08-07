@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja" style="font-size: 20px">
+  <head>
+    <meta charset="utf-8">
+    <title>deno windows webview2</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link href="./style.css" rel="stylesheet">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./apple-touch-icon-precomposed.png"
+    >
+    <script></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>webview2</h1>
+    </header>
+
+    <dl>
+      <dt>Webview2 version</dt>
+      <dd id="version"></dd>
+      <dt>All</dt>
+      <dd id="total"></dd>
+      <dt>Implemented</dt>
+      <dd id="implemented"></dd>
+      <dt>Implementation rate</dt>
+      <dd id="implemented_rate" class="rate"></dd>
+    </dl>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
+
+    <footer>
+      <small>
+        GitHub:
+        <a href="https://github.com/azulamb/deno_windows_webview2"
+        >azulamb/deno_windows_webview2</a>
+      </small>
+      <small>
+        JSR:
+        <a href="https://jsr.io/@azulamb/webview2">@azulamb/webview2</a>
+      </small>
+    </footer>
+  </body>
+</html>
