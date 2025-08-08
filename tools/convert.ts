@@ -81,7 +81,7 @@ function parseFunc(func: string) {
   const args = parseArgs(arg.join('('));
 
   return {
-    name: name,
+    name: name.replace(/^_/, ''),
     parameters: args,
     result: convertType(result.join(' ')),
   };

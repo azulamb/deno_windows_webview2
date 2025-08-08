@@ -32,19 +32,19 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer', 'pointer'],
     result: 'pointer',
   },
-  _CreateCoreWebView2Environment: {
+  CreateCoreWebView2Environment: {
     parameters: ['pointer', 'function'],
     result: 'i32',
   },
-  _CreateCoreWebView2EnvironmentWithOptions: {
+  CreateCoreWebView2EnvironmentWithOptions: {
     parameters: ['pointer', 'pointer', 'pointer', 'pointer', 'function'],
     result: 'i32',
   },
-  _CompareBrowserVersions: {
+  CompareBrowserVersions: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  _GetAvailableCoreWebView2BrowserVersionString: {
+  GetAvailableCoreWebView2BrowserVersionString: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
@@ -125,7 +125,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   get_UserAgent: {
-    parameters: ['pointer', 'pointer'],
+    parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
   put_UserAgent: {
@@ -169,6 +169,22 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   put_IsSwipeNavigationEnabled: {
+    parameters: ['pointer', 'i32'],
+    result: 'i32',
+  },
+  get_IsReputationCheckingRequired: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  put_IsReputationCheckingRequired: {
+    parameters: ['pointer', 'i32'],
+    result: 'i32',
+  },
+  get_IsNonClientRegionSupportEnabled: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  put_IsNonClientRegionSupportEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
@@ -542,6 +558,54 @@ export const params: WEBVIEW2_FUNCS = {
   },
   remove_WindowCloseRequested: {
     parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  add_DOMContentLoaded: {
+    parameters: ['pointer', 'function', 'pointer'],
+    result: 'i32',
+  },
+  add_WebResourceResponseReceived: {
+    parameters: ['pointer', 'function', 'pointer'],
+    result: 'i32',
+  },
+  get_CookieManager: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  get_Environment: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigateWithWebResourceRequest: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  remove_DOMContentLoaded: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  remove_WebResourceResponseReceived: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  SetVirtualHostNameToFolderMapping: {
+    parameters: ['pointer', 'pointer', 'pointer', 'i32'],
+    result: 'i32',
+  },
+  ClearVirtualHostNameToFolderMapping: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  get_IsSuspended: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  TrySuspend: {
+    parameters: ['pointer', 'function'],
+    result: 'i32',
+  },
+  Resume: {
+    parameters: ['pointer'],
     result: 'i32',
   },
   MessageReceivedEventArgs_get_Source: {

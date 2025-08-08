@@ -33,11 +33,11 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'pointer';
   };
-  readonly _CreateCoreWebView2Environment: {
+  readonly CreateCoreWebView2Environment: {
     readonly parameters: ['pointer', 'function'];
     readonly result: 'i32';
   };
-  readonly _CreateCoreWebView2EnvironmentWithOptions: {
+  readonly CreateCoreWebView2EnvironmentWithOptions: {
     readonly parameters: [
       'pointer',
       'pointer',
@@ -47,11 +47,11 @@ export type WEBVIEW2_FUNCS = {
     ];
     readonly result: 'i32';
   };
-  readonly _CompareBrowserVersions: {
+  readonly CompareBrowserVersions: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly _GetAvailableCoreWebView2BrowserVersionString: {
+  readonly GetAvailableCoreWebView2BrowserVersionString: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
@@ -132,7 +132,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly get_UserAgent: {
-    readonly parameters: ['pointer', 'pointer'];
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly put_UserAgent: {
@@ -176,6 +176,22 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly put_IsSwipeNavigationEnabled: {
+    readonly parameters: ['pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly get_IsReputationCheckingRequired: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly put_IsReputationCheckingRequired: {
+    readonly parameters: ['pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly get_IsNonClientRegionSupportEnabled: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly put_IsNonClientRegionSupportEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
@@ -549,6 +565,54 @@ export type WEBVIEW2_FUNCS = {
   };
   readonly remove_WindowCloseRequested: {
     readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly add_DOMContentLoaded: {
+    readonly parameters: ['pointer', 'function', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly add_WebResourceResponseReceived: {
+    readonly parameters: ['pointer', 'function', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly get_CookieManager: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly get_Environment: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigateWithWebResourceRequest: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly remove_DOMContentLoaded: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly remove_WebResourceResponseReceived: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly SetVirtualHostNameToFolderMapping: {
+    readonly parameters: ['pointer', 'pointer', 'pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly ClearVirtualHostNameToFolderMapping: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly get_IsSuspended: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly TrySuspend: {
+    readonly parameters: ['pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly Resume: {
+    readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
   readonly MessageReceivedEventArgs_get_Source: {

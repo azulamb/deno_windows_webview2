@@ -65,4 +65,9 @@ EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
 
 // TODO: GetAvailableCoreWebView2BrowserVersionStringWithOptions
 
+#pragma comment(linker, "/EXPORT:CreateCoreWebView2Environment=_CreateCoreWebView2Environment")
+#pragma comment(linker, "/EXPORT:CreateCoreWebView2EnvironmentWithOptions=_CreateCoreWebView2EnvironmentWithOptions")
+#pragma comment(linker, "/EXPORT:CompareBrowserVersions=_CompareBrowserVersions")
+#pragma comment(linker, "/EXPORT:GetAvailableCoreWebView2BrowserVersionString=_GetAvailableCoreWebView2BrowserVersionString")
+
 #endif

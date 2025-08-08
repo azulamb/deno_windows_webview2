@@ -263,15 +263,15 @@
         },
         {
           "name": "CompareBrowserVersions",
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "CreateCoreWebView2Environment",
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "CreateCoreWebView2EnvironmentWithOptions",
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "CreateWebViewEnvironmentWithOptionsInternal",
@@ -279,7 +279,7 @@
         },
         {
           "name": "GetAvailableCoreWebView2BrowserVersionString",
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "GetAvailableCoreWebView2BrowserVersionStringWithOptions",
@@ -4351,15 +4351,15 @@
       "members": [
         {
           "name": "get_Source",
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "get_WebMessageAsJson",
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "TryGetWebMessageAsString",
-          "implemented": false
+          "implemented": true
         }
       ]
     },

@@ -4,6 +4,7 @@ import type {
 } from './webview2_types.ts';
 import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi@^0.2.0';
 import type { Rect } from 'jsr:@azulamb/winapi@^0.2.0';
+import { utf16BufferToString } from './libs/convert.ts';
 
 function createStringPointer(value: string) {
   const buffer = new Uint16Array(
@@ -14,11 +15,58 @@ function createStringPointer(value: string) {
   return Deno.UnsafePointer.of(buffer);
 }
 
+function getBool(
+  webview2Connector: Deno.PointerValue,
+  func: (
+    webview2Connector: Deno.PointerValue,
+    bool: Deno.PointerValue,
+  ) => unknown,
+): boolean {
+  const data = new Int32Array([0]);
+  const bool = Deno.UnsafePointer.of(data);
+  func(webview2Connector, bool);
+  return data[0] !== 0;
+}
+
 /**
  * The WebView2 class provides an interface for interacting with the WebView2 control.
  */
 export class WebView2 {
   protected webview2Connector!: Deno.PointerValue<unknown>;
+
+  protected getString(
+    func: (
+      w: Deno.PointerValue,
+      buffer: Deno.PointerValue,
+      size: Deno.PointerValue,
+    ) => number,
+  ) {
+    const size = new BigUint64Array(1);
+    const hresult = func(
+      this.webview2Connector,
+      null,
+      Deno.UnsafePointer.of(size),
+    );
+
+    if (hresult !== 0) {
+      throw new Error();
+    }
+    if (size[0] === 0n) {
+      return '';
+    }
+
+    const buffer = new Uint16Array(Number(size[0]));
+    const hresult2 = func(
+      this.webview2Connector,
+      Deno.UnsafePointer.of(buffer),
+      null,
+    );
+    if (hresult2 !== 0) {
+      throw new Error();
+    }
+
+    return utf16BufferToString(buffer);
+  }
 
   /**
    * Creates an instance of the WebView2 class.
@@ -72,7 +120,7 @@ export class WebView2 {
       },
       callback,
     );
-    return this.lib.symbols._CreateCoreWebView2Environment(
+    return this.lib.symbols.CreateCoreWebView2Environment(
       this.webview2Connector,
       func.pointer,
     );
@@ -103,7 +151,7 @@ export class WebView2 {
       callback,
     );
 
-    return this.lib.symbols._CreateCoreWebView2EnvironmentWithOptions(
+    return this.lib.symbols.CreateCoreWebView2EnvironmentWithOptions(
       this.webview2Connector,
       browserExecutableFolder
         ? createStringPointer(browserExecutableFolder)
@@ -190,10 +238,16 @@ export class WebView2 {
     this.lib.symbols.RemoveEventRegistrationToken(token);
   }
 
-  /*readonly get_IsScriptEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether script execution is enabled in the WebView2 control.
+   * @returns True if script execution is enabled; false otherwise.
+   */
+  public get IsScriptEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsScriptEnabled,
+    );
+  }
 
   /**
    * Enables or disables script execution in the WebView2 control.
@@ -207,14 +261,14 @@ export class WebView2 {
   }
 
   /**
-   * Gets whether script execution is enabled in the WebView2 control.
-   * @returns True if script execution is enabled; false otherwise.
+   * Gets whether web message handling is enabled in the WebView2 control.
+   * @returns True if web message handling is enabled; false otherwise.
    */
-  public get IsScriptEnabled(): boolean {
-    const data = new Int32Array([0]);
-    const bool = Deno.UnsafePointer.of(data);
-    this.lib.symbols.get_IsScriptEnabled(this.webview2Connector, bool);
-    return data[0] !== 0;
+  public get IsWebMessageEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsWebMessageEnabled,
+    );
   }
 
   /**
@@ -228,10 +282,16 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_AreDefaultScriptDialogsEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether default script dialogs are enabled in the WebView2 control.
+   * @returns True if default script dialogs are enabled; false otherwise.
+   */
+  public get AreDefaultScriptDialogsEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_AreDefaultScriptDialogsEnabled,
+    );
+  }
 
   /**
    * Enables or disables default script dialogs in the WebView2 control.
@@ -244,10 +304,16 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_IsStatusBarEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether the status bar is enabled in the WebView2 control.
+   * @returns True if the status bar is enabled; false otherwise.
+   */
+  public get IsStatusBarEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsStatusBarEnabled,
+    );
+  }
 
   /**
    * Enables or disables the status bar in the WebView2 control.
@@ -260,10 +326,16 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_AreDevToolsEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether Developer Tools are enabled in the WebView2 control.
+   * @returns True if Developer Tools are enabled; false otherwise.
+   */
+  public get AreDevToolsEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_AreDevToolsEnabled,
+    );
+  }
 
   /**
    * Enables or disables the Developer Tools in the WebView2 control.
@@ -276,10 +348,16 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_AreDefaultContextMenusEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether default context menus are enabled in the WebView2 control.
+   * @returns True if default context menus are enabled; false otherwise.
+   */
+  public get AreDefaultContextMenusEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_AreDefaultContextMenusEnabled,
+    );
+  }
 
   /**
    * Enables or disables the default context menus in the WebView2 control.
@@ -292,10 +370,16 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_AreHostObjectsAllowed: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether host objects are allowed in the WebView2 control.
+   * @returns True if host objects are allowed; false otherwise.
+   */
+  public get AreHostObjectsAllowed(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_AreHostObjectsAllowed,
+    );
+  }
 
   /**
    * Enables or disables host objects in the WebView2 control.
@@ -308,10 +392,16 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_IsZoomControlEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether the zoom control is enabled in the WebView2 control.
+   * @returns True if the zoom control is enabled; false otherwise.
+   */
+  public get IsZoomControlEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsZoomControlEnabled,
+    );
+  }
 
   /**
    * Enables or disables the zoom control in the WebView2 control.
@@ -324,10 +414,16 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_IsBuiltInErrorPageEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };*/
+  /**
+   * Gets whether the built-in error page is enabled in the WebView2 control.
+   * @returns True if the built-in error page is enabled; false otherwise.
+   */
+  public get IsBuiltInErrorPageEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsBuiltInErrorPageEnabled,
+    );
+  }
 
   /**
    * Enables or disables the built-in error page in the WebView2 control.
@@ -340,55 +436,176 @@ export class WebView2 {
     );
   }
 
-  /*readonly get_UserAgent: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly put_UserAgent: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly get_AreBrowserAcceleratorKeysEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly put_AreBrowserAcceleratorKeysEnabled: {
-    readonly parameters: ['pointer', 'i32'];
-    readonly result: 'i32';
-  };
-  readonly get_IsPasswordAutosaveEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly put_IsPasswordAutosaveEnabled: {
-    readonly parameters: ['pointer', 'i32'];
-    readonly result: 'i32';
-  };
-  readonly get_IsGeneralAutofillEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly put_IsGeneralAutofillEnabled: {
-    readonly parameters: ['pointer', 'i32'];
-    readonly result: 'i32';
-  };
-  readonly get_IsPinchZoomEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly put_IsPinchZoomEnabled: {
-    readonly parameters: ['pointer', 'i32'];
-    readonly result: 'i32';
-  };
-  readonly get_IsSwipeNavigationEnabled: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly put_IsSwipeNavigationEnabled: {
-    readonly parameters: ['pointer', 'i32'];
-    readonly result: 'i32';
-  };
-  readonly add_AcceleratorKeyPressed: {
+  public get UserAgent(): string {
+    try {
+      return this.getString(this.lib.symbols.get_UserAgent);
+    } catch (error) {
+      throw new Error(`Failed to get UserAgent: ${error}`);
+    }
+  }
+
+  public set UserAgent(value: string) {
+    this.lib.symbols.put_UserAgent(
+      this.webview2Connector,
+      createStringPointer(value),
+    );
+  }
+
+  /**
+   * Gets whether browser accelerator keys are enabled in the WebView2 control.
+   * @returns True if browser accelerator keys are enabled; false otherwise.
+   */
+  public get AreBrowserAcceleratorKeysEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_AreBrowserAcceleratorKeysEnabled,
+    );
+  }
+
+  /**
+   * Enables or disables browser accelerator keys in the WebView2 control.
+   * @param value True to enable browser accelerator keys; false to disable them.
+   */
+  public set AreBrowserAcceleratorKeysEnabled(value: boolean) {
+    this.lib.symbols.put_AreBrowserAcceleratorKeysEnabled(
+      this.webview2Connector,
+      value ? 1 : 0,
+    );
+  }
+
+  /**
+   * Gets whether password autosave is enabled in the WebView2 control.
+   * @returns True if password autosave is enabled; false otherwise.
+   */
+  public get IsPasswordAutosaveEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsPasswordAutosaveEnabled,
+    );
+  }
+
+  /**
+   * Enables or disables password autosave in the WebView2 control.
+   * @param value True to enable password autosave; false to disable it.
+   */
+  public set IsPasswordAutosaveEnabled(value: boolean) {
+    this.lib.symbols.put_IsPasswordAutosaveEnabled(
+      this.webview2Connector,
+      value ? 1 : 0,
+    );
+  }
+
+  /**
+   * Gets whether general autofill is enabled in the WebView2 control.
+   * @returns True if general autofill is enabled; false otherwise.
+   */
+  public get IsGeneralAutofillEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsGeneralAutofillEnabled,
+    );
+  }
+
+  /**
+   * Enables or disables general autofill in the WebView2 control.
+   * @param value True to enable general autofill; false to disable it.
+   */
+  public set IsGeneralAutofillEnabled(value: boolean) {
+    this.lib.symbols.put_IsGeneralAutofillEnabled(
+      this.webview2Connector,
+      value ? 1 : 0,
+    );
+  }
+
+  /**
+   * Gets whether pinch zoom is enabled in the WebView2 control.
+   * @returns True if pinch zoom is enabled; false otherwise.
+   */
+  public get IsPinchZoomEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsPinchZoomEnabled,
+    );
+  }
+
+  /**
+   * Enables or disables pinch zoom in the WebView2 control.
+   * @param value True to enable pinch zoom; false to disable it.
+   */
+  public set IsPinchZoomEnabled(value: boolean) {
+    this.lib.symbols.put_IsPinchZoomEnabled(
+      this.webview2Connector,
+      value ? 1 : 0,
+    );
+  }
+
+  /**
+   * Gets whether swipe navigation is enabled in the WebView2 control.
+   * @returns True if swipe navigation is enabled; false otherwise.
+   */
+  public get IsSwipeNavigationEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsSwipeNavigationEnabled,
+    );
+  }
+
+  /**
+   * Enables or disables swipe navigation in the WebView2 control.
+   * @param value True to enable swipe navigation; false to disable it.
+   */
+  public set IsSwipeNavigationEnabled(value: boolean) {
+    this.lib.symbols.put_IsSwipeNavigationEnabled(
+      this.webview2Connector,
+      value ? 1 : 0,
+    );
+  }
+
+  /**
+   * Gets whether reputation checking is required in the WebView2 control.
+   * @returns True if reputation checking is required; false otherwise.
+   */
+  public get IsReputationCheckingRequired(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsReputationCheckingRequired,
+    );
+  }
+
+  /**
+   * Enables or disables reputation checking in the WebView2 control.
+   * @param value True to require reputation checking; false to disable it.
+   */
+  public set IsReputationCheckingRequired(value: boolean) {
+    this.lib.symbols.put_IsReputationCheckingRequired(
+      this.webview2Connector,
+      value ? 1 : 0,
+    );
+  }
+
+  /**
+   * Gets whether non-client region support is enabled in the WebView2 control.
+   * @returns True if non-client region support is enabled; false otherwise.
+   */
+  public get IsNonClientRegionSupportEnabled(): boolean {
+    return getBool(
+      this.webview2Connector,
+      this.lib.symbols.get_IsNonClientRegionSupportEnabled,
+    );
+  }
+
+  /**
+   * Enables or disables non-client region support in the WebView2 control.
+   * @param value True to enable non-client region support; false to disable it.
+   */
+  public set IsNonClientRegionSupportEnabled(value: boolean) {
+    this.lib.symbols.put_IsNonClientRegionSupportEnabled(
+      this.webview2Connector,
+      value ? 1 : 0,
+    );
+  }
+
+  /*readonly add_AcceleratorKeyPressed: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
@@ -836,6 +1053,85 @@ export class WebView2 {
   };
   readonly remove_WindowCloseRequested: {
     readonly parameters: ['pointer', 'buffer'];
+    readonly result: 'i32';
+  };
+  readonly add_DOMContentLoaded: {
+    readonly parameters: ['pointer', 'function', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly add_WebResourceResponseReceived: {
+    readonly parameters: ['pointer', 'function', 'pointer'];
+    readonly result: 'i32';
+  };*/
+
+  /**
+   * Sets a virtual host name to folder mapping for the WebView2 control.
+   * @param hostName The host name to map.
+   * @param folderPath The folder path to map to the host name.
+   * @param accessKind The access kind for the mapping.
+   * @returns The HRESULT result of the operation.
+   */
+  public SetVirtualHostNameToFolderMapping(
+    hostName: string,
+    folderPath: string,
+    accessKind?: {
+      deny?: boolean;
+      allow?: boolean;
+      denyCors?: boolean;
+    } | {
+      deny: true;
+      allow?: false;
+      denyCors?: false;
+    } | {
+      deny?: false;
+      allow: true;
+      denyCors?: false;
+    } | {
+      deny?: false;
+      allow?: false;
+      denyCors: true;
+    },
+  ) {
+    let accessKindValue = 0;
+    if (accessKind) {
+      if (accessKind.allow) {
+        accessKindValue = 1;
+      } else if (accessKind.denyCors) {
+        accessKindValue = 2;
+      }
+    }
+    return this.lib.symbols.SetVirtualHostNameToFolderMapping(
+      this.webview2Connector,
+      createStringPointer(hostName),
+      createStringPointer(folderPath),
+      accessKindValue,
+    );
+  }
+
+  /**
+   * Clears the virtual host name to folder mapping for the specified host name.
+   * @param hostName The host name to clear the mapping for.
+   * @returns The HRESULT result of the operation.
+   */
+  public ClearVirtualHostNameToFolderMapping(
+    hostName: string,
+  ): HRESULT {
+    return this.lib.symbols.ClearVirtualHostNameToFolderMapping(
+      this.webview2Connector,
+      createStringPointer(hostName),
+    );
+  }
+
+  /*readonly get_IsSuspended: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly TrySuspend: {
+    readonly parameters: ['pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly Resume: {
+    readonly parameters: ['pointer'];
     readonly result: 'i32';
   };*/
 }
