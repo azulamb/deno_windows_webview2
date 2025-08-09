@@ -40,7 +40,7 @@ export class WebView2 {
       buffer: Deno.PointerValue,
       size: Deno.PointerValue,
     ) => number,
-  ) {
+  ): string {
     const size = new BigUint64Array(1);
     const hresult = func(
       this.webview2Connector,
@@ -1111,7 +1111,7 @@ export class WebView2 {
       allow?: false;
       denyCors: true;
     },
-  ) {
+  ): number {
     let accessKindValue = 0;
     if (accessKind) {
       if (accessKind.allow) {
