@@ -29,7 +29,7 @@ export class WebMessageReceivedEventArgs {
    */
   public Source(): string {
     const size = new BigUint64Array(1);
-    const hresult = this.libs.symbols.MessageReceivedEventArgs_get_Source(
+    const hresult = this.libs.symbols.WebMessageReceivedEventArgs_get_Source(
       this.args,
       null,
       Deno.UnsafePointer.of(size),
@@ -42,7 +42,7 @@ export class WebMessageReceivedEventArgs {
     }
 
     const buffer = new Uint16Array(Number(size[0]));
-    const hresult2 = this.libs.symbols.MessageReceivedEventArgs_get_Source(
+    const hresult2 = this.libs.symbols.WebMessageReceivedEventArgs_get_Source(
       this.args,
       Deno.UnsafePointer.of(buffer),
       null,
@@ -60,7 +60,7 @@ export class WebMessageReceivedEventArgs {
   public WebMessageAsJson<T>(): T | null {
     const size = new BigUint64Array(1);
     const hresult = this.libs.symbols
-      .MessageReceivedEventArgs_get_WebMessageAsJson(
+      .WebMessageReceivedEventArgs_get_WebMessageAsJson(
         this.args,
         null,
         Deno.UnsafePointer.of(size),
