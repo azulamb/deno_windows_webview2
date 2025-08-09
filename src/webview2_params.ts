@@ -172,6 +172,14 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
+  get_HiddenPdfToolbarItems: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  put_HiddenPdfToolbarItems: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
   get_IsReputationCheckingRequired: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',

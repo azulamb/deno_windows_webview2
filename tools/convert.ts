@@ -17,6 +17,7 @@ function convertType(type: string) {
     case 'LPWSTR':
     case 'HWND':
     case 'EventRegistrationToken':
+    case 'COREWEBVIEW2_PDF_TOOLBAR_ITEMS':
       return 'pointer';
     case 'BOOL':
     case 'COREWEBVIEW2_MOVE_FOCUS_REASON':

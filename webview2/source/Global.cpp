@@ -63,11 +63,19 @@ EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
 	return ::GetAvailableCoreWebView2BrowserVersionString(browserExecutableFolder, versionInfo);
 }
 
-// TODO: GetAvailableCoreWebView2BrowserVersionStringWithOptions
+EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionStringWithOptions(
+	PCWSTR browserExecutableFolder,
+	ICoreWebView2EnvironmentOptions* environmentOptions,
+	LPWSTR* versionInfo
+) {
+	Log(__FUNCTIONW__ L"\n");
+	return ::GetAvailableCoreWebView2BrowserVersionStringWithOptions(browserExecutableFolder, environmentOptions, versionInfo);
+}
 
 #pragma comment(linker, "/EXPORT:CreateCoreWebView2Environment=_CreateCoreWebView2Environment")
 #pragma comment(linker, "/EXPORT:CreateCoreWebView2EnvironmentWithOptions=_CreateCoreWebView2EnvironmentWithOptions")
 #pragma comment(linker, "/EXPORT:CompareBrowserVersions=_CompareBrowserVersions")
 #pragma comment(linker, "/EXPORT:GetAvailableCoreWebView2BrowserVersionString=_GetAvailableCoreWebView2BrowserVersionString")
+#pragma comment(linker, "/EXPORT:GetAvailableCoreWebView2BrowserVersionStringWithOptions=_GetAvailableCoreWebView2BrowserVersionStringWithOptions")
 
 #endif

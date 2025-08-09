@@ -179,6 +179,14 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
+  readonly get_HiddenPdfToolbarItems: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly put_HiddenPdfToolbarItems: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
   readonly get_IsReputationCheckingRequired: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';

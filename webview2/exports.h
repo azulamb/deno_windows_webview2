@@ -156,9 +156,9 @@ EXPORT HRESULT put_IsSwipeNavigationEnabled(WebView2Connector* webview2, /* [in]
 * ICoreWebView2Settings6
 */
 
-//EXPORT HRESULT get_HiddenPdfToolbarItems(WebView2Connector* webview2, COREWEBVIEW2_PDF_TOOLBAR_ITEMS* value);
+EXPORT HRESULT get_HiddenPdfToolbarItems(WebView2Connector* webview2, COREWEBVIEW2_PDF_TOOLBAR_ITEMS* value);
 
-//EXPORT HRESULT put_HiddenPdfToolbarItems(WebView2Connector* webview2, COREWEBVIEW2_PDF_TOOLBAR_ITEMS value);
+EXPORT HRESULT put_HiddenPdfToolbarItems(WebView2Connector* webview2, COREWEBVIEW2_PDF_TOOLBAR_ITEMS value);
 
 /**
 * ICoreWebView2Settings8

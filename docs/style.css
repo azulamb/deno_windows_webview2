@@ -30,10 +30,10 @@ header {
   align-items: center;
 }
 
-
 dl {
   display: grid;
-  grid-template-columns: repeat(8, auto);
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(3, auto);
   gap: 0.2rem;
 }
 
@@ -57,12 +57,37 @@ thead {
   background-color: var(--header);
 }
 
-tbody:nth-child(odd) {
+tbody tr:nth-child(odd) {
   background: var(--odd);
 }
 
-tbody:nth-child(even) {
+tbody tr:nth-child(even) {
   background: var(--even);
+}
+
+td {
+  font-family: monospace;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+td:has(input) {
+  text-align: center;
+}
+
+td[colspan="2"] {
+  background-color: var(--header);
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+td.space3 {
+  padding-left: 1.5rem;
+}
+
+td.space7 {
+  padding-left: 3.5rem;
 }
 
 td.exists {
@@ -71,6 +96,38 @@ td.exists {
 
 label {
   user-select: none;
+}
+
+input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+}
+
+td > input {
+  pointer-events: none;
+}
+
+td a {
+  text-decoration: none;
+}
+
+td[colspan="2"] a:not(:hover) {
+  color: black;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+td a::after {
+  content: '🡵';
+  display: inline-block;
+  margin-left: 0.4rem;
+  border: 2px solid;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  scale: 0.7;
 }
 
 body.implemented tbody:not(.exists) {

@@ -7,18 +7,22 @@
       "members": [
         {
           "name": "A",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "B",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "G",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "R",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -29,26 +33,32 @@
       "members": [
         {
           "name": "IsExtendedKey",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "IsKeyReleased",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "IsMenuKeyDown",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "RepeatCount",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ScanCode",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "WasKeyDown",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -58,231 +68,288 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/webview2-idl?view=webview2-1.0.3351.48",
       "members": [
         {
+          "name": "CompareBrowserVersions",
+          "defined": true,
+          "implemented": true
+        },
+        {
           "name": "COREWEBVIEW2_BOUNDS_MODE",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_BROWSER_PROCESS_EXIT_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_BROWSING_DATA_KINDS",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_CAPTURE_PREVIEW_IMAGE_FORMAT",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_CHANNEL_SEARCH_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_CLIENT_CERTIFICATE_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_CONTEXT_MENU_ITEM_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_CONTEXT_MENU_TARGET_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_COOKIE_SAME_SITE_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_DEFAULT_DOWNLOAD_DIALOG_CORNER_ALIGNMENT",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_DOWNLOAD_INTERRUPT_REASON",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_DOWNLOAD_STATE",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_FAVICON_IMAGE_FORMAT",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_FILE_SYSTEM_HANDLE_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_FILE_SYSTEM_HANDLE_PERMISSION",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_FRAME_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_KEY_EVENT_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_MEMORY_USAGE_TARGET_LEVEL",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_MOUSE_EVENT_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_MOUSE_EVENT_VIRTUAL_KEYS",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_MOVE_FOCUS_REASON",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_NAVIGATION_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_NON_CLIENT_REGION_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PDF_TOOLBAR_ITEMS",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PERMISSION_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PERMISSION_STATE",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_POINTER_EVENT_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PREFERRED_COLOR_SCHEME",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PRINT_COLLATION",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PRINT_COLOR_MODE",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PRINT_DIALOG_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PRINT_DUPLEX",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PRINT_MEDIA_SIZE",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PRINT_ORIENTATION",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PRINT_STATUS",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PROCESS_FAILED_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PROCESS_FAILED_REASON",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_PROCESS_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_RELEASE_CHANNELS",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_SAVE_AS_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_SAVE_AS_UI_RESULT",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_SCRIPT_DIALOG_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_SCROLLBAR_STYLE",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_SERVER_CERTIFICATE_ERROR_ACTION",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_SHARED_BUFFER_ACCESS",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_TEXT_DIRECTION_KIND",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_TRACKING_PREVENTION_LEVEL",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_WEB_ERROR_STATUS",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_WEB_RESOURCE_CONTEXT",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "CompareBrowserVersions",
-          "implemented": true
-        },
-        {
           "name": "CreateCoreWebView2Environment",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "CreateCoreWebView2EnvironmentWithOptions",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "CreateWebViewEnvironmentWithOptionsInternal",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetAvailableCoreWebView2BrowserVersionString",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "GetAvailableCoreWebView2BrowserVersionStringWithOptions",
+          "defined": true,
           "implemented": false
         }
       ]
@@ -292,236 +359,294 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_ContainsFullScreenElementChanged",
-          "implemented": true
-        },
-        {
-          "name": "add_ContentLoading",
-          "implemented": true
-        },
-        {
-          "name": "add_DocumentTitleChanged",
-          "implemented": true
-        },
-        {
-          "name": "add_FrameNavigationCompleted",
-          "implemented": true
-        },
-        {
-          "name": "add_FrameNavigationStarting",
-          "implemented": true
-        },
-        {
-          "name": "add_HistoryChanged",
-          "implemented": true
-        },
-        {
-          "name": "add_NavigationCompleted",
-          "implemented": true
-        },
-        {
-          "name": "add_NavigationStarting",
-          "implemented": true
-        },
-        {
-          "name": "add_NewWindowRequested",
-          "implemented": true
-        },
-        {
-          "name": "add_PermissionRequested",
-          "implemented": true
-        },
-        {
-          "name": "add_ProcessFailed",
-          "implemented": true
-        },
-        {
-          "name": "add_ScriptDialogOpening",
-          "implemented": true
-        },
-        {
-          "name": "add_SourceChanged",
-          "implemented": true
-        },
-        {
-          "name": "add_WebMessageReceived",
-          "implemented": true
-        },
-        {
-          "name": "add_WebResourceRequested",
-          "implemented": true
-        },
-        {
-          "name": "add_WindowCloseRequested",
-          "implemented": true
-        },
-        {
           "name": "AddHostObjectToScript",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "AddScriptToExecuteOnDocumentCreated",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "AddWebResourceRequestedFilter",
-          "implemented": true
-        },
-        {
-          "name": "CallDevToolsProtocolMethod",
-          "implemented": true
-        },
-        {
-          "name": "CapturePreview",
-          "implemented": true
-        },
-        {
-          "name": "ExecuteScript",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "get_BrowserProcessId",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "CallDevToolsProtocolMethod",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "get_CanGoBack",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "get_CanGoForward",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "CapturePreview",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "get_ContainsFullScreenElement",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_ContainsFullScreenElementChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_ContainsFullScreenElementChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_ContentLoading",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_ContentLoading",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "get_DocumentTitle",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
-          "name": "get_Settings",
-          "implemented": true
+          "name": "add_DocumentTitleChanged",
+          "defined": true,
+          "implemented": false
         },
         {
-          "name": "get_Source",
-          "implemented": true
+          "name": "remove_DocumentTitleChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "ExecuteScript",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_FrameNavigationCompleted",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_FrameNavigationCompleted",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_FrameNavigationStarting",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_FrameNavigationStarting",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "GetDevToolsProtocolEventReceiver",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "GoBack",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "GoForward",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_HistoryChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_HistoryChanged",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "Navigate",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "NavigateToString",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_NavigationCompleted",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_NavigationCompleted",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_NavigationStarting",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_NavigationStarting",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_NewWindowRequested",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_NewWindowRequested",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "OpenDevToolsWindow",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_PermissionRequested",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_PermissionRequested",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "PostWebMessageAsJson",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "PostWebMessageAsString",
+          "defined": true,
           "implemented": true
         },
         {
-          "name": "Reload",
-          "implemented": true
-        },
-        {
-          "name": "remove_ContainsFullScreenElementChanged",
-          "implemented": true
-        },
-        {
-          "name": "remove_ContentLoading",
-          "implemented": true
-        },
-        {
-          "name": "remove_DocumentTitleChanged",
-          "implemented": true
-        },
-        {
-          "name": "remove_FrameNavigationCompleted",
-          "implemented": true
-        },
-        {
-          "name": "remove_FrameNavigationStarting",
-          "implemented": true
-        },
-        {
-          "name": "remove_HistoryChanged",
-          "implemented": true
-        },
-        {
-          "name": "remove_NavigationCompleted",
-          "implemented": true
-        },
-        {
-          "name": "remove_NavigationStarting",
-          "implemented": true
-        },
-        {
-          "name": "remove_NewWindowRequested",
-          "implemented": true
-        },
-        {
-          "name": "remove_PermissionRequested",
-          "implemented": true
+          "name": "add_ProcessFailed",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_ProcessFailed",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "Reload",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "RemoveHostObjectFromScript",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "RemoveScriptToExecuteOnDocumentCreated",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "RemoveWebResourceRequestedFilter",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_ScriptDialogOpening",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_ScriptDialogOpening",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "get_Settings",
+          "defined": true,
           "implemented": true
         },
         {
+          "name": "get_Source",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_SourceChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
           "name": "remove_SourceChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "Stop",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_WebMessageReceived",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "remove_WebMessageReceived",
+          "defined": true,
           "implemented": true
+        },
+        {
+          "name": "add_WebResourceRequested",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_WebResourceRequested",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_WindowCloseRequested",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_WindowCloseRequested",
-          "implemented": true
-        },
-        {
-          "name": "RemoveHostObjectFromScript",
-          "implemented": true
-        },
-        {
-          "name": "RemoveScriptToExecuteOnDocumentCreated",
-          "implemented": true
-        },
-        {
-          "name": "RemoveWebResourceRequestedFilter",
-          "implemented": true
-        },
-        {
-          "name": "Stop",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         }
       ]
     },
@@ -530,32 +655,39 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2_2?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_DOMContentLoaded",
-          "implemented": true
-        },
-        {
-          "name": "add_WebResourceResponseReceived",
-          "implemented": true
-        },
-        {
           "name": "get_CookieManager",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
-          "name": "get_Environment",
-          "implemented": true
-        },
-        {
-          "name": "NavigateWithWebResourceRequest",
-          "implemented": true
+          "name": "add_DOMContentLoaded",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_DOMContentLoaded",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "get_Environment",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "NavigateWithWebResourceRequest",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_WebResourceResponseReceived",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_WebResourceResponseReceived",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         }
       ]
     },
@@ -565,23 +697,28 @@
       "members": [
         {
           "name": "ClearVirtualHostNameToFolderMapping",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "get_IsSuspended",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "Resume",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "SetVirtualHostNameToFolderMapping",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "TrySuspend",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         }
       ]
     },
@@ -591,18 +728,22 @@
       "members": [
         {
           "name": "add_DownloadStarting",
-          "implemented": false
-        },
-        {
-          "name": "add_FrameCreated",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_DownloadStarting",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_FrameCreated",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_FrameCreated",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -613,10 +754,12 @@
       "members": [
         {
           "name": "add_ClientCertificateRequested",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_ClientCertificateRequested",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -627,6 +770,7 @@
       "members": [
         {
           "name": "OpenTaskManagerWindow",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -637,6 +781,7 @@
       "members": [
         {
           "name": "PrintToPdf",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -646,31 +791,38 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2_8?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_IsDocumentPlayingAudioChanged",
-          "implemented": false
-        },
-        {
-          "name": "add_IsMutedChanged",
-          "implemented": false
-        },
-        {
           "name": "get_IsDocumentPlayingAudio",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_IsMuted",
-          "implemented": false
-        },
-        {
-          "name": "put_IsMuted",
+          "name": "add_IsDocumentPlayingAudioChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_IsDocumentPlayingAudioChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsMuted",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "put_IsMuted",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_IsMutedChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_IsMutedChanged",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -680,39 +832,48 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2_9?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_IsDefaultDownloadDialogOpenChanged",
-          "implemented": false
-        },
-        {
           "name": "CloseDefaultDownloadDialog",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_DefaultDownloadDialogCornerAlignment",
-          "implemented": false
-        },
-        {
-          "name": "get_DefaultDownloadDialogMargin",
-          "implemented": false
-        },
-        {
-          "name": "get_IsDefaultDownloadDialogOpen",
-          "implemented": false
-        },
-        {
-          "name": "OpenDefaultDownloadDialog",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_DefaultDownloadDialogCornerAlignment",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_DefaultDownloadDialogMargin",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_DefaultDownloadDialogMargin",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsDefaultDownloadDialogOpen",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_IsDefaultDownloadDialogOpenChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_IsDefaultDownloadDialogOpenChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "OpenDefaultDownloadDialog",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -723,10 +884,12 @@
       "members": [
         {
           "name": "add_BasicAuthenticationRequested",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_BasicAuthenticationRequested",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -736,15 +899,18 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2_11?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_ContextMenuRequested",
+          "name": "CallDevToolsProtocolMethodForSession",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "CallDevToolsProtocolMethodForSession",
+          "name": "add_ContextMenuRequested",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_ContextMenuRequested",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -754,15 +920,18 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2_12?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_StatusBarTextChanged",
+          "name": "get_StatusBarText",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_StatusBarText",
+          "name": "add_StatusBarTextChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_StatusBarTextChanged",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -773,6 +942,7 @@
       "members": [
         {
           "name": "get_Profile",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -782,15 +952,18 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2_14?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_ServerCertificateErrorDetected",
+          "name": "ClearServerCertificateErrorActions",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "ClearServerCertificateErrorActions",
+          "name": "add_ServerCertificateErrorDetected",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_ServerCertificateErrorDetected",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -801,18 +974,22 @@
       "members": [
         {
           "name": "add_FaviconChanged",
-          "implemented": false
-        },
-        {
-          "name": "get_FaviconUri",
-          "implemented": false
-        },
-        {
-          "name": "GetFavicon",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_FaviconChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_FaviconUri",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetFavicon",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -823,14 +1000,17 @@
       "members": [
         {
           "name": "Print",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "PrintToPdfStream",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ShowPrintUI",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -841,6 +1021,7 @@
       "members": [
         {
           "name": "PostSharedBufferToScript",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -851,10 +1032,12 @@
       "members": [
         {
           "name": "add_LaunchingExternalUriScheme",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_LaunchingExternalUriScheme",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -865,10 +1048,12 @@
       "members": [
         {
           "name": "get_MemoryUsageTargetLevel",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_MemoryUsageTargetLevel",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -879,6 +1064,7 @@
       "members": [
         {
           "name": "get_FrameId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -889,6 +1075,7 @@
       "members": [
         {
           "name": "ExecuteScriptWithResult",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -899,10 +1086,12 @@
       "members": [
         {
           "name": "AddWebResourceRequestedFilterWithRequestSourceKinds",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "RemoveWebResourceRequestedFilterWithRequestSourceKinds",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -913,6 +1102,7 @@
       "members": [
         {
           "name": "PostWebMessageAsJsonWithAdditionalObjects",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -923,10 +1113,12 @@
       "members": [
         {
           "name": "add_NotificationReceived",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_NotificationReceived",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -937,14 +1129,17 @@
       "members": [
         {
           "name": "add_SaveAsUIShowing",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_SaveAsUIShowing",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ShowSaveAsUI",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -955,10 +1150,12 @@
       "members": [
         {
           "name": "add_SaveFileSecurityCheckStarting",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_SaveFileSecurityCheckStarting",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -969,10 +1166,12 @@
       "members": [
         {
           "name": "add_ScreenCaptureStarting",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_ScreenCaptureStarting",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -983,26 +1182,32 @@
       "members": [
         {
           "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_KeyEventKind",
-          "implemented": false
-        },
-        {
-          "name": "get_KeyEventLParam",
-          "implemented": false
-        },
-        {
-          "name": "get_PhysicalKeyStatus",
-          "implemented": false
-        },
-        {
-          "name": "get_VirtualKey",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_KeyEventKind",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_KeyEventLParam",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PhysicalKeyStatus",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_VirtualKey",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1013,10 +1218,12 @@
       "members": [
         {
           "name": "get_IsBrowserAcceleratorKeyEnabled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_IsBrowserAcceleratorKeyEnabled",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1027,26 +1234,32 @@
       "members": [
         {
           "name": "get_Cancel",
-          "implemented": false
-        },
-        {
-          "name": "get_Challenge",
-          "implemented": false
-        },
-        {
-          "name": "get_Response",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Challenge",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Response",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1057,18 +1270,22 @@
       "members": [
         {
           "name": "get_Password",
-          "implemented": false
-        },
-        {
-          "name": "get_UserName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Password",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_UserName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_UserName",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1079,22 +1296,27 @@
       "members": [
         {
           "name": "Enable",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Id",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_IsEnabled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Name",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "Remove",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1105,10 +1327,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1119,10 +1343,12 @@
       "members": [
         {
           "name": "get_BrowserProcessExitKind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_BrowserProcessId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1133,34 +1359,42 @@
       "members": [
         {
           "name": "get_DerEncodedSerialNumber",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_DisplayName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Issuer",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_PemEncodedIssuerCertificateChain",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Subject",
-          "implemented": false
-        },
-        {
-          "name": "get_ValidFrom",
-          "implemented": false
-        },
-        {
-          "name": "get_ValidTo",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ToPemEncoding",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ValidFrom",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ValidTo",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1171,38 +1405,47 @@
       "members": [
         {
           "name": "get_DerEncodedSerialNumber",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_DisplayName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Issuer",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Kind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_PemEncodedIssuerCertificateChain",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Subject",
-          "implemented": false
-        },
-        {
-          "name": "get_ValidFrom",
-          "implemented": false
-        },
-        {
-          "name": "get_ValidTo",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ToPemEncoding",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ValidFrom",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ValidTo",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1213,10 +1456,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1227,50 +1472,62 @@
       "members": [
         {
           "name": "get_AllowedCertificateAuthorities",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Cancel",
-          "implemented": false
-        },
-        {
-          "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_Host",
-          "implemented": false
-        },
-        {
-          "name": "get_IsProxy",
-          "implemented": false
-        },
-        {
-          "name": "get_MutuallyTrustedCertificates",
-          "implemented": false
-        },
-        {
-          "name": "get_Port",
-          "implemented": false
-        },
-        {
-          "name": "get_SelectedCertificate",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Handled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Host",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsProxy",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MutuallyTrustedCertificates",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Port",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SelectedCertificate",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_SelectedCertificate",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1280,35 +1537,43 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2compositioncontroller?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_CursorChanged",
-          "implemented": false
-        },
-        {
           "name": "get_Cursor",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_RootVisualTarget",
-          "implemented": false
-        },
-        {
-          "name": "get_SystemCursorId",
-          "implemented": false
-        },
-        {
-          "name": "put_RootVisualTarget",
+          "name": "add_CursorChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_CursorChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_RootVisualTarget",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "put_RootVisualTarget",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "SendMouseInput",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "SendPointerInput",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SystemCursorId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1319,6 +1584,7 @@
       "members": [
         {
           "name": "get_AutomationProvider",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1329,18 +1595,22 @@
       "members": [
         {
           "name": "DragEnter",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "DragLeave",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "DragOver",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "Drop",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1350,19 +1620,23 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2compositioncontroller4?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_NonClientRegionChanged",
-          "implemented": false
-        },
-        {
           "name": "GetNonClientRegionAtPoint",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "QueryNonClientRegion",
+          "name": "add_NonClientRegionChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_NonClientRegionChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "QueryNonClientRegion",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1373,10 +1647,12 @@
       "members": [
         {
           "name": "get_IsErrorPage",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_NavigationId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1386,55 +1662,68 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2contextmenuitem?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_CustomItemSelected",
-          "implemented": false
-        },
-        {
           "name": "get_Children",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_CommandId",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_Icon",
-          "implemented": false
-        },
-        {
-          "name": "get_IsChecked",
-          "implemented": false
-        },
-        {
-          "name": "get_IsEnabled",
-          "implemented": false
-        },
-        {
-          "name": "get_Kind",
-          "implemented": false
-        },
-        {
-          "name": "get_Label",
-          "implemented": false
-        },
-        {
-          "name": "get_Name",
-          "implemented": false
-        },
-        {
-          "name": "get_ShortcutKeyDescription",
-          "implemented": false
-        },
-        {
-          "name": "put_IsChecked",
-          "implemented": false
-        },
-        {
-          "name": "put_IsEnabled",
+          "name": "add_CustomItemSelected",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_CustomItemSelected",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Icon",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsChecked",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "put_IsChecked",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsEnabled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "put_IsEnabled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Kind",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Label",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Name",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ShortcutKeyDescription",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1445,18 +1734,22 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "InsertValueAtIndex",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "RemoveValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1467,34 +1760,42 @@
       "members": [
         {
           "name": "get_ContextMenuTarget",
-          "implemented": false
-        },
-        {
-          "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_Location",
-          "implemented": false
-        },
-        {
-          "name": "get_MenuItems",
-          "implemented": false
-        },
-        {
-          "name": "get_SelectedCommandId",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Handled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Location",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MenuItems",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SelectedCommandId",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_SelectedCommandId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1505,54 +1806,67 @@
       "members": [
         {
           "name": "get_FrameUri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_HasLinkText",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_HasLinkUri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_HasSelection",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_HasSourceUri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_IsEditable",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_IsRequestedForMainFrame",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Kind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_LinkText",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_LinkUri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_PageUri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_SelectionText",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_SourceUri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1563,95 +1877,118 @@
       "members": [
         {
           "name": "add_AcceleratorKeyPressed",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
-          "name": "add_GotFocus",
-          "implemented": true
-        },
-        {
-          "name": "add_LostFocus",
-          "implemented": true
-        },
-        {
-          "name": "add_MoveFocusRequested",
-          "implemented": true
-        },
-        {
-          "name": "add_ZoomFactorChanged",
-          "implemented": true
-        },
-        {
-          "name": "Close",
+          "name": "remove_AcceleratorKeyPressed",
+          "defined": true,
           "implemented": false
         },
         {
           "name": "get_Bounds",
-          "implemented": true
-        },
-        {
-          "name": "get_CoreWebView2",
-          "implemented": true
-        },
-        {
-          "name": "get_IsVisible",
-          "implemented": true
-        },
-        {
-          "name": "get_ParentWindow",
-          "implemented": true
-        },
-        {
-          "name": "get_ZoomFactor",
-          "implemented": true
-        },
-        {
-          "name": "MoveFocus",
-          "implemented": true
-        },
-        {
-          "name": "NotifyParentWindowPositionChanged",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "put_Bounds",
+          "defined": true,
           "implemented": true
         },
         {
-          "name": "put_IsVisible",
+          "name": "Close",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_CoreWebView2",
+          "defined": true,
           "implemented": true
         },
         {
-          "name": "put_ParentWindow",
-          "implemented": true
-        },
-        {
-          "name": "put_ZoomFactor",
-          "implemented": true
-        },
-        {
-          "name": "remove_AcceleratorKeyPressed",
-          "implemented": true
+          "name": "add_GotFocus",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_GotFocus",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "get_IsVisible",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "put_IsVisible",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_LostFocus",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_LostFocus",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "MoveFocus",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_MoveFocusRequested",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_MoveFocusRequested",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
-          "name": "remove_ZoomFactorChanged",
-          "implemented": true
+          "name": "NotifyParentWindowPositionChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "get_ParentWindow",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "put_ParentWindow",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "SetBoundsAndZoomFactor",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "get_ZoomFactor",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "put_ZoomFactor",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "add_ZoomFactorChanged",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "remove_ZoomFactorChanged",
+          "defined": true,
+          "implemented": false
         }
       ]
     },
@@ -1661,11 +1998,13 @@
       "members": [
         {
           "name": "get_DefaultBackgroundColor",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "put_DefaultBackgroundColor",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         }
       ]
     },
@@ -1674,36 +2013,44 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2controller3?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_RasterizationScaleChanged",
-          "implemented": true
-        },
-        {
           "name": "get_BoundsMode",
-          "implemented": true
-        },
-        {
-          "name": "get_RasterizationScale",
-          "implemented": true
-        },
-        {
-          "name": "get_ShouldDetectMonitorScaleChanges",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "put_BoundsMode",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "get_RasterizationScale",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "put_RasterizationScale",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
-          "name": "put_ShouldDetectMonitorScaleChanges",
-          "implemented": true
+          "name": "add_RasterizationScaleChanged",
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "remove_RasterizationScaleChanged",
-          "implemented": true
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "get_ShouldDetectMonitorScaleChanges",
+          "defined": true,
+          "implemented": false
+        },
+        {
+          "name": "put_ShouldDetectMonitorScaleChanges",
+          "defined": true,
+          "implemented": false
         }
       ]
     },
@@ -1713,11 +2060,13 @@
       "members": [
         {
           "name": "get_AllowExternalDrop",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         },
         {
           "name": "put_AllowExternalDrop",
-          "implemented": true
+          "defined": true,
+          "implemented": false
         }
       ]
     },
@@ -1727,18 +2076,22 @@
       "members": [
         {
           "name": "get_IsInPrivateModeEnabled",
-          "implemented": false
-        },
-        {
-          "name": "get_ProfileName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_IsInPrivateModeEnabled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ProfileName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ProfileName",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1749,10 +2102,12 @@
       "members": [
         {
           "name": "get_ScriptLocale",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ScriptLocale",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1763,10 +2118,12 @@
       "members": [
         {
           "name": "get_DefaultBackgroundColor",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_DefaultBackgroundColor",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1777,10 +2134,12 @@
       "members": [
         {
           "name": "get_AllowHostInputProcessing",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_AllowHostInputProcessing",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1791,58 +2150,72 @@
       "members": [
         {
           "name": "get_Domain",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Expires",
-          "implemented": false
-        },
-        {
-          "name": "get_IsHttpOnly",
-          "implemented": false
-        },
-        {
-          "name": "get_IsSecure",
-          "implemented": false
-        },
-        {
-          "name": "get_IsSession",
-          "implemented": false
-        },
-        {
-          "name": "get_Name",
-          "implemented": false
-        },
-        {
-          "name": "get_Path",
-          "implemented": false
-        },
-        {
-          "name": "get_SameSite",
-          "implemented": false
-        },
-        {
-          "name": "get_Value",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Expires",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsHttpOnly",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_IsHttpOnly",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsSecure",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_IsSecure",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsSession",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Name",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Path",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SameSite",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_SameSite",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Value",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Value",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1853,10 +2226,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1867,34 +2242,42 @@
       "members": [
         {
           "name": "AddOrUpdateCookie",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CopyCookie",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CreateCookie",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "DeleteAllCookies",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "DeleteCookie",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "DeleteCookies",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "DeleteCookiesWithDomainAndPath",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetCookies",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1904,31 +2287,38 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2customschemeregistration?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "get_HasAuthorityComponent",
-          "implemented": false
-        },
-        {
-          "name": "get_SchemeName",
-          "implemented": false
-        },
-        {
-          "name": "get_TreatAsSecure",
-          "implemented": false
-        },
-        {
           "name": "GetAllowedOrigins",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_HasAuthorityComponent",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_HasAuthorityComponent",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "put_TreatAsSecure",
+          "name": "get_SchemeName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "SetAllowedOrigins",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TreatAsSecure",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "put_TreatAsSecure",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1939,6 +2329,7 @@
       "members": [
         {
           "name": "Complete",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1949,6 +2340,7 @@
       "members": [
         {
           "name": "get_ParameterObjectAsJson",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1959,6 +2351,7 @@
       "members": [
         {
           "name": "get_SessionId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1969,10 +2362,12 @@
       "members": [
         {
           "name": "add_DevToolsProtocolEventReceived",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_DevToolsProtocolEventReceived",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1983,6 +2378,7 @@
       "members": [
         {
           "name": "get_NavigationId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -1992,79 +2388,98 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2downloadoperation?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_BytesReceivedChanged",
-          "implemented": false
-        },
-        {
-          "name": "add_EstimatedEndTimeChanged",
-          "implemented": false
-        },
-        {
-          "name": "add_StateChanged",
-          "implemented": false
-        },
-        {
-          "name": "Cancel",
-          "implemented": false
-        },
-        {
           "name": "get_BytesReceived",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_CanResume",
-          "implemented": false
-        },
-        {
-          "name": "get_ContentDisposition",
-          "implemented": false
-        },
-        {
-          "name": "get_EstimatedEndTime",
-          "implemented": false
-        },
-        {
-          "name": "get_InterruptReason",
-          "implemented": false
-        },
-        {
-          "name": "get_MimeType",
-          "implemented": false
-        },
-        {
-          "name": "get_ResultFilePath",
-          "implemented": false
-        },
-        {
-          "name": "get_State",
-          "implemented": false
-        },
-        {
-          "name": "get_TotalBytesToReceive",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
-          "implemented": false
-        },
-        {
-          "name": "Pause",
+          "name": "add_BytesReceivedChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_BytesReceivedChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_CanResume",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ContentDisposition",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_EstimatedEndTime",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_EstimatedEndTimeChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_EstimatedEndTimeChanged",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "remove_StateChanged",
+          "name": "get_InterruptReason",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MimeType",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "Pause",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ResultFilePath",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "Resume",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_State",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_StateChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "remove_StateChanged",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TotalBytesToReceive",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2075,34 +2490,42 @@
       "members": [
         {
           "name": "get_Cancel",
-          "implemented": false
-        },
-        {
-          "name": "get_DownloadOperation",
-          "implemented": false
-        },
-        {
-          "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_ResultFilePath",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_DownloadOperation",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Handled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ResultFilePath",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ResultFilePath",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2112,23 +2535,28 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2environment?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_NewBrowserVersionAvailable",
+          "name": "get_BrowserVersionString",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CreateCoreWebView2Controller",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "CreateWebResourceResponse",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_BrowserVersionString",
+          "name": "add_NewBrowserVersionAvailable",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_NewBrowserVersionAvailable",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2139,6 +2567,7 @@
       "members": [
         {
           "name": "CreateWebResourceRequest",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2149,10 +2578,12 @@
       "members": [
         {
           "name": "CreateCoreWebView2CompositionController",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CreateCoreWebView2PointerInfo",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2163,6 +2594,7 @@
       "members": [
         {
           "name": "GetAutomationProviderForWindow",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2173,10 +2605,12 @@
       "members": [
         {
           "name": "add_BrowserProcessExited",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_BrowserProcessExited",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2187,6 +2621,7 @@
       "members": [
         {
           "name": "CreatePrintSettings",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2197,6 +2632,7 @@
       "members": [
         {
           "name": "get_UserDataFolder",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2206,15 +2642,18 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2environment8?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_ProcessInfosChanged",
+          "name": "GetProcessInfos",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "GetProcessInfos",
+          "name": "add_ProcessInfosChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_ProcessInfosChanged",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2225,6 +2664,7 @@
       "members": [
         {
           "name": "CreateContextMenuItem",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2235,14 +2675,17 @@
       "members": [
         {
           "name": "CreateCoreWebView2CompositionControllerWithOptions",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CreateCoreWebView2ControllerOptions",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CreateCoreWebView2ControllerWithOptions",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2253,6 +2696,7 @@
       "members": [
         {
           "name": "get_FailureReportFolderPath",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2263,6 +2707,7 @@
       "members": [
         {
           "name": "CreateSharedBuffer",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2273,6 +2718,7 @@
       "members": [
         {
           "name": "GetProcessExtendedInfos",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2283,14 +2729,17 @@
       "members": [
         {
           "name": "CreateObjectCollection",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CreateWebFileSystemDirectoryHandle",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "CreateWebFileSystemFileHandle",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2301,34 +2750,42 @@
       "members": [
         {
           "name": "get_AdditionalBrowserArguments",
-          "implemented": false
-        },
-        {
-          "name": "get_AllowSingleSignOnUsingOSPrimaryAccount",
-          "implemented": false
-        },
-        {
-          "name": "get_Language",
-          "implemented": false
-        },
-        {
-          "name": "get_TargetCompatibleBrowserVersion",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_AdditionalBrowserArguments",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_AllowSingleSignOnUsingOSPrimaryAccount",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_AllowSingleSignOnUsingOSPrimaryAccount",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Language",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Language",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TargetCompatibleBrowserVersion",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_TargetCompatibleBrowserVersion",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2339,10 +2796,12 @@
       "members": [
         {
           "name": "get_ExclusiveUserDataFolderAccess",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ExclusiveUserDataFolderAccess",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2353,10 +2812,12 @@
       "members": [
         {
           "name": "get_IsCustomCrashReportingEnabled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_IsCustomCrashReportingEnabled",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2367,10 +2828,12 @@
       "members": [
         {
           "name": "GetCustomSchemeRegistrations",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "SetCustomSchemeRegistrations",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2381,10 +2844,12 @@
       "members": [
         {
           "name": "get_EnableTrackingPrevention",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_EnableTrackingPrevention",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2395,10 +2860,12 @@
       "members": [
         {
           "name": "get_AreBrowserExtensionsEnabled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_AreBrowserExtensionsEnabled",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2409,18 +2876,22 @@
       "members": [
         {
           "name": "get_ChannelSearchKind",
-          "implemented": false
-        },
-        {
-          "name": "get_ReleaseChannels",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ChannelSearchKind",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ReleaseChannels",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ReleaseChannels",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2431,10 +2902,12 @@
       "members": [
         {
           "name": "get_ScrollBarStyle",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ScrollBarStyle",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2445,18 +2918,22 @@
       "members": [
         {
           "name": "get_Exception",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ResultAsJson",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Succeeded",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "TryGetResultAsString",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2467,6 +2944,7 @@
       "members": [
         {
           "name": "get_Path",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2477,14 +2955,17 @@
       "members": [
         {
           "name": "get_Kind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Path",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Permission",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2494,35 +2975,43 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2frame?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_Destroyed",
-          "implemented": false
-        },
-        {
-          "name": "add_NameChanged",
-          "implemented": false
-        },
-        {
           "name": "AddHostObjectToScriptWithOrigins",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_Name",
-          "implemented": false
-        },
-        {
-          "name": "IsDestroyed",
+          "name": "add_Destroyed",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_Destroyed",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "IsDestroyed",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Name",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_NameChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_NameChanged",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "RemoveHostObjectFromScript",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2533,54 +3022,67 @@
       "members": [
         {
           "name": "add_ContentLoading",
-          "implemented": false
-        },
-        {
-          "name": "add_DOMContentLoaded",
-          "implemented": false
-        },
-        {
-          "name": "add_NavigationCompleted",
-          "implemented": false
-        },
-        {
-          "name": "add_NavigationStarting",
-          "implemented": false
-        },
-        {
-          "name": "add_WebMessageReceived",
-          "implemented": false
-        },
-        {
-          "name": "ExecuteScript",
-          "implemented": false
-        },
-        {
-          "name": "PostWebMessageAsJson",
-          "implemented": false
-        },
-        {
-          "name": "PostWebMessageAsString",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_ContentLoading",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_DOMContentLoaded",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_DOMContentLoaded",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "ExecuteScript",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_NavigationCompleted",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_NavigationCompleted",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_NavigationStarting",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_NavigationStarting",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "PostWebMessageAsJson",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "PostWebMessageAsString",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "add_WebMessageReceived",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_WebMessageReceived",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2591,10 +3093,12 @@
       "members": [
         {
           "name": "add_PermissionRequested",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_PermissionRequested",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2605,6 +3109,7 @@
       "members": [
         {
           "name": "PostSharedBufferToScript",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2615,6 +3120,7 @@
       "members": [
         {
           "name": "get_FrameId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2625,10 +3131,12 @@
       "members": [
         {
           "name": "add_ScreenCaptureStarting",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_ScreenCaptureStarting",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2639,10 +3147,12 @@
       "members": [
         {
           "name": "add_FrameCreated",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_FrameCreated",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2653,6 +3163,7 @@
       "members": [
         {
           "name": "get_Frame",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2663,10 +3174,12 @@
       "members": [
         {
           "name": "get_Name",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Source",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2677,14 +3190,17 @@
       "members": [
         {
           "name": "get_FrameId",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_FrameKind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ParentFrameInfo",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2695,6 +3211,7 @@
       "members": [
         {
           "name": "GetIterator",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2704,15 +3221,18 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2frameinfocollectioniterator?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "get_HasCurrent",
+          "name": "GetCurrent",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "GetCurrent",
+          "name": "get_HasCurrent",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "MoveNext",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2722,15 +3242,18 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2httpheaderscollectioniterator?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "get_HasCurrentHeader",
+          "name": "GetCurrentHeader",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "GetCurrentHeader",
+          "name": "get_HasCurrentHeader",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "MoveNext",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2741,26 +3264,32 @@
       "members": [
         {
           "name": "Contains",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetHeader",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetHeaders",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetIterator",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "RemoveHeader",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "SetHeader",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2771,22 +3300,27 @@
       "members": [
         {
           "name": "AppendHeader",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "Contains",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetHeader",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetHeaders",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetIterator",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2797,26 +3331,32 @@
       "members": [
         {
           "name": "get_Cancel",
-          "implemented": false
-        },
-        {
-          "name": "get_InitiatingOrigin",
-          "implemented": false
-        },
-        {
-          "name": "get_IsUserInitiated",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_InitiatingOrigin",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsUserInitiated",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2827,14 +3367,17 @@
       "members": [
         {
           "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_Reason",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Reason",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2845,14 +3388,17 @@
       "members": [
         {
           "name": "get_IsSuccess",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_NavigationId",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_WebErrorStatus",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2863,6 +3409,7 @@
       "members": [
         {
           "name": "get_HttpStatusCode",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2873,30 +3420,37 @@
       "members": [
         {
           "name": "get_Cancel",
-          "implemented": false
-        },
-        {
-          "name": "get_IsRedirected",
-          "implemented": false
-        },
-        {
-          "name": "get_IsUserInitiated",
-          "implemented": false
-        },
-        {
-          "name": "get_NavigationId",
-          "implemented": false
-        },
-        {
-          "name": "get_RequestHeaders",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsRedirected",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsUserInitiated",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_NavigationId",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_RequestHeaders",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2907,10 +3461,12 @@
       "members": [
         {
           "name": "get_AdditionalAllowedFrameAncestors",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_AdditionalAllowedFrameAncestors",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2921,6 +3477,7 @@
       "members": [
         {
           "name": "get_NavigationKind",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2930,35 +3487,43 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2newwindowrequestedeventargs?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_IsUserInitiated",
-          "implemented": false
-        },
-        {
-          "name": "get_NewWindow",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
-          "implemented": false
-        },
-        {
-          "name": "get_WindowFeatures",
-          "implemented": false
-        },
-        {
           "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Handled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsUserInitiated",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_NewWindow",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_NewWindow",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_WindowFeatures",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2969,6 +3534,7 @@
       "members": [
         {
           "name": "get_Name",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2979,6 +3545,7 @@
       "members": [
         {
           "name": "get_OriginalSourceFrameInfo",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2989,6 +3556,7 @@
       "members": [
         {
           "name": "get_RegionKind",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -2998,75 +3566,93 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2notification?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_CloseRequested",
-          "implemented": false
-        },
-        {
           "name": "get_BadgeUri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Body",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_BodyImageUri",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_Direction",
-          "implemented": false
-        },
-        {
-          "name": "get_IconUri",
-          "implemented": false
-        },
-        {
-          "name": "get_IsSilent",
-          "implemented": false
-        },
-        {
-          "name": "get_Language",
-          "implemented": false
-        },
-        {
-          "name": "get_RequiresInteraction",
-          "implemented": false
-        },
-        {
-          "name": "get_ShouldRenotify",
-          "implemented": false
-        },
-        {
-          "name": "get_Tag",
-          "implemented": false
-        },
-        {
-          "name": "get_Timestamp",
-          "implemented": false
-        },
-        {
-          "name": "get_Title",
-          "implemented": false
-        },
-        {
-          "name": "GetVibrationPattern",
+          "name": "add_CloseRequested",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_CloseRequested",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Direction",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetVibrationPattern",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IconUri",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsSilent",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Language",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ReportClicked",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ReportClosed",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ReportShown",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_RequiresInteraction",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ShouldRenotify",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Tag",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Timestamp",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Title",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3076,23 +3662,28 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2notificationreceivedeventargs?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_Notification",
-          "implemented": false
-        },
-        {
-          "name": "get_SenderOrigin",
-          "implemented": false
-        },
-        {
           "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Handled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Notification",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SenderOrigin",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3103,10 +3694,12 @@
       "members": [
         {
           "name": "InsertValueAtIndex",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "RemoveValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3117,10 +3710,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3130,27 +3725,33 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2permissionrequestedeventargs?view=webview2-1.0.3351.48",
       "members": [
         {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
           "name": "get_IsUserInitiated",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_PermissionKind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_State",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_State",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3161,10 +3762,12 @@
       "members": [
         {
           "name": "get_Handled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3175,10 +3778,12 @@
       "members": [
         {
           "name": "get_SavesInProfile",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_SavesInProfile",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3189,14 +3794,17 @@
       "members": [
         {
           "name": "get_PermissionKind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_PermissionOrigin",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_PermissionState",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3207,10 +3815,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3221,226 +3831,282 @@
       "members": [
         {
           "name": "get_ButtonChangeKind",
-          "implemented": false
-        },
-        {
-          "name": "get_DisplayRect",
-          "implemented": false
-        },
-        {
-          "name": "get_FrameId",
-          "implemented": false
-        },
-        {
-          "name": "get_HimetricLocation",
-          "implemented": false
-        },
-        {
-          "name": "get_HimetricLocationRaw",
-          "implemented": false
-        },
-        {
-          "name": "get_HistoryCount",
-          "implemented": false
-        },
-        {
-          "name": "get_InputData",
-          "implemented": false
-        },
-        {
-          "name": "get_KeyStates",
-          "implemented": false
-        },
-        {
-          "name": "get_PenFlags",
-          "implemented": false
-        },
-        {
-          "name": "get_PenMask",
-          "implemented": false
-        },
-        {
-          "name": "get_PenPressure",
-          "implemented": false
-        },
-        {
-          "name": "get_PenRotation",
-          "implemented": false
-        },
-        {
-          "name": "get_PenTiltX",
-          "implemented": false
-        },
-        {
-          "name": "get_PenTiltY",
-          "implemented": false
-        },
-        {
-          "name": "get_PerformanceCount",
-          "implemented": false
-        },
-        {
-          "name": "get_PixelLocation",
-          "implemented": false
-        },
-        {
-          "name": "get_PixelLocationRaw",
-          "implemented": false
-        },
-        {
-          "name": "get_PointerDeviceRect",
-          "implemented": false
-        },
-        {
-          "name": "get_PointerFlags",
-          "implemented": false
-        },
-        {
-          "name": "get_PointerId",
-          "implemented": false
-        },
-        {
-          "name": "get_PointerKind",
-          "implemented": false
-        },
-        {
-          "name": "get_Time",
-          "implemented": false
-        },
-        {
-          "name": "get_TouchContact",
-          "implemented": false
-        },
-        {
-          "name": "get_TouchContactRaw",
-          "implemented": false
-        },
-        {
-          "name": "get_TouchFlags",
-          "implemented": false
-        },
-        {
-          "name": "get_TouchMask",
-          "implemented": false
-        },
-        {
-          "name": "get_TouchOrientation",
-          "implemented": false
-        },
-        {
-          "name": "get_TouchPressure",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ButtonChangeKind",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_DisplayRect",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_DisplayRect",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_FrameId",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_FrameId",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_HimetricLocation",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_HimetricLocation",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_HimetricLocationRaw",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_HimetricLocationRaw",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_HistoryCount",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_HistoryCount",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_InputData",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_InputData",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_KeyStates",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_KeyStates",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PenFlags",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PenFlags",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PenMask",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PenMask",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PenPressure",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PenPressure",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PenRotation",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PenRotation",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PenTiltX",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PenTiltX",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PenTiltY",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PenTiltY",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PerformanceCount",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PerformanceCount",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PixelLocation",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PixelLocation",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PixelLocationRaw",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PixelLocationRaw",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PointerDeviceRect",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PointerDeviceRect",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PointerFlags",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PointerFlags",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PointerId",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PointerId",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PointerKind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PointerKind",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Time",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Time",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TouchContact",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_TouchContact",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TouchContactRaw",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_TouchContactRaw",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TouchFlags",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_TouchFlags",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TouchMask",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_TouchMask",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TouchOrientation",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_TouchOrientation",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_TouchPressure",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_TouchPressure",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3451,106 +4117,132 @@
       "members": [
         {
           "name": "get_FooterUri",
-          "implemented": false
-        },
-        {
-          "name": "get_HeaderTitle",
-          "implemented": false
-        },
-        {
-          "name": "get_MarginBottom",
-          "implemented": false
-        },
-        {
-          "name": "get_MarginLeft",
-          "implemented": false
-        },
-        {
-          "name": "get_MarginRight",
-          "implemented": false
-        },
-        {
-          "name": "get_MarginTop",
-          "implemented": false
-        },
-        {
-          "name": "get_Orientation",
-          "implemented": false
-        },
-        {
-          "name": "get_PageHeight",
-          "implemented": false
-        },
-        {
-          "name": "get_PageWidth",
-          "implemented": false
-        },
-        {
-          "name": "get_ScaleFactor",
-          "implemented": false
-        },
-        {
-          "name": "get_ShouldPrintBackgrounds",
-          "implemented": false
-        },
-        {
-          "name": "get_ShouldPrintHeaderAndFooter",
-          "implemented": false
-        },
-        {
-          "name": "get_ShouldPrintSelectionOnly",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_FooterUri",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_HeaderTitle",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_HeaderTitle",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MarginBottom",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_MarginBottom",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MarginLeft",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_MarginLeft",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MarginRight",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_MarginRight",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MarginTop",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_MarginTop",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Orientation",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Orientation",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PageHeight",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PageHeight",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PageWidth",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PageWidth",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ScaleFactor",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ScaleFactor",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ShouldPrintBackgrounds",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ShouldPrintBackgrounds",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ShouldPrintHeaderAndFooter",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ShouldPrintHeaderAndFooter",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ShouldPrintSelectionOnly",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ShouldPrintSelectionOnly",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3561,66 +4253,82 @@
       "members": [
         {
           "name": "get_Collation",
-          "implemented": false
-        },
-        {
-          "name": "get_ColorMode",
-          "implemented": false
-        },
-        {
-          "name": "get_Copies",
-          "implemented": false
-        },
-        {
-          "name": "get_Duplex",
-          "implemented": false
-        },
-        {
-          "name": "get_MediaSize",
-          "implemented": false
-        },
-        {
-          "name": "get_PageRanges",
-          "implemented": false
-        },
-        {
-          "name": "get_PagesPerSide",
-          "implemented": false
-        },
-        {
-          "name": "get_PrinterName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Collation",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ColorMode",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ColorMode",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Copies",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Copies",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Duplex",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Duplex",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_MediaSize",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_MediaSize",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PageRanges",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PageRanges",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PagesPerSide",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PagesPerSide",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PrinterName",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PrinterName",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3631,10 +4339,12 @@
       "members": [
         {
           "name": "get_AssociatedFrameInfos",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ProcessInfo",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3645,10 +4355,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3659,6 +4371,7 @@
       "members": [
         {
           "name": "get_ProcessFailedKind",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3669,18 +4382,22 @@
       "members": [
         {
           "name": "get_ExitCode",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_FrameInfosForFailedProcess",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ProcessDescription",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Reason",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3691,6 +4408,7 @@
       "members": [
         {
           "name": "get_FailureSourceModulePath",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3701,10 +4419,12 @@
       "members": [
         {
           "name": "get_Kind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ProcessId",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3715,10 +4435,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3729,30 +4451,37 @@
       "members": [
         {
           "name": "get_DefaultDownloadFolderPath",
-          "implemented": false
-        },
-        {
-          "name": "get_IsInPrivateModeEnabled",
-          "implemented": false
-        },
-        {
-          "name": "get_PreferredColorScheme",
-          "implemented": false
-        },
-        {
-          "name": "get_ProfileName",
-          "implemented": false
-        },
-        {
-          "name": "get_ProfilePath",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_DefaultDownloadFolderPath",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsInPrivateModeEnabled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_PreferredColorScheme",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PreferredColorScheme",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ProfileName",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ProfilePath",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3763,14 +4492,17 @@
       "members": [
         {
           "name": "ClearBrowsingData",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ClearBrowsingDataAll",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "ClearBrowsingDataInTimeRange",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3781,10 +4513,12 @@
       "members": [
         {
           "name": "get_PreferredTrackingPreventionLevel",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_PreferredTrackingPreventionLevel",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3795,10 +4529,12 @@
       "members": [
         {
           "name": "GetNonDefaultPermissionSettings",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "SetPermissionState",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3809,6 +4545,7 @@
       "members": [
         {
           "name": "get_CookieManager",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3819,18 +4556,22 @@
       "members": [
         {
           "name": "get_IsGeneralAutofillEnabled",
-          "implemented": false
-        },
-        {
-          "name": "get_IsPasswordAutosaveEnabled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_IsGeneralAutofillEnabled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_IsPasswordAutosaveEnabled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_IsPasswordAutosaveEnabled",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3841,10 +4582,12 @@
       "members": [
         {
           "name": "AddBrowserExtension",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetBrowserExtensions",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3854,15 +4597,18 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2profile8?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "add_Deleted",
+          "name": "Delete",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "Delete",
+          "name": "add_Deleted",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "remove_Deleted",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3873,10 +4619,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3887,50 +4635,62 @@
       "members": [
         {
           "name": "get_AllowReplace",
-          "implemented": false
-        },
-        {
-          "name": "get_Cancel",
-          "implemented": false
-        },
-        {
-          "name": "get_ContentMimeType",
-          "implemented": false
-        },
-        {
-          "name": "get_Kind",
-          "implemented": false
-        },
-        {
-          "name": "get_SaveAsFilePath",
-          "implemented": false
-        },
-        {
-          "name": "get_SuppressDefaultDialog",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_AllowReplace",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Cancel",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ContentMimeType",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Kind",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Kind",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SaveAsFilePath",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_SaveAsFilePath",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SuppressDefaultDialog",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_SuppressDefaultDialog",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3941,34 +4701,42 @@
       "members": [
         {
           "name": "get_CancelSave",
-          "implemented": false
-        },
-        {
-          "name": "get_DocumentOriginUri",
-          "implemented": false
-        },
-        {
-          "name": "get_FileExtension",
-          "implemented": false
-        },
-        {
-          "name": "get_FilePath",
-          "implemented": false
-        },
-        {
-          "name": "get_SuppressDefaultPolicy",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_CancelSave",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_DocumentOriginUri",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_FileExtension",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_FilePath",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_SuppressDefaultPolicy",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_SuppressDefaultPolicy",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -3979,26 +4747,32 @@
       "members": [
         {
           "name": "get_Cancel",
-          "implemented": false
-        },
-        {
-          "name": "get_Handled",
-          "implemented": false
-        },
-        {
-          "name": "get_OriginalSourceFrameInfo",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Cancel",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Handled",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Handled",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_OriginalSourceFrameInfo",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4009,34 +4783,42 @@
       "members": [
         {
           "name": "Accept",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_DefaultText",
-          "implemented": false
-        },
-        {
-          "name": "get_Kind",
-          "implemented": false
-        },
-        {
-          "name": "get_Message",
-          "implemented": false
-        },
-        {
-          "name": "get_ResultText",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Kind",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Message",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ResultText",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ResultText",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4047,22 +4829,27 @@
       "members": [
         {
           "name": "get_ColumnNumber",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_LineNumber",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Message",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Name",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ToJson",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4073,26 +4860,32 @@
       "members": [
         {
           "name": "get_Action",
-          "implemented": false
-        },
-        {
-          "name": "get_ErrorStatus",
-          "implemented": false
-        },
-        {
-          "name": "get_RequestUri",
-          "implemented": false
-        },
-        {
-          "name": "get_ServerCertificate",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Action",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ErrorStatus",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_RequestUri",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ServerCertificate",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4103,74 +4896,92 @@
       "members": [
         {
           "name": "get_AreDefaultContextMenusEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_AreDefaultScriptDialogsEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_AreDevToolsEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_AreHostObjectsAllowed",
-          "implemented": true
-        },
-        {
-          "name": "get_IsBuiltInErrorPageEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_IsScriptEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_IsStatusBarEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_IsWebMessageEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_IsZoomControlEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_AreDefaultContextMenusEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_AreDefaultScriptDialogsEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_AreDefaultScriptDialogsEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_AreDevToolsEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_AreDevToolsEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_AreHostObjectsAllowed",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_AreHostObjectsAllowed",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_IsBuiltInErrorPageEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsBuiltInErrorPageEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_IsScriptEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsScriptEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_IsStatusBarEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsStatusBarEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_IsWebMessageEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsWebMessageEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_IsZoomControlEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsZoomControlEnabled",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4181,10 +4992,12 @@
       "members": [
         {
           "name": "get_UserAgent",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_UserAgent",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4195,10 +5008,12 @@
       "members": [
         {
           "name": "get_AreBrowserAcceleratorKeysEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_AreBrowserAcceleratorKeysEnabled",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4209,18 +5024,22 @@
       "members": [
         {
           "name": "get_IsGeneralAutofillEnabled",
-          "implemented": true
-        },
-        {
-          "name": "get_IsPasswordAutosaveEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsGeneralAutofillEnabled",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_IsPasswordAutosaveEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsPasswordAutosaveEnabled",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4231,10 +5050,12 @@
       "members": [
         {
           "name": "get_IsPinchZoomEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsPinchZoomEnabled",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4245,10 +5066,12 @@
       "members": [
         {
           "name": "get_IsSwipeNavigationEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsSwipeNavigationEnabled",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4259,10 +5082,12 @@
       "members": [
         {
           "name": "get_HiddenPdfToolbarItems",
+          "defined": true,
           "implemented": false
         },
         {
           "name": "put_HiddenPdfToolbarItems",
+          "defined": true,
           "implemented": false
         }
       ]
@@ -4273,10 +5098,12 @@
       "members": [
         {
           "name": "get_IsReputationCheckingRequired",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsReputationCheckingRequired",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4287,10 +5114,12 @@
       "members": [
         {
           "name": "get_IsNonClientRegionSupportEnabled",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "put_IsNonClientRegionSupportEnabled",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4300,23 +5129,28 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2sharedbuffer?view=webview2-1.0.3351.48",
       "members": [
         {
-          "name": "Close",
+          "name": "get_Buffer",
+          "defined": false,
           "implemented": false
         },
         {
-          "name": "get_Buffer",
+          "name": "Close",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_FileMappingHandle",
-          "implemented": false
-        },
-        {
-          "name": "get_Size",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "OpenStream",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Size",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4327,6 +5161,7 @@
       "members": [
         {
           "name": "get_IsNewDocument",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4337,10 +5172,12 @@
       "members": [
         {
           "name": "get_Count",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "GetValueAtIndex",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4351,14 +5188,17 @@
       "members": [
         {
           "name": "get_Source",
-          "implemented": true
-        },
-        {
-          "name": "get_WebMessageAsJson",
+          "defined": true,
           "implemented": true
         },
         {
           "name": "TryGetWebMessageAsString",
+          "defined": true,
+          "implemented": true
+        },
+        {
+          "name": "get_WebMessageAsJson",
+          "defined": true,
           "implemented": true
         }
       ]
@@ -4369,6 +5209,7 @@
       "members": [
         {
           "name": "get_AdditionalObjects",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4379,30 +5220,37 @@
       "members": [
         {
           "name": "get_Content",
-          "implemented": false
-        },
-        {
-          "name": "get_Headers",
-          "implemented": false
-        },
-        {
-          "name": "get_Method",
-          "implemented": false
-        },
-        {
-          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Content",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Headers",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Method",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Method",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Uri",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Uri",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4412,23 +5260,28 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2webresourcerequestedeventargs?view=webview2-1.0.3351.48",
       "members": [
         {
+          "name": "GetDeferral",
+          "defined": false,
+          "implemented": false
+        },
+        {
           "name": "get_Request",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ResourceContext",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Response",
-          "implemented": false
-        },
-        {
-          "name": "GetDeferral",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Response",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4439,6 +5292,7 @@
       "members": [
         {
           "name": "get_RequestedSourceKind",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4449,30 +5303,37 @@
       "members": [
         {
           "name": "get_Content",
-          "implemented": false
-        },
-        {
-          "name": "get_Headers",
-          "implemented": false
-        },
-        {
-          "name": "get_ReasonPhrase",
-          "implemented": false
-        },
-        {
-          "name": "get_StatusCode",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_Content",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_Headers",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_ReasonPhrase",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_ReasonPhrase",
+          "defined": false,
+          "implemented": false
+        },
+        {
+          "name": "get_StatusCode",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "put_StatusCode",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4483,10 +5344,12 @@
       "members": [
         {
           "name": "get_Request",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Response",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4496,19 +5359,23 @@
       "url": "https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2webresourceresponseview?view=webview2-1.0.3351.48",
       "members": [
         {
+          "name": "GetContent",
+          "defined": false,
+          "implemented": false
+        },
+        {
           "name": "get_Headers",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ReasonPhrase",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_StatusCode",
-          "implemented": false
-        },
-        {
-          "name": "GetContent",
+          "defined": false,
           "implemented": false
         }
       ]
@@ -4519,42 +5386,52 @@
       "members": [
         {
           "name": "get_HasPosition",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_HasSize",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Height",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Left",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ShouldDisplayMenuBar",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ShouldDisplayScrollBars",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ShouldDisplayStatus",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_ShouldDisplayToolbar",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Top",
+          "defined": false,
           "implemented": false
         },
         {
           "name": "get_Width",
+          "defined": false,
           "implemented": false
         }
       ]

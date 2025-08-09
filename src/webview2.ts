@@ -1062,7 +1062,27 @@ export class WebView2 {
   readonly add_WebResourceResponseReceived: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
-  };*/
+  };
+  get_CookieManager: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  get_Environment: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigateWithWebResourceRequest: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  remove_DOMContentLoaded: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  remove_WebResourceResponseReceived: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },*/
 
   /**
    * Sets a virtual host name to folder mapping for the WebView2 control.

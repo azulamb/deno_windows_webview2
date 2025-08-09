@@ -10,6 +10,7 @@ interface DLL_JSON {
     url: string;
     members: {
       name: string;
+      defined: boolean;
       implemented: boolean;
     }[];
   }[];
@@ -47,10 +48,16 @@ if ((<DLL_JSON> dll).version !== Microsoft_Web_WebView2) {
   }
 }
 
+const defined: { [keys: string]: true } = {};
 const implemented: { [keys: string]: true } = {};
 if ((<DLL_JSON> dll).list) {
   for (const group of (<DLL_JSON> dll).list) {
     for (const item of group.members) {
+      if (item.defined) {
+        defined[
+          [group.class, item.name].join('::')
+        ] = true;
+      }
       if (item.implemented) {
         implemented[
           [group.class, item.name].join('::')
@@ -126,34 +133,54 @@ for (const item of list) {
 
   const html = await loadHTML(item.url, `${item.name}.html`);
   const document = new DOMParser().parseFromString(html, 'text/html');
+  const members = [
+    ...document.querySelectorAll('h2#summary + table tr td:first-child > a'),
+  ]
+    .map((link) => {
+      const name = link.textContent;
+      if (functionNameCount[name]) {
+        ++functionNameCount[name];
+      } else {
+        functionNameCount[name] = 1;
+      }
+      return {
+        name,
+        defined: defined[`${item.name}::${name}`] === true,
+        implemented: implemented[`${item.name}::${name}`] === true,
+      };
+    });
+
+  members.sort((a, b) => {
+    if (
+      a.name.match(/^(add|get|put|remove)_/) ||
+      b.name.match(/^(add|get|put|remove)_/)
+    ) {
+      const aName = a.name.replace(/^(add|get|put|remove)_/, '');
+      const bName = b.name.replace(/^(add|get|put|remove)_/, '');
+      if (aName !== bName) {
+        return aName.localeCompare(bName);
+      }
+      const aSuffix = a.name.split('_')[0];
+      const bSuffix = b.name.split('_')[0];
+      return aSuffix.localeCompare(bSuffix);
+    }
+    return a.name.localeCompare(b.name);
+  });
+
   json.list.push({
     class: item.name,
     url: item.url,
-    members: [
-      ...document.querySelectorAll('h2#summary + table tr td:first-child > a'),
-    ]
-      .map((link) => {
-        const name = link.textContent;
-        if (functionNameCount[name]) {
-          ++functionNameCount[name];
-        } else {
-          functionNameCount[name] = 1;
-        }
-        return {
-          name,
-          implemented: implemented[`${item.name}::${name}`] === true,
-        };
-      }),
+    members: members,
   });
 }
 
 for (const group of json.list) {
   for (const item of group.members) {
-    if (item.implemented || !(item.name in params)) {
+    if (item.defined || !(item.name in params)) {
       continue;
     }
     if (functionNameCount[item.name] === 1) {
-      item.implemented = true;
+      item.defined = true;
     } else {
       console.warn(`Implemented check: ${group.class}::${item.name}`);
     }
