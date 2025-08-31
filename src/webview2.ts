@@ -1,19 +1,14 @@
 import type {
   EventRegistrationToken,
-  WEBVIEW2_FUNCS,
+  Webview2Funcs,
 } from './webview2_types.ts';
 import type { HRESULT, HWND, LPVOID } from 'jsr:@azulamb/winapi@^0.2.0';
 import type { Rect } from 'jsr:@azulamb/winapi@^0.2.0';
-import { utf16BufferToString } from './libs/convert.ts';
-
-function createStringPointer(value: string) {
-  const buffer = new Uint16Array(
-    <number[]> [].map.call(value + '\0', (c: string) => {
-      return c.charCodeAt(0);
-    }),
-  );
-  return Deno.UnsafePointer.of(buffer);
-}
+import { createStringPointer, getString } from './libs/convert.ts';
+import type { WEB_RESOURCE_CONTEXT_TYPES } from './constants/WEB_RESOURCE_CONTEXT.ts';
+import { IStream } from './class/IStream.ts';
+import { DoublePointer } from './class/DoublePointer.ts';
+import { WebResourceResponse } from './class/WebResourceResponse.ts';
 
 function getBool(
   webview2Connector: Deno.PointerValue,
@@ -41,31 +36,7 @@ export class WebView2 {
       size: Deno.PointerValue,
     ) => number,
   ): string {
-    const size = new BigUint64Array(1);
-    const hresult = func(
-      this.webview2Connector,
-      null,
-      Deno.UnsafePointer.of(size),
-    );
-
-    if (hresult !== 0) {
-      throw new Error();
-    }
-    if (size[0] === 0n) {
-      return '';
-    }
-
-    const buffer = new Uint16Array(Number(size[0]));
-    const hresult2 = func(
-      this.webview2Connector,
-      Deno.UnsafePointer.of(buffer),
-      null,
-    );
-    if (hresult2 !== 0) {
-      throw new Error();
-    }
-
-    return utf16BufferToString(buffer);
+    return getString(this.webview2Connector, func);
   }
 
   /**
@@ -74,7 +45,7 @@ export class WebView2 {
    * @param env The environment pointer.
    */
   constructor(
-    readonly lib: Deno.DynamicLibrary<WEBVIEW2_FUNCS>,
+    readonly lib: Webview2Funcs,
     env: LPVOID = null,
   ) {
     this.CreateWebView2Connector(env);
@@ -1030,20 +1001,48 @@ export class WebView2 {
   readonly get_ContainsFullScreenElement: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
-  };
-  readonly add_WebResourceRequested: {
-    readonly parameters: ['pointer', 'function', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly remove_WebResourceRequested: {
-    readonly parameters: ['pointer', 'buffer'];
-    readonly result: 'i32';
-  };
-  readonly AddWebResourceRequestedFilter: {
-    readonly parameters: ['pointer', 'pointer', 'i32'];
-    readonly result: 'i32';
-  };
-  readonly RemoveWebResourceRequestedFilter: {
+  };*/
+
+  public add_WebResourceRequested(
+    callback: (coreWebView2: LPVOID, eventArgs: LPVOID) => HRESULT,
+  ): EventRegistrationToken {
+    const token = this.CreateEventRegistrationToken();
+    const func = new Deno.UnsafeCallback(
+      {
+        parameters: [
+          'pointer', // ICoreWebView2*
+          'pointer', // ICoreWebView2WebResourceRequestedEventArgs*
+        ],
+        result: 'i32', // HRESULT
+      },
+      callback,
+    );
+    this.lib.symbols.add_WebResourceRequested(
+      this.webview2Connector,
+      func.pointer,
+      token,
+    );
+    return token;
+  }
+
+  public remove_WebResourceRequested(token: EventRegistrationToken): HRESULT {
+    return this.lib.symbols.remove_WebResourceRequested(
+      this.webview2Connector,
+      token,
+    );
+  }
+
+  public AddWebResourceRequestedFilter(
+    uri: string,
+    resourceContext: WEB_RESOURCE_CONTEXT_TYPES = 0,
+  ) {
+    return this.lib.symbols.AddWebResourceRequestedFilter(
+      this.webview2Connector,
+      createStringPointer(uri),
+      resourceContext,
+    );
+  }
+  /*readonly RemoveWebResourceRequestedFilter: {
     readonly parameters: ['pointer', 'pointer', 'i32'];
     readonly result: 'i32';
   };
@@ -1154,4 +1153,35 @@ export class WebView2 {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };*/
+
+  /**
+   * Creates a new WebResourceResponse.
+   * @param libs The Webview2 functions.
+   * @param content The content stream.
+   * @param statusCode The HTTP status code.
+   * @param reasonPhrase The HTTP reason phrase.
+   * @param headers The HTTP headers.
+   * @returns The created WebResourceResponse.
+   */
+  createWebResourceResponse(
+    content: IStream,
+    statusCode: number,
+    reasonPhrase: string,
+    headers: string,
+  ): WebResourceResponse {
+    const response = new DoublePointer();
+    console.log('CreateWebResourceResponse----');
+    const result = this.lib.symbols.CreateWebResourceResponse(
+      this.webview2Connector,
+      content.getPointer(),
+      statusCode,
+      createStringPointer(reasonPhrase),
+      createStringPointer(headers),
+      response.getDoublePointer(),
+    );
+    console.log(result);
+    console.log(Deno.UnsafePointer.value(response.getPointer()));
+    console.log('---');
+    return new WebResourceResponse(this.lib, response);
+  }
 }

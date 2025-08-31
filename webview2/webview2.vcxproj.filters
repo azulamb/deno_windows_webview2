@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="exports.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="sample.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -49,6 +46,24 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="source\Library.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2WebResourceRequestedEventArgs.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2WebResourceRequest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2WebResourceResponse.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2Deferral.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\IStream.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ICoreWebView2HttpRequestHeaders.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

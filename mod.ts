@@ -11,11 +11,11 @@ import {
   Microsoft_Windows_ImplementationLibrary,
 } from './src/version.ts';
 import { createDLLPath } from './tools/dll_path.ts';
-import type { WEBVIEW2_FUNCS } from './src/webview2_types.ts';
+import type { Webview2Funcs } from './src/webview2_types.ts';
 import { WebView2 } from './src/webview2.ts';
 export * from './src/webview2.ts';
 /** The result type for WebView2 functions. */
-export type { WEBVIEW2_FUNCS } from './src/webview2_types.ts';
+export type { WEBVIEW2_FUNCS, Webview2Funcs } from './src/webview2_types.ts';
 
 /** The options for preparing the WebView2 DLL. */
 export type PREPARE_WEBVIEW2_DLL_OPTION = {
@@ -23,6 +23,12 @@ export type PREPARE_WEBVIEW2_DLL_OPTION = {
   download?: boolean | string | URL; // true: download from GitHub
   //update?: boolean; // TODO: update DLL and version check.
   debugMode?: boolean; // TODO: debug mode.
+};
+
+export type WEAPN_CONFIG = {
+  title?: string;
+  width?: number;
+  height?: number;
 };
 
 async function copyFile(to: string, from: URL) {
@@ -133,7 +139,7 @@ export async function prepareWebview2DLL(
  */
 export function loadWebview2(
   dllPath = 'webview2.dll',
-): Deno.DynamicLibrary<WEBVIEW2_FUNCS> {
+): Webview2Funcs {
   return Deno.dlopen(
     dllPath,
     params,
@@ -168,6 +174,15 @@ export const version = {
 };
 
 /**
+ * Exports web resource context constants.
+ */
+export * from './src/constants/WEB_RESOURCE_CONTEXT.ts';
+
+/**
  * Exports support classes.
  */
-export { WebMessageReceivedEventArgs } from './src/class/WebMessageReceivedEventArgs.ts';
+export * from './src/class/IStream.ts';
+export * from './src/class/WebMessageReceivedEventArgs.ts';
+export * from './src/class/WebResourceRequest.ts';
+export * from './src/class/WebResourceResponse.ts';
+export * from './src/class/WebResourceRequestedEventArgs.ts';

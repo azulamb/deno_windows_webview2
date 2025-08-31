@@ -1,5 +1,5 @@
 import { utf16BufferToString } from '../libs/convert.ts';
-import type { WEBVIEW2_FUNCS } from '../webview2_types.ts';
+import type { Webview2Funcs } from '../webview2_types.ts';
 
 type ICoreWebView2WebMessageReceivedEventArgsPointer = Deno.PointerValue;
 
@@ -8,8 +8,6 @@ type ICoreWebView2WebMessageReceivedEventArgsPointer = Deno.PointerValue;
  * https://learn.microsoft.com/ja-jp/microsoft-edge/webview2/reference/win32/icorewebview2webmessagereceivedeventargs
  */
 export class WebMessageReceivedEventArgs {
-  protected libs: Deno.DynamicLibrary<WEBVIEW2_FUNCS>;
-  protected args: ICoreWebView2WebMessageReceivedEventArgsPointer;
   // TODO: cache results if success.
   // Ex: protected _source: string;
 
@@ -17,11 +15,9 @@ export class WebMessageReceivedEventArgs {
    * The raw pointer to the ICoreWebView2WebMessageReceivedEventArgs interface.
    */
   constructor(
-    libs: Deno.DynamicLibrary<WEBVIEW2_FUNCS>,
-    args: ICoreWebView2WebMessageReceivedEventArgsPointer,
+    protected libs: Webview2Funcs,
+    protected args: ICoreWebView2WebMessageReceivedEventArgsPointer,
   ) {
-    this.libs = libs;
-    this.args = args;
   }
 
   /**
@@ -74,7 +70,7 @@ export class WebMessageReceivedEventArgs {
 
     const buffer = new Uint16Array(Number(size[0]));
     const hresult2 = this.libs.symbols
-      .MessageReceivedEventArgs_get_WebMessageAsJson(
+      .WebMessageReceivedEventArgs_get_WebMessageAsJson(
         this.args,
         Deno.UnsafePointer.of(buffer),
         null,
@@ -94,7 +90,7 @@ export class WebMessageReceivedEventArgs {
   public TryGetWebMessageAsString(): string | null {
     const size = new BigUint64Array(1);
     const hresult = this.libs.symbols
-      .MessageReceivedEventArgs_TryGetWebMessageAsString(
+      .WebMessageReceivedEventArgs_TryGetWebMessageAsString(
         this.args,
         null,
         Deno.UnsafePointer.of(size),
@@ -109,7 +105,7 @@ export class WebMessageReceivedEventArgs {
 
     const buffer = new Uint16Array(Number(size[0]));
     const hresult2 = this.libs.symbols
-      .MessageReceivedEventArgs_get_WebMessageAsJson(
+      .WebMessageReceivedEventArgs_get_WebMessageAsJson(
         this.args,
         Deno.UnsafePointer.of(buffer),
         null,

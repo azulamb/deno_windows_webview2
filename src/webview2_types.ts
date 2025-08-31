@@ -3,6 +3,9 @@
 /** The event registration token. */
 export type EventRegistrationToken = Deno.PointerValue;
 
+/** Loaded webview2 funcs. */
+export type Webview2Funcs = Deno.DynamicLibrary<WEBVIEW2_FUNCS>;
+
 /** The result type for WebView2 functions. */
 export type WEBVIEW2_FUNCS = {
   readonly GetDllVersion: {
@@ -31,6 +34,25 @@ export type WEBVIEW2_FUNCS = {
   };
   readonly InitControllers: {
     readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'pointer';
+  };
+  readonly CreateJStream: {
+    readonly parameters: [
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+    ];
     readonly result: 'pointer';
   };
   readonly CreateCoreWebView2Environment: {
@@ -623,16 +645,135 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly MessageReceivedEventArgs_get_Source: {
+  readonly WebMessageReceivedEventArgs_get_Source: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly MessageReceivedEventArgs_get_WebMessageAsJson: {
+  readonly WebMessageReceivedEventArgs_get_WebMessageAsJson: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly MessageReceivedEventArgs_TryGetWebMessageAsString: {
+  readonly WebMessageReceivedEventArgs_TryGetWebMessageAsString: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly IStream_Read: {
+    readonly parameters: ['pointer', 'pointer', 'u32', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly IStream_Write: {
+    readonly parameters: ['pointer', 'pointer', 'u32', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly CreateWebResourceResponse: {
+    readonly parameters: [
+      'pointer',
+      'pointer',
+      'i32',
+      'pointer',
+      'pointer',
+      'pointer',
+    ];
+    readonly result: 'i32';
+  };
+  readonly HttpRequestHeaders_Contains: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpRequestHeaders_GetHeader: {
+    readonly parameters: ['pointer', 'pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpRequestHeaders_GetHeaders: {
+    readonly parameters: ['pointer', 'pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly HttpRequestHeaders_GetIterator: {
+    readonly parameters: ['pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly HttpRequestHeaders_RemoveHeader: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpRequestHeaders_SetHeader: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequest_get_Content: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequest_get_Headers: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequest_get_Method: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequest_get_Uri: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequest_put_Content: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequest_put_Method: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequest_put_Uri: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceResponse_get_Content: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceResponse_get_Headers: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceResponse_get_ReasonPhrase: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceResponse_get_StatusCode: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceResponse_put_Content: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceResponse_put_ReasonPhrase: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceResponse_put_StatusCode: {
+    readonly parameters: ['pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequestedEventArgs_get_Request: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequestedEventArgs_get_ResourceContext: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequestedEventArgs_get_Response: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequestedEventArgs_GetDeferral: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebResourceRequestedEventArgs_put_Response: {
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
 };

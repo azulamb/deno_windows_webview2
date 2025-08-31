@@ -631,12 +631,12 @@
         {
           "name": "add_WebResourceRequested",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "remove_WebResourceRequested",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "add_WindowCloseRequested",
@@ -2546,7 +2546,7 @@
         },
         {
           "name": "CreateWebResourceResponse",
-          "defined": false,
+          "defined": true,
           "implemented": false
         },
         {
@@ -3264,33 +3264,33 @@
       "members": [
         {
           "name": "Contains",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "GetHeader",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "GetHeaders",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "GetIterator",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "RemoveHeader",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "SetHeader",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },
@@ -5220,38 +5220,38 @@
       "members": [
         {
           "name": "get_Content",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_Content",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_Headers",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_Method",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_Method",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_Uri",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_Uri",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },
@@ -5261,28 +5261,28 @@
       "members": [
         {
           "name": "GetDeferral",
-          "defined": false,
+          "defined": true,
           "implemented": false
         },
         {
           "name": "get_Request",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_ResourceContext",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_Response",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_Response",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },
@@ -5303,38 +5303,38 @@
       "members": [
         {
           "name": "get_Content",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_Content",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_Headers",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_ReasonPhrase",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_ReasonPhrase",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_StatusCode",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_StatusCode",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },

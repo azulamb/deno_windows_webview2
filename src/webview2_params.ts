@@ -32,6 +32,25 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer', 'pointer'],
     result: 'pointer',
   },
+  CreateJStream: {
+    parameters: [
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+      'function',
+    ],
+    result: 'pointer',
+  },
   CreateCoreWebView2Environment: {
     parameters: ['pointer', 'function'],
     result: 'i32',
@@ -616,16 +635,128 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer'],
     result: 'i32',
   },
-  MessageReceivedEventArgs_get_Source: {
+  WebMessageReceivedEventArgs_get_Source: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  MessageReceivedEventArgs_get_WebMessageAsJson: {
+  WebMessageReceivedEventArgs_get_WebMessageAsJson: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  MessageReceivedEventArgs_TryGetWebMessageAsString: {
+  WebMessageReceivedEventArgs_TryGetWebMessageAsString: {
     parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  IStream_Read: {
+    parameters: ['pointer', 'pointer', 'u32', 'pointer'],
+    result: 'i32',
+  },
+  IStream_Write: {
+    parameters: ['pointer', 'pointer', 'u32', 'pointer'],
+    result: 'i32',
+  },
+  CreateWebResourceResponse: {
+    parameters: ['pointer', 'pointer', 'i32', 'pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  HttpRequestHeaders_Contains: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  HttpRequestHeaders_GetHeader: {
+    parameters: ['pointer', 'pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  HttpRequestHeaders_GetHeaders: {
+    parameters: ['pointer', 'pointer', 'function'],
+    result: 'i32',
+  },
+  HttpRequestHeaders_GetIterator: {
+    parameters: ['pointer', 'function'],
+    result: 'i32',
+  },
+  HttpRequestHeaders_RemoveHeader: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  HttpRequestHeaders_SetHeader: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequest_get_Content: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequest_get_Headers: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequest_get_Method: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequest_get_Uri: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequest_put_Content: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequest_put_Method: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequest_put_Uri: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceResponse_get_Content: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceResponse_get_Headers: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceResponse_get_ReasonPhrase: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceResponse_get_StatusCode: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceResponse_put_Content: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceResponse_put_ReasonPhrase: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceResponse_put_StatusCode: {
+    parameters: ['pointer', 'i32'],
+    result: 'i32',
+  },
+  WebResourceRequestedEventArgs_get_Request: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequestedEventArgs_get_ResourceContext: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequestedEventArgs_get_Response: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequestedEventArgs_GetDeferral: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebResourceRequestedEventArgs_put_Response: {
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
 };
