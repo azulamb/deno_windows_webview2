@@ -323,7 +323,7 @@ export class Core {
   public addWebResourceRequestedFilter(
     uri: string,
     resourceContext: WEB_RESOURCE_CONTEXT_TYPES = 0,
-  ) {
+  ): HRESULT {
     return this.libs.symbols.AddWebResourceRequestedFilter(
       this.webview2,
       createStringPointer(uri),
