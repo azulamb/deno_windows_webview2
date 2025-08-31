@@ -7,24 +7,37 @@ static TCHAR WINDOW_TITLE[] = L"Weapn";
 
 struct DATA {
 	HWND hWnd;
-	WebView2Connector* webview2;
+	WebView2* webview2;
+	Environments* environments;
+	Settings* settings;
+	Controllers* controllers;
 	EventRegistrationToken token;
 } data;
 
 // Import funcs.
 
 typedef HRESULT (*ImportedCreateCoreWebView2Controller)(
-	WebView2Connector* webview2,
+	Environments* environments,
 	HWND hWnd,
-	HRESULT(*callback)(HRESULT, ICoreWebView2Controller*)
+	HRESULT(*callback)(HRESULT, ICoreWebView2Controller*),
+	Controllers* controllers
 );
 ImportedCreateCoreWebView2Controller CreateCoreWebView2Controller;
 
-typedef WebView2Connector* (*ImportedCreateWebView2Connector)(ICoreWebView2Environment* env);
-ImportedCreateWebView2Connector CreateWebView2Connector;
+typedef WebView2* (*ImportedCreateWebView2)();
+ImportedCreateWebView2 CreateWebView2;
+
+typedef Environments* (*ImportedCreateEnvironments)();
+ImportedCreateEnvironments CreateEnvironments;
+
+typedef Settings* (*ImportedCreateSettings)();
+ImportedCreateSettings CreateSettings;
+
+typedef Controllers* (*ImportedCreateControllers)();
+ImportedCreateControllers CreateControllers;
 
 typedef HRESULT (*Imported_CreateCoreWebView2EnvironmentWithOptions)(
-	WebView2Connector* webview2,
+	Environments* environments,
 	PCWSTR browserExecutableFolder,
 	PCWSTR userDataFolder,
 	ICoreWebView2EnvironmentOptions* environmentOptions,
@@ -38,47 +51,47 @@ ImportedCreateEventRegistrationToken CreateEventRegistrationToken;
 typedef void (*ImportedRemoveEventRegistrationToken)(EventRegistrationToken* token);
 ImportedRemoveEventRegistrationToken RemoveEventRegistrationToken;
 
-typedef HRESULT(*Importedput_Bounds)(WebView2Connector* webview2, RECT bounds);
+typedef HRESULT(*Importedput_Bounds)(Controllers* controllers, RECT bounds);
 Importedput_Bounds put_Bounds;
 
-typedef WebView2Connector* (*ImportedInitControllers)(WebView2Connector* webview2, ICoreWebView2Controller* controller);
-ImportedInitControllers InitControllers;
-
-typedef HRESULT (*Importedget_CoreWebView2)(WebView2Connector* webview2);
+typedef HRESULT (*Importedget_CoreWebView2)(Controllers* controllers, WebView2* webview2);
 Importedget_CoreWebView2 get_CoreWebView2;
 
-typedef HRESULT (*Importedget_Settings)(WebView2Connector* webview2);
+typedef HRESULT (*Importedget_Settings)(WebView2* webview2, Settings* settings);
 Importedget_Settings get_Settings;
 
-typedef WebView2Connector* (*ImportedInitSettings)(WebView2Connector* webview2);
-ImportedInitSettings InitSettings;
-
-typedef HRESULT (*Importedput_IsScriptEnabled)(WebView2Connector* webview2, BOOL isScriptEnabled);
+typedef HRESULT (*Importedput_IsScriptEnabled)(Settings* settings, BOOL isScriptEnabled);
 Importedput_IsScriptEnabled put_IsScriptEnabled;
 
-typedef HRESULT (*Importedput_IsWebMessageEnabled)(WebView2Connector* webview2, BOOL isWebMessageEnabled);
+typedef HRESULT (*Importedput_IsWebMessageEnabled)(Settings* settings, BOOL isWebMessageEnabled);
 Importedput_IsWebMessageEnabled put_IsWebMessageEnabled;
 
-typedef HRESULT (*Importedput_AreDefaultScriptDialogsEnabled)(WebView2Connector* webview2, BOOL areDefaultScriptDialogsEnabled);
+typedef HRESULT (*Importedput_AreDefaultScriptDialogsEnabled)(Settings* settings, BOOL areDefaultScriptDialogsEnabled);
 Importedput_AreDefaultScriptDialogsEnabled put_AreDefaultScriptDialogsEnabled;
 
-typedef HRESULT (*Importedput_AreDevToolsEnabled)(WebView2Connector* webview2, BOOL areDevToolsEnabled);
+typedef HRESULT (*Importedput_AreDevToolsEnabled)(Settings* settings, BOOL areDevToolsEnabled);
 Importedput_AreDevToolsEnabled put_AreDevToolsEnabled;
 
-typedef HRESULT (*Importedput_IsStatusBarEnabled)(WebView2Connector* webview2, BOOL isStatusBarEnabled);
+typedef HRESULT (*Importedput_IsStatusBarEnabled)(Settings* settings, BOOL isStatusBarEnabled);
 Importedput_IsStatusBarEnabled put_IsStatusBarEnabled;
 
-typedef HRESULT (*Importedput_AreDefaultContextMenusEnabled)(WebView2Connector* webview2, BOOL enabled);
+typedef HRESULT (*Importedput_AreDefaultContextMenusEnabled)(Settings* settings, BOOL enabled);
 Importedput_AreDefaultContextMenusEnabled put_AreDefaultContextMenusEnabled;
 
-typedef HRESULT (*Importedput_AreHostObjectsAllowed)(WebView2Connector* webview2, BOOL allowed);
+typedef HRESULT (*Importedput_AreHostObjectsAllowed)(Settings* settings, BOOL allowed);
 Importedput_AreHostObjectsAllowed put_AreHostObjectsAllowed;
 
-typedef HRESULT (*Importedput_IsBuiltInErrorPageEnabled)(WebView2Connector* webview2, BOOL enabled);
+typedef HRESULT (*Importedput_IsBuiltInErrorPageEnabled)(Settings* settings, BOOL enabled);
 Importedput_IsBuiltInErrorPageEnabled put_IsBuiltInErrorPageEnabled;
 
-typedef HRESULT (*Importedput_IsZoomControlEnabled)(WebView2Connector* webview2, BOOL enabled);
+typedef HRESULT (*Importedput_IsZoomControlEnabled)(Settings* settings, BOOL enabled);
 Importedput_IsZoomControlEnabled put_IsZoomControlEnabled;
+
+typedef HRESULT(*ImportedNavigate)(WebView2* webview2, LPCWSTR uri);
+ImportedNavigate Navigate;
+
+typedef HRESULT(*Importedremove_WebMessageReceived)(WebView2* webview2, EventRegistrationToken token);
+Importedremove_WebMessageReceived remove_WebMessageReceived;
 
 void ExitError(int code) {
 	DWORD error = GetLastError();
@@ -95,15 +108,16 @@ void LoadDLL() {
 		return;
 	}
 	CreateCoreWebView2Controller = (ImportedCreateCoreWebView2Controller)GetProcAddress(hModule, "CreateCoreWebView2Controller");
-	CreateWebView2Connector = (ImportedCreateWebView2Connector)GetProcAddress(hModule, "CreateWebView2Connector");
+	CreateWebView2 = (ImportedCreateWebView2)GetProcAddress(hModule, "CreateWebView2");
+	CreateSettings = (ImportedCreateSettings)GetProcAddress(hModule, "CreateSettings");
+	CreateEnvironments = (ImportedCreateEnvironments)GetProcAddress(hModule, "CreateEnvironments");
+	CreateControllers = (ImportedCreateControllers)GetProcAddress(hModule, "CreateControllers");
 	_CreateCoreWebView2EnvironmentWithOptions = (Imported_CreateCoreWebView2EnvironmentWithOptions)GetProcAddress(hModule, "_CreateCoreWebView2EnvironmentWithOptions");
 	CreateEventRegistrationToken = (ImportedCreateEventRegistrationToken)GetProcAddress(hModule, "CreateEventRegistrationToken");
 	RemoveEventRegistrationToken = (ImportedRemoveEventRegistrationToken)GetProcAddress(hModule, "RemoveEventRegistrationToken");
 	put_Bounds = (Importedput_Bounds)GetProcAddress(hModule, "put_Bounds");
-	InitControllers = (ImportedInitControllers)GetProcAddress(hModule, "InitControllers");
 	get_CoreWebView2 = (Importedget_CoreWebView2)GetProcAddress(hModule, "get_CoreWebView2");
 	get_Settings = (Importedget_Settings)GetProcAddress(hModule, "get_Settings");
-	InitSettings = (ImportedInitSettings)GetProcAddress(hModule, "InitSettings");
 	put_IsScriptEnabled = (Importedput_IsScriptEnabled)GetProcAddress(hModule, "put_IsScriptEnabled");
 	put_IsWebMessageEnabled = (Importedput_IsWebMessageEnabled)GetProcAddress(hModule, "put_IsWebMessageEnabled");
 	put_AreDefaultScriptDialogsEnabled = (Importedput_AreDefaultScriptDialogsEnabled)GetProcAddress(hModule, "put_AreDefaultScriptDialogsEnabled");
@@ -113,6 +127,8 @@ void LoadDLL() {
 	put_AreHostObjectsAllowed = (Importedput_AreHostObjectsAllowed)GetProcAddress(hModule, "put_AreHostObjectsAllowed");
 	put_IsBuiltInErrorPageEnabled = (Importedput_IsBuiltInErrorPageEnabled)GetProcAddress(hModule, "put_IsBuiltInErrorPageEnabled");
 	put_IsZoomControlEnabled = (Importedput_IsZoomControlEnabled)GetProcAddress(hModule, "put_IsZoomControlEnabled");
+	Navigate = (ImportedNavigate)GetProcAddress(hModule, "Navigate");
+	remove_WebMessageReceived = (Importedremove_WebMessageReceived)GetProcAddress(hModule, "remove_WebMessageReceived");
 }
 
 void InitApp() {
@@ -141,7 +157,7 @@ void OnResizeScreen() {
 	}
 	RECT bounds;
 	::GetClientRect(data.hWnd, &bounds);
-	put_Bounds(data.webview2, bounds);
+	put_Bounds(data.controllers, bounds);
 }
 
 LRESULT WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -218,29 +234,28 @@ int InitWindow(HINSTANCE hInstance, HWND* hWnd) {
 }*/
 
 HRESULT CreateCoreWebView2ControllerCallback(HRESULT result, ICoreWebView2Controller* controller) {
-	if (controller != nullptr)
+	if (controller == nullptr)
 	{
-		InitControllers(data.webview2, controller);
-		get_CoreWebView2(data.webview2);
-		//data.webview2->add_RasterizationScaleChanged(CallbackAddRasterizationScaleChanged, &(data.token));
+		return S_OK;
 	}
+	get_CoreWebView2(data.controllers, data.webview2);
+	//data.webview2->add_RasterizationScaleChanged(CallbackAddRasterizationScaleChanged, &(data.token));
 
-	get_Settings(data.webview2);
-	InitSettings(data.webview2);
+	get_Settings(data.webview2, data.settings);
 
 	// Resize WebView to fit the bounds of the parent window
 	OnResizeScreen();
 
 	// On create webview2
-	put_IsScriptEnabled(data.webview2, true);
-	put_IsWebMessageEnabled(data.webview2, true);
-	put_AreDefaultScriptDialogsEnabled(data.webview2, true);
-	put_AreDevToolsEnabled(data.webview2, true);
-	put_IsStatusBarEnabled(data.webview2, false);
-	put_AreDefaultContextMenusEnabled(data.webview2, false);
-	put_AreHostObjectsAllowed(data.webview2, true);
-	put_IsBuiltInErrorPageEnabled(data.webview2, true);
-	put_IsZoomControlEnabled(data.webview2, false);
+	put_IsScriptEnabled(data.settings, true);
+	put_IsWebMessageEnabled(data.settings, true);
+	put_AreDefaultScriptDialogsEnabled(data.settings, true);
+	put_AreDevToolsEnabled(data.settings, true);
+	put_IsStatusBarEnabled(data.settings, false);
+	put_AreDefaultContextMenusEnabled(data.settings, false);
+	put_AreHostObjectsAllowed(data.settings, true);
+	put_IsBuiltInErrorPageEnabled(data.settings, true);
+	put_IsZoomControlEnabled(data.settings, false);
 	//data.webview2->put_UserAgent();
 	//data.webview2->put_AreBrowserAcceleratorKeysEnabled(false);
 	//data.webview2->put_IsGeneralAutofillEnabled(false);
@@ -248,7 +263,7 @@ HRESULT CreateCoreWebView2ControllerCallback(HRESULT result, ICoreWebView2Contro
 	//data.webview2->put_IsPinchZoomEnabled(false);
 	//data.webview2->put_IsSwipeNavigationEnabled(false);
 
-	data.webview2->Navigate(L"https://www.google.co.jp/");
+	HRESULT result2 = Navigate(data.webview2, L"https://www.google.co.jp/");
 
 	return S_OK;
 }
@@ -256,16 +271,19 @@ HRESULT CreateCoreWebView2ControllerCallback(HRESULT result, ICoreWebView2Contro
 HRESULT CreateCoreWebView2EnvironmentWithOptionsCallback(HRESULT result, ICoreWebView2Environment* env) {
 	HWND hWnd = data.hWnd;
 
-	return CreateCoreWebView2Controller(data.webview2, data.hWnd, CreateCoreWebView2ControllerCallback);
+	return CreateCoreWebView2Controller(data.environments, data.hWnd, CreateCoreWebView2ControllerCallback, data.controllers);
 }
 
 int InitWebView(HWND hWnd) {
 	DebugLog(L"InitWebView\n");
 	HRESULT hresult;
-	data.webview2 = CreateWebView2Connector(nullptr);
+	data.webview2 = CreateWebView2();
+	data.environments = CreateEnvironments();
+	data.settings = CreateSettings();
+	data.controllers = CreateControllers();
 
 	hresult = _CreateCoreWebView2EnvironmentWithOptions(
-		data.webview2,
+		data.environments,
 		nullptr,
 		nullptr,
 		nullptr,
@@ -311,7 +329,7 @@ int main() {
 		DispatchMessageW(&msg);
 	}
 
-	data.webview2->remove_WebMessageReceived(*token);
+	remove_WebMessageReceived(data.webview2 , *token);
 	RemoveEventRegistrationToken(token);
 	return (int)msg.wParam;
 }
