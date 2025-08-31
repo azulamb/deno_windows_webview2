@@ -1,3 +1,4 @@
+import type { Webview2Funcs } from '../webview2_types.ts';
 import { createStringPointer, getString } from './convert.ts';
 import type { Webview2Context } from './types.ts';
 
@@ -21,8 +22,8 @@ export class Settings {
     return this.settings;
   }
 
-  protected get symbols() {
-    return this.context.lib.symbols;
+  protected get libs(): Webview2Funcs {
+    return this.context.lib;
   }
 
   protected getString(
@@ -46,7 +47,7 @@ export class Settings {
   public get isScriptEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsScriptEnabled,
+      this.libs.symbols.get_IsScriptEnabled,
     );
   }
 
@@ -55,7 +56,7 @@ export class Settings {
    * @param enable True to enable script execution; false to disable it.
    */
   public set isScriptEnabled(enable: boolean) {
-    this.symbols.put_IsScriptEnabled(
+    this.libs.symbols.put_IsScriptEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -68,7 +69,7 @@ export class Settings {
   public get isWebMessageEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsWebMessageEnabled,
+      this.libs.symbols.get_IsWebMessageEnabled,
     );
   }
 
@@ -77,7 +78,7 @@ export class Settings {
    * @param enable True to enable web message handling; false to disable it.
    */
   public set isWebMessageEnabled(enable: boolean) {
-    this.symbols.put_IsWebMessageEnabled(
+    this.libs.symbols.put_IsWebMessageEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -90,7 +91,7 @@ export class Settings {
   public get areDefaultScriptDialogsEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_AreDefaultScriptDialogsEnabled,
+      this.libs.symbols.get_AreDefaultScriptDialogsEnabled,
     );
   }
 
@@ -99,7 +100,7 @@ export class Settings {
    * @param enable True to enable default script dialogs; false to disable them.
    */
   public set areDefaultScriptDialogsEnabled(enable: boolean) {
-    this.symbols.put_AreDefaultScriptDialogsEnabled(
+    this.libs.symbols.put_AreDefaultScriptDialogsEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -112,7 +113,7 @@ export class Settings {
   public get isStatusBarEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsStatusBarEnabled,
+      this.libs.symbols.get_IsStatusBarEnabled,
     );
   }
 
@@ -121,7 +122,7 @@ export class Settings {
    * @param enable True to enable the status bar; false to disable it.
    */
   public set isStatusBarEnabled(enable: boolean) {
-    this.symbols.put_IsStatusBarEnabled(
+    this.libs.symbols.put_IsStatusBarEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -134,7 +135,7 @@ export class Settings {
   public get areDevToolsEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_AreDevToolsEnabled,
+      this.libs.symbols.get_AreDevToolsEnabled,
     );
   }
 
@@ -143,7 +144,7 @@ export class Settings {
    * @param enable True to enable Developer Tools; false to disable them.
    */
   public set areDevToolsEnabled(enable: boolean) {
-    this.symbols.put_AreDevToolsEnabled(
+    this.libs.symbols.put_AreDevToolsEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -156,7 +157,7 @@ export class Settings {
   public get areDefaultContextMenusEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_AreDefaultContextMenusEnabled,
+      this.libs.symbols.get_AreDefaultContextMenusEnabled,
     );
   }
 
@@ -165,7 +166,7 @@ export class Settings {
    * @param enable True to enable default context menus; false to disable them.
    */
   public set areDefaultContextMenusEnabled(enable: boolean) {
-    this.symbols.put_AreDefaultContextMenusEnabled(
+    this.libs.symbols.put_AreDefaultContextMenusEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -178,7 +179,7 @@ export class Settings {
   public get areHostObjectsAllowed(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_AreHostObjectsAllowed,
+      this.libs.symbols.get_AreHostObjectsAllowed,
     );
   }
 
@@ -187,7 +188,7 @@ export class Settings {
    * @param enable True to allow host objects; false to disallow them.
    */
   public set areHostObjectsAllowed(enable: boolean) {
-    this.symbols.put_AreHostObjectsAllowed(
+    this.libs.symbols.put_AreHostObjectsAllowed(
       this.settings,
       enable ? 1 : 0,
     );
@@ -200,7 +201,7 @@ export class Settings {
   public get isZoomControlEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsZoomControlEnabled,
+      this.libs.symbols.get_IsZoomControlEnabled,
     );
   }
 
@@ -209,7 +210,7 @@ export class Settings {
    * @param enable True to enable the zoom control; false to disable it.
    */
   public set isZoomControlEnabled(enable: boolean) {
-    this.symbols.put_IsZoomControlEnabled(
+    this.libs.symbols.put_IsZoomControlEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -222,7 +223,7 @@ export class Settings {
   public get isBuiltInErrorPageEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsBuiltInErrorPageEnabled,
+      this.libs.symbols.get_IsBuiltInErrorPageEnabled,
     );
   }
 
@@ -231,7 +232,7 @@ export class Settings {
    * @param enable True to enable the built-in error page; false to disable it.
    */
   public set isBuiltInErrorPageEnabled(enable: boolean) {
-    this.symbols.put_IsBuiltInErrorPageEnabled(
+    this.libs.symbols.put_IsBuiltInErrorPageEnabled(
       this.settings,
       enable ? 1 : 0,
     );
@@ -239,14 +240,14 @@ export class Settings {
 
   public get userAgent(): string {
     try {
-      return this.getString(this.symbols.get_UserAgent);
+      return this.getString(this.libs.symbols.get_UserAgent);
     } catch (error) {
       throw new Error(`Failed to get UserAgent: ${error}`);
     }
   }
 
   public set userAgent(value: string) {
-    this.symbols.put_UserAgent(
+    this.libs.symbols.put_UserAgent(
       this.settings,
       createStringPointer(value),
     );
@@ -259,7 +260,7 @@ export class Settings {
   public get areBrowserAcceleratorKeysEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_AreBrowserAcceleratorKeysEnabled,
+      this.libs.symbols.get_AreBrowserAcceleratorKeysEnabled,
     );
   }
 
@@ -268,7 +269,7 @@ export class Settings {
    * @param value True to enable browser accelerator keys; false to disable them.
    */
   public set areBrowserAcceleratorKeysEnabled(value: boolean) {
-    this.symbols.put_AreBrowserAcceleratorKeysEnabled(
+    this.libs.symbols.put_AreBrowserAcceleratorKeysEnabled(
       this.settings,
       value ? 1 : 0,
     );
@@ -281,7 +282,7 @@ export class Settings {
   public get isPasswordAutosaveEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsPasswordAutosaveEnabled,
+      this.libs.symbols.get_IsPasswordAutosaveEnabled,
     );
   }
 
@@ -290,7 +291,7 @@ export class Settings {
    * @param value True to enable password autosave; false to disable it.
    */
   public set isPasswordAutosaveEnabled(value: boolean) {
-    this.symbols.put_IsPasswordAutosaveEnabled(
+    this.libs.symbols.put_IsPasswordAutosaveEnabled(
       this.settings,
       value ? 1 : 0,
     );
@@ -303,7 +304,7 @@ export class Settings {
   public get isGeneralAutofillEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsGeneralAutofillEnabled,
+      this.libs.symbols.get_IsGeneralAutofillEnabled,
     );
   }
 
@@ -312,7 +313,7 @@ export class Settings {
    * @param value True to enable general autofill; false to disable it.
    */
   public set isGeneralAutofillEnabled(value: boolean) {
-    this.symbols.put_IsGeneralAutofillEnabled(
+    this.libs.symbols.put_IsGeneralAutofillEnabled(
       this.settings,
       value ? 1 : 0,
     );
@@ -325,7 +326,7 @@ export class Settings {
   public get isPinchZoomEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsPinchZoomEnabled,
+      this.libs.symbols.get_IsPinchZoomEnabled,
     );
   }
 
@@ -334,7 +335,7 @@ export class Settings {
    * @param value True to enable pinch zoom; false to disable it.
    */
   public set isPinchZoomEnabled(value: boolean) {
-    this.symbols.put_IsPinchZoomEnabled(
+    this.libs.symbols.put_IsPinchZoomEnabled(
       this.settings,
       value ? 1 : 0,
     );
@@ -347,7 +348,7 @@ export class Settings {
   public get isSwipeNavigationEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsSwipeNavigationEnabled,
+      this.libs.symbols.get_IsSwipeNavigationEnabled,
     );
   }
 
@@ -356,7 +357,7 @@ export class Settings {
    * @param value True to enable swipe navigation; false to disable it.
    */
   public set isSwipeNavigationEnabled(value: boolean) {
-    this.symbols.put_IsSwipeNavigationEnabled(
+    this.libs.symbols.put_IsSwipeNavigationEnabled(
       this.settings,
       value ? 1 : 0,
     );
@@ -369,7 +370,7 @@ export class Settings {
   public get isReputationCheckingRequired(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsReputationCheckingRequired,
+      this.libs.symbols.get_IsReputationCheckingRequired,
     );
   }
 
@@ -378,7 +379,7 @@ export class Settings {
    * @param value True to require reputation checking; false to disable it.
    */
   public set isReputationCheckingRequired(value: boolean) {
-    this.symbols.put_IsReputationCheckingRequired(
+    this.libs.symbols.put_IsReputationCheckingRequired(
       this.settings,
       value ? 1 : 0,
     );
@@ -391,7 +392,7 @@ export class Settings {
   public get isNonClientRegionSupportEnabled(): boolean {
     return getBool(
       this.settings,
-      this.symbols.get_IsNonClientRegionSupportEnabled,
+      this.libs.symbols.get_IsNonClientRegionSupportEnabled,
     );
   }
 
@@ -400,7 +401,7 @@ export class Settings {
    * @param value True to enable non-client region support; false to disable it.
    */
   public set isNonClientRegionSupportEnabled(value: boolean) {
-    this.symbols.put_IsNonClientRegionSupportEnabled(
+    this.libs.symbols.put_IsNonClientRegionSupportEnabled(
       this.settings,
       value ? 1 : 0,
     );

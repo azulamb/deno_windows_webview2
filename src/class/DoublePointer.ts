@@ -1,6 +1,6 @@
 export class DoublePointer {
   protected rawPointer: BigUint64Array = BigUint64Array.from([0n]);
-  protected pointer = Deno.UnsafePointer.of(this.rawPointer);
+  protected pointer: Deno.PointerValue = Deno.UnsafePointer.of(this.rawPointer);
 
   /**
    * Gets the double pointer.

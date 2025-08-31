@@ -1,3 +1,4 @@
+import type { Webview2Funcs } from '../webview2_types.ts';
 import type { Webview2Context } from './types.ts';
 import type { Rect } from './winapi.ts';
 
@@ -8,8 +9,8 @@ export class Controllers {
     return this.controllers;
   }
 
-  protected get symbols() {
-    return this.context.lib.symbols;
+  protected get libs(): Webview2Funcs {
+    return this.context.lib;
   }
 
   constructor(protected context: Webview2Context) {
@@ -34,7 +35,7 @@ export class Controllers {
    * @param bounds The new bounds for the control.
    */
   public set bounds(bounds: Rect) {
-    this.symbols.put_Bounds(this.controllers, bounds.data);
+    this.libs.symbols.put_Bounds(this.controllers, bounds.data);
   }
 
   /*readonly Close: {

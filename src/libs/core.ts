@@ -1,7 +1,10 @@
 import type { HRESULT, LPVOID } from './winapi.ts';
 import type { Webview2Context } from './types.ts';
 import { createStringPointer } from './convert.ts';
-import type { EventRegistrationToken } from '../webview2_types.ts';
+import type {
+  EventRegistrationToken,
+  Webview2Funcs,
+} from '../webview2_types.ts';
 import type { WEB_RESOURCE_CONTEXT_TYPES } from '../constants/WEB_RESOURCE_CONTEXT.ts';
 
 export class Core {
@@ -11,12 +14,12 @@ export class Core {
     return this.webview2;
   }
 
-  protected get symbols() {
-    return this.context.lib.symbols;
+  protected get libs(): Webview2Funcs {
+    return this.context.lib;
   }
 
   constructor(protected context: Webview2Context) {
-    this.webview2 = this.symbols.CreateWebView2();
+    this.webview2 = this.libs.symbols.CreateWebView2();
   }
 
   /*readonly CallDevToolsProtocolMethod: {
@@ -62,7 +65,7 @@ export class Core {
     json: any,
   ): HRESULT {
     // TODO: use sender.
-    return this.symbols.PostWebMessageAsJson(
+    return this.libs.symbols.PostWebMessageAsJson(
       this.webview2,
       createStringPointer(JSON.stringify(json)),
     );
@@ -75,7 +78,7 @@ export class Core {
    */
   public postWebMessageAsString(data: string): HRESULT {
     // TODO: use sender.
-    return this.symbols.PostWebMessageAsString(
+    return this.libs.symbols.PostWebMessageAsString(
       this.webview2,
       createStringPointer(data),
     );
@@ -100,7 +103,7 @@ export class Core {
       },
       callback,
     );
-    this.symbols.add_WebMessageReceived(
+    this.libs.symbols.add_WebMessageReceived(
       this.webview2,
       func.pointer,
       token,
@@ -114,7 +117,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public removeWebMessageReceived(token: EventRegistrationToken): HRESULT {
-    const result = this.symbols.remove_WebMessageReceived(
+    const result = this.libs.symbols.remove_WebMessageReceived(
       this.webview2,
       token,
     );
@@ -128,7 +131,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public navigate(url: string): HRESULT {
-    return this.symbols.Navigate(
+    return this.libs.symbols.Navigate(
       this.webview2,
       createStringPointer(url),
     );
@@ -302,7 +305,7 @@ export class Core {
       },
       callback,
     );
-    this.symbols.add_WebResourceRequested(
+    this.libs.symbols.add_WebResourceRequested(
       this.webview2,
       func.pointer,
       token,
@@ -311,7 +314,7 @@ export class Core {
   }
 
   public removeWebResourceRequested(token: EventRegistrationToken): HRESULT {
-    return this.symbols.remove_WebResourceRequested(
+    return this.libs.symbols.remove_WebResourceRequested(
       this.webview2,
       token,
     );
@@ -321,7 +324,7 @@ export class Core {
     uri: string,
     resourceContext: WEB_RESOURCE_CONTEXT_TYPES = 0,
   ) {
-    return this.symbols.AddWebResourceRequestedFilter(
+    return this.libs.symbols.AddWebResourceRequestedFilter(
       this.webview2,
       createStringPointer(uri),
       resourceContext,
@@ -404,7 +407,7 @@ export class Core {
         accessKindValue = 2;
       }
     }
-    return this.symbols.SetVirtualHostNameToFolderMapping(
+    return this.libs.symbols.SetVirtualHostNameToFolderMapping(
       this.webview2,
       createStringPointer(hostName),
       createStringPointer(folderPath),
@@ -420,7 +423,7 @@ export class Core {
   public clearVirtualHostNameToFolderMapping(
     hostName: string,
   ): HRESULT {
-    return this.symbols.ClearVirtualHostNameToFolderMapping(
+    return this.libs.symbols.ClearVirtualHostNameToFolderMapping(
       this.webview2,
       createStringPointer(hostName),
     );

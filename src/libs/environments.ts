@@ -1,3 +1,4 @@
+import type { Webview2Funcs } from '../webview2_types.ts';
 import type { Webview2Context } from './types.ts';
 import type { HRESULT, LPVOID } from './winapi.ts';
 
@@ -8,8 +9,8 @@ export class Environments {
     return this.environments;
   }
 
-  protected get symbols() {
-    return this.context.lib.symbols;
+  protected get libs(): Webview2Funcs {
+    return this.context.lib;
   }
 
   constructor(protected context: Webview2Context) {
@@ -34,7 +35,7 @@ export class Environments {
       },
       callback,
     );
-    return this.symbols.CreateCoreWebView2Environment(
+    return this.libs.symbols.CreateCoreWebView2Environment(
       this.environments,
       func.pointer,
     );
