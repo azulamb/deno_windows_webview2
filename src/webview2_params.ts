@@ -8,7 +8,31 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: [],
     result: 'pointer',
   },
-  CreateWebView2Connector: {
+  CreateWebView2: {
+    parameters: [],
+    result: 'pointer',
+  },
+  InitWebView2: {
+    parameters: ['pointer'],
+    result: 'pointer',
+  },
+  CreateEnvironments: {
+    parameters: [],
+    result: 'pointer',
+  },
+  CreateSettings: {
+    parameters: [],
+    result: 'pointer',
+  },
+  InitSettings: {
+    parameters: ['pointer'],
+    result: 'pointer',
+  },
+  CreateControllers: {
+    parameters: [],
+    result: 'pointer',
+  },
+  InitControllers: {
     parameters: ['pointer'],
     result: 'pointer',
   },
@@ -19,18 +43,6 @@ export const params: WEBVIEW2_FUNCS = {
   RemoveEventRegistrationToken: {
     parameters: ['pointer'],
     result: 'void',
-  },
-  SetWebview2Environment: {
-    parameters: ['pointer', 'pointer'],
-    result: 'pointer',
-  },
-  InitSettings: {
-    parameters: ['pointer'],
-    result: 'pointer',
-  },
-  InitControllers: {
-    parameters: ['pointer', 'pointer'],
-    result: 'pointer',
   },
   CreateJStream: {
     parameters: [
@@ -67,8 +79,16 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
+  GetAvailableCoreWebView2BrowserVersionStringWithOptions: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
   CreateCoreWebView2Controller: {
-    parameters: ['pointer', 'pointer', 'function'],
+    parameters: ['pointer', 'pointer', 'function', 'pointer'],
+    result: 'i32',
+  },
+  CreateWebResourceResponse: {
+    parameters: ['pointer', 'pointer', 'i32', 'pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
   get_IsScriptEnabled: {
@@ -236,7 +256,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   get_CoreWebView2: {
-    parameters: ['pointer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   add_GotFocus: {
@@ -532,7 +552,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   get_Settings: {
-    parameters: ['pointer'],
+    parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
   CapturePreview: {
@@ -653,10 +673,6 @@ export const params: WEBVIEW2_FUNCS = {
   },
   IStream_Write: {
     parameters: ['pointer', 'pointer', 'u32', 'pointer'],
-    result: 'i32',
-  },
-  CreateWebResourceResponse: {
-    parameters: ['pointer', 'pointer', 'i32', 'pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
   HttpRequestHeaders_Contains: {

@@ -12,7 +12,31 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: [];
     readonly result: 'pointer';
   };
-  readonly CreateWebView2Connector: {
+  readonly CreateWebView2: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly InitWebView2: {
+    readonly parameters: ['pointer'];
+    readonly result: 'pointer';
+  };
+  readonly CreateEnvironments: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly CreateSettings: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly InitSettings: {
+    readonly parameters: ['pointer'];
+    readonly result: 'pointer';
+  };
+  readonly CreateControllers: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly InitControllers: {
     readonly parameters: ['pointer'];
     readonly result: 'pointer';
   };
@@ -23,18 +47,6 @@ export type WEBVIEW2_FUNCS = {
   readonly RemoveEventRegistrationToken: {
     readonly parameters: ['pointer'];
     readonly result: 'void';
-  };
-  readonly SetWebview2Environment: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'pointer';
-  };
-  readonly InitSettings: {
-    readonly parameters: ['pointer'];
-    readonly result: 'pointer';
-  };
-  readonly InitControllers: {
-    readonly parameters: ['pointer', 'pointer'];
-    readonly result: 'pointer';
   };
   readonly CreateJStream: {
     readonly parameters: [
@@ -77,8 +89,23 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
+  readonly GetAvailableCoreWebView2BrowserVersionStringWithOptions: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
   readonly CreateCoreWebView2Controller: {
-    readonly parameters: ['pointer', 'pointer', 'function'];
+    readonly parameters: ['pointer', 'pointer', 'function', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly CreateWebResourceResponse: {
+    readonly parameters: [
+      'pointer',
+      'pointer',
+      'i32',
+      'pointer',
+      'pointer',
+      'pointer',
+    ];
     readonly result: 'i32';
   };
   readonly get_IsScriptEnabled: {
@@ -246,7 +273,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly get_CoreWebView2: {
-    readonly parameters: ['pointer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly add_GotFocus: {
@@ -542,7 +569,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly get_Settings: {
-    readonly parameters: ['pointer'];
+    readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly CapturePreview: {
@@ -663,17 +690,6 @@ export type WEBVIEW2_FUNCS = {
   };
   readonly IStream_Write: {
     readonly parameters: ['pointer', 'pointer', 'u32', 'pointer'];
-    readonly result: 'i32';
-  };
-  readonly CreateWebResourceResponse: {
-    readonly parameters: [
-      'pointer',
-      'pointer',
-      'i32',
-      'pointer',
-      'pointer',
-      'pointer',
-    ];
     readonly result: 'i32';
   };
   readonly HttpRequestHeaders_Contains: {

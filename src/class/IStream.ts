@@ -309,6 +309,7 @@ export class JStream extends IStream implements JStreamFunctions {
   ): number {
     return -2147467263; // E_NOTIMPL
   }
+
   public write(
     pv: Deno.PointerValue,
     cb: number,

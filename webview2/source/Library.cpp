@@ -1,5 +1,7 @@
 #include "../exports.h"
-
+#ifdef _DEBUG
+#include <stdio.h>
+#endif
 
 void Log(const WCHAR* message) {
 #ifdef _DEBUG

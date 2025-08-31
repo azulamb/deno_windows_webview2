@@ -2,53 +2,73 @@
 #include "WebView2.hpp"
 #include "../exports.h"
 
-WebView2Connector* WC::setWebView2Environment(ICoreWebView2Environment* env) {
+EXPORT const char* GetDllVersion() {
+	return "\\StringFileInfo\\040904b0\\FileVersion";
+}
+
+EXPORT WebView2* CreateWebView2() {
 	Log(__FUNCTIONW__ L"\n");
-	this->env = env;
-	return this;
+	return new WebView2();
 }
 
-EXPORT WebView2Connector* SetWebview2Environment(
-	WebView2Connector* webview2,
-	ICoreWebView2Environment* env
-) {
-	return webview2->setWebView2Environment(env);
+EXPORT WebView2* InitWebView2(WebView2* webview2) {
+	webview2->webview2 = webview2->webview1.try_query<ICoreWebView2_2>();
+	webview2->webview3 = webview2->webview1.try_query<ICoreWebView2_3>();
+
+	return webview2;
 }
 
-WebView2Connector* WC::initSettings() {
+EXPORT Environments* CreateEnvironments() {
 	Log(__FUNCTIONW__ L"\n");
-	this->settings2 = this->settings1.try_query<ICoreWebView2Settings2>();
-	this->settings3 = this->settings1.try_query<ICoreWebView2Settings3>();
-	this->settings4 = this->settings1.try_query<ICoreWebView2Settings4>();
-	this->settings5 = this->settings1.try_query<ICoreWebView2Settings5>();
-	this->settings6 = this->settings1.try_query<ICoreWebView2Settings6>();
-	this->settings7 = this->settings1.try_query<ICoreWebView2Settings7>();
-	this->settings8 = this->settings1.try_query<ICoreWebView2Settings8>();
-	this->settings9 = this->settings1.try_query<ICoreWebView2Settings9>();
-
-	return this;
+	return new Environments();
 }
 
-EXPORT WebView2Connector* InitSettings(WebView2Connector* webview2)
+EXPORT Settings* CreateSettings()
 {
-	return webview2->initSettings();
-}
-
-WebView2Connector* WC::initControllers(ICoreWebView2Controller* controller) {
 	Log(__FUNCTIONW__ L"\n");
-	this->controller1 = controller;
-	this->controller2 = controller1.query<ICoreWebView2Controller2>();
-	this->controller3 = controller1.query<ICoreWebView2Controller3>();
-	this->controller4 = controller1.query<ICoreWebView2Controller4>();
-
-	return this;
+	return new Settings();
 }
 
-EXPORT WebView2Connector* InitControllers(
-	WebView2Connector* webview2,
-	ICoreWebView2Controller* controller
+EXPORT Settings* InitSettings(Settings* settings) {
+	Log(__FUNCTIONW__ L"\n");
+	settings->settings2 = settings->settings1.try_query<ICoreWebView2Settings2>();
+	settings->settings3 = settings->settings1.try_query<ICoreWebView2Settings3>();
+	settings->settings4 = settings->settings1.try_query<ICoreWebView2Settings4>();
+	settings->settings5 = settings->settings1.try_query<ICoreWebView2Settings5>();
+	settings->settings6 = settings->settings1.try_query<ICoreWebView2Settings6>();
+	settings->settings7 = settings->settings1.try_query<ICoreWebView2Settings7>();
+	settings->settings8 = settings->settings1.try_query<ICoreWebView2Settings8>();
+	settings->settings9 = settings->settings1.try_query<ICoreWebView2Settings9>();
+
+	return settings;
+}
+
+Controllers* CreateControllers() {
+	Log(__FUNCTIONW__ L"\n");
+	return new Controllers();
+}
+
+EXPORT Controllers* InitControllers(
+	Controllers* controllers
 ) {
-	return webview2->initControllers(controller);
+	Log(__FUNCTIONW__ L"\n");
+	controllers->controller2 = controllers->controller1.query<ICoreWebView2Controller2>();
+	controllers->controller3 = controllers->controller1.query<ICoreWebView2Controller3>();
+	controllers->controller4 = controllers->controller1.query<ICoreWebView2Controller4>();
+
+	return controllers;
+}
+
+/**
+* EventRegistrationToken
+*/
+
+EXPORT EventRegistrationToken* CreateEventRegistrationToken() {
+	return (EventRegistrationToken*)calloc(1, sizeof(EventRegistrationToken));
+}
+
+EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token) {
+	free(token);
 }
 
 #endif

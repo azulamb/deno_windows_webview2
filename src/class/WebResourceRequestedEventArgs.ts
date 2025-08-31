@@ -48,7 +48,9 @@ export class WebResourceRequestedEventArgs {
     protected libs: Webview2Funcs,
     protected args: ICoreWebView2WebResourceRequestedEventArgs,
   ) {
-    console.log(`WebResourceRequestedEventArgs: ${Deno.UnsafePointer.value(args)}`);
+    console.log(
+      `WebResourceRequestedEventArgs: ${Deno.UnsafePointer.value(args)}`,
+    );
   }
 
   public get Request(): WebResourceRequest {

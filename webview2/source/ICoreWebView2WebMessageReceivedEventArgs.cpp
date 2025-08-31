@@ -18,7 +18,7 @@ void copyString(wchar_t const* source, rsize_t* size, LPWSTR target, bool tmp = 
 	return CopyString(source, size, target);
 }
 
-EXPORT HRESULT MessageReceivedEventArgs_get_Source(
+EXPORT HRESULT WebMessageReceivedEventArgs_get_Source(
 	ICoreWebView2WebMessageReceivedEventArgs* args,
 	LPWSTR uri,
 	rsize_t* size
@@ -38,7 +38,7 @@ EXPORT HRESULT MessageReceivedEventArgs_get_Source(
 	return result;
 }
 
-EXPORT HRESULT MessageReceivedEventArgs_get_WebMessageAsJson(
+EXPORT HRESULT WebMessageReceivedEventArgs_get_WebMessageAsJson(
 	ICoreWebView2WebMessageReceivedEventArgs* args,
 	LPWSTR webMessageAsJson,
 	rsize_t* size
@@ -58,7 +58,7 @@ EXPORT HRESULT MessageReceivedEventArgs_get_WebMessageAsJson(
 	return result;
 }
 
-EXPORT HRESULT MessageReceivedEventArgs_TryGetWebMessageAsString(
+EXPORT HRESULT WebMessageReceivedEventArgs_TryGetWebMessageAsString(
 	ICoreWebView2WebMessageReceivedEventArgs* args,
 	LPWSTR webMessageAsString,
 	rsize_t* size

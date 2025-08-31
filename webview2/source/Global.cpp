@@ -7,15 +7,15 @@
 */
 
 EXPORT HRESULT _CreateCoreWebView2Environment(
-	WebView2Connector* webview2,
+	Environments* environments,
 	HRESULT(*callback)(HRESULT, ICoreWebView2Environment*)
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	return ::CreateCoreWebView2Environment(
 		Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
-			[callback, webview2](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
+			[callback, environments](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
 				Log(__FUNCTIONW__ L"\n");
-				webview2->setWebView2Environment(env);
+				environments->env1 = env;
 				return callback(result, env);
 			}
 		).Get()
@@ -23,7 +23,7 @@ EXPORT HRESULT _CreateCoreWebView2Environment(
 }
 
 EXPORT HRESULT _CreateCoreWebView2EnvironmentWithOptions(
-	WebView2Connector* webview2,
+	Environments* environments,
 	PCWSTR browserExecutableFolder,
 	PCWSTR userDataFolder,
 	ICoreWebView2EnvironmentOptions* environmentOptions,
@@ -35,9 +35,9 @@ EXPORT HRESULT _CreateCoreWebView2EnvironmentWithOptions(
 		browserExecutableFolder,
 		environmentOptions,
 		Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
-			[callback, webview2](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
+			[callback, environments](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
 				Log(__FUNCTIONW__ L"\n");
-				webview2->setWebView2Environment(env);
+				environments->env1 = env;
 				return callback(result, env);
 			}
 		).Get()
