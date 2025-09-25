@@ -319,8 +319,8 @@
         },
         {
           "name": "COREWEBVIEW2_WEB_RESOURCE_CONTEXT",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS",
@@ -371,7 +371,7 @@
         {
           "name": "AddWebResourceRequestedFilter",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "get_BrowserProcessId",
@@ -386,12 +386,12 @@
         {
           "name": "get_CanGoBack",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "get_CanGoForward",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "CapturePreview",
@@ -471,12 +471,12 @@
         {
           "name": "GoBack",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "GoForward",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "add_HistoryChanged",
@@ -581,7 +581,7 @@
         {
           "name": "RemoveWebResourceRequestedFilter",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "add_ScriptDialogOpening",
@@ -616,7 +616,7 @@
         {
           "name": "Stop",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "add_WebMessageReceived",
@@ -1092,7 +1092,7 @@
         {
           "name": "RemoveWebResourceRequestedFilterWithRequestSourceKinds",
           "defined": false,
-          "implemented": false
+          "implemented": true
         }
       ]
     },
@@ -1897,8 +1897,8 @@
         },
         {
           "name": "Close",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_CoreWebView2",
@@ -1938,7 +1938,7 @@
         {
           "name": "MoveFocus",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "add_MoveFocusRequested",
@@ -2329,8 +2329,8 @@
       "members": [
         {
           "name": "Complete",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },

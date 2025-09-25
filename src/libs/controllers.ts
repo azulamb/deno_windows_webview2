@@ -1,6 +1,7 @@
+import type { MOVE_FOCUS_REASON_TYPES } from '../constants/MOVE_FOCUS_REASON.ts';
 import type { Webview2Funcs } from '../webview2_types.ts';
 import type { Webview2Context } from './types.ts';
-import type { Rect } from './winapi.ts';
+import type { HRESULT, Rect } from './winapi.ts';
 
 export class Controllers {
   protected controllers!: Deno.PointerValue<unknown>;
@@ -13,8 +14,11 @@ export class Controllers {
     return this.context.lib;
   }
 
-  constructor(protected context: Webview2Context) {
-    this.controllers = context.lib.symbols.CreateControllers();
+  constructor(
+    protected context: Webview2Context,
+    controllers?: Deno.PointerValue<unknown>,
+  ) {
+    this.controllers = controllers ?? context.lib.symbols.CreateControllers();
   }
 
   /*readonly add_AcceleratorKeyPressed: {
@@ -38,11 +42,11 @@ export class Controllers {
     this.libs.symbols.put_Bounds(this.controllers, bounds.data);
   }
 
-  /*readonly Close: {
-    readonly parameters: ['pointer'];
-    readonly result: 'i32';
-  };
+  public close(): HRESULT {
+    return this.libs.symbols.Close(this.controllers);
+  }
 
+  /*
   readonly add_GotFocus: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
@@ -66,12 +70,17 @@ export class Controllers {
   readonly remove_LostFocus: {
     readonly parameters: ['pointer', 'buffer'];
     readonly result: 'i32';
-  };
-  readonly MoveFocus: {
-    readonly parameters: ['pointer', 'i32'];
-    readonly result: 'i32';
-  };
-  readonly add_MoveFocusRequested: {
+  };*/
+
+  /**
+   * Focus and set the reason.
+   * @param reason The reason for moving focus.
+   */
+  public set moveFocus(reason: MOVE_FOCUS_REASON_TYPES) {
+    this.libs.symbols.MoveFocus(this.controllers, reason);
+  }
+
+  /*readonly add_MoveFocusRequested: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };

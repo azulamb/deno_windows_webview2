@@ -76,3 +76,32 @@ export function getString(
 
   return utf16BufferToString(buffer);
 }
+
+export function getWString(pointer: Deno.PointerValue): string {
+  if (!pointer) {
+    return '';
+  }
+  let size = 0;
+  while (true) {
+    const view = Deno.UnsafePointerView.getArrayBuffer(pointer, 1024);
+  }
+}
+
+/**
+ * Gets a boolean value from a WebView2 function.
+ * @param connector The pointer to the WebView2 function.
+ * @param func The function to call to get the boolean value.
+ * @returns The retrieved boolean value.
+ */
+export function getBool(
+  connector: Deno.PointerValue,
+  func: (
+    connector: Deno.PointerValue,
+    bool: Deno.PointerValue,
+  ) => unknown,
+): boolean {
+  const data = new Int32Array([0]);
+  const bool = Deno.UnsafePointer.of(data);
+  func(connector, bool);
+  return data[0] !== 0;
+}

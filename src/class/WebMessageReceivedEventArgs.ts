@@ -95,7 +95,6 @@ export class WebMessageReceivedEventArgs {
         null,
         Deno.UnsafePointer.of(size),
       );
-    console.log(size[0]);
     if (hresult !== 0) {
       throw new Error(`Failed to get StringMessage: ${hresult}`);
     }

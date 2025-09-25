@@ -1,19 +1,6 @@
 import type { Webview2Funcs } from '../webview2_types.ts';
-import { createStringPointer, getString } from './convert.ts';
+import { createStringPointer, getBool, getString } from './convert.ts';
 import type { Webview2Context } from './types.ts';
-
-function getBool(
-  webview2Connector: Deno.PointerValue,
-  func: (
-    webview2Connector: Deno.PointerValue,
-    bool: Deno.PointerValue,
-  ) => unknown,
-): boolean {
-  const data = new Int32Array([0]);
-  const bool = Deno.UnsafePointer.of(data);
-  func(webview2Connector, bool);
-  return data[0] !== 0;
-}
 
 export class Settings {
   protected settings!: Deno.PointerValue<unknown>;
@@ -36,8 +23,11 @@ export class Settings {
     return getString(this.settings, func);
   }
 
-  constructor(protected context: Webview2Context) {
-    this.settings = context.lib.symbols.CreateSettings();
+  constructor(
+    protected context: Webview2Context,
+    settings?: Deno.PointerValue<unknown>,
+  ) {
+    this.settings = settings ?? context.lib.symbols.CreateSettings();
   }
 
   /**

@@ -375,6 +375,10 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
+  Deferral_Complete: {
+    parameters: ['pointer'],
+    result: 'i32',
+  },
   CallDevToolsProtocolMethod: {
     parameters: ['pointer', 'pointer', 'pointer', 'function'],
     result: 'i32',

@@ -1,4 +1,5 @@
 import type { Webview2Funcs } from '../webview2_types.ts';
+import { Deferral } from './Deferral.ts';
 import { WebResourceRequest } from './WebResourceRequest.ts';
 import { WebResourceResponse } from './WebResourceResponse.ts';
 
@@ -48,9 +49,6 @@ export class WebResourceRequestedEventArgs {
     protected libs: Webview2Funcs,
     protected args: ICoreWebView2WebResourceRequestedEventArgs,
   ) {
-    console.log(
-      `WebResourceRequestedEventArgs: ${Deno.UnsafePointer.value(args)}`,
-    );
   }
 
   public get Request(): WebResourceRequest {
@@ -96,10 +94,6 @@ export class WebResourceRequestedEventArgs {
   }
 
   public set Response(response: WebResourceResponse) {
-    console.log('Response');
-    console.log(Deno.UnsafePointer.value(this.args));
-    console.log(Deno.UnsafePointer.value(response.doublePointer));
-    console.log(Deno.UnsafePointer.value(response.pointer));
     const result = this.libs.symbols.WebResourceRequestedEventArgs_put_Response(
       this.args,
       response.pointer,
@@ -107,5 +101,14 @@ export class WebResourceRequestedEventArgs {
     if (result !== 0) {
       throw new Error(`Failed to set WebResourceResponse: ${result}`);
     }
+  }
+
+  public getDeferral() {
+    const deferral = new Deferral(this.libs);
+    const result = this.libs.symbols.WebResourceRequestedEventArgs_GetDeferral(
+      this.args,
+      deferral.getDoublePointer(),
+    );
+    return deferral;
   }
 }

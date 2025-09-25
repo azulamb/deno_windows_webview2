@@ -13,8 +13,12 @@ export class Environments {
     return this.context.lib;
   }
 
-  constructor(protected context: Webview2Context) {
-    this.environments = context.lib.symbols.CreateEnvironments();
+  constructor(
+    protected context: Webview2Context,
+    environments?: Deno.PointerValue<unknown>,
+  ) {
+    this.environments = environments ??
+      context.lib.symbols.CreateEnvironments();
   }
 
   /**

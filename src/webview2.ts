@@ -28,12 +28,18 @@ export class WebView2 implements Webview2Context {
    */
   constructor(
     readonly lib: Webview2Funcs,
+    pointers?: {
+      core: Deno.PointerValue;
+      environments: Deno.PointerValue;
+      settings: Deno.PointerValue;
+      controllers: Deno.PointerValue;
+    },
   ) {
     this.eventRegistrationToken = new EventRegistrationToken(this);
-    this.core = new Core(this);
-    this.environments = new Environments(this);
-    this.settings = new Settings(this);
-    this.controllers = new Controllers(this);
+    this.core = new Core(this, pointers?.core);
+    this.environments = new Environments(this, pointers?.environments);
+    this.settings = new Settings(this, pointers?.settings);
+    this.controllers = new Controllers(this, pointers?.controllers);
   }
 
   /** Gets the version of the webview2.dll. */
@@ -44,6 +50,20 @@ export class WebView2 implements Webview2Context {
     }
     const str = new Deno.UnsafePointerView(pointer);
     return str.getCString();
+  }
+
+  public exportData(): {
+    core: bigint;
+    environments: bigint;
+    settings: bigint;
+    controllers: bigint;
+  } {
+    return {
+      core: Deno.UnsafePointer.value(this.core.pointer),
+      environments: Deno.UnsafePointer.value(this.environments.pointer),
+      settings: Deno.UnsafePointer.value(this.settings.pointer),
+      controllers: Deno.UnsafePointer.value(this.controllers.pointer),
+    };
   }
 
   /**
@@ -162,7 +182,6 @@ export class WebView2 implements Webview2Context {
     headers: string,
   ): WebResourceResponse {
     const response = new DoublePointer();
-    console.log('CreateWebResourceResponse----');
     const result = this.lib.symbols.CreateWebResourceResponse(
       this.environments.pointer,
       content.getPointer(),
@@ -171,9 +190,6 @@ export class WebView2 implements Webview2Context {
       createStringPointer(headers),
       response.getDoublePointer(),
     );
-    console.log(result);
-    console.log(Deno.UnsafePointer.value(response.getPointer()));
-    console.log('---');
     return new WebResourceResponse(this.lib, response);
   }
 }

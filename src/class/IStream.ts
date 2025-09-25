@@ -2,23 +2,11 @@ import type { Webview2Funcs } from '../webview2_types.ts';
 import { DoublePointer } from './DoublePointer.ts';
 
 export class IStream extends DoublePointer {
-  //protected stream: DoublePointer = new DoublePointer();
   constructor(
     protected libs: Webview2Funcs,
   ) {
     super();
   }
-
-  /**
-   * Gets the raw pointer to the IStream interface.
-   */
-  /*public getDoublePointer(): Deno.PointerValue {
-    return this.stream.getDoublePointer();
-  }
-
-  public getPointer(): Deno.PointerValue {
-    return this.stream.getPointer();
-  }*/
 
   /**
    * Reads data from the stream.

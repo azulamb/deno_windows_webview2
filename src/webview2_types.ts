@@ -392,6 +392,10 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
+  readonly Deferral_Complete: {
+    readonly parameters: ['pointer'];
+    readonly result: 'i32';
+  };
   readonly CallDevToolsProtocolMethod: {
     readonly parameters: ['pointer', 'pointer', 'pointer', 'function'];
     readonly result: 'i32';

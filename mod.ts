@@ -153,8 +153,14 @@ export function loadWebview2(
  */
 export function createWebView2(
   dllPath = 'webview2.dll',
+  pointers?: {
+    core: Deno.PointerValue;
+    environments: Deno.PointerValue;
+    settings: Deno.PointerValue;
+    controllers: Deno.PointerValue;
+  },
 ): WebView2 {
-  return new WebView2(loadWebview2(dllPath));
+  return new WebView2(loadWebview2(dllPath), pointers);
 }
 
 /** The version information for the WebView2 module. */
@@ -181,6 +187,7 @@ export * from './src/constants/WEB_RESOURCE_CONTEXT.ts';
 /**
  * Exports support classes.
  */
+export * from './src/class/Deferral.ts';
 export * from './src/class/IStream.ts';
 export * from './src/class/WebMessageReceivedEventArgs.ts';
 export * from './src/class/WebResourceRequest.ts';

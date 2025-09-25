@@ -397,6 +397,12 @@ EXPORT HRESULT put_AllowExternalDrop(
 	/* [in] */ BOOL value
 );
 
+/*
+* ICoreWebView2Deferral
+*/
+
+EXPORT HRESULT Deferral_Complete(ICoreWebView2Deferral* deferral);
+
 /**
 * ICoreWebView2
 */
