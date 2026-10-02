@@ -10,7 +10,7 @@ export class EventRegistrationToken {
    * @returns The event registration token.
    */
   public create(): Token {
-    return this.context.lib.symbols.CreateEventRegistrationToken();
+    return this.context.lib.symbols.EventRegistrationToken_Create();
   }
 
   /**
@@ -18,6 +18,6 @@ export class EventRegistrationToken {
    * @param token The event registration token to remove.
    */
   public remove(token: Token): void {
-    this.context.lib.symbols.RemoveEventRegistrationToken(token);
+    this.context.lib.symbols.EventRegistrationToken_Remove(token);
   }
 }

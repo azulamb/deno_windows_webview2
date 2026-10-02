@@ -7,29 +7,29 @@
 * Original
 */
 
-EXPORT const char* GetDllVersion();
+EXPORT const char* Global_GetDllVersion();
 
-EXPORT WebView2* CreateWebView2();
-EXPORT WebView2* InitWebView2(WebView2* webview2);
+EXPORT WebView2* WebView2_Create();
+EXPORT WebView2* WebView2_Init(WebView2* webview2);
 
-EXPORT Environments* CreateEnvironments();
+EXPORT Environments* Environments_Create();
 
-EXPORT Settings* CreateSettings();
-EXPORT Settings* InitSettings(Settings* settings);
+EXPORT Settings* Settings_Create();
+EXPORT Settings* Settings_Init(Settings* settings);
 
-EXPORT Controllers* CreateControllers();
-EXPORT Controllers* InitControllers(Controllers* controllers);
+EXPORT Controllers* Controllers_Create();
+EXPORT Controllers* Controllers_Init(Controllers* controllers);
 
 /**
 * EventRegistrationToken
 */
-EXPORT EventRegistrationToken* CreateEventRegistrationToken();
-EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token);
+EXPORT EventRegistrationToken* EventRegistrationToken_Create();
+EXPORT void EventRegistrationToken_Remove(EventRegistrationToken* token);
 
 /**
 * Stream
 */
-EXPORT IStream* CreateJStream(
+EXPORT IStream* JStream_Create(
 	HRESULT(*queryInterface)(REFIID riid, void** ppvObject),
 	ULONG(*addRef)(void),
 	ULONG(*release)(void),
@@ -50,12 +50,12 @@ EXPORT IStream* CreateJStream(
 * Global
 */
 
-EXPORT HRESULT _CreateCoreWebView2Environment(
+EXPORT HRESULT Global_CreateCoreWebView2Environment(
 	Environments* environments,
 	HRESULT(*callback)(HRESULT, ICoreWebView2Environment*)
 );
 
-EXPORT HRESULT _CreateCoreWebView2EnvironmentWithOptions(
+EXPORT HRESULT Global_CreateCoreWebView2EnvironmentWithOptions(
 	Environments* environments,
 	PCWSTR browserExecutableFolder,
 	PCWSTR userDataFolder,
@@ -63,18 +63,18 @@ EXPORT HRESULT _CreateCoreWebView2EnvironmentWithOptions(
 	HRESULT(*callback)(HRESULT result, ICoreWebView2Environment* env)
 );
 
-EXPORT HRESULT _CompareBrowserVersions(
+EXPORT HRESULT Global_CompareBrowserVersions(
 	PCWSTR version1,
 	PCWSTR version2,
 	int* result
 );
 
-EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
+EXPORT HRESULT Global_GetAvailableCoreWebView2BrowserVersionString(
 	PCWSTR browserExecutableFolder,
 	LPWSTR* versionInfo
 );
 
-EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionStringWithOptions(
+EXPORT HRESULT Global_GetAvailableCoreWebView2BrowserVersionStringWithOptions(
 	PCWSTR browserExecutableFolder,
 	ICoreWebView2EnvironmentOptions* environmentOptions,
 	LPWSTR* versionInfo
@@ -84,14 +84,14 @@ EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionStringWithOptions(
 * ICoreWebView2Environment
 */
 
-EXPORT HRESULT CreateCoreWebView2Controller(
+EXPORT HRESULT Environments_CreateCoreWebView2Controller(
 	Environments* environments,
 	HWND hWnd,
 	HRESULT(*callback)(HRESULT, ICoreWebView2Controller*),
 	Controllers* controllers
 );
 
-EXPORT HRESULT CreateWebResourceResponse(
+EXPORT HRESULT Environments_CreateWebResourceResponse(
 	Environments* environments,
 	IStream* content,
 	int statusCode,
@@ -104,222 +104,222 @@ EXPORT HRESULT CreateWebResourceResponse(
 * ICoreWebView2Settings
 */
 
-EXPORT HRESULT get_IsScriptEnabled(Settings* settings, BOOL* isScriptEnabled);
+EXPORT HRESULT Settings_get_IsScriptEnabled(Settings* settings, BOOL* isScriptEnabled);
 
-EXPORT HRESULT put_IsScriptEnabled(Settings* settings, BOOL isScriptEnabled);
+EXPORT HRESULT Settings_put_IsScriptEnabled(Settings* settings, BOOL isScriptEnabled);
 
-EXPORT HRESULT get_IsWebMessageEnabled(Settings* settings, BOOL* isWebMessageEnabled);
+EXPORT HRESULT Settings_get_IsWebMessageEnabled(Settings* settings, BOOL* isWebMessageEnabled);
 
-EXPORT HRESULT put_IsWebMessageEnabled(Settings* settings, BOOL isWebMessageEnabled);
+EXPORT HRESULT Settings_put_IsWebMessageEnabled(Settings* settings, BOOL isWebMessageEnabled);
 
-EXPORT HRESULT get_AreDefaultScriptDialogsEnabled(Settings* settings, BOOL* areDefaultScriptDialogsEnabled);
+EXPORT HRESULT Settings_get_AreDefaultScriptDialogsEnabled(Settings* settings, BOOL* areDefaultScriptDialogsEnabled);
 
-EXPORT HRESULT put_AreDefaultScriptDialogsEnabled(Settings* settings, BOOL areDefaultScriptDialogsEnabled);
+EXPORT HRESULT Settings_put_AreDefaultScriptDialogsEnabled(Settings* settings, BOOL areDefaultScriptDialogsEnabled);
 
-EXPORT HRESULT get_IsStatusBarEnabled(Settings* settings, BOOL* isStatusBarEnabled);
+EXPORT HRESULT Settings_get_IsStatusBarEnabled(Settings* settings, BOOL* isStatusBarEnabled);
 
-EXPORT HRESULT put_IsStatusBarEnabled(Settings* settings, BOOL isStatusBarEnabled);
+EXPORT HRESULT Settings_put_IsStatusBarEnabled(Settings* settings, BOOL isStatusBarEnabled);
 
-EXPORT HRESULT get_AreDevToolsEnabled(Settings* settings, BOOL* areDevToolsEnabled);
+EXPORT HRESULT Settings_get_AreDevToolsEnabled(Settings* settings, BOOL* areDevToolsEnabled);
 
-EXPORT HRESULT put_AreDevToolsEnabled(Settings* settings, BOOL areDevToolsEnabled);
+EXPORT HRESULT Settings_put_AreDevToolsEnabled(Settings* settings, BOOL areDevToolsEnabled);
 
-EXPORT HRESULT get_AreDefaultContextMenusEnabled(Settings* settings, BOOL* enabled);
+EXPORT HRESULT Settings_get_AreDefaultContextMenusEnabled(Settings* settings, BOOL* enabled);
 
-EXPORT HRESULT put_AreDefaultContextMenusEnabled(Settings* settings, BOOL enabled);
+EXPORT HRESULT Settings_put_AreDefaultContextMenusEnabled(Settings* settings, BOOL enabled);
 
-EXPORT HRESULT get_AreHostObjectsAllowed(Settings* settings, BOOL* allowed);
+EXPORT HRESULT Settings_get_AreHostObjectsAllowed(Settings* settings, BOOL* allowed);
 
-EXPORT HRESULT put_AreHostObjectsAllowed(Settings* settings, BOOL allowed);
+EXPORT HRESULT Settings_put_AreHostObjectsAllowed(Settings* settings, BOOL allowed);
 
-EXPORT HRESULT get_IsZoomControlEnabled(Settings* settings, BOOL* enabled);
+EXPORT HRESULT Settings_get_IsZoomControlEnabled(Settings* settings, BOOL* enabled);
 
-EXPORT HRESULT put_IsZoomControlEnabled(Settings* settings, BOOL enabled);
+EXPORT HRESULT Settings_put_IsZoomControlEnabled(Settings* settings, BOOL enabled);
 
-EXPORT HRESULT get_IsBuiltInErrorPageEnabled(Settings* settings, BOOL* enabled);
+EXPORT HRESULT Settings_get_IsBuiltInErrorPageEnabled(Settings* settings, BOOL* enabled);
 
-EXPORT HRESULT put_IsBuiltInErrorPageEnabled(Settings* settings, BOOL enabled);
+EXPORT HRESULT Settings_put_IsBuiltInErrorPageEnabled(Settings* settings, BOOL enabled);
 
 /**
 * ICoreWebView2Settings2
 */
 
-EXPORT HRESULT get_UserAgent(Settings* settings, LPWSTR userAgent, rsize_t* size);
+EXPORT HRESULT Settings_get_UserAgent(Settings* settings, LPWSTR userAgent, rsize_t* size);
 
-EXPORT HRESULT put_UserAgent(Settings* settings, LPCWSTR userAgent);
+EXPORT HRESULT Settings_put_UserAgent(Settings* settings, LPCWSTR userAgent);
 
 /**
 * ICoreWebView2Settings3
 */
 
-EXPORT HRESULT get_AreBrowserAcceleratorKeysEnabled(Settings* settings, BOOL* areBrowserAcceleratorKeysEnabled);
+EXPORT HRESULT Settings_get_AreBrowserAcceleratorKeysEnabled(Settings* settings, BOOL* areBrowserAcceleratorKeysEnabled);
 
-EXPORT HRESULT put_AreBrowserAcceleratorKeysEnabled(Settings* settings, BOOL areBrowserAcceleratorKeysEnabled);
+EXPORT HRESULT Settings_put_AreBrowserAcceleratorKeysEnabled(Settings* settings, BOOL areBrowserAcceleratorKeysEnabled);
 
 /**
 * ICoreWebView2Settings4
 */
 
-EXPORT HRESULT get_IsPasswordAutosaveEnabled(Settings* settings, BOOL* value);
+EXPORT HRESULT Settings_get_IsPasswordAutosaveEnabled(Settings* settings, BOOL* value);
 
-EXPORT HRESULT put_IsPasswordAutosaveEnabled(Settings* settings, BOOL value);
+EXPORT HRESULT Settings_put_IsPasswordAutosaveEnabled(Settings* settings, BOOL value);
 
-EXPORT HRESULT get_IsGeneralAutofillEnabled(Settings* settings, BOOL* value);
+EXPORT HRESULT Settings_get_IsGeneralAutofillEnabled(Settings* settings, BOOL* value);
 
-EXPORT HRESULT put_IsGeneralAutofillEnabled(Settings* settings, BOOL value);
+EXPORT HRESULT Settings_put_IsGeneralAutofillEnabled(Settings* settings, BOOL value);
 
 /**
 * ICoreWebView2Settings5
 */
 
-EXPORT HRESULT get_IsPinchZoomEnabled(Settings* settings, /* [retval][out] */ BOOL* enabled);
+EXPORT HRESULT Settings_get_IsPinchZoomEnabled(Settings* settings, /* [retval][out] */ BOOL* enabled);
 
-EXPORT HRESULT put_IsPinchZoomEnabled(Settings* settings, /* [in] */ BOOL enabled);
-
-/**
-* ICoreWebView2Settings6
-*/
-
-EXPORT HRESULT get_IsSwipeNavigationEnabled(Settings* settings, /* [retval][out] */ BOOL* enabled);
-
-EXPORT HRESULT put_IsSwipeNavigationEnabled(Settings* settings, /* [in] */ BOOL enabled);
+EXPORT HRESULT Settings_put_IsPinchZoomEnabled(Settings* settings, /* [in] */ BOOL enabled);
 
 /**
 * ICoreWebView2Settings6
 */
 
-EXPORT HRESULT get_HiddenPdfToolbarItems(Settings* settings, COREWEBVIEW2_PDF_TOOLBAR_ITEMS* value);
+EXPORT HRESULT Settings_get_IsSwipeNavigationEnabled(Settings* settings, /* [retval][out] */ BOOL* enabled);
 
-EXPORT HRESULT put_HiddenPdfToolbarItems(Settings* settings, COREWEBVIEW2_PDF_TOOLBAR_ITEMS value);
+EXPORT HRESULT Settings_put_IsSwipeNavigationEnabled(Settings* settings, /* [in] */ BOOL enabled);
+
+/**
+* ICoreWebView2Settings6
+*/
+
+EXPORT HRESULT Settings_get_HiddenPdfToolbarItems(Settings* settings, COREWEBVIEW2_PDF_TOOLBAR_ITEMS* value);
+
+EXPORT HRESULT Settings_put_HiddenPdfToolbarItems(Settings* settings, COREWEBVIEW2_PDF_TOOLBAR_ITEMS value);
 
 /**
 * ICoreWebView2Settings8
 */
 
-EXPORT HRESULT get_IsReputationCheckingRequired(Settings* settings, BOOL* value);
+EXPORT HRESULT Settings_get_IsReputationCheckingRequired(Settings* settings, BOOL* value);
 
-EXPORT HRESULT put_IsReputationCheckingRequired(Settings* settings, BOOL value);
+EXPORT HRESULT Settings_put_IsReputationCheckingRequired(Settings* settings, BOOL value);
 
 /**
 * ICoreWebView2Settings9
 */
 
-EXPORT HRESULT get_IsNonClientRegionSupportEnabled(Settings* settings, BOOL* value);
+EXPORT HRESULT Settings_get_IsNonClientRegionSupportEnabled(Settings* settings, BOOL* value);
 
-EXPORT HRESULT put_IsNonClientRegionSupportEnabled(Settings* settings, BOOL value);
+EXPORT HRESULT Settings_put_IsNonClientRegionSupportEnabled(Settings* settings, BOOL value);
 
 /*
 * ICoreWebView2Controller
 */
 
-EXPORT HRESULT add_AcceleratorKeyPressed(
+EXPORT HRESULT Controllers_add_AcceleratorKeyPressed(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, ICoreWebView2AcceleratorKeyPressedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_AcceleratorKeyPressed(
+EXPORT HRESULT Controllers_remove_AcceleratorKeyPressed(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT get_Bounds(
+EXPORT HRESULT Controllers_get_Bounds(
 	Controllers* controllers,
 	/* [retval][out] */ RECT* bounds
 );
 
-EXPORT HRESULT put_Bounds(
+EXPORT HRESULT Controllers_put_Bounds(
 	Controllers* controllers,
 	/* [in] */ RECT bounds
 );
 
-EXPORT HRESULT Close(Controllers* controllers);
+EXPORT HRESULT Controllers_Close(Controllers* controllers);
 
-EXPORT HRESULT get_CoreWebView2(Controllers* controllers, WebView2* webview2);
+EXPORT HRESULT Controllers_get_CoreWebView2(Controllers* controllers, WebView2* webview2);
 
-EXPORT HRESULT add_GotFocus(
+EXPORT HRESULT Controllers_add_GotFocus(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_GotFocus(
+EXPORT HRESULT Controllers_remove_GotFocus(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT get_IsVisible(
+EXPORT HRESULT Controllers_get_IsVisible(
 	Controllers* controllers,
 	/* [retval][out] */ BOOL* isVisible
 );
 
-EXPORT HRESULT put_IsVisible(
+EXPORT HRESULT Controllers_put_IsVisible(
 	Controllers* controllers,
 	/* [in] */ BOOL isVisible
 );
 
-EXPORT HRESULT add_LostFocus(
+EXPORT HRESULT Controllers_add_LostFocus(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_LostFocus(
+EXPORT HRESULT Controllers_remove_LostFocus(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT MoveFocus(
+EXPORT HRESULT Controllers_MoveFocus(
 	Controllers* controllers,
 	/* [in] */ COREWEBVIEW2_MOVE_FOCUS_REASON reason
 );
 
-EXPORT HRESULT add_MoveFocusRequested(
+EXPORT HRESULT Controllers_add_MoveFocusRequested(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, ICoreWebView2MoveFocusRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_MoveFocusRequested(
+EXPORT HRESULT Controllers_remove_MoveFocusRequested(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT NotifyParentWindowPositionChanged(Controllers* controllers);
+EXPORT HRESULT Controllers_NotifyParentWindowPositionChanged(Controllers* controllers);
 
-EXPORT HRESULT get_ParentWindow(
+EXPORT HRESULT Controllers_get_ParentWindow(
 	Controllers* controllers,
 	/* [retval][out] */ HWND* parentWindow
 );
 
-EXPORT HRESULT put_ParentWindow(
+EXPORT HRESULT Controllers_put_ParentWindow(
 	Controllers* controllers,
 	/* [in] */ HWND parentWindow
 );
 
-EXPORT HRESULT SetBoundsAndZoomFactor(
+EXPORT HRESULT Controllers_SetBoundsAndZoomFactor(
 	Controllers* controllers,
 	/* [in] */ RECT bounds,
 	/* [in] */ double zoomFactor
 );
 
-EXPORT HRESULT get_ZoomFactor(
+EXPORT HRESULT Controllers_get_ZoomFactor(
 	Controllers* controllers,
 	/* [retval][out] */ double* zoomFactor
 );
 
-EXPORT HRESULT put_ZoomFactor(
+EXPORT HRESULT Controllers_put_ZoomFactor(
 	Controllers* controllers,
 	/* [in] */ double zoomFactor
 );
 
-EXPORT HRESULT add_ZoomFactorChanged(
+EXPORT HRESULT Controllers_add_ZoomFactorChanged(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_ZoomFactorChanged(
+EXPORT HRESULT Controllers_remove_ZoomFactorChanged(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 );
@@ -328,12 +328,12 @@ EXPORT HRESULT remove_ZoomFactorChanged(
 * ICoreWebView2Controller2
 */
 
-EXPORT HRESULT get_DefaultBackgroundColor(
+EXPORT HRESULT Controllers_get_DefaultBackgroundColor(
 	Controllers* controllers,
 	/* [retval][out] */ COREWEBVIEW2_COLOR* backgroundColor
 );
 
-EXPORT HRESULT put_DefaultBackgroundColor(
+EXPORT HRESULT Controllers_put_DefaultBackgroundColor(
 	Controllers* controllers,
 	/* [in] */ COREWEBVIEW2_COLOR backgroundColor
 );
@@ -342,43 +342,43 @@ EXPORT HRESULT put_DefaultBackgroundColor(
 * ICoreWebView2Controller3
 */
 
-EXPORT HRESULT add_RasterizationScaleChanged(
+EXPORT HRESULT Controllers_add_RasterizationScaleChanged(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_RasterizationScaleChanged(
+EXPORT HRESULT Controllers_remove_RasterizationScaleChanged(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT get_BoundsMode(
+EXPORT HRESULT Controllers_get_BoundsMode(
 	Controllers* controllers,
 	/* [retval][out] */ COREWEBVIEW2_BOUNDS_MODE* boundsMode
 );
 
-EXPORT HRESULT put_BoundsMode(
+EXPORT HRESULT Controllers_put_BoundsMode(
 	Controllers* controllers,
 	/* [in] */ COREWEBVIEW2_BOUNDS_MODE boundsMode
 );
 
-EXPORT HRESULT get_RasterizationScale(
+EXPORT HRESULT Controllers_get_RasterizationScale(
 	Controllers* controllers,
 	/* [retval][out] */ double* scale
 );
 
-EXPORT HRESULT put_RasterizationScale(
+EXPORT HRESULT Controllers_put_RasterizationScale(
 	Controllers* controllers,
 	/* [in] */ double scale
 );
 
-EXPORT HRESULT get_ShouldDetectMonitorScaleChanges(
+EXPORT HRESULT Controllers_get_ShouldDetectMonitorScaleChanges(
 	Controllers* controllers,
 	/* [retval][out] */ BOOL* value
 );
 
-EXPORT HRESULT put_ShouldDetectMonitorScaleChanges(
+EXPORT HRESULT Controllers_put_ShouldDetectMonitorScaleChanges(
 	Controllers* controllers,
 	/* [in] */ BOOL value
 );
@@ -387,12 +387,12 @@ EXPORT HRESULT put_ShouldDetectMonitorScaleChanges(
 * ICoreWebView2Controller4
 */
 
-EXPORT HRESULT get_AllowExternalDrop(
+EXPORT HRESULT Controllers_get_AllowExternalDrop(
 	Controllers* controllers,
 	/* [retval][out] */ BOOL* value
 );
 
-EXPORT HRESULT put_AllowExternalDrop(
+EXPORT HRESULT Controllers_put_AllowExternalDrop(
 	Controllers* controllers,
 	/* [in] */ BOOL value
 );
@@ -409,35 +409,35 @@ EXPORT HRESULT Deferral_Complete(ICoreWebView2Deferral* deferral);
 
 /* Development */
 
-EXPORT HRESULT CallDevToolsProtocolMethod(
+EXPORT HRESULT WebView2_CallDevToolsProtocolMethod(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR methodName,
 	/* [in] */ LPCWSTR parametersAsJson,
 	/* [in] */ HRESULT(*callback)(/* [in] */ HRESULT, /* [in] */ LPCWSTR)
 );
 
-EXPORT HRESULT GetDevToolsProtocolEventReceiver(
+EXPORT HRESULT WebView2_GetDevToolsProtocolEventReceiver(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR eventName,
 	/* [retval][out] */ ICoreWebView2DevToolsProtocolEventReceiver** receiver
 );
 
-EXPORT HRESULT OpenDevToolsWindow(WebView2* webview2);
+EXPORT HRESULT WebView2_OpenDevToolsWindow(WebView2* webview2);
 
 /* Document */
 
-EXPORT HRESULT add_DocumentTitleChanged(
+EXPORT HRESULT WebView2_add_DocumentTitleChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(/* [in] */ ICoreWebView2*, /* [in] */ IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_DocumentTitleChanged(
+EXPORT HRESULT WebView2_remove_DocumentTitleChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT get_DocumentTitle(
+EXPORT HRESULT WebView2_get_DocumentTitle(
 	WebView2* webview2,
 	// TODO: LPWSTR
 	/* [retval][out] */ LPWSTR* title
@@ -445,284 +445,284 @@ EXPORT HRESULT get_DocumentTitle(
 
 /* History */
 
-EXPORT HRESULT add_HistoryChanged(
+EXPORT HRESULT WebView2_add_HistoryChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_HistoryChanged(
+EXPORT HRESULT WebView2_remove_HistoryChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
 /* Message */
 
-EXPORT HRESULT PostWebMessageAsJson(
+EXPORT HRESULT WebView2_PostWebMessageAsJson(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR webMessageAsJson
 );
 
-EXPORT HRESULT PostWebMessageAsString(
+EXPORT HRESULT WebView2_PostWebMessageAsString(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR webMessageAsString
 );
 
-EXPORT HRESULT add_WebMessageReceived(
+EXPORT HRESULT WebView2_add_WebMessageReceived(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2WebMessageReceivedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_WebMessageReceived(
+EXPORT HRESULT WebView2_remove_WebMessageReceived(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
 /* Navigation */
 
-EXPORT HRESULT Navigate(
+EXPORT HRESULT WebView2_Navigate(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR uri
 );
 
-EXPORT HRESULT add_NavigationCompleted(
+EXPORT HRESULT WebView2_add_NavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationCompletedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_NavigationCompleted(
+EXPORT HRESULT WebView2_remove_NavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT add_NavigationStarting(
+EXPORT HRESULT WebView2_add_NavigationStarting(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationStartingEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_NavigationStarting(
+EXPORT HRESULT WebView2_remove_NavigationStarting(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT NavigateToString(
+EXPORT HRESULT WebView2_NavigateToString(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR htmlContent
 );
 
-EXPORT HRESULT add_FrameNavigationCompleted(
+EXPORT HRESULT WebView2_add_FrameNavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationCompletedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_FrameNavigationCompleted(
+EXPORT HRESULT WebView2_remove_FrameNavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT add_FrameNavigationStarting(
+EXPORT HRESULT WebView2_add_FrameNavigationStarting(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationStartingEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_FrameNavigationStarting(
+EXPORT HRESULT WebView2_remove_FrameNavigationStarting(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
 /* Permission */
 
-EXPORT HRESULT add_PermissionRequested(
+EXPORT HRESULT WebView2_add_PermissionRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2PermissionRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_PermissionRequested(
+EXPORT HRESULT WebView2_remove_PermissionRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
 /* Script */
 
-EXPORT HRESULT add_ScriptDialogOpening(
+EXPORT HRESULT WebView2_add_ScriptDialogOpening(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2ScriptDialogOpeningEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_ScriptDialogOpening(
+EXPORT HRESULT WebView2_remove_ScriptDialogOpening(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT AddScriptToExecuteOnDocumentCreated(
+EXPORT HRESULT WebView2_AddScriptToExecuteOnDocumentCreated(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR javaScript,
 	/* [in] */ HRESULT(*callback)(HRESULT, LPCWSTR)
 );
 
-EXPORT HRESULT RemoveScriptToExecuteOnDocumentCreated(
+EXPORT HRESULT WebView2_RemoveScriptToExecuteOnDocumentCreated(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR id
 );
 
-EXPORT HRESULT ExecuteScript(
+EXPORT HRESULT WebView2_ExecuteScript(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR javaScript,
 	/* [in] */ HRESULT(*callback)(HRESULT, LPCWSTR)
 );
 
-EXPORT HRESULT AddHostObjectToScript(
+EXPORT HRESULT WebView2_AddHostObjectToScript(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR name,
 	/* [in] */ VARIANT* object
 );
 
-EXPORT HRESULT RemoveHostObjectFromScript(
+EXPORT HRESULT WebView2_RemoveHostObjectFromScript(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR name
 );
 
 /* Source */
 
-EXPORT HRESULT get_Source(
+EXPORT HRESULT WebView2_get_Source(
 	WebView2* webview2,
 	// TODO: LPWSTR
 	/* [retval][out] */ LPWSTR* uri
 );
 
-EXPORT HRESULT add_SourceChanged(
+EXPORT HRESULT WebView2_add_SourceChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2SourceChangedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_SourceChanged(
+EXPORT HRESULT WebView2_remove_SourceChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
 /* Operation */
 
-EXPORT HRESULT Reload(WebView2* webview2);
+EXPORT HRESULT WebView2_Reload(WebView2* webview2);
 
-EXPORT HRESULT get_CanGoBack(
+EXPORT HRESULT WebView2_get_CanGoBack(
 	WebView2* webview2,
 	/* [retval][out] */ BOOL* canGoBack
 );
 
-EXPORT HRESULT get_CanGoForward(
+EXPORT HRESULT WebView2_get_CanGoForward(
 	WebView2* webview2,
 	/* [retval][out] */ BOOL* canGoForward
 );
 
-EXPORT HRESULT GoBack(WebView2* webview2);
+EXPORT HRESULT WebView2_GoBack(WebView2* webview2);
 
-EXPORT HRESULT GoForward(WebView2* webview2);
+EXPORT HRESULT WebView2_GoForward(WebView2* webview2);
 
-EXPORT HRESULT Stop(WebView2* webview2);
+EXPORT HRESULT WebView2_Stop(WebView2* webview2);
 
 /* Other */
 
-EXPORT HRESULT add_ContentLoading(
+EXPORT HRESULT WebView2_add_ContentLoading(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2ContentLoadingEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_ContentLoading(
+EXPORT HRESULT WebView2_remove_ContentLoading(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT add_ProcessFailed(
+EXPORT HRESULT WebView2_add_ProcessFailed(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2ProcessFailedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_ProcessFailed(
+EXPORT HRESULT WebView2_remove_ProcessFailed(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT get_Settings(WebView2* webview2, Settings* settings);
+EXPORT HRESULT WebView2_get_Settings(WebView2* webview2, Settings* settings);
 
-EXPORT HRESULT CapturePreview(
+EXPORT HRESULT WebView2_CapturePreview(
 	WebView2* webview2,
 	/* [in] */ COREWEBVIEW2_CAPTURE_PREVIEW_IMAGE_FORMAT imageFormat,
 	/* [in] */ IStream* imageStream,
 	/* [in] */ HRESULT(*callback)(HRESULT errorCode)
 );
 
-EXPORT HRESULT get_BrowserProcessId(
+EXPORT HRESULT WebView2_get_BrowserProcessId(
 	WebView2* webview2,
 	/* [retval][out] */ UINT32* value
 );
 
-EXPORT HRESULT add_NewWindowRequested(
+EXPORT HRESULT WebView2_add_NewWindowRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NewWindowRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_NewWindowRequested(
+EXPORT HRESULT WebView2_remove_NewWindowRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT add_ContainsFullScreenElementChanged(
+EXPORT HRESULT WebView2_add_ContainsFullScreenElementChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_ContainsFullScreenElementChanged(
+EXPORT HRESULT WebView2_remove_ContainsFullScreenElementChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT get_ContainsFullScreenElement(
+EXPORT HRESULT WebView2_get_ContainsFullScreenElement(
 	WebView2* webview2,
 	/* [retval][out] */ BOOL* containsFullScreenElement
 );
 
-EXPORT HRESULT add_WebResourceRequested(
+EXPORT HRESULT WebView2_add_WebResourceRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2WebResourceRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_WebResourceRequested(
+EXPORT HRESULT WebView2_remove_WebResourceRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
 
-EXPORT HRESULT AddWebResourceRequestedFilter(
+EXPORT HRESULT WebView2_AddWebResourceRequestedFilter(
 	WebView2* webview2,
 	/* [in] */ const LPCWSTR uri,
 	/* [in] */ const COREWEBVIEW2_WEB_RESOURCE_CONTEXT resourceContext
 );
 
-EXPORT HRESULT RemoveWebResourceRequestedFilter(
+EXPORT HRESULT WebView2_RemoveWebResourceRequestedFilter(
 	WebView2* webview2,
 	/* [in] */ const LPCWSTR uri,
 	/* [in] */ const COREWEBVIEW2_WEB_RESOURCE_CONTEXT resourceContext
 );
 
-EXPORT HRESULT add_WindowCloseRequested(
+EXPORT HRESULT WebView2_add_WindowCloseRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
 );
 
-EXPORT HRESULT remove_WindowCloseRequested(
+EXPORT HRESULT WebView2_remove_WindowCloseRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 );
@@ -731,39 +731,39 @@ EXPORT HRESULT remove_WindowCloseRequested(
 * ICoreWebView2_2
 */
 
-EXPORT HRESULT add_DOMContentLoaded(
+EXPORT HRESULT WebView2_add_DOMContentLoaded(
 	WebView2* webview2,
 	HRESULT(*callback)(ICoreWebView2* sender, ICoreWebView2DOMContentLoadedEventArgs* args),
 	EventRegistrationToken* token
 );
 
-EXPORT HRESULT add_WebResourceResponseReceived(
+EXPORT HRESULT WebView2_add_WebResourceResponseReceived(
 	WebView2* webview2,
 	HRESULT(*callback)(ICoreWebView2* sender, ICoreWebView2WebResourceResponseReceivedEventArgs* args),
 	EventRegistrationToken* token
 );
 
-EXPORT HRESULT get_CookieManager(
+EXPORT HRESULT WebView2_get_CookieManager(
 	WebView2* webview2,
 	ICoreWebView2CookieManager** cookieManager
 );
 
-EXPORT HRESULT get_Environment(
+EXPORT HRESULT WebView2_get_Environment(
 	WebView2* webview2,
 	ICoreWebView2Environment** environment
 );
 
-EXPORT HRESULT NavigateWithWebResourceRequest(
+EXPORT HRESULT WebView2_NavigateWithWebResourceRequest(
 	WebView2* webview2,
 	ICoreWebView2WebResourceRequest* request
 );
 
-EXPORT HRESULT remove_DOMContentLoaded(
+EXPORT HRESULT WebView2_remove_DOMContentLoaded(
 	WebView2* webview2,
 	EventRegistrationToken token
 );
 
-EXPORT HRESULT remove_WebResourceResponseReceived(
+EXPORT HRESULT WebView2_remove_WebResourceResponseReceived(
 	WebView2* webview2,
 	EventRegistrationToken token
 );
@@ -772,23 +772,23 @@ EXPORT HRESULT remove_WebResourceResponseReceived(
 * ICoreWebView2_3
 */
 
-EXPORT HRESULT SetVirtualHostNameToFolderMapping(
+EXPORT HRESULT WebView2_SetVirtualHostNameToFolderMapping(
 	WebView2* webview2,
 	LPCWSTR hostName,
 	LPCWSTR folderPath,
 	COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND accessKind
 );
 
-EXPORT HRESULT ClearVirtualHostNameToFolderMapping(
+EXPORT HRESULT WebView2_ClearVirtualHostNameToFolderMapping(
 	WebView2* webview2,
 	LPCWSTR hostName
 );
 
-EXPORT HRESULT get_IsSuspended(WebView2* webview2, BOOL* isSuspended);
+EXPORT HRESULT WebView2_get_IsSuspended(WebView2* webview2, BOOL* isSuspended);
 
-EXPORT HRESULT TrySuspend(WebView2* webview2, HRESULT(*callback)(HRESULT errorCode, BOOL isSuccessful));
+EXPORT HRESULT WebView2_TrySuspend(WebView2* webview2, HRESULT(*callback)(HRESULT errorCode, BOOL isSuccessful));
 
-EXPORT HRESULT Resume(WebView2* webview2);
+EXPORT HRESULT WebView2_Resume(WebView2* webview2);
 
 /**
 * ICoreWebView2WebMessageReceivedEventArgs

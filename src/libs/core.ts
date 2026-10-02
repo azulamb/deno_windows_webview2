@@ -22,7 +22,7 @@ export class Core {
     protected context: Webview2Context,
     core?: Deno.PointerValue<unknown>,
   ) {
-    this.core = core ?? this.libs.symbols.CreateWebView2();
+    this.core = core ?? this.libs.symbols.WebView2_Create();
   }
 
   /*readonly CallDevToolsProtocolMethod: {
@@ -68,7 +68,7 @@ export class Core {
     json: any,
   ): HRESULT {
     // TODO: use sender.
-    return this.libs.symbols.PostWebMessageAsJson(
+    return this.libs.symbols.WebView2_PostWebMessageAsJson(
       this.core,
       createStringPointer(JSON.stringify(json)),
     );
@@ -81,7 +81,7 @@ export class Core {
    */
   public postWebMessageAsString(data: string): HRESULT {
     // TODO: use sender.
-    return this.libs.symbols.PostWebMessageAsString(
+    return this.libs.symbols.WebView2_PostWebMessageAsString(
       this.core,
       createStringPointer(data),
     );
@@ -106,7 +106,7 @@ export class Core {
       },
       callback,
     );
-    this.libs.symbols.add_WebMessageReceived(
+    this.libs.symbols.WebView2_add_WebMessageReceived(
       this.core,
       func.pointer,
       token,
@@ -120,7 +120,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public removeWebMessageReceived(token: EventRegistrationToken): HRESULT {
-    const result = this.libs.symbols.remove_WebMessageReceived(
+    const result = this.libs.symbols.WebView2_remove_WebMessageReceived(
       this.core,
       token,
     );
@@ -134,7 +134,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public navigate(url: string): HRESULT {
-    return this.libs.symbols.Navigate(
+    return this.libs.symbols.WebView2_Navigate(
       this.core,
       createStringPointer(url),
     );
@@ -214,7 +214,7 @@ export class Core {
     }, (errorCode, result) => {
       return callback(errorCode, '' /*result*/);
     });
-    return this.libs.symbols.ExecuteScript(
+    return this.libs.symbols.WebView2_ExecuteScript(
       this.core,
       createStringPointer(source),
       func.pointer,
@@ -251,7 +251,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public reload(): HRESULT {
-    return this.libs.symbols.Reload(this.core);
+    return this.libs.symbols.WebView2_Reload(this.core);
   }
 
   /**
@@ -260,7 +260,7 @@ export class Core {
   public get canGoBack(): boolean {
     return getBool(
       this.core,
-      this.libs.symbols.get_CanGoBack,
+      this.libs.symbols.WebView2_get_CanGoBack,
     );
   }
 
@@ -270,7 +270,7 @@ export class Core {
   public get canGoForward(): boolean {
     return getBool(
       this.core,
-      this.libs.symbols.get_CanGoForward,
+      this.libs.symbols.WebView2_get_CanGoForward,
     );
   }
 
@@ -279,7 +279,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public goBack(): HRESULT {
-    return this.libs.symbols.GoBack(this.core);
+    return this.libs.symbols.WebView2_GoBack(this.core);
   }
 
   /**
@@ -287,7 +287,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public goForward(): HRESULT {
-    return this.libs.symbols.GoForward(this.core);
+    return this.libs.symbols.WebView2_GoForward(this.core);
   }
 
   /**
@@ -295,7 +295,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public stop(): HRESULT {
-    return this.libs.symbols.Stop(this.core);
+    return this.libs.symbols.WebView2_Stop(this.core);
   }
 
   /*readonly add_ContentLoading: {
@@ -363,7 +363,7 @@ export class Core {
       },
       callback,
     );
-    this.libs.symbols.add_WebResourceRequested(
+    this.libs.symbols.WebView2_add_WebResourceRequested(
       this.core,
       func.pointer,
       token,
@@ -377,7 +377,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public removeWebResourceRequested(token: EventRegistrationToken): HRESULT {
-    return this.libs.symbols.remove_WebResourceRequested(
+    return this.libs.symbols.WebView2_remove_WebResourceRequested(
       this.core,
       token,
     );
@@ -393,7 +393,7 @@ export class Core {
     uri: string,
     resourceContext: WEB_RESOURCE_CONTEXT_TYPES = 0,
   ): HRESULT {
-    return this.libs.symbols.AddWebResourceRequestedFilter(
+    return this.libs.symbols.WebView2_AddWebResourceRequestedFilter(
       this.core,
       createStringPointer(uri),
       resourceContext,
@@ -410,7 +410,7 @@ export class Core {
     uri: string,
     resourceContext: WEB_RESOURCE_CONTEXT_TYPES = 0,
   ): HRESULT {
-    return this.libs.symbols.RemoveWebResourceRequestedFilter(
+    return this.libs.symbols.WebView2_RemoveWebResourceRequestedFilter(
       this.core,
       createStringPointer(uri),
       resourceContext,
@@ -490,7 +490,7 @@ export class Core {
         accessKindValue = 2;
       }
     }
-    return this.libs.symbols.SetVirtualHostNameToFolderMapping(
+    return this.libs.symbols.WebView2_SetVirtualHostNameToFolderMapping(
       this.core,
       createStringPointer(hostName),
       createStringPointer(folderPath),
@@ -506,7 +506,7 @@ export class Core {
   public clearVirtualHostNameToFolderMapping(
     hostName: string,
   ): HRESULT {
-    return this.libs.symbols.ClearVirtualHostNameToFolderMapping(
+    return this.libs.symbols.WebView2_ClearVirtualHostNameToFolderMapping(
       this.core,
       createStringPointer(hostName),
     );

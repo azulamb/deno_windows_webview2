@@ -44,7 +44,7 @@ export class WebView2 implements Webview2Context {
 
   /** Gets the version of the webview2.dll. */
   public get dllVersion(): string {
-    const pointer = this.lib.symbols.GetDllVersion();
+    const pointer = this.lib.symbols.Global_GetDllVersion();
     if (!pointer) {
       return '';
     }
@@ -91,7 +91,7 @@ export class WebView2 implements Webview2Context {
       callback,
     );
 
-    return this.lib.symbols.CreateCoreWebView2EnvironmentWithOptions(
+    return this.lib.symbols.Global_CreateCoreWebView2EnvironmentWithOptions(
       this.environments.pointer,
       browserExecutableFolder
         ? createStringPointer(browserExecutableFolder)
@@ -107,7 +107,7 @@ export class WebView2 implements Webview2Context {
    * @returns The result of the operation.
    */
   public getSettings(): HRESULT {
-    return this.lib.symbols.get_Settings(
+    return this.lib.symbols.WebView2_get_Settings(
       this.core.pointer,
       this.settings.pointer,
     );
@@ -147,7 +147,7 @@ export class WebView2 implements Webview2Context {
       },
       callback,
     );
-    return this.lib.symbols.CreateCoreWebView2Controller(
+    return this.lib.symbols.Environments_CreateCoreWebView2Controller(
       this.environments.pointer,
       hWnd,
       func.pointer,
@@ -160,7 +160,7 @@ export class WebView2 implements Webview2Context {
    * @returns The HRESULT result of the operation.
    */
   public getCoreWebView2(): HRESULT {
-    return this.lib.symbols.get_CoreWebView2(
+    return this.lib.symbols.Controllers_get_CoreWebView2(
       this.controllers.pointer,
       this.core.pointer,
     );
@@ -182,7 +182,7 @@ export class WebView2 implements Webview2Context {
     headers: string,
   ): WebResourceResponse {
     const response = new DoublePointer();
-    const result = this.lib.symbols.CreateWebResourceResponse(
+    const result = this.lib.symbols.Environments_CreateWebResourceResponse(
       this.environments.pointer,
       content.getPointer(),
       statusCode,

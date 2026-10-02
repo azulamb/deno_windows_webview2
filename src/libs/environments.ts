@@ -18,7 +18,7 @@ export class Environments {
     environments?: Deno.PointerValue<unknown>,
   ) {
     this.environments = environments ??
-      context.lib.symbols.CreateEnvironments();
+      context.lib.symbols.Environments_Create();
   }
 
   /**
@@ -39,7 +39,7 @@ export class Environments {
       },
       callback,
     );
-    return this.libs.symbols.CreateCoreWebView2Environment(
+    return this.libs.symbols.Global_CreateCoreWebView2Environment(
       this.environments,
       func.pointer,
     );

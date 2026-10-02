@@ -261,7 +261,7 @@ public:
 	}
 };
 
-EXPORT IStream* CreateJStream(
+EXPORT IStream* JStream_Create(
 	HRESULT(*queryInterface)(REFIID riid, void** ppvObject),
 	ULONG(*addRef)(void),
 	ULONG(*release)(void),

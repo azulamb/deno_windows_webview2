@@ -6,7 +6,7 @@
 * ICoreWebView2Controller
 */
 
-EXPORT HRESULT add_AcceleratorKeyPressed(
+EXPORT HRESULT Controllers_add_AcceleratorKeyPressed(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, ICoreWebView2AcceleratorKeyPressedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -24,7 +24,7 @@ EXPORT HRESULT add_AcceleratorKeyPressed(
 	);
 }
 
-EXPORT HRESULT remove_AcceleratorKeyPressed(
+EXPORT HRESULT Controllers_remove_AcceleratorKeyPressed(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -33,7 +33,7 @@ EXPORT HRESULT remove_AcceleratorKeyPressed(
 	return controllers->controller1->remove_AcceleratorKeyPressed(token);
 }
 
-EXPORT HRESULT get_Bounds(
+EXPORT HRESULT Controllers_get_Bounds(
 	Controllers* controllers,
 	/* [retval][out] */ RECT* bounds
 ) {
@@ -42,7 +42,7 @@ EXPORT HRESULT get_Bounds(
 	return controllers->controller1->get_Bounds(bounds);
 }
 
-EXPORT HRESULT put_Bounds(
+EXPORT HRESULT Controllers_put_Bounds(
 	Controllers* controllers,
 	/* [in] */ RECT bounds
 ) {
@@ -51,22 +51,22 @@ EXPORT HRESULT put_Bounds(
 	return controllers->controller1->put_Bounds(bounds);
 }
 
-EXPORT HRESULT Close(Controllers* controllers) {
+EXPORT HRESULT Controllers_Close(Controllers* controllers) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
 	return controllers->controller1->Close();
 }
 
-EXPORT HRESULT get_CoreWebView2(Controllers* controllers, WebView2* webview2) {
+EXPORT HRESULT Controllers_get_CoreWebView2(Controllers* controllers, WebView2* webview2) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
 	HRESULT result = controllers->controller1->get_CoreWebView2(&webview2->webview1);
-	InitWebView2(webview2);
+	WebView2_Init(webview2);
 
 	return result;
 }
 
-EXPORT HRESULT add_GotFocus(
+EXPORT HRESULT Controllers_add_GotFocus(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -84,7 +84,7 @@ EXPORT HRESULT add_GotFocus(
 	);
 }
 
-EXPORT HRESULT remove_GotFocus(
+EXPORT HRESULT Controllers_remove_GotFocus(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -93,7 +93,7 @@ EXPORT HRESULT remove_GotFocus(
 	return controllers->controller1->remove_GotFocus(token);
 }
 
-EXPORT HRESULT get_IsVisible(
+EXPORT HRESULT Controllers_get_IsVisible(
 	Controllers* controllers,
 	/* [retval][out] */ BOOL* isVisible
 ) {
@@ -102,7 +102,7 @@ EXPORT HRESULT get_IsVisible(
 	return controllers->controller1->get_IsVisible(isVisible);
 }
 
-EXPORT HRESULT put_IsVisible(
+EXPORT HRESULT Controllers_put_IsVisible(
 	Controllers* controllers,
 	/* [in] */ BOOL isVisible
 ) {
@@ -111,7 +111,7 @@ EXPORT HRESULT put_IsVisible(
 	return controllers->controller1->put_IsVisible(isVisible);
 }
 
-EXPORT HRESULT add_LostFocus(
+EXPORT HRESULT Controllers_add_LostFocus(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -129,7 +129,7 @@ EXPORT HRESULT add_LostFocus(
 	);
 }
 
-EXPORT HRESULT remove_LostFocus(
+EXPORT HRESULT Controllers_remove_LostFocus(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -138,7 +138,7 @@ EXPORT HRESULT remove_LostFocus(
 	return controllers->controller1->remove_LostFocus(token);
 }
 
-EXPORT HRESULT MoveFocus(
+EXPORT HRESULT Controllers_MoveFocus(
 	Controllers* controllers,
 	/* [in] */ COREWEBVIEW2_MOVE_FOCUS_REASON reason
 ) {
@@ -147,7 +147,7 @@ EXPORT HRESULT MoveFocus(
 	return controllers->controller1->MoveFocus(reason);
 }
 
-EXPORT HRESULT add_MoveFocusRequested(
+EXPORT HRESULT Controllers_add_MoveFocusRequested(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, ICoreWebView2MoveFocusRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -165,7 +165,7 @@ EXPORT HRESULT add_MoveFocusRequested(
 	);
 }
 
-EXPORT HRESULT remove_MoveFocusRequested(
+EXPORT HRESULT Controllers_remove_MoveFocusRequested(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -174,13 +174,13 @@ EXPORT HRESULT remove_MoveFocusRequested(
 	return controllers->controller1->remove_MoveFocusRequested(token);
 }
 
-EXPORT HRESULT NotifyParentWindowPositionChanged(Controllers* controllers) {
+EXPORT HRESULT Controllers_NotifyParentWindowPositionChanged(Controllers* controllers) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
 	return controllers->controller1->NotifyParentWindowPositionChanged();
 }
 
-EXPORT HRESULT get_ParentWindow(
+EXPORT HRESULT Controllers_get_ParentWindow(
 	Controllers* controllers,
 	/* [retval][out] */ HWND* parentWindow
 ) {
@@ -189,7 +189,7 @@ EXPORT HRESULT get_ParentWindow(
 	return controllers->controller1->get_ParentWindow(parentWindow);
 }
 
-EXPORT HRESULT put_ParentWindow(
+EXPORT HRESULT Controllers_put_ParentWindow(
 	Controllers* controllers,
 	/* [in] */ HWND parentWindow
 ) {
@@ -198,7 +198,7 @@ EXPORT HRESULT put_ParentWindow(
 	return controllers->controller1->put_ParentWindow(parentWindow);
 }
 
-EXPORT HRESULT SetBoundsAndZoomFactor(
+EXPORT HRESULT Controllers_SetBoundsAndZoomFactor(
 	Controllers* controllers,
 	/* [in] */ RECT bounds,
 	/* [in] */ double zoomFactor
@@ -208,7 +208,7 @@ EXPORT HRESULT SetBoundsAndZoomFactor(
 	return controllers->controller1->SetBoundsAndZoomFactor(bounds, zoomFactor);
 }
 
-EXPORT HRESULT get_ZoomFactor(
+EXPORT HRESULT Controllers_get_ZoomFactor(
 	Controllers* controllers,
 	/* [retval][out] */ double* zoomFactor
 ) {
@@ -217,7 +217,7 @@ EXPORT HRESULT get_ZoomFactor(
 	return controllers->controller1->get_ZoomFactor(zoomFactor);
 }
 
-EXPORT HRESULT put_ZoomFactor(
+EXPORT HRESULT Controllers_put_ZoomFactor(
 	Controllers* controllers,
 	/* [in] */ double zoomFactor
 ) {
@@ -226,7 +226,7 @@ EXPORT HRESULT put_ZoomFactor(
 	return controllers->controller1->put_ZoomFactor(zoomFactor);
 }
 
-EXPORT HRESULT add_ZoomFactorChanged(
+EXPORT HRESULT Controllers_add_ZoomFactorChanged(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -244,7 +244,7 @@ EXPORT HRESULT add_ZoomFactorChanged(
 	);
 }
 
-EXPORT HRESULT remove_ZoomFactorChanged(
+EXPORT HRESULT Controllers_remove_ZoomFactorChanged(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -257,7 +257,7 @@ EXPORT HRESULT remove_ZoomFactorChanged(
 * ICoreWebView2Controller2
 */
 
-EXPORT HRESULT get_DefaultBackgroundColor(
+EXPORT HRESULT Controllers_get_DefaultBackgroundColor(
 	Controllers* controllers,
 	/* [retval][out] */ COREWEBVIEW2_COLOR* backgroundColor
 ) {
@@ -266,7 +266,7 @@ EXPORT HRESULT get_DefaultBackgroundColor(
 	return controllers->controller2->get_DefaultBackgroundColor(backgroundColor);
 }
 
-EXPORT HRESULT put_DefaultBackgroundColor(
+EXPORT HRESULT Controllers_put_DefaultBackgroundColor(
 	Controllers* controllers,
 	/* [in] */ COREWEBVIEW2_COLOR backgroundColor
 ) {
@@ -279,7 +279,7 @@ EXPORT HRESULT put_DefaultBackgroundColor(
 * ICoreWebView2Controller3
 */
 
-EXPORT HRESULT add_RasterizationScaleChanged(
+EXPORT HRESULT Controllers_add_RasterizationScaleChanged(
 	Controllers* controllers,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2Controller*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -297,7 +297,7 @@ EXPORT HRESULT add_RasterizationScaleChanged(
 	);
 }
 
-EXPORT HRESULT remove_RasterizationScaleChanged(
+EXPORT HRESULT Controllers_remove_RasterizationScaleChanged(
 	Controllers* controllers,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -307,7 +307,7 @@ EXPORT HRESULT remove_RasterizationScaleChanged(
 }
 
 
-EXPORT HRESULT get_BoundsMode(
+EXPORT HRESULT Controllers_get_BoundsMode(
 	Controllers* controllers,
 	/* [retval][out] */ COREWEBVIEW2_BOUNDS_MODE* boundsMode
 ) {
@@ -316,7 +316,7 @@ EXPORT HRESULT get_BoundsMode(
 	return controllers->controller3->get_BoundsMode(boundsMode);
 }
 
-EXPORT HRESULT put_BoundsMode(
+EXPORT HRESULT Controllers_put_BoundsMode(
 	Controllers* controllers,
 	/* [in] */ COREWEBVIEW2_BOUNDS_MODE boundsMode
 ) {
@@ -325,7 +325,7 @@ EXPORT HRESULT put_BoundsMode(
 	return controllers->controller3->put_BoundsMode(boundsMode);
 }
 
-EXPORT HRESULT get_RasterizationScale(
+EXPORT HRESULT Controllers_get_RasterizationScale(
 	Controllers* controllers,
 	/* [retval][out] */ double* scale
 ) {
@@ -334,7 +334,7 @@ EXPORT HRESULT get_RasterizationScale(
 	return controllers->controller3->get_RasterizationScale(scale);
 }
 
-EXPORT HRESULT put_RasterizationScale(
+EXPORT HRESULT Controllers_put_RasterizationScale(
 	Controllers* controllers,
 	/* [in] */ double scale
 ) {
@@ -343,7 +343,7 @@ EXPORT HRESULT put_RasterizationScale(
 	return controllers->controller3->put_RasterizationScale(scale);
 }
 
-EXPORT HRESULT get_ShouldDetectMonitorScaleChanges(
+EXPORT HRESULT Controllers_get_ShouldDetectMonitorScaleChanges(
 	Controllers* controllers,
 	/* [retval][out] */ BOOL* value
 ) {
@@ -352,7 +352,7 @@ EXPORT HRESULT get_ShouldDetectMonitorScaleChanges(
 	return controllers->controller3->get_ShouldDetectMonitorScaleChanges(value);
 }
 
-EXPORT HRESULT put_ShouldDetectMonitorScaleChanges(
+EXPORT HRESULT Controllers_put_ShouldDetectMonitorScaleChanges(
 	Controllers* controllers,
 	/* [in] */ BOOL value
 ) {
@@ -365,7 +365,7 @@ EXPORT HRESULT put_ShouldDetectMonitorScaleChanges(
 * ICoreWebView2Controller4
 */
 
-EXPORT HRESULT get_AllowExternalDrop(
+EXPORT HRESULT Controllers_get_AllowExternalDrop(
 	Controllers* controllers,
 	/* [retval][out] */ BOOL* value
 ) {
@@ -374,7 +374,7 @@ EXPORT HRESULT get_AllowExternalDrop(
 	return controllers->controller4->get_AllowExternalDrop(value);
 }
 
-EXPORT HRESULT put_AllowExternalDrop(
+EXPORT HRESULT Controllers_put_AllowExternalDrop(
 	Controllers* controllers,
 	/* [in] */ BOOL value
 ) {

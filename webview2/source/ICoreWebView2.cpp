@@ -8,7 +8,7 @@
 
 /* Development */
 
-EXPORT HRESULT CallDevToolsProtocolMethod(
+EXPORT HRESULT WebView2_CallDevToolsProtocolMethod(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR methodName,
 	/* [in] */ LPCWSTR parametersAsJson,
@@ -28,7 +28,7 @@ EXPORT HRESULT CallDevToolsProtocolMethod(
 	);
 }
 
-EXPORT HRESULT GetDevToolsProtocolEventReceiver(
+EXPORT HRESULT WebView2_GetDevToolsProtocolEventReceiver(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR eventName,
 	/* [retval][out] */ ICoreWebView2DevToolsProtocolEventReceiver** receiver
@@ -38,7 +38,7 @@ EXPORT HRESULT GetDevToolsProtocolEventReceiver(
 	return webview2->webview1->GetDevToolsProtocolEventReceiver(eventName, receiver);
 }
 
-EXPORT HRESULT OpenDevToolsWindow(WebView2* webview2) {
+EXPORT HRESULT WebView2_OpenDevToolsWindow(WebView2* webview2) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
 	return webview2->webview1->OpenDevToolsWindow();
@@ -46,7 +46,7 @@ EXPORT HRESULT OpenDevToolsWindow(WebView2* webview2) {
 
 /* Document */
 
-EXPORT HRESULT add_DocumentTitleChanged(
+EXPORT HRESULT WebView2_add_DocumentTitleChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(/* [in] */ ICoreWebView2*, /* [in] */ IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -64,7 +64,7 @@ EXPORT HRESULT add_DocumentTitleChanged(
 	);
 }
 
-EXPORT HRESULT remove_DocumentTitleChanged(
+EXPORT HRESULT WebView2_remove_DocumentTitleChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -73,7 +73,7 @@ EXPORT HRESULT remove_DocumentTitleChanged(
 	return webview2->webview1->remove_DocumentTitleChanged(token);
 }
 
-EXPORT HRESULT get_DocumentTitle(
+EXPORT HRESULT WebView2_get_DocumentTitle(
 	WebView2* webview2,
 	/* [retval][out] */ LPWSTR* title
 ) {
@@ -84,7 +84,7 @@ EXPORT HRESULT get_DocumentTitle(
 
 /* History */
 
-EXPORT HRESULT add_HistoryChanged(
+EXPORT HRESULT WebView2_add_HistoryChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -102,7 +102,7 @@ EXPORT HRESULT add_HistoryChanged(
 	);
 }
 
-EXPORT HRESULT remove_HistoryChanged(
+EXPORT HRESULT WebView2_remove_HistoryChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -113,7 +113,7 @@ EXPORT HRESULT remove_HistoryChanged(
 
 /* Message */
 
-EXPORT HRESULT PostWebMessageAsJson(
+EXPORT HRESULT WebView2_PostWebMessageAsJson(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR webMessageAsJson
 	// TODO: sender. if null, default.
@@ -123,7 +123,7 @@ EXPORT HRESULT PostWebMessageAsJson(
 	return webview2->webview1->PostWebMessageAsJson(webMessageAsJson);
 }
 
-EXPORT HRESULT PostWebMessageAsString(
+EXPORT HRESULT WebView2_PostWebMessageAsString(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR webMessageAsString
 	// TODO: sender. if null, default.
@@ -133,7 +133,7 @@ EXPORT HRESULT PostWebMessageAsString(
 	return webview2->webview1->PostWebMessageAsString(webMessageAsString);
 }
 
-EXPORT HRESULT add_WebMessageReceived(
+EXPORT HRESULT WebView2_add_WebMessageReceived(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2WebMessageReceivedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -151,7 +151,7 @@ EXPORT HRESULT add_WebMessageReceived(
 	);
 }
 
-EXPORT HRESULT remove_WebMessageReceived(
+EXPORT HRESULT WebView2_remove_WebMessageReceived(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -162,7 +162,7 @@ EXPORT HRESULT remove_WebMessageReceived(
 
 /* Navigation */
 
-EXPORT HRESULT Navigate(
+EXPORT HRESULT WebView2_Navigate(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR uri
 ) {
@@ -171,7 +171,7 @@ EXPORT HRESULT Navigate(
 	return webview2->webview1->Navigate(uri);
 }
 
-EXPORT HRESULT add_NavigationCompleted(
+EXPORT HRESULT WebView2_add_NavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationCompletedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -189,7 +189,7 @@ EXPORT HRESULT add_NavigationCompleted(
 	);
 }
 
-EXPORT HRESULT remove_NavigationCompleted(
+EXPORT HRESULT WebView2_remove_NavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -198,7 +198,7 @@ EXPORT HRESULT remove_NavigationCompleted(
 	return webview2->webview1->remove_NavigationCompleted(token);
 }
 
-EXPORT HRESULT add_NavigationStarting(
+EXPORT HRESULT WebView2_add_NavigationStarting(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationStartingEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -216,7 +216,7 @@ EXPORT HRESULT add_NavigationStarting(
 	);
 }
 
-EXPORT HRESULT remove_NavigationStarting(
+EXPORT HRESULT WebView2_remove_NavigationStarting(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -225,7 +225,7 @@ EXPORT HRESULT remove_NavigationStarting(
 	return webview2->webview1->remove_NavigationStarting(token);
 }
 
-EXPORT HRESULT NavigateToString(
+EXPORT HRESULT WebView2_NavigateToString(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR htmlContent
 ) {
@@ -234,7 +234,7 @@ EXPORT HRESULT NavigateToString(
 	return webview2->webview1->NavigateToString(htmlContent);
 }
 
-EXPORT HRESULT add_FrameNavigationCompleted(
+EXPORT HRESULT WebView2_add_FrameNavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationCompletedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -252,7 +252,7 @@ EXPORT HRESULT add_FrameNavigationCompleted(
 	);
 }
 
-EXPORT HRESULT remove_FrameNavigationCompleted(
+EXPORT HRESULT WebView2_remove_FrameNavigationCompleted(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -261,7 +261,7 @@ EXPORT HRESULT remove_FrameNavigationCompleted(
 	return webview2->webview1->remove_FrameNavigationCompleted(token);
 }
 
-EXPORT HRESULT add_FrameNavigationStarting(
+EXPORT HRESULT WebView2_add_FrameNavigationStarting(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NavigationStartingEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -279,7 +279,7 @@ EXPORT HRESULT add_FrameNavigationStarting(
 	);
 }
 
-EXPORT HRESULT remove_FrameNavigationStarting(
+EXPORT HRESULT WebView2_remove_FrameNavigationStarting(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -290,7 +290,7 @@ EXPORT HRESULT remove_FrameNavigationStarting(
 
 /* Permission */
 
-EXPORT HRESULT add_PermissionRequested(
+EXPORT HRESULT WebView2_add_PermissionRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2PermissionRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -308,7 +308,7 @@ EXPORT HRESULT add_PermissionRequested(
 	);
 }
 
-EXPORT HRESULT remove_PermissionRequested(
+EXPORT HRESULT WebView2_remove_PermissionRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -319,7 +319,7 @@ EXPORT HRESULT remove_PermissionRequested(
 
 /* Script */
 
-EXPORT HRESULT add_ScriptDialogOpening(
+EXPORT HRESULT WebView2_add_ScriptDialogOpening(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2ScriptDialogOpeningEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -337,7 +337,7 @@ EXPORT HRESULT add_ScriptDialogOpening(
 	);
 }
 
-EXPORT HRESULT remove_ScriptDialogOpening(
+EXPORT HRESULT WebView2_remove_ScriptDialogOpening(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -346,7 +346,7 @@ EXPORT HRESULT remove_ScriptDialogOpening(
 	return webview2->webview1->remove_ScriptDialogOpening(token);
 }
 
-EXPORT HRESULT AddScriptToExecuteOnDocumentCreated(
+EXPORT HRESULT WebView2_AddScriptToExecuteOnDocumentCreated(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR javaScript,
 	/* [in] */ HRESULT(*callback)(HRESULT, LPCWSTR)
@@ -364,7 +364,7 @@ EXPORT HRESULT AddScriptToExecuteOnDocumentCreated(
 	);
 }
 
-EXPORT HRESULT RemoveScriptToExecuteOnDocumentCreated(
+EXPORT HRESULT WebView2_RemoveScriptToExecuteOnDocumentCreated(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR id
 ) {
@@ -373,7 +373,7 @@ EXPORT HRESULT RemoveScriptToExecuteOnDocumentCreated(
 	return webview2->webview1->RemoveScriptToExecuteOnDocumentCreated(id);
 }
 
-EXPORT HRESULT ExecuteScript(
+EXPORT HRESULT WebView2_ExecuteScript(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR javaScript,
 	/* [in] */ HRESULT(*callback)(HRESULT, LPCWSTR)
@@ -391,7 +391,7 @@ EXPORT HRESULT ExecuteScript(
 	);
 }
 
-EXPORT HRESULT AddHostObjectToScript(
+EXPORT HRESULT WebView2_AddHostObjectToScript(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR name,
 	/* [in] */ VARIANT* object
@@ -401,7 +401,7 @@ EXPORT HRESULT AddHostObjectToScript(
 	return webview2->webview1->AddHostObjectToScript(name, object);
 }
 
-EXPORT HRESULT RemoveHostObjectFromScript(
+EXPORT HRESULT WebView2_RemoveHostObjectFromScript(
 	WebView2* webview2,
 	/* [in] */ LPCWSTR name
 ) {
@@ -412,7 +412,7 @@ EXPORT HRESULT RemoveHostObjectFromScript(
 
 /* Source */
 
-EXPORT HRESULT get_Source(
+EXPORT HRESULT WebView2_get_Source(
 	WebView2* webview2,
 	/* [retval][out] */ LPWSTR* uri
 ) {
@@ -421,7 +421,7 @@ EXPORT HRESULT get_Source(
 	return webview2->webview1->get_Source(uri);
 }
 
-EXPORT HRESULT add_SourceChanged(
+EXPORT HRESULT WebView2_add_SourceChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2SourceChangedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -439,7 +439,7 @@ EXPORT HRESULT add_SourceChanged(
 	);
 }
 
-EXPORT HRESULT remove_SourceChanged(
+EXPORT HRESULT WebView2_remove_SourceChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -450,13 +450,13 @@ EXPORT HRESULT remove_SourceChanged(
 
 /* Operation */
 
-EXPORT HRESULT Reload(WebView2* webview2) {
+EXPORT HRESULT WebView2_Reload(WebView2* webview2) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
 	return webview2->webview1->Reload();
 }
 
-EXPORT HRESULT get_CanGoBack(
+EXPORT HRESULT WebView2_get_CanGoBack(
 	WebView2* webview2,
 	/* [retval][out] */ BOOL* canGoBack
 ) {
@@ -465,7 +465,7 @@ EXPORT HRESULT get_CanGoBack(
 	return webview2->webview1->get_CanGoBack(canGoBack);
 }
 
-EXPORT HRESULT get_CanGoForward(
+EXPORT HRESULT WebView2_get_CanGoForward(
 	WebView2* webview2,
 	/* [retval][out] */ BOOL* canGoForward
 ) {
@@ -474,19 +474,19 @@ EXPORT HRESULT get_CanGoForward(
 	return webview2->webview1->get_CanGoForward(canGoForward);
 }
 
-EXPORT HRESULT GoBack(WebView2* webview2) {
+EXPORT HRESULT WebView2_GoBack(WebView2* webview2) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
 	return webview2->webview1->GoBack();
 }
 
-EXPORT HRESULT GoForward(WebView2* webview2) {
+EXPORT HRESULT WebView2_GoForward(WebView2* webview2) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
 	return webview2->webview1->GoForward();
 }
 
-EXPORT HRESULT Stop(WebView2* webview2) {
+EXPORT HRESULT WebView2_Stop(WebView2* webview2) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
 	return webview2->webview1->Stop();
@@ -494,7 +494,7 @@ EXPORT HRESULT Stop(WebView2* webview2) {
 
 /* Other */
 
-EXPORT HRESULT add_ContentLoading(
+EXPORT HRESULT WebView2_add_ContentLoading(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2ContentLoadingEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -512,7 +512,7 @@ EXPORT HRESULT add_ContentLoading(
 	);
 }
 
-EXPORT HRESULT remove_ContentLoading(
+EXPORT HRESULT WebView2_remove_ContentLoading(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -521,7 +521,7 @@ EXPORT HRESULT remove_ContentLoading(
 	return webview2->webview1->remove_ContentLoading(token);
 }
 
-EXPORT HRESULT add_ProcessFailed(
+EXPORT HRESULT WebView2_add_ProcessFailed(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2ProcessFailedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -539,7 +539,7 @@ EXPORT HRESULT add_ProcessFailed(
 	);
 }
 
-EXPORT HRESULT remove_ProcessFailed(
+EXPORT HRESULT WebView2_remove_ProcessFailed(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -548,16 +548,16 @@ EXPORT HRESULT remove_ProcessFailed(
 	return webview2->webview1->remove_ProcessFailed(token);
 }
 
-EXPORT HRESULT get_Settings(WebView2* webview2, Settings* settings) {
+EXPORT HRESULT WebView2_get_Settings(WebView2* webview2, Settings* settings) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
 	HRESULT result = webview2->webview1->get_Settings(&(settings->settings1));
-	InitSettings(settings);
+	Settings_Init(settings);
 
 	return result;
 }
 
-EXPORT HRESULT CapturePreview(
+EXPORT HRESULT WebView2_CapturePreview(
 	WebView2* webview2,
 	/* [in] */ COREWEBVIEW2_CAPTURE_PREVIEW_IMAGE_FORMAT imageFormat,
 	/* [in] */ IStream* imageStream,
@@ -579,7 +579,7 @@ EXPORT HRESULT CapturePreview(
 	);
 }
 
-EXPORT HRESULT get_BrowserProcessId(
+EXPORT HRESULT WebView2_get_BrowserProcessId(
 	WebView2* webview2,
 	/* [retval][out] */ UINT32* value
 ) {
@@ -588,7 +588,7 @@ EXPORT HRESULT get_BrowserProcessId(
 	return webview2->webview1->get_BrowserProcessId(value);
 }
 
-EXPORT HRESULT add_NewWindowRequested(
+EXPORT HRESULT WebView2_add_NewWindowRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2NewWindowRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -606,7 +606,7 @@ EXPORT HRESULT add_NewWindowRequested(
 	);
 }
 
-EXPORT HRESULT remove_NewWindowRequested(
+EXPORT HRESULT WebView2_remove_NewWindowRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -615,7 +615,7 @@ EXPORT HRESULT remove_NewWindowRequested(
 	return webview2->webview1->remove_NewWindowRequested(token);
 }
 
-EXPORT HRESULT add_ContainsFullScreenElementChanged(
+EXPORT HRESULT WebView2_add_ContainsFullScreenElementChanged(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -633,7 +633,7 @@ EXPORT HRESULT add_ContainsFullScreenElementChanged(
 	);
 }
 
-EXPORT HRESULT remove_ContainsFullScreenElementChanged(
+EXPORT HRESULT WebView2_remove_ContainsFullScreenElementChanged(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -642,7 +642,7 @@ EXPORT HRESULT remove_ContainsFullScreenElementChanged(
 	return webview2->webview1->remove_ContainsFullScreenElementChanged(token);
 }
 
-EXPORT HRESULT get_ContainsFullScreenElement(
+EXPORT HRESULT WebView2_get_ContainsFullScreenElement(
 	WebView2* webview2,
 	/* [retval][out] */ BOOL* containsFullScreenElement
 ) {
@@ -651,7 +651,7 @@ EXPORT HRESULT get_ContainsFullScreenElement(
 	return webview2->webview1->get_ContainsFullScreenElement(containsFullScreenElement);
 }
 
-EXPORT HRESULT add_WebResourceRequested(
+EXPORT HRESULT WebView2_add_WebResourceRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, ICoreWebView2WebResourceRequestedEventArgs*),
 	/* [out] */ EventRegistrationToken* token
@@ -669,7 +669,7 @@ EXPORT HRESULT add_WebResourceRequested(
 	);
 }
 
-EXPORT HRESULT remove_WebResourceRequested(
+EXPORT HRESULT WebView2_remove_WebResourceRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {
@@ -678,7 +678,7 @@ EXPORT HRESULT remove_WebResourceRequested(
 	return webview2->webview1->remove_WebResourceRequested(token);
 }
 
-EXPORT HRESULT AddWebResourceRequestedFilter(
+EXPORT HRESULT WebView2_AddWebResourceRequestedFilter(
 	WebView2* webview2,
 	/* [in] */ const LPCWSTR uri,
 	/* [in] */ const COREWEBVIEW2_WEB_RESOURCE_CONTEXT resourceContext
@@ -690,7 +690,7 @@ EXPORT HRESULT AddWebResourceRequestedFilter(
 	return webview2->webview1->AddWebResourceRequestedFilter(uri, resourceContext);
 }
 
-EXPORT HRESULT RemoveWebResourceRequestedFilter(
+EXPORT HRESULT WebView2_RemoveWebResourceRequestedFilter(
 	WebView2* webview2,
 	/* [in] */ const LPCWSTR uri,
 	/* [in] */ const COREWEBVIEW2_WEB_RESOURCE_CONTEXT resourceContext
@@ -700,7 +700,7 @@ EXPORT HRESULT RemoveWebResourceRequestedFilter(
 	return webview2->webview1->RemoveWebResourceRequestedFilter(uri, resourceContext);
 }
 
-EXPORT HRESULT add_WindowCloseRequested(
+EXPORT HRESULT WebView2_add_WindowCloseRequested(
 	WebView2* webview2,
 	/* [in] */ HRESULT(*callback)(ICoreWebView2*, IUnknown*),
 	/* [out] */ EventRegistrationToken* token
@@ -718,7 +718,7 @@ EXPORT HRESULT add_WindowCloseRequested(
 	);
 }
 
-EXPORT HRESULT remove_WindowCloseRequested(
+EXPORT HRESULT WebView2_remove_WindowCloseRequested(
 	WebView2* webview2,
 	/* [in] */ EventRegistrationToken token
 ) {

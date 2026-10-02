@@ -244,7 +244,7 @@ export class JStream extends IStream implements JStreamFunctions {
       )
       : null;
     stream.setPointer(
-      stream.libs.symbols.CreateJStream(
+      stream.libs.symbols.JStream_Create(
         queryInterface ? queryInterface.pointer : null,
         addRef ? addRef.pointer : null,
         release ? release.pointer : null,

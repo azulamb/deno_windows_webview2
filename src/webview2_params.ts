@@ -4,47 +4,47 @@ import type { WEBVIEW2_FUNCS } from './webview2_types.ts';
 
 /** The parameters for the WebView2 functions. */
 export const params: WEBVIEW2_FUNCS = {
-  GetDllVersion: {
+  Global_GetDllVersion: {
     parameters: [],
     result: 'pointer',
   },
-  CreateWebView2: {
+  WebView2_Create: {
     parameters: [],
     result: 'pointer',
   },
-  InitWebView2: {
+  WebView2_Init: {
     parameters: ['pointer'],
     result: 'pointer',
   },
-  CreateEnvironments: {
+  Environments_Create: {
     parameters: [],
     result: 'pointer',
   },
-  CreateSettings: {
+  Settings_Create: {
     parameters: [],
     result: 'pointer',
   },
-  InitSettings: {
+  Settings_Init: {
     parameters: ['pointer'],
     result: 'pointer',
   },
-  CreateControllers: {
+  Controllers_Create: {
     parameters: [],
     result: 'pointer',
   },
-  InitControllers: {
+  Controllers_Init: {
     parameters: ['pointer'],
     result: 'pointer',
   },
-  CreateEventRegistrationToken: {
+  EventRegistrationToken_Create: {
     parameters: [],
     result: 'pointer',
   },
-  RemoveEventRegistrationToken: {
+  EventRegistrationToken_Remove: {
     parameters: ['pointer'],
     result: 'void',
   },
-  CreateJStream: {
+  JStream_Create: {
     parameters: [
       'function',
       'function',
@@ -63,315 +63,315 @@ export const params: WEBVIEW2_FUNCS = {
     ],
     result: 'pointer',
   },
-  CreateCoreWebView2Environment: {
+  Global_CreateCoreWebView2Environment: {
     parameters: ['pointer', 'function'],
     result: 'i32',
   },
-  CreateCoreWebView2EnvironmentWithOptions: {
+  Global_CreateCoreWebView2EnvironmentWithOptions: {
     parameters: ['pointer', 'pointer', 'pointer', 'pointer', 'function'],
     result: 'i32',
   },
-  CompareBrowserVersions: {
+  Global_CompareBrowserVersions: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  GetAvailableCoreWebView2BrowserVersionString: {
+  Global_GetAvailableCoreWebView2BrowserVersionString: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  GetAvailableCoreWebView2BrowserVersionStringWithOptions: {
+  Global_GetAvailableCoreWebView2BrowserVersionStringWithOptions: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  CreateCoreWebView2Controller: {
+  Environments_CreateCoreWebView2Controller: {
     parameters: ['pointer', 'pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  CreateWebResourceResponse: {
+  Environments_CreateWebResourceResponse: {
     parameters: ['pointer', 'pointer', 'i32', 'pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  get_IsScriptEnabled: {
+  Settings_get_IsScriptEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsScriptEnabled: {
+  Settings_put_IsScriptEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsWebMessageEnabled: {
+  Settings_get_IsWebMessageEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsWebMessageEnabled: {
+  Settings_put_IsWebMessageEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_AreDefaultScriptDialogsEnabled: {
+  Settings_get_AreDefaultScriptDialogsEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_AreDefaultScriptDialogsEnabled: {
+  Settings_put_AreDefaultScriptDialogsEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsStatusBarEnabled: {
+  Settings_get_IsStatusBarEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsStatusBarEnabled: {
+  Settings_put_IsStatusBarEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_AreDevToolsEnabled: {
+  Settings_get_AreDevToolsEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_AreDevToolsEnabled: {
+  Settings_put_AreDevToolsEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_AreDefaultContextMenusEnabled: {
+  Settings_get_AreDefaultContextMenusEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_AreDefaultContextMenusEnabled: {
+  Settings_put_AreDefaultContextMenusEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_AreHostObjectsAllowed: {
+  Settings_get_AreHostObjectsAllowed: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_AreHostObjectsAllowed: {
+  Settings_put_AreHostObjectsAllowed: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsZoomControlEnabled: {
+  Settings_get_IsZoomControlEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsZoomControlEnabled: {
+  Settings_put_IsZoomControlEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsBuiltInErrorPageEnabled: {
+  Settings_get_IsBuiltInErrorPageEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsBuiltInErrorPageEnabled: {
+  Settings_put_IsBuiltInErrorPageEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_UserAgent: {
+  Settings_get_UserAgent: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  put_UserAgent: {
+  Settings_put_UserAgent: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_AreBrowserAcceleratorKeysEnabled: {
+  Settings_get_AreBrowserAcceleratorKeysEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_AreBrowserAcceleratorKeysEnabled: {
+  Settings_put_AreBrowserAcceleratorKeysEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsPasswordAutosaveEnabled: {
+  Settings_get_IsPasswordAutosaveEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsPasswordAutosaveEnabled: {
+  Settings_put_IsPasswordAutosaveEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsGeneralAutofillEnabled: {
+  Settings_get_IsGeneralAutofillEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsGeneralAutofillEnabled: {
+  Settings_put_IsGeneralAutofillEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsPinchZoomEnabled: {
+  Settings_get_IsPinchZoomEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsPinchZoomEnabled: {
+  Settings_put_IsPinchZoomEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsSwipeNavigationEnabled: {
+  Settings_get_IsSwipeNavigationEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsSwipeNavigationEnabled: {
+  Settings_put_IsSwipeNavigationEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_HiddenPdfToolbarItems: {
+  Settings_get_HiddenPdfToolbarItems: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_HiddenPdfToolbarItems: {
+  Settings_put_HiddenPdfToolbarItems: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_IsReputationCheckingRequired: {
+  Settings_get_IsReputationCheckingRequired: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsReputationCheckingRequired: {
+  Settings_put_IsReputationCheckingRequired: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_IsNonClientRegionSupportEnabled: {
+  Settings_get_IsNonClientRegionSupportEnabled: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsNonClientRegionSupportEnabled: {
+  Settings_put_IsNonClientRegionSupportEnabled: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  add_AcceleratorKeyPressed: {
+  Controllers_add_AcceleratorKeyPressed: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_AcceleratorKeyPressed: {
+  Controllers_remove_AcceleratorKeyPressed: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_Bounds: {
+  Controllers_get_Bounds: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_Bounds: {
+  Controllers_put_Bounds: {
     parameters: ['pointer', 'buffer'],
     result: 'i32',
   },
-  Close: {
+  Controllers_Close: {
     parameters: ['pointer'],
     result: 'i32',
   },
-  get_CoreWebView2: {
+  Controllers_get_CoreWebView2: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_GotFocus: {
+  Controllers_add_GotFocus: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_GotFocus: {
+  Controllers_remove_GotFocus: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_IsVisible: {
+  Controllers_get_IsVisible: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_IsVisible: {
+  Controllers_put_IsVisible: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  add_LostFocus: {
+  Controllers_add_LostFocus: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_LostFocus: {
+  Controllers_remove_LostFocus: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  MoveFocus: {
+  Controllers_MoveFocus: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  add_MoveFocusRequested: {
+  Controllers_add_MoveFocusRequested: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_MoveFocusRequested: {
+  Controllers_remove_MoveFocusRequested: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  NotifyParentWindowPositionChanged: {
+  Controllers_NotifyParentWindowPositionChanged: {
     parameters: ['pointer'],
     result: 'i32',
   },
-  get_ParentWindow: {
+  Controllers_get_ParentWindow: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_ParentWindow: {
+  Controllers_put_ParentWindow: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  SetBoundsAndZoomFactor: {
+  Controllers_SetBoundsAndZoomFactor: {
     parameters: ['pointer', 'buffer', 'f64'],
     result: 'i32',
   },
-  get_ZoomFactor: {
+  Controllers_get_ZoomFactor: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_ZoomFactor: {
+  Controllers_put_ZoomFactor: {
     parameters: ['pointer', 'f64'],
     result: 'i32',
   },
-  add_ZoomFactorChanged: {
+  Controllers_add_ZoomFactorChanged: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_ZoomFactorChanged: {
+  Controllers_remove_ZoomFactorChanged: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_DefaultBackgroundColor: {
+  Controllers_get_DefaultBackgroundColor: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_DefaultBackgroundColor: {
+  Controllers_put_DefaultBackgroundColor: {
     parameters: ['pointer', 'buffer'],
     result: 'i32',
   },
-  add_RasterizationScaleChanged: {
+  Controllers_add_RasterizationScaleChanged: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_RasterizationScaleChanged: {
+  Controllers_remove_RasterizationScaleChanged: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_BoundsMode: {
+  Controllers_get_BoundsMode: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_BoundsMode: {
+  Controllers_put_BoundsMode: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_RasterizationScale: {
+  Controllers_get_RasterizationScale: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_RasterizationScale: {
+  Controllers_put_RasterizationScale: {
     parameters: ['pointer', 'f64'],
     result: 'i32',
   },
-  get_ShouldDetectMonitorScaleChanges: {
+  Controllers_get_ShouldDetectMonitorScaleChanges: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_ShouldDetectMonitorScaleChanges: {
+  Controllers_put_ShouldDetectMonitorScaleChanges: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
-  get_AllowExternalDrop: {
+  Controllers_get_AllowExternalDrop: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  put_AllowExternalDrop: {
+  Controllers_put_AllowExternalDrop: {
     parameters: ['pointer', 'i32'],
     result: 'i32',
   },
@@ -379,283 +379,283 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer'],
     result: 'i32',
   },
-  CallDevToolsProtocolMethod: {
+  WebView2_CallDevToolsProtocolMethod: {
     parameters: ['pointer', 'pointer', 'pointer', 'function'],
     result: 'i32',
   },
-  GetDevToolsProtocolEventReceiver: {
+  WebView2_GetDevToolsProtocolEventReceiver: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  OpenDevToolsWindow: {
+  WebView2_OpenDevToolsWindow: {
     parameters: ['pointer'],
     result: 'i32',
   },
-  add_DocumentTitleChanged: {
+  WebView2_add_DocumentTitleChanged: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_DocumentTitleChanged: {
+  WebView2_remove_DocumentTitleChanged: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_DocumentTitle: {
+  WebView2_get_DocumentTitle: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_HistoryChanged: {
+  WebView2_add_HistoryChanged: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_HistoryChanged: {
+  WebView2_remove_HistoryChanged: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  PostWebMessageAsJson: {
+  WebView2_PostWebMessageAsJson: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  PostWebMessageAsString: {
+  WebView2_PostWebMessageAsString: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_WebMessageReceived: {
+  WebView2_add_WebMessageReceived: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_WebMessageReceived: {
+  WebView2_remove_WebMessageReceived: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  Navigate: {
+  WebView2_Navigate: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_NavigationCompleted: {
+  WebView2_add_NavigationCompleted: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_NavigationCompleted: {
+  WebView2_remove_NavigationCompleted: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_NavigationStarting: {
+  WebView2_add_NavigationStarting: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_NavigationStarting: {
+  WebView2_remove_NavigationStarting: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  NavigateToString: {
+  WebView2_NavigateToString: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_FrameNavigationCompleted: {
+  WebView2_add_FrameNavigationCompleted: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_FrameNavigationCompleted: {
+  WebView2_remove_FrameNavigationCompleted: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_FrameNavigationStarting: {
+  WebView2_add_FrameNavigationStarting: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_FrameNavigationStarting: {
+  WebView2_remove_FrameNavigationStarting: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_PermissionRequested: {
+  WebView2_add_PermissionRequested: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_PermissionRequested: {
+  WebView2_remove_PermissionRequested: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_ScriptDialogOpening: {
+  WebView2_add_ScriptDialogOpening: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_ScriptDialogOpening: {
+  WebView2_remove_ScriptDialogOpening: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  AddScriptToExecuteOnDocumentCreated: {
+  WebView2_AddScriptToExecuteOnDocumentCreated: {
     parameters: ['pointer', 'pointer', 'function'],
     result: 'i32',
   },
-  RemoveScriptToExecuteOnDocumentCreated: {
+  WebView2_RemoveScriptToExecuteOnDocumentCreated: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  ExecuteScript: {
+  WebView2_ExecuteScript: {
     parameters: ['pointer', 'pointer', 'function'],
     result: 'i32',
   },
-  AddHostObjectToScript: {
+  WebView2_AddHostObjectToScript: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
-  RemoveHostObjectFromScript: {
+  WebView2_RemoveHostObjectFromScript: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_Source: {
+  WebView2_get_Source: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_SourceChanged: {
+  WebView2_add_SourceChanged: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_SourceChanged: {
+  WebView2_remove_SourceChanged: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  Reload: {
+  WebView2_Reload: {
     parameters: ['pointer'],
     result: 'i32',
   },
-  get_CanGoBack: {
+  WebView2_get_CanGoBack: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_CanGoForward: {
+  WebView2_get_CanGoForward: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  GoBack: {
+  WebView2_GoBack: {
     parameters: ['pointer'],
     result: 'i32',
   },
-  GoForward: {
+  WebView2_GoForward: {
     parameters: ['pointer'],
     result: 'i32',
   },
-  Stop: {
+  WebView2_Stop: {
     parameters: ['pointer'],
     result: 'i32',
   },
-  add_ContentLoading: {
+  WebView2_add_ContentLoading: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_ContentLoading: {
+  WebView2_remove_ContentLoading: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_ProcessFailed: {
+  WebView2_add_ProcessFailed: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_ProcessFailed: {
+  WebView2_remove_ProcessFailed: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_Settings: {
+  WebView2_get_Settings: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  CapturePreview: {
+  WebView2_CapturePreview: {
     parameters: ['pointer', 'i32', 'pointer', 'function'],
     result: 'i32',
   },
-  get_BrowserProcessId: {
+  WebView2_get_BrowserProcessId: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_NewWindowRequested: {
+  WebView2_add_NewWindowRequested: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_NewWindowRequested: {
+  WebView2_remove_NewWindowRequested: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_ContainsFullScreenElementChanged: {
+  WebView2_add_ContainsFullScreenElementChanged: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_ContainsFullScreenElementChanged: {
+  WebView2_remove_ContainsFullScreenElementChanged: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_ContainsFullScreenElement: {
+  WebView2_get_ContainsFullScreenElement: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_WebResourceRequested: {
+  WebView2_add_WebResourceRequested: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_WebResourceRequested: {
+  WebView2_remove_WebResourceRequested: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  AddWebResourceRequestedFilter: {
+  WebView2_AddWebResourceRequestedFilter: {
     parameters: ['pointer', 'pointer', 'i32'],
     result: 'i32',
   },
-  RemoveWebResourceRequestedFilter: {
+  WebView2_RemoveWebResourceRequestedFilter: {
     parameters: ['pointer', 'pointer', 'i32'],
     result: 'i32',
   },
-  add_WindowCloseRequested: {
+  WebView2_add_WindowCloseRequested: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  remove_WindowCloseRequested: {
+  WebView2_remove_WindowCloseRequested: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  add_DOMContentLoaded: {
+  WebView2_add_DOMContentLoaded: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  add_WebResourceResponseReceived: {
+  WebView2_add_WebResourceResponseReceived: {
     parameters: ['pointer', 'function', 'pointer'],
     result: 'i32',
   },
-  get_CookieManager: {
+  WebView2_get_CookieManager: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_Environment: {
+  WebView2_get_Environment: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  NavigateWithWebResourceRequest: {
+  WebView2_NavigateWithWebResourceRequest: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  remove_DOMContentLoaded: {
+  WebView2_remove_DOMContentLoaded: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  remove_WebResourceResponseReceived: {
+  WebView2_remove_WebResourceResponseReceived: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  SetVirtualHostNameToFolderMapping: {
+  WebView2_SetVirtualHostNameToFolderMapping: {
     parameters: ['pointer', 'pointer', 'pointer', 'i32'],
     result: 'i32',
   },
-  ClearVirtualHostNameToFolderMapping: {
+  WebView2_ClearVirtualHostNameToFolderMapping: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  get_IsSuspended: {
+  WebView2_get_IsSuspended: {
     parameters: ['pointer', 'pointer'],
     result: 'i32',
   },
-  TrySuspend: {
+  WebView2_TrySuspend: {
     parameters: ['pointer', 'function'],
     result: 'i32',
   },
-  Resume: {
+  WebView2_Resume: {
     parameters: ['pointer'],
     result: 'i32',
   },

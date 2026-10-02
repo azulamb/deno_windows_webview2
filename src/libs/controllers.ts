@@ -18,7 +18,7 @@ export class Controllers {
     protected context: Webview2Context,
     controllers?: Deno.PointerValue<unknown>,
   ) {
-    this.controllers = controllers ?? context.lib.symbols.CreateControllers();
+    this.controllers = controllers ?? context.lib.symbols.Controllers_Create();
   }
 
   /*readonly add_AcceleratorKeyPressed: {
@@ -39,11 +39,11 @@ export class Controllers {
    * @param bounds The new bounds for the control.
    */
   public set bounds(bounds: Rect) {
-    this.libs.symbols.put_Bounds(this.controllers, bounds.data);
+    this.libs.symbols.Controllers_put_Bounds(this.controllers, bounds.data);
   }
 
   public close(): HRESULT {
-    return this.libs.symbols.Close(this.controllers);
+    return this.libs.symbols.Controllers_Close(this.controllers);
   }
 
   /*
@@ -77,7 +77,7 @@ export class Controllers {
    * @param reason The reason for moving focus.
    */
   public set moveFocus(reason: MOVE_FOCUS_REASON_TYPES) {
-    this.libs.symbols.MoveFocus(this.controllers, reason);
+    this.libs.symbols.Controllers_MoveFocus(this.controllers, reason);
   }
 
   /*readonly add_MoveFocusRequested: {

@@ -2,34 +2,34 @@
 #include "WebView2.hpp"
 #include "../exports.h"
 
-EXPORT const char* GetDllVersion() {
+EXPORT const char* Global_GetDllVersion() {
 	return "\\StringFileInfo\\040904b0\\FileVersion";
 }
 
-EXPORT WebView2* CreateWebView2() {
+EXPORT WebView2* WebView2_Create() {
 	Log(__FUNCTIONW__ L"\n");
 	return new WebView2();
 }
 
-EXPORT WebView2* InitWebView2(WebView2* webview2) {
+EXPORT WebView2* WebView2_Init(WebView2* webview2) {
 	webview2->webview2 = webview2->webview1.try_query<ICoreWebView2_2>();
 	webview2->webview3 = webview2->webview1.try_query<ICoreWebView2_3>();
 
 	return webview2;
 }
 
-EXPORT Environments* CreateEnvironments() {
+EXPORT Environments* Environments_Create() {
 	Log(__FUNCTIONW__ L"\n");
 	return new Environments();
 }
 
-EXPORT Settings* CreateSettings()
+EXPORT Settings* Settings_Create()
 {
 	Log(__FUNCTIONW__ L"\n");
 	return new Settings();
 }
 
-EXPORT Settings* InitSettings(Settings* settings) {
+EXPORT Settings* Settings_Init(Settings* settings) {
 	Log(__FUNCTIONW__ L"\n");
 	settings->settings2 = settings->settings1.try_query<ICoreWebView2Settings2>();
 	settings->settings3 = settings->settings1.try_query<ICoreWebView2Settings3>();
@@ -43,12 +43,12 @@ EXPORT Settings* InitSettings(Settings* settings) {
 	return settings;
 }
 
-Controllers* CreateControllers() {
+EXPORT Controllers* Controllers_Create() {
 	Log(__FUNCTIONW__ L"\n");
 	return new Controllers();
 }
 
-EXPORT Controllers* InitControllers(
+EXPORT Controllers* Controllers_Init(
 	Controllers* controllers
 ) {
 	Log(__FUNCTIONW__ L"\n");
@@ -63,11 +63,11 @@ EXPORT Controllers* InitControllers(
 * EventRegistrationToken
 */
 
-EXPORT EventRegistrationToken* CreateEventRegistrationToken() {
+EXPORT EventRegistrationToken* EventRegistrationToken_Create() {
 	return (EventRegistrationToken*)calloc(1, sizeof(EventRegistrationToken));
 }
 
-EXPORT void RemoveEventRegistrationToken(EventRegistrationToken* token) {
+EXPORT void EventRegistrationToken_Remove(EventRegistrationToken* token) {
 	free(token);
 }
 

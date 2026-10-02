@@ -6,7 +6,7 @@
 * ICoreWebView2Environment
 */
 
-EXPORT HRESULT CreateCoreWebView2Controller(
+EXPORT HRESULT Environments_CreateCoreWebView2Controller(
 	Environments* environments,
 	HWND hWnd,
 	HRESULT(*callback)(HRESULT, ICoreWebView2Controller*),
@@ -20,7 +20,7 @@ EXPORT HRESULT CreateCoreWebView2Controller(
 				Log(__FUNCTIONW__ L"\n");
 				wprintf(L"ICoreWebView2CreateCoreWebView2ControllerCompletedHandler:%x\n", result);
 				controllers->controller1 = controller;
-				InitControllers(controllers);
+				Controllers_Init(controllers);
 
 				return callback(result, controller);
 			}
@@ -28,7 +28,7 @@ EXPORT HRESULT CreateCoreWebView2Controller(
 	);
 }
 
-EXPORT HRESULT CreateWebResourceResponse(
+EXPORT HRESULT Environments_CreateWebResourceResponse(
 	Environments* environments,
 	IStream* content,
 	int statusCode,
