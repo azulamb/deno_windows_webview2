@@ -32,7 +32,7 @@ EXPORT HRESULT Global_CreateCoreWebView2EnvironmentWithOptions(
 	Log(__FUNCTIONW__ L"\n");
 	return ::CreateCoreWebView2EnvironmentWithOptions(
 		browserExecutableFolder,
-		browserExecutableFolder,
+		userDataFolder,
 		environmentOptions,
 		Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
 			[callback, environments](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {

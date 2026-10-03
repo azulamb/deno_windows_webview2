@@ -14,7 +14,7 @@ public:
 
 class Environments {
 public:
-	ICoreWebView2Environment* env1;
+	wil::com_ptr<ICoreWebView2Environment> env1;
 };
 
 class Settings {

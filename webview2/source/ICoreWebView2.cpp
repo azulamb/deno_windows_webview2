@@ -66,11 +66,11 @@ EXPORT HRESULT WebView2_add_DocumentTitleChanged(
 
 EXPORT HRESULT WebView2_remove_DocumentTitleChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_DocumentTitleChanged(token);
+	return webview2->webview1->remove_DocumentTitleChanged(*token);
 }
 
 EXPORT HRESULT WebView2_get_DocumentTitle(
@@ -104,11 +104,11 @@ EXPORT HRESULT WebView2_add_HistoryChanged(
 
 EXPORT HRESULT WebView2_remove_HistoryChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_HistoryChanged(token);
+	return webview2->webview1->remove_HistoryChanged(*token);
 }
 
 /* Message */
@@ -153,11 +153,11 @@ EXPORT HRESULT WebView2_add_WebMessageReceived(
 
 EXPORT HRESULT WebView2_remove_WebMessageReceived(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_WebMessageReceived(token);
+	return webview2->webview1->remove_WebMessageReceived(*token);
 }
 
 /* Navigation */
@@ -191,11 +191,11 @@ EXPORT HRESULT WebView2_add_NavigationCompleted(
 
 EXPORT HRESULT WebView2_remove_NavigationCompleted(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_NavigationCompleted(token);
+	return webview2->webview1->remove_NavigationCompleted(*token);
 }
 
 EXPORT HRESULT WebView2_add_NavigationStarting(
@@ -218,11 +218,11 @@ EXPORT HRESULT WebView2_add_NavigationStarting(
 
 EXPORT HRESULT WebView2_remove_NavigationStarting(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_NavigationStarting(token);
+	return webview2->webview1->remove_NavigationStarting(*token);
 }
 
 EXPORT HRESULT WebView2_NavigateToString(
@@ -254,11 +254,11 @@ EXPORT HRESULT WebView2_add_FrameNavigationCompleted(
 
 EXPORT HRESULT WebView2_remove_FrameNavigationCompleted(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_FrameNavigationCompleted(token);
+	return webview2->webview1->remove_FrameNavigationCompleted(*token);
 }
 
 EXPORT HRESULT WebView2_add_FrameNavigationStarting(
@@ -281,11 +281,11 @@ EXPORT HRESULT WebView2_add_FrameNavigationStarting(
 
 EXPORT HRESULT WebView2_remove_FrameNavigationStarting(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_FrameNavigationStarting(token);
+	return webview2->webview1->remove_FrameNavigationStarting(*token);
 }
 
 /* Permission */
@@ -310,11 +310,11 @@ EXPORT HRESULT WebView2_add_PermissionRequested(
 
 EXPORT HRESULT WebView2_remove_PermissionRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_PermissionRequested(token);
+	return webview2->webview1->remove_PermissionRequested(*token);
 }
 
 /* Script */
@@ -339,11 +339,11 @@ EXPORT HRESULT WebView2_add_ScriptDialogOpening(
 
 EXPORT HRESULT WebView2_remove_ScriptDialogOpening(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_ScriptDialogOpening(token);
+	return webview2->webview1->remove_ScriptDialogOpening(*token);
 }
 
 EXPORT HRESULT WebView2_AddScriptToExecuteOnDocumentCreated(
@@ -441,11 +441,11 @@ EXPORT HRESULT WebView2_add_SourceChanged(
 
 EXPORT HRESULT WebView2_remove_SourceChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_SourceChanged(token);
+	return webview2->webview1->remove_SourceChanged(*token);
 }
 
 /* Operation */
@@ -514,11 +514,11 @@ EXPORT HRESULT WebView2_add_ContentLoading(
 
 EXPORT HRESULT WebView2_remove_ContentLoading(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_ContentLoading(token);
+	return webview2->webview1->remove_ContentLoading(*token);
 }
 
 EXPORT HRESULT WebView2_add_ProcessFailed(
@@ -541,11 +541,11 @@ EXPORT HRESULT WebView2_add_ProcessFailed(
 
 EXPORT HRESULT WebView2_remove_ProcessFailed(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_ProcessFailed(token);
+	return webview2->webview1->remove_ProcessFailed(*token);
 }
 
 EXPORT HRESULT WebView2_get_Settings(WebView2* webview2, Settings* settings) {
@@ -608,11 +608,11 @@ EXPORT HRESULT WebView2_add_NewWindowRequested(
 
 EXPORT HRESULT WebView2_remove_NewWindowRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_NewWindowRequested(token);
+	return webview2->webview1->remove_NewWindowRequested(*token);
 }
 
 EXPORT HRESULT WebView2_add_ContainsFullScreenElementChanged(
@@ -635,11 +635,11 @@ EXPORT HRESULT WebView2_add_ContainsFullScreenElementChanged(
 
 EXPORT HRESULT WebView2_remove_ContainsFullScreenElementChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_ContainsFullScreenElementChanged(token);
+	return webview2->webview1->remove_ContainsFullScreenElementChanged(*token);
 }
 
 EXPORT HRESULT WebView2_get_ContainsFullScreenElement(
@@ -671,11 +671,11 @@ EXPORT HRESULT WebView2_add_WebResourceRequested(
 
 EXPORT HRESULT WebView2_remove_WebResourceRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_WebResourceRequested(token);
+	return webview2->webview1->remove_WebResourceRequested(*token);
 }
 
 EXPORT HRESULT WebView2_AddWebResourceRequestedFilter(
@@ -720,11 +720,11 @@ EXPORT HRESULT WebView2_add_WindowCloseRequested(
 
 EXPORT HRESULT WebView2_remove_WindowCloseRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->remove_WindowCloseRequested(token);
+	return webview2->webview1->remove_WindowCloseRequested(*token);
 }
 
 #endif

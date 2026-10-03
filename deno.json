@@ -1,7 +1,7 @@
 {
   "name": "@azulamb/webview2",
-  "version": "0.4.0",
-  "dll_version": "0.4.0.0",
+  "version": "0.5.0",
+  "dll_version": "0.5.0.0",
   "license": "MIT",
   "exports": {
     ".": "./mod.ts",
@@ -10,6 +10,12 @@
     "./webview2": "./tools/webview2.ts"
   },
   "lock": false,
+  "imports": {
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "@azulamb/winapi": "jsr:@azulamb/winapi@^0.3.2",
+    "@azulamb/checker": "jsr:@azulamb/checker@1.2.0",
+    "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom"
+  },
   "tasks": {
     "convert": "deno run --allow-read --allow-write tools/convert.ts",
     "version": "deno run --allow-read --allow-write tools/version.ts",
@@ -17,16 +23,36 @@
     "check": "deno run --allow-run tools/check.ts",
     "report": "deno run --allow-read --allow-write --allow-net tools/report.ts",
     "build:compile:command": "deno run tools/compile.ts --allow-env sample.ts",
+    "build:dll:debug": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build.ps1 -Configuration Debug",
+    "build:dll:release": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build.ps1 -Configuration Release",
     "update": {
       "command": "deno fmt",
-      "dependencies": ["convert", "version"]
-    }
+      "dependencies": [
+        "convert",
+        "version"
+      ]
+    },
+    "check:publish": "deno lint && deno task test && deno publish --dry-run --allow-dirty",
+    "test": "deno test --allow-ffi --allow-read --allow-write tests/unit_test.ts",
+    "test:native": "deno test --allow-ffi --allow-read --allow-write --allow-env tests/native_test.ts"
   },
   "lint": {
-    "include": ["./src", "./tools", "deno.json", "mod.ts"]
+    "include": [
+      "./src",
+      "./tools",
+      "deno.json",
+      "mod.ts",
+      "./tests"
+    ]
   },
   "fmt": {
-    "include": ["./src", "./tools", "deno.json", "mod.ts"],
+    "include": [
+      "./src",
+      "./tools",
+      "deno.json",
+      "mod.ts",
+      "./tests"
+    ],
     "singleQuote": true
   }
 }

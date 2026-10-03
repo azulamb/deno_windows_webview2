@@ -55,10 +55,13 @@ export class WebResourceRequestedEventArgs {
     const request = new WebResourceRequest(
       this.libs,
     );
-    this.libs.symbols.WebResourceRequestedEventArgs_get_Request(
+    const result = this.libs.symbols.WebResourceRequestedEventArgs_get_Request(
       this.args,
-      request.pointer,
+      request.doublePointer,
     );
+    if (result < 0) {
+      throw new Error(`Failed to get WebResourceRequest: ${result}`);
+    }
     return request;
   }
 
@@ -103,12 +106,15 @@ export class WebResourceRequestedEventArgs {
     }
   }
 
-  public getDeferral() {
+  public getDeferral(): Deferral {
     const deferral = new Deferral(this.libs);
     const result = this.libs.symbols.WebResourceRequestedEventArgs_GetDeferral(
       this.args,
       deferral.getDoublePointer(),
     );
+    if (result < 0) {
+      throw new Error(`Failed to get Deferral: ${result}`);
+    }
     return deferral;
   }
 }

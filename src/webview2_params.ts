@@ -8,6 +8,30 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: [],
     result: 'pointer',
   },
+  COM_AddRef: {
+    parameters: ['pointer'],
+    result: 'u32',
+  },
+  COM_Release: {
+    parameters: ['pointer'],
+    result: 'u32',
+  },
+  WebView2_Destroy: {
+    parameters: ['pointer'],
+    result: 'void',
+  },
+  Environments_Destroy: {
+    parameters: ['pointer'],
+    result: 'void',
+  },
+  Settings_Destroy: {
+    parameters: ['pointer'],
+    result: 'void',
+  },
+  Controllers_Destroy: {
+    parameters: ['pointer'],
+    result: 'void',
+  },
   WebView2_Create: {
     parameters: [],
     result: 'pointer',
@@ -46,6 +70,7 @@ export const params: WEBVIEW2_FUNCS = {
   },
   JStream_Create: {
     parameters: [
+      'function',
       'function',
       'function',
       'function',
@@ -712,7 +737,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   WebResourceRequest_get_Method: {
-    parameters: ['pointer', 'pointer'],
+    parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
   WebResourceRequest_get_Uri: {
@@ -777,6 +802,26 @@ export const params: WEBVIEW2_FUNCS = {
   },
   WebResourceRequestedEventArgs_put_Response: {
     parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  HttpResponseHeaders_Contains: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  HttpResponseHeaders_GetHeader: {
+    parameters: ['pointer', 'pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  HttpResponseHeaders_GetHeaders: {
+    parameters: ['pointer', 'pointer', 'function'],
+    result: 'i32',
+  },
+  HttpResponseHeaders_GetIterator: {
+    parameters: ['pointer', 'function'],
+    result: 'i32',
+  },
+  HttpResponseHeaders_AppendHeader: {
+    parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
 };

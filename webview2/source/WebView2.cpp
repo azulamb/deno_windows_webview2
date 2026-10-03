@@ -1,9 +1,10 @@
 #ifndef _WINDOWS
 #include "WebView2.hpp"
 #include "../exports.h"
+#include "../version.h"
 
 EXPORT const char* Global_GetDllVersion() {
-	return "\\StringFileInfo\\040904b0\\FileVersion";
+	return WEAPN_DLL_VERSION;
 }
 
 EXPORT WebView2* WebView2_Create() {
@@ -52,9 +53,9 @@ EXPORT Controllers* Controllers_Init(
 	Controllers* controllers
 ) {
 	Log(__FUNCTIONW__ L"\n");
-	controllers->controller2 = controllers->controller1.query<ICoreWebView2Controller2>();
-	controllers->controller3 = controllers->controller1.query<ICoreWebView2Controller3>();
-	controllers->controller4 = controllers->controller1.query<ICoreWebView2Controller4>();
+	controllers->controller2 = controllers->controller1.try_query<ICoreWebView2Controller2>();
+	controllers->controller3 = controllers->controller1.try_query<ICoreWebView2Controller3>();
+	controllers->controller4 = controllers->controller1.try_query<ICoreWebView2Controller4>();
 
 	return controllers;
 }
@@ -70,5 +71,13 @@ EXPORT EventRegistrationToken* EventRegistrationToken_Create() {
 EXPORT void EventRegistrationToken_Remove(EventRegistrationToken* token) {
 	free(token);
 }
+
+
+EXPORT ULONG COM_AddRef(IUnknown* value) { return value ? value->AddRef() : 0; }
+EXPORT ULONG COM_Release(IUnknown* value) { return value ? value->Release() : 0; }
+EXPORT void WebView2_Destroy(WebView2* value) { delete value; }
+EXPORT void Environments_Destroy(Environments* value) { delete value; }
+EXPORT void Settings_Destroy(Settings* value) { delete value; }
+EXPORT void Controllers_Destroy(Controllers* value) { delete value; }
 
 #endif

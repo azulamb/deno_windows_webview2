@@ -1,6 +1,11 @@
 import type { HRESULT, LPVOID } from './winapi.ts';
 import type { Webview2Context } from './types.ts';
-import { createStringPointer, getBool } from './convert.ts';
+import {
+  createStringBuffer,
+  createStringPointer,
+  getBool,
+  getWString,
+} from './convert.ts';
 import type {
   EventRegistrationToken,
   Webview2Funcs,
@@ -8,6 +13,26 @@ import type {
 import type { WEB_RESOURCE_CONTEXT_TYPES } from '../constants/WEB_RESOURCE_CONTEXT.ts';
 
 export class Core {
+  private callbacks: Map<
+    EventRegistrationToken,
+    { close(): void; remove(token: EventRegistrationToken): number }
+  > = new Map();
+  public closeEvents(): void {
+    for (const token of [...this.callbacks.keys()]) {
+      const result = this.removeEvent(token);
+      if (result < 0) throw new Error(`Event removal failed: ${result}`);
+    }
+  }
+  private removeEvent(token: EventRegistrationToken): HRESULT {
+    const entry = this.callbacks.get(token);
+    if (!entry) throw new Error('Unknown or already removed event token.');
+    const result = entry.remove(token);
+    if (result < 0) return result;
+    this.callbacks.delete(token);
+    this.context.eventRegistrationToken.remove(token);
+    queueMicrotask(() => entry.close());
+    return result;
+  }
   protected core: Deno.PointerValue<unknown>;
 
   public get pointer(): Deno.PointerValue<unknown> {
@@ -106,11 +131,21 @@ export class Core {
       },
       callback,
     );
-    this.libs.symbols.WebView2_add_WebMessageReceived(
+    const result = this.libs.symbols.WebView2_add_WebMessageReceived(
       this.core,
       func.pointer,
       token,
     );
+    if (result < 0) {
+      func.close();
+      this.context.eventRegistrationToken.remove(token);
+      throw new Error(`addWebMessageReceived failed: ${result}`);
+    }
+    this.callbacks.set(token, {
+      close: () => func.close(),
+      remove: (value) =>
+        this.libs.symbols.WebView2_remove_WebMessageReceived(this.core, value),
+    });
     return token;
   }
 
@@ -120,12 +155,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public removeWebMessageReceived(token: EventRegistrationToken): HRESULT {
-    const result = this.libs.symbols.WebView2_remove_WebMessageReceived(
-      this.core,
-      token,
-    );
-    this.context.eventRegistrationToken.remove(token);
-    return result;
+    return this.removeEvent(token);
   }
 
   /**
@@ -205,24 +235,18 @@ export class Core {
     source: string,
     callback: (errorCode: HRESULT, resultObjectAsJson: string) => HRESULT,
   ): HRESULT {
-    const func = new Deno.UnsafeCallback({
-      parameters: [
-        'i32', // HRESULT errorCode,
-        'pointer', // LPCWSTR resultObjectAsJson,
-      ],
-      result: 'i32',
-    }, (errorCode, result) => {
-      return callback(errorCode, '' /*result*/);
-    });
-    return this.libs.symbols.WebView2_ExecuteScript(
+    const buffer = createStringBuffer(source);
+    const func = this.context.completions.create(
+      (errorCode, result) => callback(errorCode, getWString(result)),
+      [buffer],
+    );
+    const result = this.libs.symbols.WebView2_ExecuteScript(
       this.core,
-      createStringPointer(source),
+      Deno.UnsafePointer.of(buffer),
       func.pointer,
     );
-    /*{
-    readonly parameters: ['pointer', 'pointer', 'function'];
-    readonly result: 'i32';
-  };*/
+    if (result < 0) this.context.completions.cancel(func);
+    return result;
   }
 
   /*readonly AddHostObjectToScript: {
@@ -363,11 +387,24 @@ export class Core {
       },
       callback,
     );
-    this.libs.symbols.WebView2_add_WebResourceRequested(
+    const result = this.libs.symbols.WebView2_add_WebResourceRequested(
       this.core,
       func.pointer,
       token,
     );
+    if (result < 0) {
+      func.close();
+      this.context.eventRegistrationToken.remove(token);
+      throw new Error(`addWebResourceRequested failed: ${result}`);
+    }
+    this.callbacks.set(token, {
+      close: () => func.close(),
+      remove: (value) =>
+        this.libs.symbols.WebView2_remove_WebResourceRequested(
+          this.core,
+          value,
+        ),
+    });
     return token;
   }
 
@@ -377,10 +414,7 @@ export class Core {
    * @returns The HRESULT result of the operation.
    */
   public removeWebResourceRequested(token: EventRegistrationToken): HRESULT {
-    return this.libs.symbols.WebView2_remove_WebResourceRequested(
-      this.core,
-      token,
-    );
+    return this.removeEvent(token);
   }
 
   /**

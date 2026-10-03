@@ -45,7 +45,7 @@ EXPORT HRESULT WebResourceRequestedEventArgs_put_Response(
 	catch (...) {
 		printf("err");
 	}
-	return 0;
+	return E_FAIL;
 }
 
 #endif

@@ -71,20 +71,20 @@ EXPORT HRESULT WebView2_NavigateWithWebResourceRequest(
 
 EXPORT HRESULT WebView2_remove_DOMContentLoaded(
 	WebView2* webview2,
-	EventRegistrationToken token
+	const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview2);
-	return webview2->webview2->remove_DOMContentLoaded(token);
+	return webview2->webview2->remove_DOMContentLoaded(*token);
 }
 
 EXPORT HRESULT WebView2_remove_WebResourceResponseReceived(
 	WebView2* webview2,
-	EventRegistrationToken token
+	const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview2);
-	return webview2->webview2->remove_WebResourceResponseReceived(token);
+	return webview2->webview2->remove_WebResourceResponseReceived(*token);
 }
 
 #endif

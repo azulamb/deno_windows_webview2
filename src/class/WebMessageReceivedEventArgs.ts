@@ -79,7 +79,16 @@ export class WebMessageReceivedEventArgs {
       throw new Error(`Failed to get WebMessageAsJson: ${hresult2}`);
     }
 
-    return JSON.parse(JSON.parse(utf16BufferToString(buffer))) as T;
+    const message = JSON.parse(utf16BufferToString(buffer));
+    // Preserve compatibility with clients that post JSON.stringify(data).
+    if (typeof message === 'string') {
+      try {
+        return JSON.parse(message) as T;
+      } catch {
+        return message as T;
+      }
+    }
+    return message as T;
   }
 
   /**

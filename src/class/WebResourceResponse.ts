@@ -5,6 +5,11 @@ import { DoublePointer } from './DoublePointer.ts';
 import { IStream } from './IStream.ts';
 
 export class WebResourceResponse {
+  private disposed: boolean = false;
+  protected get lib(): Webview2Funcs {
+    if (this.disposed) throw new Error('COM object is closed.');
+    return this.libs;
+  }
   constructor(
     protected libs: Webview2Funcs,
     protected response: DoublePointer = new DoublePointer(),
@@ -19,9 +24,17 @@ export class WebResourceResponse {
     return this.response.getPointer();
   }
 
+  /** Releases this owned response reference. */
+  public close(): void {
+    if (this.disposed) return;
+    this.lib.symbols.COM_Release(this.response.getPointer());
+    this.response.setPointer(null);
+    this.disposed = true;
+  }
+
   public get Content(): IStream {
-    const stream = new IStream(this.libs);
-    const result = this.libs.symbols.WebResourceResponse_get_Content(
+    const stream = new IStream(this.lib);
+    const result = this.lib.symbols.WebResourceResponse_get_Content(
       this.response.getPointer(),
       stream.getDoublePointer(),
     );
@@ -32,7 +45,7 @@ export class WebResourceResponse {
   }
 
   public set Content(stream: IStream) {
-    const result = this.libs.symbols.WebResourceResponse_put_Content(
+    const result = this.lib.symbols.WebResourceResponse_put_Content(
       this.response.getPointer(),
       stream.getPointer(),
     );
@@ -42,8 +55,8 @@ export class WebResourceResponse {
   }
 
   public get Headers(): WebView2Headers {
-    return WebView2Headers.create(
-      this.libs,
+    return WebView2Headers.createResponse(
+      this.lib,
       this.response.getPointer(),
     );
   }
@@ -51,12 +64,12 @@ export class WebResourceResponse {
   public get ReasonPhrase(): string {
     return getString(
       this.response.getPointer(),
-      this.libs.symbols.WebResourceResponse_get_ReasonPhrase,
+      this.lib.symbols.WebResourceResponse_get_ReasonPhrase,
     );
   }
 
   public set ReasonPhrase(value: string) {
-    const result = this.libs.symbols.WebResourceResponse_put_ReasonPhrase(
+    const result = this.lib.symbols.WebResourceResponse_put_ReasonPhrase(
       this.response.getPointer(),
       createStringPointer(value),
     );
@@ -69,7 +82,7 @@ export class WebResourceResponse {
 
   public get StatusCode(): number {
     const statusCode = new Int32Array(1);
-    const result = this.libs.symbols.WebResourceResponse_get_StatusCode(
+    const result = this.lib.symbols.WebResourceResponse_get_StatusCode(
       this.response.getPointer(),
       Deno.UnsafePointer.of(statusCode),
     );
@@ -82,7 +95,7 @@ export class WebResourceResponse {
   }
 
   public set StatusCode(value: number) {
-    const result = this.libs.symbols.WebResourceResponse_put_StatusCode(
+    const result = this.lib.symbols.WebResourceResponse_put_StatusCode(
       this.response.getPointer(),
       value,
     );

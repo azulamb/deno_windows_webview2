@@ -9,6 +9,13 @@
 
 EXPORT const char* Global_GetDllVersion();
 
+EXPORT ULONG COM_AddRef(IUnknown* value);
+EXPORT ULONG COM_Release(IUnknown* value);
+EXPORT void WebView2_Destroy(WebView2* value);
+EXPORT void Environments_Destroy(Environments* value);
+EXPORT void Settings_Destroy(Settings* value);
+EXPORT void Controllers_Destroy(Controllers* value);
+
 EXPORT WebView2* WebView2_Create();
 EXPORT WebView2* WebView2_Init(WebView2* webview2);
 
@@ -43,7 +50,8 @@ EXPORT IStream* JStream_Create(
 	HRESULT(*lockRegion)(ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType),
 	HRESULT(*unlockRegion)(ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType),
 	HRESULT(*stat)(STATSTG* pstatstg, DWORD grfStatFlag),
-	HRESULT(*clone)(IStream** ppstm)
+	HRESULT(*clone)(IStream** ppstm),
+	void(*destroyed)(void)
 );
 
 /**
@@ -220,7 +228,7 @@ EXPORT HRESULT Controllers_add_AcceleratorKeyPressed(
 
 EXPORT HRESULT Controllers_remove_AcceleratorKeyPressed(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT Controllers_get_Bounds(
@@ -245,7 +253,7 @@ EXPORT HRESULT Controllers_add_GotFocus(
 
 EXPORT HRESULT Controllers_remove_GotFocus(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT Controllers_get_IsVisible(
@@ -266,7 +274,7 @@ EXPORT HRESULT Controllers_add_LostFocus(
 
 EXPORT HRESULT Controllers_remove_LostFocus(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT Controllers_MoveFocus(
@@ -282,7 +290,7 @@ EXPORT HRESULT Controllers_add_MoveFocusRequested(
 
 EXPORT HRESULT Controllers_remove_MoveFocusRequested(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT Controllers_NotifyParentWindowPositionChanged(Controllers* controllers);
@@ -321,7 +329,7 @@ EXPORT HRESULT Controllers_add_ZoomFactorChanged(
 
 EXPORT HRESULT Controllers_remove_ZoomFactorChanged(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 /*
@@ -350,7 +358,7 @@ EXPORT HRESULT Controllers_add_RasterizationScaleChanged(
 
 EXPORT HRESULT Controllers_remove_RasterizationScaleChanged(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT Controllers_get_BoundsMode(
@@ -434,7 +442,7 @@ EXPORT HRESULT WebView2_add_DocumentTitleChanged(
 
 EXPORT HRESULT WebView2_remove_DocumentTitleChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_get_DocumentTitle(
@@ -453,7 +461,7 @@ EXPORT HRESULT WebView2_add_HistoryChanged(
 
 EXPORT HRESULT WebView2_remove_HistoryChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 /* Message */
@@ -476,7 +484,7 @@ EXPORT HRESULT WebView2_add_WebMessageReceived(
 
 EXPORT HRESULT WebView2_remove_WebMessageReceived(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 /* Navigation */
@@ -494,7 +502,7 @@ EXPORT HRESULT WebView2_add_NavigationCompleted(
 
 EXPORT HRESULT WebView2_remove_NavigationCompleted(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_add_NavigationStarting(
@@ -505,7 +513,7 @@ EXPORT HRESULT WebView2_add_NavigationStarting(
 
 EXPORT HRESULT WebView2_remove_NavigationStarting(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_NavigateToString(
@@ -521,7 +529,7 @@ EXPORT HRESULT WebView2_add_FrameNavigationCompleted(
 
 EXPORT HRESULT WebView2_remove_FrameNavigationCompleted(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_add_FrameNavigationStarting(
@@ -532,7 +540,7 @@ EXPORT HRESULT WebView2_add_FrameNavigationStarting(
 
 EXPORT HRESULT WebView2_remove_FrameNavigationStarting(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 /* Permission */
@@ -545,7 +553,7 @@ EXPORT HRESULT WebView2_add_PermissionRequested(
 
 EXPORT HRESULT WebView2_remove_PermissionRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 /* Script */
@@ -558,7 +566,7 @@ EXPORT HRESULT WebView2_add_ScriptDialogOpening(
 
 EXPORT HRESULT WebView2_remove_ScriptDialogOpening(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_AddScriptToExecuteOnDocumentCreated(
@@ -605,7 +613,7 @@ EXPORT HRESULT WebView2_add_SourceChanged(
 
 EXPORT HRESULT WebView2_remove_SourceChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 /* Operation */
@@ -638,7 +646,7 @@ EXPORT HRESULT WebView2_add_ContentLoading(
 
 EXPORT HRESULT WebView2_remove_ContentLoading(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_add_ProcessFailed(
@@ -649,7 +657,7 @@ EXPORT HRESULT WebView2_add_ProcessFailed(
 
 EXPORT HRESULT WebView2_remove_ProcessFailed(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_get_Settings(WebView2* webview2, Settings* settings);
@@ -674,7 +682,7 @@ EXPORT HRESULT WebView2_add_NewWindowRequested(
 
 EXPORT HRESULT WebView2_remove_NewWindowRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_add_ContainsFullScreenElementChanged(
@@ -685,7 +693,7 @@ EXPORT HRESULT WebView2_add_ContainsFullScreenElementChanged(
 
 EXPORT HRESULT WebView2_remove_ContainsFullScreenElementChanged(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_get_ContainsFullScreenElement(
@@ -701,7 +709,7 @@ EXPORT HRESULT WebView2_add_WebResourceRequested(
 
 EXPORT HRESULT WebView2_remove_WebResourceRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_AddWebResourceRequestedFilter(
@@ -724,7 +732,7 @@ EXPORT HRESULT WebView2_add_WindowCloseRequested(
 
 EXPORT HRESULT WebView2_remove_WindowCloseRequested(
 	WebView2* webview2,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 );
 
 /**
@@ -760,12 +768,12 @@ EXPORT HRESULT WebView2_NavigateWithWebResourceRequest(
 
 EXPORT HRESULT WebView2_remove_DOMContentLoaded(
 	WebView2* webview2,
-	EventRegistrationToken token
+	const EventRegistrationToken* token
 );
 
 EXPORT HRESULT WebView2_remove_WebResourceResponseReceived(
 	WebView2* webview2,
-	EventRegistrationToken token
+	const EventRegistrationToken* token
 );
 
 /**
@@ -885,7 +893,8 @@ EXPORT HRESULT WebResourceRequest_get_Headers(
 
 EXPORT HRESULT WebResourceRequest_get_Method(
 	ICoreWebView2WebResourceRequest* request,
-	LPWSTR method
+	LPWSTR method,
+	rsize_t* size
 );
 
 EXPORT HRESULT WebResourceRequest_get_Uri(
@@ -976,4 +985,35 @@ EXPORT HRESULT WebResourceRequestedEventArgs_GetDeferral(
 EXPORT HRESULT WebResourceRequestedEventArgs_put_Response(
 	ICoreWebView2WebResourceRequestedEventArgs* args,
 	ICoreWebView2WebResourceResponse* response
+);
+
+EXPORT HRESULT HttpResponseHeaders_Contains(
+	ICoreWebView2HttpResponseHeaders* headers,
+	LPCWSTR name,
+	BOOL* contains
+);
+
+EXPORT HRESULT HttpResponseHeaders_GetHeader(
+	ICoreWebView2HttpResponseHeaders* headers,
+	LPCWSTR name,
+	LPWSTR value,
+	rsize_t* size
+);
+
+EXPORT HRESULT HttpResponseHeaders_GetHeaders(
+	ICoreWebView2HttpResponseHeaders* headers,
+	LPCWSTR name,
+	BOOL(*callback)(PWSTR value)
+);
+
+EXPORT HRESULT HttpResponseHeaders_GetIterator(
+	ICoreWebView2HttpResponseHeaders* headers,
+	BOOL(*callback)(PWSTR name, PWSTR value)
+);
+
+
+EXPORT HRESULT HttpResponseHeaders_AppendHeader(
+	ICoreWebView2HttpResponseHeaders* headers,
+	LPCWSTR name,
+	LPCWSTR value
 );

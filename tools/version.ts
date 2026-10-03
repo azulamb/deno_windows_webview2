@@ -67,3 +67,8 @@ await Deno.writeTextFile(
     after.trim(),
   ].join('\n') + '\n',
 );
+
+await Deno.writeTextFile(
+  './webview2/version.h',
+  `#pragma once\n#define WEAPN_DLL_VERSION "${DLL_VERSION}"\n`,
+);

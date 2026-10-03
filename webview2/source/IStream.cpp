@@ -28,6 +28,7 @@ EXPORT HRESULT IStream_Write(
 class JStream : public IStream {
 private:
 	std::atomic<ULONG> m_ref;
+	void(*destroyed)(void);
 protected:
 	HRESULT(*queryInterface)(REFIID riid, void** ppvObject);
 	ULONG(*addRef)(void);
@@ -58,7 +59,8 @@ public:
 		HRESULT(*lockRegion)(ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType),
 		HRESULT(*unlockRegion)(ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType),
 		HRESULT(*stat)(STATSTG* pstatstg, DWORD grfStatFlag),
-		HRESULT(*clone)(IStream** ppstm)
+		HRESULT(*clone)(IStream** ppstm),
+		void(*destroyed)(void)
 	) : m_ref(1) {
 		this->queryInterface = queryInterface;
 		this->addRef = addRef;
@@ -74,6 +76,7 @@ public:
 		this->unlockRegion = unlockRegion;
 		this->stat = stat;
 		this->clone = clone;
+		this->destroyed = destroyed;
 	}
 
 	/**
@@ -120,6 +123,7 @@ public:
 
 		ULONG c = static_cast<ULONG>(m_ref.fetch_sub(1, std::memory_order_acq_rel) - 1);
 		if (c == 0) {
+			if (destroyed) destroyed();
 			delete this;
 		}
 		return c;
@@ -275,7 +279,8 @@ EXPORT IStream* JStream_Create(
 	HRESULT(*lockRegion)(ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType),
 	HRESULT(*unlockRegion)(ULARGE_INTEGER libOffset, ULARGE_INTEGER cb, DWORD dwLockType),
 	HRESULT(*stat)(STATSTG* pstatstg, DWORD grfStatFlag),
-	HRESULT(*clone)(IStream** ppstm)
+	HRESULT(*clone)(IStream** ppstm),
+	void(*destroyed)(void)
 ) {
 	return new JStream(
 		queryInterface,
@@ -291,7 +296,8 @@ EXPORT IStream* JStream_Create(
 		lockRegion,
 		unlockRegion,
 		stat,
-		clone
+		clone,
+		destroyed
 	);
 }
 

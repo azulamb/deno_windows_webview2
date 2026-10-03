@@ -12,6 +12,30 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: [];
     readonly result: 'pointer';
   };
+  readonly COM_AddRef: {
+    readonly parameters: ['pointer'];
+    readonly result: 'u32';
+  };
+  readonly COM_Release: {
+    readonly parameters: ['pointer'];
+    readonly result: 'u32';
+  };
+  readonly WebView2_Destroy: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
+  readonly Environments_Destroy: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
+  readonly Settings_Destroy: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
+  readonly Controllers_Destroy: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
   readonly WebView2_Create: {
     readonly parameters: [];
     readonly result: 'pointer';
@@ -50,6 +74,7 @@ export type WEBVIEW2_FUNCS = {
   };
   readonly JStream_Create: {
     readonly parameters: [
+      'function',
       'function',
       'function',
       'function',
@@ -729,7 +754,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly WebResourceRequest_get_Method: {
-    readonly parameters: ['pointer', 'pointer'];
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly WebResourceRequest_get_Uri: {
@@ -794,6 +819,26 @@ export type WEBVIEW2_FUNCS = {
   };
   readonly WebResourceRequestedEventArgs_put_Response: {
     readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_Contains: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_GetHeader: {
+    readonly parameters: ['pointer', 'pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_GetHeaders: {
+    readonly parameters: ['pointer', 'pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_GetIterator: {
+    readonly parameters: ['pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_AppendHeader: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
 };

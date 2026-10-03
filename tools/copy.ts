@@ -3,7 +3,8 @@
  * @module @azulamb/webview2/copy
  */
 
-import { isAbsolute, join } from 'jsr:@std/path@^1.0.8';
+import { isAbsolute, join } from '@std/path';
+import { copyAtomic } from './copy_file.ts';
 import { createDLLPath } from './dll_path.ts';
 
 /**
@@ -27,22 +28,7 @@ export function copy(
     console.log(`To: ${toFilePath}`);
   }
 
-  if (!fromFilePath.toString().match(/^https:\/\//)) {
-    // File copy.
-    return Deno.copyFile(fromFilePath, toFilePath);
-  }
-
-  // Download file.
-  return fetch(fromFilePath).then((response) => {
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch ${fromFilePath}: ${response.statusText}`,
-      );
-    }
-    return response.arrayBuffer();
-  }).then((buffer) => {
-    return Deno.writeFile(toFilePath, new Uint8Array(buffer));
-  });
+  return copyAtomic(toFilePath, fromFilePath);
 }
 
 if (import.meta.main) {

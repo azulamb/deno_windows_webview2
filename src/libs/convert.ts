@@ -4,7 +4,15 @@
  * @returns The converted JS string.
  */
 export function utf16BufferToString(buffer: Uint16Array): string {
-  return String.fromCharCode.apply(null, Array.from(buffer.subarray(0, -1)));
+  const nul = buffer.indexOf(0);
+  const end = nul < 0 ? buffer.length : nul;
+  let result = '';
+  for (let offset = 0; offset < end; offset += 4096) {
+    result += String.fromCharCode(
+      ...buffer.subarray(offset, Math.min(end, offset + 4096)),
+    );
+  }
+  return result;
 }
 
 /**
@@ -18,8 +26,7 @@ export function utf16PointerToString(
   if (!pointer) {
     return '';
   }
-  // TODO: Wcharに対応してないのでなんとかする。
-  return Deno.UnsafePointerView.getCString(pointer);
+  return getWString(pointer);
 }
 
 /**
@@ -27,13 +34,14 @@ export function utf16PointerToString(
  * @param value The string to convert to a pointer.
  * @returns A pointer to the UTF-16 encoded string.
  */
-export function createStringPointer(value: string) {
-  const buffer = new Uint16Array(
-    <number[]> [].map.call(value + '\0', (c: string) => {
-      return c.charCodeAt(0);
-    }),
-  );
-  return Deno.UnsafePointer.of(buffer);
+export function createStringBuffer(value: string): Uint16Array<ArrayBuffer> {
+  const buffer = new Uint16Array(value.length + 1);
+  for (let i = 0; i < value.length; ++i) buffer[i] = value.charCodeAt(i);
+  return buffer;
+}
+
+export function createStringPointer(value: string): Deno.PointerValue {
+  return Deno.UnsafePointer.of(createStringBuffer(value));
 }
 
 /**
@@ -81,9 +89,14 @@ export function getWString(pointer: Deno.PointerValue): string {
   if (!pointer) {
     return '';
   }
-  let size = 0;
-  while (true) {
-    const view = Deno.UnsafePointerView.getArrayBuffer(pointer, 1024);
+  const view = new Deno.UnsafePointerView(pointer);
+  let result = '';
+  for (let offset = 0;; offset += 2) {
+    const code = view.getUint16(offset);
+    if (code === 0) {
+      return result;
+    }
+    result += String.fromCharCode(code);
   }
 }
 
@@ -98,10 +111,11 @@ export function getBool(
   func: (
     connector: Deno.PointerValue,
     bool: Deno.PointerValue,
-  ) => unknown,
+  ) => number,
 ): boolean {
   const data = new Int32Array([0]);
   const bool = Deno.UnsafePointer.of(data);
-  func(connector, bool);
+  const result = func(connector, bool);
+  if (result < 0) throw new Error(`Boolean getter failed: ${result}`);
   return data[0] !== 0;
 }

@@ -1,1 +1,2 @@
-export * from 'jsr:@azulamb/winapi@0.2.2';
+export * from '@azulamb/winapi';
+export type * from '@azulamb/winapi/types';

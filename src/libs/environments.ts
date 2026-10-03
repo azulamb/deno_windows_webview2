@@ -29,19 +29,12 @@ export class Environments {
   public create(
     callback: (result: HRESULT, env: LPVOID) => HRESULT, // HRESULT(*callback)(HRESULT result, ICoreWebView2Environment* env)
   ): HRESULT {
-    const func = new Deno.UnsafeCallback(
-      {
-        parameters: [
-          'i32', // HRESULT
-          'pointer', // LPVOID
-        ],
-        result: 'i32', // HRESULT
-      },
-      callback,
-    );
-    return this.libs.symbols.Global_CreateCoreWebView2Environment(
+    const func = this.context.completions.create(callback);
+    const result = this.libs.symbols.Global_CreateCoreWebView2Environment(
       this.environments,
       func.pointer,
     );
+    if (result < 0) this.context.completions.cancel(func);
+    return result;
   }
 }

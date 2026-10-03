@@ -11,7 +11,7 @@ void Log(const WCHAR* message) {
 }
 
 void CopyString(wchar_t const* source, rsize_t* size, LPWSTR dest) {
-	rsize_t wsize = wcslen(source) + 1;
+	rsize_t wsize = source ? wcslen(source) + 1 : 1;
 
 	if (size) {
 		*size = wsize;
@@ -21,7 +21,7 @@ void CopyString(wchar_t const* source, rsize_t* size, LPWSTR dest) {
 		wcscpy_s(
 			dest,
 			wsize,
-			source
+			source ? source : L""
 		);
 	}
 }

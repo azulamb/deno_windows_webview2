@@ -1,4 +1,4 @@
-import * as checker from 'jsr:@azulamb/checker@1.2.0';
+import * as checker from '@azulamb/checker';
 import data from '../deno.json' with { type: 'json' };
 import { version } from '../mod.ts';
 const VERSION = version.Deno.Webview2;
@@ -29,6 +29,19 @@ function isUpdatedDllVersion(previous: string, current: string): boolean {
   return false;
 }
 
+// Check publication before Windows-specific DLL and release version checks.
+await checker.check({
+  name: 'Lint and JSR public API check',
+  command: ['deno', 'task', 'check:publish'],
+  after: (result) => {
+    if (result.code !== 0) {
+      return Promise.reject(new Error(result.stderr || result.stdout));
+    }
+    console.log(result.stdout);
+    return Promise.resolve();
+  },
+});
+
 await checker.check(
   {
     name: 'DLL version check',
@@ -37,7 +50,15 @@ await checker.check(
         ['Debug', 'Release'].map(async (mode) => {
           return {
             mode,
-            version: await exec(['powershell', './tools/dllver.ps1', mode]),
+            version: await exec([
+              'powershell',
+              '-NoProfile',
+              '-ExecutionPolicy',
+              'Bypass',
+              '-File',
+              './tools/dllver.ps1',
+              mode,
+            ]),
           };
         }),
       );
@@ -92,5 +113,4 @@ await checker.check(
     isNotUpdated:
       'VERSION is not updated. Update deno.json & deno task version',
   }),
-  checker.createJsrPublishChecker(),
 );

@@ -26,11 +26,11 @@ EXPORT HRESULT Controllers_add_AcceleratorKeyPressed(
 
 EXPORT HRESULT Controllers_remove_AcceleratorKeyPressed(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
-	return controllers->controller1->remove_AcceleratorKeyPressed(token);
+	return controllers->controller1->remove_AcceleratorKeyPressed(*token);
 }
 
 EXPORT HRESULT Controllers_get_Bounds(
@@ -86,11 +86,11 @@ EXPORT HRESULT Controllers_add_GotFocus(
 
 EXPORT HRESULT Controllers_remove_GotFocus(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
-	return controllers->controller1->remove_GotFocus(token);
+	return controllers->controller1->remove_GotFocus(*token);
 }
 
 EXPORT HRESULT Controllers_get_IsVisible(
@@ -131,11 +131,11 @@ EXPORT HRESULT Controllers_add_LostFocus(
 
 EXPORT HRESULT Controllers_remove_LostFocus(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
-	return controllers->controller1->remove_LostFocus(token);
+	return controllers->controller1->remove_LostFocus(*token);
 }
 
 EXPORT HRESULT Controllers_MoveFocus(
@@ -167,11 +167,11 @@ EXPORT HRESULT Controllers_add_MoveFocusRequested(
 
 EXPORT HRESULT Controllers_remove_MoveFocusRequested(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
-	return controllers->controller1->remove_MoveFocusRequested(token);
+	return controllers->controller1->remove_MoveFocusRequested(*token);
 }
 
 EXPORT HRESULT Controllers_NotifyParentWindowPositionChanged(Controllers* controllers) {
@@ -246,11 +246,11 @@ EXPORT HRESULT Controllers_add_ZoomFactorChanged(
 
 EXPORT HRESULT Controllers_remove_ZoomFactorChanged(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller1);
-	return controllers->controller1->remove_ZoomFactorChanged(token);
+	return controllers->controller1->remove_ZoomFactorChanged(*token);
 }
 
 /*
@@ -299,11 +299,11 @@ EXPORT HRESULT Controllers_add_RasterizationScaleChanged(
 
 EXPORT HRESULT Controllers_remove_RasterizationScaleChanged(
 	Controllers* controllers,
-	/* [in] */ EventRegistrationToken token
+	/* [in] */ const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(controllers->controller3);
-	return controllers->controller3->remove_RasterizationScaleChanged(token);
+	return controllers->controller3->remove_RasterizationScaleChanged(*token);
 }
 
 

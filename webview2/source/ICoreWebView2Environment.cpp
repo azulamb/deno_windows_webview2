@@ -20,7 +20,9 @@ EXPORT HRESULT Environments_CreateCoreWebView2Controller(
 				Log(__FUNCTIONW__ L"\n");
 				wprintf(L"ICoreWebView2CreateCoreWebView2ControllerCompletedHandler:%x\n", result);
 				controllers->controller1 = controller;
-				Controllers_Init(controllers);
+				if (SUCCEEDED(result) && controller) {
+					Controllers_Init(controllers);
+				}
 
 				return callback(result, controller);
 			}
