@@ -4,6 +4,7 @@
  */
 
 import { copyAtomic } from './tools/copy_file.ts';
+import { ensureDLL } from './tools/copy.ts';
 import { params } from './src/webview2_params.ts';
 import {
   Deno_Webview2,
@@ -22,7 +23,8 @@ export type { WEBVIEW2_FUNCS, Webview2Funcs } from './src/webview2_types.ts';
 export type PREPARE_WEBVIEW2_DLL_OPTION = {
   includePath?: boolean | string | URL; // deno compile --include [includePath] ..., true: default path.
   download?: boolean | string | URL; // true: download from GitHub
-  //update?: boolean; // TODO: update DLL and version check.
+  signal?: AbortSignal;
+  expectedVersion?: string;
   debugMode?: boolean; // TODO: debug mode.
 };
 
@@ -44,15 +46,9 @@ export async function prepareWebview2DLL(
 ): Promise<{
   path: string;
 }> {
-  // TODO: DLL check.
   try {
-    const stat = Deno.statSync(dllPath);
-    if (stat.isFile) {
-      return {
-        path: dllPath,
-      };
-    }
-    throw new Error(`[Failure] Not a file: ${dllPath}`);
+    await ensureDLL(dllPath, { ...option, existingOnly: true });
+    return { path: dllPath };
   } catch (error) {
     if (option?.debugMode) {
       console.error(error);
@@ -72,11 +68,11 @@ export async function prepareWebview2DLL(
         }
       } else {
         includePath = typeof option.includePath === 'string'
-          ? new URL(import.meta.resolve(option.includePath))
+          ? new URL(option.includePath, import.meta.url)
           : option.includePath;
       }
 
-      await copyAtomic(dllPath, includePath);
+      await copyAtomic(dllPath, includePath, option);
       return {
         path: dllPath,
       };
@@ -99,7 +95,7 @@ export async function prepareWebview2DLL(
       option.download = new URL(option.download);
     }
 
-    await copyAtomic(dllPath, option.download);
+    await copyAtomic(dllPath, option.download, option);
     return {
       path: dllPath,
     };

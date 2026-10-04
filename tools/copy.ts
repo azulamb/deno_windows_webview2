@@ -4,8 +4,9 @@
  */
 
 import { isAbsolute, join } from '@std/path';
-import { copyAtomic } from './copy_file.ts';
+import { copyAtomic, dllVersion } from './copy_file.ts';
 import { createDLLPath } from './dll_path.ts';
+export { Dll as DLL_VERSION } from '../src/version.ts';
 
 /**
  * Copy webview2.dll to a new location.
@@ -18,6 +19,8 @@ export function copy(
   option?: {
     isDebug?: boolean; // Copy Debug DLL.
     log?: boolean; // Output log.
+    signal?: AbortSignal;
+    expectedVersion?: string;
   },
 ): Promise<void> {
   const fromFilePath = createDLLPath(option?.isDebug);
@@ -28,7 +31,35 @@ export function copy(
     console.log(`To: ${toFilePath}`);
   }
 
-  return copyAtomic(toFilePath, fromFilePath);
+  return copyAtomic(toFilePath, fromFilePath, option);
+}
+
+/** Ensures a DLL exists without overwriting an existing file; optional version verification. */
+export async function ensureDLL(
+  path: string,
+  option?: {
+    signal?: AbortSignal;
+    expectedVersion?: string;
+    existingOnly?: boolean;
+  },
+): Promise<void> {
+  try {
+    const stat = await Deno.stat(path);
+    if (!stat.isFile) throw new Error(`Not a DLL file: ${path}`);
+    if (
+      option?.expectedVersion &&
+      dllVersion(await Deno.readFile(path, { signal: option.signal })) !==
+        option.expectedVersion
+    ) {
+      throw new Error(
+        `DLL version mismatch: expected ${option.expectedVersion}: ${path}`,
+      );
+    }
+  } catch (error) {
+    if (!(error instanceof Deno.errors.NotFound)) throw error;
+    if (option?.existingOnly) throw error;
+    await copy(path, option);
+  }
 }
 
 if (import.meta.main) {
@@ -67,12 +98,7 @@ if (import.meta.main) {
     dest = join(Deno.cwd(), dest);
   }
 
-  if (confirm(`Copy webview2.dll?\n${dest}`)) {
-    console.log('Copying...');
-    await copy(dest, {
-      isDebug: isDebug,
-      log: true,
-    });
-  }
+  console.log('Copying...');
+  await copy(dest, { isDebug, log: true });
   console.log('Done');
 }

@@ -1,5 +1,14 @@
 # Deno Windows Webview2
 
+DLL acquisition is shared by the copy, compile and preparation helpers.
+`ensureDLL(path, { signal, expectedVersion })` from `/copy` preserves existing
+files and can verify their fixed Windows file version. `copy()` replaces files
+atomically. Both support cancellation. `compile()` awaits DLL preparation and
+returns `success` and `code` as well as its output; non-empty stderr alone does
+not mean compilation failed. Command generation has no file-writing side effects.
+`deno task version` updates the API, fixed resource and string resource versions
+together while preserving the resource file's encoding.
+
 * GitHub
   * https://github.com/azulamb/deno_windows_webview2
 * JSR
@@ -95,7 +104,7 @@ See the [NuGet restore command documentation](https://learn.microsoft.com/en-us/
 
 Keep all WebView2 and COM calls on the STA thread that created the control.
 Use weapn's UI Worker API for messages between the main script and the native UI.
-The legacy exported raw pointers are borrowed handles on that same STA, not
+The exported raw pointers are borrowed handles on that same STA, not
 transferable Worker objects.
 
 Request, response, headers, stream and deferral objects returned by getters own
@@ -103,7 +112,7 @@ one COM reference. Release them with `close()` after use. Event argument objects
 received by callbacks are borrowed for the duration of the callback; a deferral
 and an explicitly retained reference are needed to use them later.
 
-`WebResourceRequest.pointer` remains the legacy output-buffer pointer.
+`WebResourceRequest.pointer` refers to the output-buffer pointer.
 Use `doublePointer` for native output parameters and `nativePointer` for the
 request interface itself. Response headers support `AppendHeader`; request
 headers support `SetHeader` and `RemoveHeader`.

@@ -4,7 +4,10 @@ import {
   utf16BufferToString,
   utf16PointerToString,
 } from '../src/libs/convert.ts';
-import { copyAtomic } from '../tools/copy_file.ts';
+import { copyAtomic, dllVersion } from '../tools/copy_file.ts';
+import { compile, createCompileCommand } from '../tools/compile.ts';
+import { Dll } from '../src/version.ts';
+import { updateVersionResource } from '../tools/resource_version.ts';
 import { CompletionCallbacks } from '../src/libs/completion_callbacks.ts';
 import { toFileUrl } from '@std/path';
 
@@ -15,6 +18,75 @@ function equal(actual: unknown, expected: unknown): void {
     );
   }
 }
+
+Deno.test('DLL fixed version matches package version and mismatches preserve the destination', async () => {
+  const source = new URL(
+    '../webview2/x64/Release/webview2.dll',
+    import.meta.url,
+  );
+  equal(dllVersion(await Deno.readFile(source)), Dll);
+  const directory = await Deno.makeTempDir();
+  try {
+    const destination = `${directory}/output.dll`;
+    await Deno.writeTextFile(destination, 'existing');
+    let failed = false;
+    try {
+      await copyAtomic(destination, source, { expectedVersion: '999.0.0.0' });
+    } catch {
+      failed = true;
+    }
+    equal(failed, true);
+    equal(await Deno.readTextFile(destination), 'existing');
+  } finally {
+    await Deno.remove(directory, { recursive: true });
+  }
+});
+Deno.test('compile argument generation has no DLL writes or option mutations', async () => {
+  const directory = await Deno.makeTempDir();
+  try {
+    const includes = ['assets'];
+    const option = { dllPath: `${directory}/output.dll`, includes };
+    const first = createCompileCommand('main.ts', 'app.exe', option);
+    equal(createCompileCommand('main.ts', 'app.exe', option), first);
+    equal(includes, ['assets']);
+    equal([...Deno.readDirSync(directory)].length, 0);
+  } finally {
+    await Deno.remove(directory, { recursive: true });
+  }
+});
+Deno.test('compile awaits DLL preparation and reports an unsuccessful process', async () => {
+  const directory = await Deno.makeTempDir();
+  try {
+    const dllPath = `${directory}/webview2.dll`;
+    const result = await compile(
+      `${directory}/missing.ts`,
+      `${directory}/app.exe`,
+      [],
+      { dllPath },
+    );
+    equal(result.success, false);
+    equal(result.code !== 0, true);
+    equal(dllVersion(await Deno.readFile(dllPath)), Dll);
+  } finally {
+    await Deno.remove(directory, { recursive: true });
+  }
+});
+Deno.test('resource version generation preserves UTF-16 Japanese text and is idempotent', () => {
+  const text =
+    '// 日本語\r\nFILEVERSION 0,1,0,0\r\nPRODUCTVERSION 0,1,0,0\r\nVALUE "FileVersion", "0.1.0.0"\r\nVALUE "ProductVersion", "0.1.0.0"';
+  const bytes = new Uint8Array((text.length + 1) * 2);
+  const view = new DataView(bytes.buffer);
+  view.setUint16(0, 0xFEFF, true);
+  for (let index = 0; index < text.length; ++index) {
+    view.setUint16((index + 1) * 2, text.charCodeAt(index), true);
+  }
+  const updated = updateVersionResource(bytes, '0.6.0.0');
+  const decoded = new TextDecoder('utf-16le', { fatal: true }).decode(updated);
+  equal(decoded.includes('// 日本語'), true);
+  equal(decoded.includes('FILEVERSION 0,6,0,0'), true);
+  equal(decoded.includes('"ProductVersion", "0.6.0.0"'), true);
+  equal([...updateVersionResource(updated, '0.6.0.0')], [...updated]);
+});
 Deno.test('UTF-16 conversion preserves Japanese, surrogate pairs and NUL termination', () => {
   const buffer = createStringBuffer('日本語😀');
   const pointer = Deno.UnsafePointer.of(buffer);

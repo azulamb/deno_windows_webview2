@@ -1,4 +1,5 @@
 import data from '../deno.json' with { type: 'json' };
+import { updateVersionResource } from './resource_version.ts';
 const VERSION = data.version;
 const DLL_VERSION = data.dll_version;
 const IMPORT_SRC = new URL(import.meta.resolve('../webview2/packages.config'));
@@ -69,6 +70,11 @@ await Deno.writeTextFile(
 );
 
 await Deno.writeTextFile(
-  './webview2/version.h',
+  new URL('../webview2/version.h', import.meta.url),
   `#pragma once\n#define WEAPN_DLL_VERSION "${DLL_VERSION}"\n`,
+);
+const resource = new URL('../webview2/webview2.rc', import.meta.url);
+await Deno.writeFile(
+  resource,
+  updateVersionResource(await Deno.readFile(resource), DLL_VERSION),
 );

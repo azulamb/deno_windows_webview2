@@ -1,0 +1,18 @@
+name: Tests
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.9.7
+      - run: deno task check:publish
+      - name: Install WebView2 Runtime
+        shell: pwsh
+        run: |
+          Invoke-WebRequest https://go.microsoft.com/fwlink/p/?LinkId=2124703 -OutFile "$env:RUNNER_TEMP\webview2setup.exe"
+          $installer = Start-Process -FilePath "$env:RUNNER_TEMP\webview2setup.exe" -ArgumentList '/silent', '/install' -WindowStyle Hidden -Wait -PassThru
+          if ($installer.ExitCode -ne 0) { throw "WebView2 installer failed: $($installer.ExitCode)" }
+      - run: deno task test:native

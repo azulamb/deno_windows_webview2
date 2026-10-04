@@ -1,7 +1,7 @@
 {
   "name": "@azulamb/webview2",
-  "version": "0.5.0",
-  "dll_version": "0.5.0.0",
+  "version": "0.6.0",
+  "dll_version": "0.6.0.0",
   "license": "MIT",
   "exports": {
     ".": "./mod.ts",
@@ -23,8 +23,18 @@
     "check": "deno run --allow-run tools/check.ts",
     "report": "deno run --allow-read --allow-write --allow-net tools/report.ts",
     "build:compile:command": "deno run tools/compile.ts --allow-env sample.ts",
-    "build:dll:debug": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build.ps1 -Configuration Debug",
-    "build:dll:release": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build.ps1 -Configuration Release",
+    "build:dll:debug": {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build.ps1 -Configuration Debug",
+      "dependencies": [
+        "version"
+      ]
+    },
+    "build:dll:release": {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build.ps1 -Configuration Release",
+      "dependencies": [
+        "version"
+      ]
+    },
     "update": {
       "command": "deno fmt",
       "dependencies": [
@@ -33,7 +43,7 @@
       ]
     },
     "check:publish": "deno lint && deno task test && deno publish --dry-run --allow-dirty",
-    "test": "deno test --allow-ffi --allow-read --allow-write tests/unit_test.ts",
+    "test": "deno test --allow-ffi --allow-read --allow-write --allow-run tests/unit_test.ts",
     "test:native": "deno test --allow-ffi --allow-read --allow-write --allow-env tests/native_test.ts"
   },
   "lint": {

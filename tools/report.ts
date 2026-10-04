@@ -23,7 +23,7 @@ function createCachePath(path?: string) {
   if (!path) {
     return new URL(import.meta.resolve('./.cache'));
   }
-  return new URL(import.meta.resolve(`./.cache/${path}`));
+  return new URL(`./.cache/${path}`, import.meta.url);
 }
 
 if ((<DLL_JSON> dll).version !== Microsoft_Web_WebView2) {

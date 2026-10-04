@@ -5,7 +5,7 @@
 
 import { createDllFile } from './webview2.ts';
 
-interface COMPILE_OPTION {
+export interface COMPILE_OPTION {
   icon?: string;
   dllPath?: string;
   isDebug?: boolean;
@@ -20,7 +20,7 @@ function createCompileArgs(
   option?: COMPILE_OPTION,
   args?: string[],
 ) {
-  const includes = option?.includes || [];
+  const includes = [...(option?.includes ?? [])];
   const commandArgs = [
     'compile',
     '--allow-ffi',
@@ -36,7 +36,6 @@ function createCompileArgs(
 
   if (option?.dllPath) {
     const dllPath = option?.dllPath;
-    createDllFile(dllPath, option?.isDebug).toString();
     commandArgs.push(`--allow-write=${dllPath}`);
     includes.push(dllPath);
   }
@@ -99,10 +98,13 @@ export async function compile(
   command: string[];
   stdout: string;
   stderr: string;
+  success: boolean;
+  code: number;
 }> {
+  if (option?.dllPath) await createDllFile(option.dllPath, option.isDebug);
   const commandArgs = createCompileArgs(mainSource, output, option, args);
-  const { stdout, stderr } = await new Deno.Command(
-    'deno',
+  const { stdout, stderr, success, code } = await new Deno.Command(
+    Deno.execPath(),
     {
       args: commandArgs,
     },
@@ -112,6 +114,8 @@ export async function compile(
     command: ['deno', ...commandArgs],
     stdout: new TextDecoder().decode(stdout),
     stderr: new TextDecoder().decode(stderr),
+    success,
+    code,
   };
 }
 
