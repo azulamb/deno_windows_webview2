@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClCompile Include="sample.cpp" />
     <ClCompile Include="source\Global.cpp" />
+    <ClCompile Include="source\NavigationEventArgs.cpp" />
     <ClCompile Include="source\ICoreWebView2.cpp" />
     <ClCompile Include="source\ICoreWebView2Controller.cpp" />
     <ClCompile Include="source\ICoreWebView2Deferral.cpp" />

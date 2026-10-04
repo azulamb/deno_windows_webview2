@@ -10,6 +10,38 @@ import { Dll } from '../src/version.ts';
 import { updateVersionResource } from '../tools/resource_version.ts';
 import { CompletionCallbacks } from '../src/libs/completion_callbacks.ts';
 import { toFileUrl } from '@std/path';
+import { catalogFromHeader, updateCoverage } from '../tools/report_data.ts';
+
+Deno.test('report parses SDK interfaces and recomputes coverage without stale flags or comments', () => {
+  const report = catalogFromHeader(
+    `
+    MIDL_INTERFACE("test") ICoreWebView2 : public IUnknown {
+      virtual /* [propget] */ HRESULT STDMETHODCALLTYPE NavigateToString(LPCWSTR html) = 0;
+      virtual HRESULT STDMETHODCALLTYPE Stop(void) = 0;
+    };
+    MIDL_INTERFACE("test2") ICoreWebView2_29 : public ICoreWebView2_28 {
+      virtual HRESULT STDMETHODCALLTYPE NewMethod(void) = 0;
+    };
+  `,
+    '1.0.4258.31',
+  );
+  report.list = report.list.filter((group) => group.class !== 'Globals');
+  equal(report.list.map((group) => group.class), [
+    'ICoreWebView2',
+    'ICoreWebView2_29',
+  ]);
+  report.list[0].members[1].implemented = true;
+  updateCoverage(report, [
+    'EXPORT HRESULT WebView2_NavigateToString(WebView2* value) { return 0; }',
+  ], [
+    'libs.symbols.WebView2_NavigateToString(value); /* libs.symbols.WebView2_Stop(value); */',
+  ]);
+  equal(report.list[0].members, [
+    { name: 'NavigateToString', defined: true, implemented: true },
+    { name: 'Stop', defined: false, implemented: false },
+  ]);
+  equal(report.list[1].members[0].defined, false);
+});
 
 function equal(actual: unknown, expected: unknown): void {
   if (JSON.stringify(actual) !== JSON.stringify(expected)) {

@@ -21,7 +21,7 @@
     "version": "deno run --allow-read --allow-write tools/version.ts",
     "copy": "deno run --allow-read --allow-write tools/copy.ts",
     "check": "deno run --allow-run tools/check.ts",
-    "report": "deno run --allow-read --allow-write --allow-net tools/report.ts",
+    "report": "deno run --allow-read --allow-write tools/report.ts",
     "build:compile:command": "deno run tools/compile.ts --allow-env sample.ts",
     "build:dll:debug": {
       "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build.ps1 -Configuration Debug",

@@ -1012,6 +1012,27 @@ EXPORT HRESULT HttpResponseHeaders_GetIterator(
 );
 
 
+EXPORT HRESULT NavigationStartingEventArgs_get_Uri(ICoreWebView2NavigationStartingEventArgs* args, LPWSTR value, rsize_t* size);
+EXPORT HRESULT NavigationStartingEventArgs_get_IsUserInitiated(ICoreWebView2NavigationStartingEventArgs* args, BOOL* value);
+EXPORT HRESULT NavigationStartingEventArgs_get_IsRedirected(ICoreWebView2NavigationStartingEventArgs* args, BOOL* value);
+EXPORT HRESULT NavigationStartingEventArgs_get_Cancel(ICoreWebView2NavigationStartingEventArgs* args, BOOL* value);
+EXPORT HRESULT NavigationStartingEventArgs_put_Cancel(ICoreWebView2NavigationStartingEventArgs* args, BOOL value);
+EXPORT HRESULT NavigationStartingEventArgs_get_NavigationId(ICoreWebView2NavigationStartingEventArgs* args, UINT64* value);
+EXPORT HRESULT NavigationCompletedEventArgs_get_IsSuccess(ICoreWebView2NavigationCompletedEventArgs* args, BOOL* value);
+EXPORT HRESULT NavigationCompletedEventArgs_get_WebErrorStatus(ICoreWebView2NavigationCompletedEventArgs* args, COREWEBVIEW2_WEB_ERROR_STATUS* value);
+EXPORT HRESULT NavigationCompletedEventArgs_get_NavigationId(ICoreWebView2NavigationCompletedEventArgs* args, UINT64* value);
+EXPORT HRESULT NewWindowRequestedEventArgs_get_Uri(ICoreWebView2NewWindowRequestedEventArgs* args, LPWSTR value, rsize_t* size);
+EXPORT HRESULT NewWindowRequestedEventArgs_get_IsUserInitiated(ICoreWebView2NewWindowRequestedEventArgs* args, BOOL* value);
+EXPORT HRESULT NewWindowRequestedEventArgs_get_Handled(ICoreWebView2NewWindowRequestedEventArgs* args, BOOL* value);
+EXPORT HRESULT NewWindowRequestedEventArgs_put_Handled(ICoreWebView2NewWindowRequestedEventArgs* args, BOOL value);
+EXPORT HRESULT NewWindowRequestedEventArgs_GetDeferral(ICoreWebView2NewWindowRequestedEventArgs* args, ICoreWebView2Deferral** value);
+EXPORT HRESULT PermissionRequestedEventArgs_get_Uri(ICoreWebView2PermissionRequestedEventArgs* args, LPWSTR value, rsize_t* size);
+EXPORT HRESULT PermissionRequestedEventArgs_get_PermissionKind(ICoreWebView2PermissionRequestedEventArgs* args, COREWEBVIEW2_PERMISSION_KIND* value);
+EXPORT HRESULT PermissionRequestedEventArgs_get_IsUserInitiated(ICoreWebView2PermissionRequestedEventArgs* args, BOOL* value);
+EXPORT HRESULT PermissionRequestedEventArgs_get_State(ICoreWebView2PermissionRequestedEventArgs* args, COREWEBVIEW2_PERMISSION_STATE* value);
+EXPORT HRESULT PermissionRequestedEventArgs_put_State(ICoreWebView2PermissionRequestedEventArgs* args, COREWEBVIEW2_PERMISSION_STATE value);
+EXPORT HRESULT PermissionRequestedEventArgs_GetDeferral(ICoreWebView2PermissionRequestedEventArgs* args, ICoreWebView2Deferral** value);
+
 EXPORT HRESULT HttpResponseHeaders_AppendHeader(
 	ICoreWebView2HttpResponseHeaders* headers,
 	LPCWSTR name,

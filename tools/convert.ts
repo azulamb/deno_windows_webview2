@@ -27,6 +27,7 @@ function convertType(type: string) {
     case 'COREWEBVIEW2_WEB_RESOURCE_CONTEXT':
     case 'COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND':
     case 'HRESULT':
+    case 'COREWEBVIEW2_PERMISSION_STATE':
       return 'i32';
     case 'ULONG':
       return 'u32';

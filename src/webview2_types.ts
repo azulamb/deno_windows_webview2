@@ -837,6 +837,86 @@ export type WEBVIEW2_FUNCS = {
     readonly parameters: ['pointer', 'function'];
     readonly result: 'i32';
   };
+  readonly NavigationStartingEventArgs_get_Uri: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigationStartingEventArgs_get_IsUserInitiated: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigationStartingEventArgs_get_IsRedirected: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigationStartingEventArgs_get_Cancel: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigationStartingEventArgs_put_Cancel: {
+    readonly parameters: ['pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly NavigationStartingEventArgs_get_NavigationId: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigationCompletedEventArgs_get_IsSuccess: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigationCompletedEventArgs_get_WebErrorStatus: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NavigationCompletedEventArgs_get_NavigationId: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NewWindowRequestedEventArgs_get_Uri: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NewWindowRequestedEventArgs_get_IsUserInitiated: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NewWindowRequestedEventArgs_get_Handled: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly NewWindowRequestedEventArgs_put_Handled: {
+    readonly parameters: ['pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly NewWindowRequestedEventArgs_GetDeferral: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly PermissionRequestedEventArgs_get_Uri: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly PermissionRequestedEventArgs_get_PermissionKind: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly PermissionRequestedEventArgs_get_IsUserInitiated: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly PermissionRequestedEventArgs_get_State: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly PermissionRequestedEventArgs_put_State: {
+    readonly parameters: ['pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly PermissionRequestedEventArgs_GetDeferral: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
   readonly HttpResponseHeaders_AppendHeader: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';

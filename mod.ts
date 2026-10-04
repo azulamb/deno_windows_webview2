@@ -16,6 +16,10 @@ import { createDLLPath } from './tools/dll_path.ts';
 import type { Webview2Funcs } from './src/webview2_types.ts';
 import { WebView2 } from './src/webview2.ts';
 export * from './src/webview2.ts';
+export { NavigationStartingEventArgs } from './src/class/NavigationStartingEventArgs.ts';
+export { NavigationCompletedEventArgs } from './src/class/NavigationCompletedEventArgs.ts';
+export { NewWindowRequestedEventArgs } from './src/class/NewWindowRequestedEventArgs.ts';
+export { PermissionRequestedEventArgs } from './src/class/PermissionRequestedEventArgs.ts';
 /** The result type for WebView2 functions. */
 export type { WEBVIEW2_FUNCS, Webview2Funcs } from './src/webview2_types.ts';
 

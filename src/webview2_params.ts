@@ -820,6 +820,86 @@ export const params: WEBVIEW2_FUNCS = {
     parameters: ['pointer', 'function'],
     result: 'i32',
   },
+  NavigationStartingEventArgs_get_Uri: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigationStartingEventArgs_get_IsUserInitiated: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigationStartingEventArgs_get_IsRedirected: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigationStartingEventArgs_get_Cancel: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigationStartingEventArgs_put_Cancel: {
+    parameters: ['pointer', 'i32'],
+    result: 'i32',
+  },
+  NavigationStartingEventArgs_get_NavigationId: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigationCompletedEventArgs_get_IsSuccess: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigationCompletedEventArgs_get_WebErrorStatus: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NavigationCompletedEventArgs_get_NavigationId: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NewWindowRequestedEventArgs_get_Uri: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  NewWindowRequestedEventArgs_get_IsUserInitiated: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NewWindowRequestedEventArgs_get_Handled: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  NewWindowRequestedEventArgs_put_Handled: {
+    parameters: ['pointer', 'i32'],
+    result: 'i32',
+  },
+  NewWindowRequestedEventArgs_GetDeferral: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  PermissionRequestedEventArgs_get_Uri: {
+    parameters: ['pointer', 'pointer', 'pointer'],
+    result: 'i32',
+  },
+  PermissionRequestedEventArgs_get_PermissionKind: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  PermissionRequestedEventArgs_get_IsUserInitiated: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  PermissionRequestedEventArgs_get_State: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  PermissionRequestedEventArgs_put_State: {
+    parameters: ['pointer', 'i32'],
+    result: 'i32',
+  },
+  PermissionRequestedEventArgs_GetDeferral: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
   HttpResponseHeaders_AppendHeader: {
     parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',

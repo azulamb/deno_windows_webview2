@@ -18,14 +18,17 @@ function equal(actual: unknown, expected: unknown): void {
 function check(result: number): void {
   if (result < 0) throw new Error(`HRESULT: ${result}`);
 }
-async function timeout<T>(promise: Promise<T>): Promise<T> {
+async function timeout<T>(
+  promise: Promise<T>,
+  operation: string = 'native operation',
+): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     return await Promise.race([
       promise,
       new Promise<never>((_, reject) => {
         timer = setTimeout(
-          () => reject(new Error('Native test timed out')),
+          () => reject(new Error(`Native test timed out: ${operation}`)),
           15000,
         );
       }),
@@ -36,7 +39,7 @@ async function timeout<T>(promise: Promise<T>): Promise<T> {
 }
 Deno.test({
   name:
-    'native headers, long methods, script results, event removal and repeated disposal',
+    'native resources, navigation, new windows, permissions and repeated disposal',
   ignore: Deno.build.os !== 'windows',
   sanitizeOps: false,
   sanitizeResources: false,
@@ -256,6 +259,106 @@ Deno.test({
           equal(JSON.parse(await execute('"日本語😀"')), '日本語😀');
           await execute(`void fetch('/fetch', { method: '${longMethod}' })`);
           await timeout(received);
+          if (iteration === 0) {
+            let opened!: () => void;
+            const newWindow = new Promise<void>((resolve) => {
+              opened = resolve;
+            });
+            const newWindowToken = webview.core.addNewWindowRequested(
+              (_sender, args) => {
+                equal(args.Uri, 'https://test.local/popup');
+                equal(typeof args.IsUserInitiated, 'boolean');
+                const deferral = args.getDeferral();
+                try {
+                  args.Handled = true;
+                  equal(args.Handled, true);
+                  check(deferral.complete());
+                } finally {
+                  deferral.close();
+                }
+                opened();
+                return 0;
+              },
+            );
+            let permitted!: () => void;
+            const permission = new Promise<void>((resolve) => {
+              permitted = resolve;
+            });
+            const permissionToken = webview.core.addPermissionRequested(
+              (_sender, args) => {
+                equal(args.Uri.startsWith('https://test.local/'), true);
+                equal(typeof args.PermissionKind, 'number');
+                equal(typeof args.IsUserInitiated, 'boolean');
+                const deferral = args.getDeferral();
+                try {
+                  args.State = 2;
+                  equal(args.State, 2);
+                  check(deferral.complete());
+                } finally {
+                  deferral.close();
+                }
+                permitted();
+                return 0;
+              },
+            );
+            await execute('void window.open("https://test.local/popup")');
+            await timeout(newWindow, 'NewWindowRequested');
+            await execute(
+              'void Notification.requestPermission()',
+            );
+            await timeout(permission, 'PermissionRequested');
+            check(webview.core.removeNewWindowRequested(newWindowToken));
+            check(webview.core.removePermissionRequested(permissionToken));
+          }
+          let completed!: () => void;
+          const navigation = new Promise<void>((resolve) => {
+            completed = resolve;
+          });
+          let starts = 0;
+          const startingToken = webview.core.addNavigationStarting(
+            (_sender, args) => {
+              starts++;
+              equal(typeof args.NavigationId, 'bigint');
+              equal(typeof args.IsRedirected, 'boolean');
+              equal(typeof args.IsUserInitiated, 'boolean');
+              if (args.Uri.endsWith('/blocked')) {
+                args.Cancel = true;
+                equal(args.Cancel, true);
+              }
+              return 0;
+            },
+          );
+          const completedToken = webview.core.addNavigationCompleted(
+            (_sender, args) => {
+              if (args.IsSuccess) {
+                equal(args.WebErrorStatus, 0);
+                equal(typeof args.NavigationId, 'bigint');
+                completed();
+              }
+              return 0;
+            },
+          );
+          check(
+            webview.core.navigateToString(
+              '<title>Embedded HTML</title><p>日本語</p>',
+            ),
+          );
+          await timeout(navigation, 'NavigateToString / NavigationCompleted');
+          equal(JSON.parse(await execute('document.title')), 'Embedded HTML');
+          check(webview.core.navigate('https://test.local/blocked'));
+          await timeout(
+            new Promise<void>((resolve) => {
+              const timer = setInterval(() => {
+                if (starts >= 2) {
+                  clearInterval(timer);
+                  resolve();
+                }
+              }, 5);
+            }),
+          );
+          equal(JSON.parse(await execute('document.title')), 'Embedded HTML');
+          check(webview.core.removeNavigationStarting(startingToken));
+          check(webview.core.removeNavigationCompleted(completedToken));
           check(webview.core.removeWebResourceRequested(token));
           check(webview.core.removeWebMessageReceived(receive));
           // Native JStream reference counting frees its callbacks on the final Release.

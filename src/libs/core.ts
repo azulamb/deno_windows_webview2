@@ -1,4 +1,8 @@
 import type { HRESULT, LPVOID } from './winapi.ts';
+import { NavigationStartingEventArgs } from '../class/NavigationStartingEventArgs.ts';
+import { NavigationCompletedEventArgs } from '../class/NavigationCompletedEventArgs.ts';
+import { NewWindowRequestedEventArgs } from '../class/NewWindowRequestedEventArgs.ts';
+import { PermissionRequestedEventArgs } from '../class/PermissionRequestedEventArgs.ts';
 import type { Webview2Context } from './types.ts';
 import {
   createStringBuffer,
@@ -33,6 +37,98 @@ export class Core {
     queueMicrotask(() => entry.close());
     return result;
   }
+  private addEvent(
+    callback: (sender: LPVOID, args: LPVOID) => HRESULT,
+    add: (
+      core: LPVOID,
+      callback: LPVOID,
+      token: EventRegistrationToken,
+    ) => HRESULT,
+    remove: (core: LPVOID, token: EventRegistrationToken) => HRESULT,
+  ): EventRegistrationToken {
+    const token = this.context.eventRegistrationToken.create();
+    const func = new Deno.UnsafeCallback({
+      parameters: ['pointer', 'pointer'],
+      result: 'i32',
+    }, callback);
+    const result = add(this.core, func.pointer, token);
+    if (result < 0) {
+      func.close();
+      this.context.eventRegistrationToken.remove(token);
+      throw new Error('Event registration failed: ' + result);
+    }
+    this.callbacks.set(token, {
+      close: () => func.close(),
+      remove: (value) => remove(this.core, value),
+    });
+    return token;
+  }
+
+  /** Navigate to an HTML document. Its origin is about:blank. */
+  public navigateToString(html: string): HRESULT {
+    const buffer = createStringBuffer(html);
+    return this.libs.symbols.WebView2_NavigateToString(
+      this.core,
+      Deno.UnsafePointer.of(buffer),
+    );
+  }
+  /** Register a synchronous handler on the owning STA. Event arguments are borrowed. */
+  public addNavigationStarting(
+    callback: (sender: LPVOID, args: NavigationStartingEventArgs) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender, pointer) =>
+        callback(sender, new NavigationStartingEventArgs(this.libs, pointer)),
+      this.libs.symbols.WebView2_add_NavigationStarting,
+      this.libs.symbols.WebView2_remove_NavigationStarting,
+    );
+  }
+  public removeNavigationStarting(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+  /** Register a synchronous handler on the owning STA. Event arguments are borrowed. */
+  public addNavigationCompleted(
+    callback: (sender: LPVOID, args: NavigationCompletedEventArgs) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender, pointer) =>
+        callback(sender, new NavigationCompletedEventArgs(this.libs, pointer)),
+      this.libs.symbols.WebView2_add_NavigationCompleted,
+      this.libs.symbols.WebView2_remove_NavigationCompleted,
+    );
+  }
+  public removeNavigationCompleted(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+  /** Register a synchronous handler on the owning STA. Event arguments are borrowed. */
+  public addNewWindowRequested(
+    callback: (sender: LPVOID, args: NewWindowRequestedEventArgs) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender, pointer) =>
+        callback(sender, new NewWindowRequestedEventArgs(this.libs, pointer)),
+      this.libs.symbols.WebView2_add_NewWindowRequested,
+      this.libs.symbols.WebView2_remove_NewWindowRequested,
+    );
+  }
+  public removeNewWindowRequested(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+  /** Register a synchronous handler on the owning STA. Event arguments are borrowed. */
+  public addPermissionRequested(
+    callback: (sender: LPVOID, args: PermissionRequestedEventArgs) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender, pointer) =>
+        callback(sender, new PermissionRequestedEventArgs(this.libs, pointer)),
+      this.libs.symbols.WebView2_add_PermissionRequested,
+      this.libs.symbols.WebView2_remove_PermissionRequested,
+    );
+  }
+  public removePermissionRequested(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+
   protected core: Deno.PointerValue<unknown>;
 
   public get pointer(): Deno.PointerValue<unknown> {
