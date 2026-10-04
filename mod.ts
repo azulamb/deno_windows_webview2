@@ -3,6 +3,7 @@
  * @module @azulamb/webview2
  */
 
+import { copyAtomic } from './tools/copy_file.ts';
 import { params } from './src/webview2_params.ts';
 import {
   Deno_Webview2,
@@ -30,16 +31,6 @@ export type WEAPN_CONFIG = {
   width?: number;
   height?: number;
 };
-
-async function copyFile(to: string, from: URL) {
-  const response = await fetch(from);
-  if (!response.ok || response.body === null) {
-    throw new Error(`[Failure] Load: ${response.statusText}`);
-  }
-
-  const file = await Deno.open(to, { create: true, write: true });
-  await response.body.pipeTo(file.writable);
-}
 
 /**
  * Prepares the WebView2 DLL for use.
@@ -79,29 +70,13 @@ export async function prepareWebview2DLL(
         if (option.debugMode) {
           console.info(includePath);
         }
-        try {
-          const stat = await Deno.stat(includePath);
-          if (option.debugMode) {
-            console.info(stat);
-          }
-          if (stat.mode !== 0) {
-            return {
-              path: includePath.pathname.substring(1), // TODO:
-            };
-          }
-        } catch (error) {
-          // Not exists dll in local.
-          if (option?.debugMode) {
-            console.error(error);
-          }
-        }
       } else {
         includePath = typeof option.includePath === 'string'
           ? new URL(import.meta.resolve(option.includePath))
           : option.includePath;
       }
 
-      await copyFile(dllPath, includePath);
+      await copyAtomic(dllPath, includePath);
       return {
         path: dllPath,
       };
@@ -118,13 +93,13 @@ export async function prepareWebview2DLL(
     if (typeof option.download === 'boolean') {
       // Download from GitHub.
       option.download = new URL(
-        'https://github.com/azulamb/deno_windows_webview2/raw/refs/heads/main/webview2/x64/Release/webview2.dll',
+        `https://raw.githubusercontent.com/azulamb/deno_windows_webview2/v${Deno_Webview2}/webview2/x64/Release/webview2.dll`,
       );
     } else if (typeof option.download === 'string') {
       option.download = new URL(option.download);
     }
 
-    await copyFile(dllPath, option.download);
+    await copyAtomic(dllPath, option.download);
     return {
       path: dllPath,
     };
@@ -140,6 +115,9 @@ export async function prepareWebview2DLL(
 export function loadWebview2(
   dllPath = 'webview2.dll',
 ): Webview2Funcs {
+  if (Deno.build.os !== 'windows' || Deno.build.arch !== 'x86_64') {
+    throw new Error('WebView2 requires 64-bit Windows (x86_64).');
+  }
   return Deno.dlopen(
     dllPath,
     params,
@@ -153,8 +131,14 @@ export function loadWebview2(
  */
 export function createWebView2(
   dllPath = 'webview2.dll',
+  pointers?: {
+    core: Deno.PointerValue;
+    environments: Deno.PointerValue;
+    settings: Deno.PointerValue;
+    controllers: Deno.PointerValue;
+  },
 ): WebView2 {
-  return new WebView2(loadWebview2(dllPath));
+  return new WebView2(loadWebview2(dllPath), pointers, true);
 }
 
 /** The version information for the WebView2 module. */
@@ -177,10 +161,12 @@ export const version = {
  * Exports web resource context constants.
  */
 export * from './src/constants/WEB_RESOURCE_CONTEXT.ts';
+export * from './src/constants/MOVE_FOCUS_REASON.ts';
 
 /**
  * Exports support classes.
  */
+export * from './src/class/Deferral.ts';
 export * from './src/class/IStream.ts';
 export * from './src/class/WebMessageReceivedEventArgs.ts';
 export * from './src/class/WebResourceRequest.ts';

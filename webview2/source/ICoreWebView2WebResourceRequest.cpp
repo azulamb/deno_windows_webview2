@@ -22,12 +22,17 @@ EXPORT HRESULT WebResourceRequest_get_Headers(
 
 EXPORT HRESULT WebResourceRequest_get_Method(
 	ICoreWebView2WebResourceRequest* request,
-	LPWSTR method
+	LPWSTR method,
+	rsize_t* size
 ) {
 	wil::unique_cotaskmem_string data;
 	HRESULT result = request->get_Method(&data);
 
-	CopyString(data.get(), nullptr, method);
+	if (FAILED(result)) {
+		if (size) *size = 0;
+		return result;
+	}
+	CopyString(data.get(), size, method);
 
 	return result;
 }

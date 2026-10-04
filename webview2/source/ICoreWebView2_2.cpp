@@ -6,7 +6,7 @@
 * ICoreWebView2_2
 */
 
-EXPORT HRESULT add_DOMContentLoaded(
+EXPORT HRESULT WebView2_add_DOMContentLoaded(
 	WebView2* webview2,
 	HRESULT(*callback)(ICoreWebView2* sender, ICoreWebView2DOMContentLoadedEventArgs* args),
 	EventRegistrationToken* token
@@ -24,7 +24,7 @@ EXPORT HRESULT add_DOMContentLoaded(
 	);
 }
 
-EXPORT HRESULT add_WebResourceResponseReceived(
+EXPORT HRESULT WebView2_add_WebResourceResponseReceived(
 	WebView2* webview2,
 	HRESULT(*callback)(ICoreWebView2* sender, ICoreWebView2WebResourceResponseReceivedEventArgs* args),
 	EventRegistrationToken* token
@@ -42,7 +42,7 @@ EXPORT HRESULT add_WebResourceResponseReceived(
 	);
 }
 
-EXPORT HRESULT get_CookieManager(
+EXPORT HRESULT WebView2_get_CookieManager(
 	WebView2* webview2,
 	ICoreWebView2CookieManager** cookieManager
 ) {
@@ -51,7 +51,7 @@ EXPORT HRESULT get_CookieManager(
 	return webview2->webview2->get_CookieManager(cookieManager);
 }
 
-EXPORT HRESULT get_Environment(
+EXPORT HRESULT WebView2_get_Environment(
 	WebView2* webview2,
 	ICoreWebView2Environment** environment
 ) {
@@ -60,7 +60,7 @@ EXPORT HRESULT get_Environment(
 	return webview2->webview2->get_Environment(environment);
 }
 
-EXPORT HRESULT NavigateWithWebResourceRequest(
+EXPORT HRESULT WebView2_NavigateWithWebResourceRequest(
 	WebView2* webview2,
 	ICoreWebView2WebResourceRequest* request
 ) {
@@ -69,22 +69,22 @@ EXPORT HRESULT NavigateWithWebResourceRequest(
 	return webview2->webview2->NavigateWithWebResourceRequest(request);
 }
 
-EXPORT HRESULT remove_DOMContentLoaded(
+EXPORT HRESULT WebView2_remove_DOMContentLoaded(
 	WebView2* webview2,
-	EventRegistrationToken token
+	const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview2);
-	return webview2->webview2->remove_DOMContentLoaded(token);
+	return webview2->webview2->remove_DOMContentLoaded(*token);
 }
 
-EXPORT HRESULT remove_WebResourceResponseReceived(
+EXPORT HRESULT WebView2_remove_WebResourceResponseReceived(
 	WebView2* webview2,
-	EventRegistrationToken token
+	const EventRegistrationToken* token
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview2);
-	return webview2->webview2->remove_WebResourceResponseReceived(token);
+	return webview2->webview2->remove_WebResourceResponseReceived(*token);
 }
 
 #endif

@@ -8,48 +8,73 @@ export type Webview2Funcs = Deno.DynamicLibrary<WEBVIEW2_FUNCS>;
 
 /** The result type for WebView2 functions. */
 export type WEBVIEW2_FUNCS = {
-  readonly GetDllVersion: {
+  readonly Global_GetDllVersion: {
     readonly parameters: [];
     readonly result: 'pointer';
   };
-  readonly CreateWebView2: {
-    readonly parameters: [];
-    readonly result: 'pointer';
-  };
-  readonly InitWebView2: {
+  readonly COM_AddRef: {
     readonly parameters: ['pointer'];
-    readonly result: 'pointer';
+    readonly result: 'u32';
   };
-  readonly CreateEnvironments: {
-    readonly parameters: [];
-    readonly result: 'pointer';
-  };
-  readonly CreateSettings: {
-    readonly parameters: [];
-    readonly result: 'pointer';
-  };
-  readonly InitSettings: {
+  readonly COM_Release: {
     readonly parameters: ['pointer'];
-    readonly result: 'pointer';
+    readonly result: 'u32';
   };
-  readonly CreateControllers: {
-    readonly parameters: [];
-    readonly result: 'pointer';
-  };
-  readonly InitControllers: {
-    readonly parameters: ['pointer'];
-    readonly result: 'pointer';
-  };
-  readonly CreateEventRegistrationToken: {
-    readonly parameters: [];
-    readonly result: 'pointer';
-  };
-  readonly RemoveEventRegistrationToken: {
+  readonly WebView2_Destroy: {
     readonly parameters: ['pointer'];
     readonly result: 'void';
   };
-  readonly CreateJStream: {
+  readonly Environments_Destroy: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
+  readonly Settings_Destroy: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
+  readonly Controllers_Destroy: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
+  readonly WebView2_Create: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly WebView2_Init: {
+    readonly parameters: ['pointer'];
+    readonly result: 'pointer';
+  };
+  readonly Environments_Create: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly Settings_Create: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly Settings_Init: {
+    readonly parameters: ['pointer'];
+    readonly result: 'pointer';
+  };
+  readonly Controllers_Create: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly Controllers_Init: {
+    readonly parameters: ['pointer'];
+    readonly result: 'pointer';
+  };
+  readonly EventRegistrationToken_Create: {
+    readonly parameters: [];
+    readonly result: 'pointer';
+  };
+  readonly EventRegistrationToken_Remove: {
+    readonly parameters: ['pointer'];
+    readonly result: 'void';
+  };
+  readonly JStream_Create: {
     readonly parameters: [
+      'function',
       'function',
       'function',
       'function',
@@ -67,11 +92,11 @@ export type WEBVIEW2_FUNCS = {
     ];
     readonly result: 'pointer';
   };
-  readonly CreateCoreWebView2Environment: {
+  readonly Global_CreateCoreWebView2Environment: {
     readonly parameters: ['pointer', 'function'];
     readonly result: 'i32';
   };
-  readonly CreateCoreWebView2EnvironmentWithOptions: {
+  readonly Global_CreateCoreWebView2EnvironmentWithOptions: {
     readonly parameters: [
       'pointer',
       'pointer',
@@ -81,23 +106,23 @@ export type WEBVIEW2_FUNCS = {
     ];
     readonly result: 'i32';
   };
-  readonly CompareBrowserVersions: {
+  readonly Global_CompareBrowserVersions: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly GetAvailableCoreWebView2BrowserVersionString: {
+  readonly Global_GetAvailableCoreWebView2BrowserVersionString: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly GetAvailableCoreWebView2BrowserVersionStringWithOptions: {
+  readonly Global_GetAvailableCoreWebView2BrowserVersionStringWithOptions: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly CreateCoreWebView2Controller: {
+  readonly Environments_CreateCoreWebView2Controller: {
     readonly parameters: ['pointer', 'pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly CreateWebResourceResponse: {
+  readonly Environments_CreateWebResourceResponse: {
     readonly parameters: [
       'pointer',
       'pointer',
@@ -108,567 +133,571 @@ export type WEBVIEW2_FUNCS = {
     ];
     readonly result: 'i32';
   };
-  readonly get_IsScriptEnabled: {
+  readonly Settings_get_IsScriptEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsScriptEnabled: {
+  readonly Settings_put_IsScriptEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsWebMessageEnabled: {
+  readonly Settings_get_IsWebMessageEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsWebMessageEnabled: {
+  readonly Settings_put_IsWebMessageEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_AreDefaultScriptDialogsEnabled: {
+  readonly Settings_get_AreDefaultScriptDialogsEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_AreDefaultScriptDialogsEnabled: {
+  readonly Settings_put_AreDefaultScriptDialogsEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsStatusBarEnabled: {
+  readonly Settings_get_IsStatusBarEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsStatusBarEnabled: {
+  readonly Settings_put_IsStatusBarEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_AreDevToolsEnabled: {
+  readonly Settings_get_AreDevToolsEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_AreDevToolsEnabled: {
+  readonly Settings_put_AreDevToolsEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_AreDefaultContextMenusEnabled: {
+  readonly Settings_get_AreDefaultContextMenusEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_AreDefaultContextMenusEnabled: {
+  readonly Settings_put_AreDefaultContextMenusEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_AreHostObjectsAllowed: {
+  readonly Settings_get_AreHostObjectsAllowed: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_AreHostObjectsAllowed: {
+  readonly Settings_put_AreHostObjectsAllowed: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsZoomControlEnabled: {
+  readonly Settings_get_IsZoomControlEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsZoomControlEnabled: {
+  readonly Settings_put_IsZoomControlEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsBuiltInErrorPageEnabled: {
+  readonly Settings_get_IsBuiltInErrorPageEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsBuiltInErrorPageEnabled: {
+  readonly Settings_put_IsBuiltInErrorPageEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_UserAgent: {
+  readonly Settings_get_UserAgent: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_UserAgent: {
+  readonly Settings_put_UserAgent: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_AreBrowserAcceleratorKeysEnabled: {
+  readonly Settings_get_AreBrowserAcceleratorKeysEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_AreBrowserAcceleratorKeysEnabled: {
+  readonly Settings_put_AreBrowserAcceleratorKeysEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsPasswordAutosaveEnabled: {
+  readonly Settings_get_IsPasswordAutosaveEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsPasswordAutosaveEnabled: {
+  readonly Settings_put_IsPasswordAutosaveEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsGeneralAutofillEnabled: {
+  readonly Settings_get_IsGeneralAutofillEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsGeneralAutofillEnabled: {
+  readonly Settings_put_IsGeneralAutofillEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsPinchZoomEnabled: {
+  readonly Settings_get_IsPinchZoomEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsPinchZoomEnabled: {
+  readonly Settings_put_IsPinchZoomEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsSwipeNavigationEnabled: {
+  readonly Settings_get_IsSwipeNavigationEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsSwipeNavigationEnabled: {
+  readonly Settings_put_IsSwipeNavigationEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_HiddenPdfToolbarItems: {
+  readonly Settings_get_HiddenPdfToolbarItems: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_HiddenPdfToolbarItems: {
+  readonly Settings_put_HiddenPdfToolbarItems: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_IsReputationCheckingRequired: {
+  readonly Settings_get_IsReputationCheckingRequired: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsReputationCheckingRequired: {
+  readonly Settings_put_IsReputationCheckingRequired: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_IsNonClientRegionSupportEnabled: {
+  readonly Settings_get_IsNonClientRegionSupportEnabled: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsNonClientRegionSupportEnabled: {
+  readonly Settings_put_IsNonClientRegionSupportEnabled: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly add_AcceleratorKeyPressed: {
+  readonly Controllers_add_AcceleratorKeyPressed: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_AcceleratorKeyPressed: {
+  readonly Controllers_remove_AcceleratorKeyPressed: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_Bounds: {
+  readonly Controllers_get_Bounds: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_Bounds: {
+  readonly Controllers_put_Bounds: {
     readonly parameters: ['pointer', 'buffer'];
     readonly result: 'i32';
   };
-  readonly Close: {
+  readonly Controllers_Close: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly get_CoreWebView2: {
+  readonly Controllers_get_CoreWebView2: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_GotFocus: {
+  readonly Controllers_add_GotFocus: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_GotFocus: {
+  readonly Controllers_remove_GotFocus: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_IsVisible: {
+  readonly Controllers_get_IsVisible: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_IsVisible: {
+  readonly Controllers_put_IsVisible: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly add_LostFocus: {
+  readonly Controllers_add_LostFocus: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_LostFocus: {
+  readonly Controllers_remove_LostFocus: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly MoveFocus: {
+  readonly Controllers_MoveFocus: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly add_MoveFocusRequested: {
+  readonly Controllers_add_MoveFocusRequested: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_MoveFocusRequested: {
+  readonly Controllers_remove_MoveFocusRequested: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly NotifyParentWindowPositionChanged: {
+  readonly Controllers_NotifyParentWindowPositionChanged: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly get_ParentWindow: {
+  readonly Controllers_get_ParentWindow: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_ParentWindow: {
+  readonly Controllers_put_ParentWindow: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly SetBoundsAndZoomFactor: {
+  readonly Controllers_SetBoundsAndZoomFactor: {
     readonly parameters: ['pointer', 'buffer', 'f64'];
     readonly result: 'i32';
   };
-  readonly get_ZoomFactor: {
+  readonly Controllers_get_ZoomFactor: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_ZoomFactor: {
+  readonly Controllers_put_ZoomFactor: {
     readonly parameters: ['pointer', 'f64'];
     readonly result: 'i32';
   };
-  readonly add_ZoomFactorChanged: {
+  readonly Controllers_add_ZoomFactorChanged: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_ZoomFactorChanged: {
+  readonly Controllers_remove_ZoomFactorChanged: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_DefaultBackgroundColor: {
+  readonly Controllers_get_DefaultBackgroundColor: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_DefaultBackgroundColor: {
+  readonly Controllers_put_DefaultBackgroundColor: {
     readonly parameters: ['pointer', 'buffer'];
     readonly result: 'i32';
   };
-  readonly add_RasterizationScaleChanged: {
+  readonly Controllers_add_RasterizationScaleChanged: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_RasterizationScaleChanged: {
+  readonly Controllers_remove_RasterizationScaleChanged: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_BoundsMode: {
+  readonly Controllers_get_BoundsMode: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_BoundsMode: {
+  readonly Controllers_put_BoundsMode: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_RasterizationScale: {
+  readonly Controllers_get_RasterizationScale: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_RasterizationScale: {
+  readonly Controllers_put_RasterizationScale: {
     readonly parameters: ['pointer', 'f64'];
     readonly result: 'i32';
   };
-  readonly get_ShouldDetectMonitorScaleChanges: {
+  readonly Controllers_get_ShouldDetectMonitorScaleChanges: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_ShouldDetectMonitorScaleChanges: {
+  readonly Controllers_put_ShouldDetectMonitorScaleChanges: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly get_AllowExternalDrop: {
+  readonly Controllers_get_AllowExternalDrop: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly put_AllowExternalDrop: {
+  readonly Controllers_put_AllowExternalDrop: {
     readonly parameters: ['pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly CallDevToolsProtocolMethod: {
+  readonly Deferral_Complete: {
+    readonly parameters: ['pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebView2_CallDevToolsProtocolMethod: {
     readonly parameters: ['pointer', 'pointer', 'pointer', 'function'];
     readonly result: 'i32';
   };
-  readonly GetDevToolsProtocolEventReceiver: {
+  readonly WebView2_GetDevToolsProtocolEventReceiver: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly OpenDevToolsWindow: {
+  readonly WebView2_OpenDevToolsWindow: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly add_DocumentTitleChanged: {
+  readonly WebView2_add_DocumentTitleChanged: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_DocumentTitleChanged: {
+  readonly WebView2_remove_DocumentTitleChanged: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_DocumentTitle: {
+  readonly WebView2_get_DocumentTitle: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_HistoryChanged: {
+  readonly WebView2_add_HistoryChanged: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_HistoryChanged: {
+  readonly WebView2_remove_HistoryChanged: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly PostWebMessageAsJson: {
+  readonly WebView2_PostWebMessageAsJson: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly PostWebMessageAsString: {
+  readonly WebView2_PostWebMessageAsString: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_WebMessageReceived: {
+  readonly WebView2_add_WebMessageReceived: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_WebMessageReceived: {
+  readonly WebView2_remove_WebMessageReceived: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly Navigate: {
+  readonly WebView2_Navigate: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_NavigationCompleted: {
+  readonly WebView2_add_NavigationCompleted: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_NavigationCompleted: {
+  readonly WebView2_remove_NavigationCompleted: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_NavigationStarting: {
+  readonly WebView2_add_NavigationStarting: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_NavigationStarting: {
+  readonly WebView2_remove_NavigationStarting: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly NavigateToString: {
+  readonly WebView2_NavigateToString: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_FrameNavigationCompleted: {
+  readonly WebView2_add_FrameNavigationCompleted: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_FrameNavigationCompleted: {
+  readonly WebView2_remove_FrameNavigationCompleted: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_FrameNavigationStarting: {
+  readonly WebView2_add_FrameNavigationStarting: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_FrameNavigationStarting: {
+  readonly WebView2_remove_FrameNavigationStarting: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_PermissionRequested: {
+  readonly WebView2_add_PermissionRequested: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_PermissionRequested: {
+  readonly WebView2_remove_PermissionRequested: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_ScriptDialogOpening: {
+  readonly WebView2_add_ScriptDialogOpening: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_ScriptDialogOpening: {
+  readonly WebView2_remove_ScriptDialogOpening: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly AddScriptToExecuteOnDocumentCreated: {
+  readonly WebView2_AddScriptToExecuteOnDocumentCreated: {
     readonly parameters: ['pointer', 'pointer', 'function'];
     readonly result: 'i32';
   };
-  readonly RemoveScriptToExecuteOnDocumentCreated: {
+  readonly WebView2_RemoveScriptToExecuteOnDocumentCreated: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly ExecuteScript: {
+  readonly WebView2_ExecuteScript: {
     readonly parameters: ['pointer', 'pointer', 'function'];
     readonly result: 'i32';
   };
-  readonly AddHostObjectToScript: {
+  readonly WebView2_AddHostObjectToScript: {
     readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly RemoveHostObjectFromScript: {
+  readonly WebView2_RemoveHostObjectFromScript: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_Source: {
+  readonly WebView2_get_Source: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_SourceChanged: {
+  readonly WebView2_add_SourceChanged: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_SourceChanged: {
+  readonly WebView2_remove_SourceChanged: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly Reload: {
+  readonly WebView2_Reload: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly get_CanGoBack: {
+  readonly WebView2_get_CanGoBack: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_CanGoForward: {
+  readonly WebView2_get_CanGoForward: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly GoBack: {
+  readonly WebView2_GoBack: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly GoForward: {
+  readonly WebView2_GoForward: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly Stop: {
+  readonly WebView2_Stop: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
-  readonly add_ContentLoading: {
+  readonly WebView2_add_ContentLoading: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_ContentLoading: {
+  readonly WebView2_remove_ContentLoading: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_ProcessFailed: {
+  readonly WebView2_add_ProcessFailed: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_ProcessFailed: {
+  readonly WebView2_remove_ProcessFailed: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_Settings: {
+  readonly WebView2_get_Settings: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly CapturePreview: {
+  readonly WebView2_CapturePreview: {
     readonly parameters: ['pointer', 'i32', 'pointer', 'function'];
     readonly result: 'i32';
   };
-  readonly get_BrowserProcessId: {
+  readonly WebView2_get_BrowserProcessId: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_NewWindowRequested: {
+  readonly WebView2_add_NewWindowRequested: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_NewWindowRequested: {
+  readonly WebView2_remove_NewWindowRequested: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_ContainsFullScreenElementChanged: {
+  readonly WebView2_add_ContainsFullScreenElementChanged: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_ContainsFullScreenElementChanged: {
+  readonly WebView2_remove_ContainsFullScreenElementChanged: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_ContainsFullScreenElement: {
+  readonly WebView2_get_ContainsFullScreenElement: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_WebResourceRequested: {
+  readonly WebView2_add_WebResourceRequested: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_WebResourceRequested: {
+  readonly WebView2_remove_WebResourceRequested: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly AddWebResourceRequestedFilter: {
+  readonly WebView2_AddWebResourceRequestedFilter: {
     readonly parameters: ['pointer', 'pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly RemoveWebResourceRequestedFilter: {
+  readonly WebView2_RemoveWebResourceRequestedFilter: {
     readonly parameters: ['pointer', 'pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly add_WindowCloseRequested: {
+  readonly WebView2_add_WindowCloseRequested: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_WindowCloseRequested: {
+  readonly WebView2_remove_WindowCloseRequested: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_DOMContentLoaded: {
+  readonly WebView2_add_DOMContentLoaded: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly add_WebResourceResponseReceived: {
+  readonly WebView2_add_WebResourceResponseReceived: {
     readonly parameters: ['pointer', 'function', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_CookieManager: {
+  readonly WebView2_get_CookieManager: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_Environment: {
+  readonly WebView2_get_Environment: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly NavigateWithWebResourceRequest: {
+  readonly WebView2_NavigateWithWebResourceRequest: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_DOMContentLoaded: {
+  readonly WebView2_remove_DOMContentLoaded: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly remove_WebResourceResponseReceived: {
+  readonly WebView2_remove_WebResourceResponseReceived: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly SetVirtualHostNameToFolderMapping: {
+  readonly WebView2_SetVirtualHostNameToFolderMapping: {
     readonly parameters: ['pointer', 'pointer', 'pointer', 'i32'];
     readonly result: 'i32';
   };
-  readonly ClearVirtualHostNameToFolderMapping: {
+  readonly WebView2_ClearVirtualHostNameToFolderMapping: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly get_IsSuspended: {
+  readonly WebView2_get_IsSuspended: {
     readonly parameters: ['pointer', 'pointer'];
     readonly result: 'i32';
   };
-  readonly TrySuspend: {
+  readonly WebView2_TrySuspend: {
     readonly parameters: ['pointer', 'function'];
     readonly result: 'i32';
   };
-  readonly Resume: {
+  readonly WebView2_Resume: {
     readonly parameters: ['pointer'];
     readonly result: 'i32';
   };
@@ -725,7 +754,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly WebResourceRequest_get_Method: {
-    readonly parameters: ['pointer', 'pointer'];
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly WebResourceRequest_get_Uri: {
@@ -790,6 +819,26 @@ export type WEBVIEW2_FUNCS = {
   };
   readonly WebResourceRequestedEventArgs_put_Response: {
     readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_Contains: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_GetHeader: {
+    readonly parameters: ['pointer', 'pointer', 'pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_GetHeaders: {
+    readonly parameters: ['pointer', 'pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_GetIterator: {
+    readonly parameters: ['pointer', 'function'];
+    readonly result: 'i32';
+  };
+  readonly HttpResponseHeaders_AppendHeader: {
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
 };

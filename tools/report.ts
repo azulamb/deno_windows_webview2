@@ -1,5 +1,5 @@
 import { Microsoft_Web_WebView2 } from '../src/version.ts';
-import { DOMParser } from 'jsr:@b-fuze/deno-dom';
+import { DOMParser } from '@b-fuze/deno-dom';
 import { params } from '../src/webview2_params.ts';
 import dll from '../docs/dll.json' with { type: 'json' };
 

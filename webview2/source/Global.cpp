@@ -6,7 +6,7 @@
 * Global
 */
 
-EXPORT HRESULT _CreateCoreWebView2Environment(
+EXPORT HRESULT Global_CreateCoreWebView2Environment(
 	Environments* environments,
 	HRESULT(*callback)(HRESULT, ICoreWebView2Environment*)
 ) {
@@ -22,7 +22,7 @@ EXPORT HRESULT _CreateCoreWebView2Environment(
 	);
 }
 
-EXPORT HRESULT _CreateCoreWebView2EnvironmentWithOptions(
+EXPORT HRESULT Global_CreateCoreWebView2EnvironmentWithOptions(
 	Environments* environments,
 	PCWSTR browserExecutableFolder,
 	PCWSTR userDataFolder,
@@ -32,7 +32,7 @@ EXPORT HRESULT _CreateCoreWebView2EnvironmentWithOptions(
 	Log(__FUNCTIONW__ L"\n");
 	return ::CreateCoreWebView2EnvironmentWithOptions(
 		browserExecutableFolder,
-		browserExecutableFolder,
+		userDataFolder,
 		environmentOptions,
 		Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
 			[callback, environments](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
@@ -44,7 +44,7 @@ EXPORT HRESULT _CreateCoreWebView2EnvironmentWithOptions(
 	);
 }
 
-EXPORT HRESULT _CompareBrowserVersions(
+EXPORT HRESULT Global_CompareBrowserVersions(
 	PCWSTR version1,
 	PCWSTR version2,
 	int* result
@@ -55,7 +55,7 @@ EXPORT HRESULT _CompareBrowserVersions(
 
 // TODO: CreateWebViewEnvironmentWithOptionsInternal
 
-EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
+EXPORT HRESULT Global_GetAvailableCoreWebView2BrowserVersionString(
 	PCWSTR browserExecutableFolder,
 	LPWSTR* versionInfo
 ) {
@@ -63,7 +63,7 @@ EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionString(
 	return ::GetAvailableCoreWebView2BrowserVersionString(browserExecutableFolder, versionInfo);
 }
 
-EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionStringWithOptions(
+EXPORT HRESULT Global_GetAvailableCoreWebView2BrowserVersionStringWithOptions(
 	PCWSTR browserExecutableFolder,
 	ICoreWebView2EnvironmentOptions* environmentOptions,
 	LPWSTR* versionInfo
@@ -71,11 +71,5 @@ EXPORT HRESULT _GetAvailableCoreWebView2BrowserVersionStringWithOptions(
 	Log(__FUNCTIONW__ L"\n");
 	return ::GetAvailableCoreWebView2BrowserVersionStringWithOptions(browserExecutableFolder, environmentOptions, versionInfo);
 }
-
-#pragma comment(linker, "/EXPORT:CreateCoreWebView2Environment=_CreateCoreWebView2Environment")
-#pragma comment(linker, "/EXPORT:CreateCoreWebView2EnvironmentWithOptions=_CreateCoreWebView2EnvironmentWithOptions")
-#pragma comment(linker, "/EXPORT:CompareBrowserVersions=_CompareBrowserVersions")
-#pragma comment(linker, "/EXPORT:GetAvailableCoreWebView2BrowserVersionString=_GetAvailableCoreWebView2BrowserVersionString")
-#pragma comment(linker, "/EXPORT:GetAvailableCoreWebView2BrowserVersionStringWithOptions=_GetAvailableCoreWebView2BrowserVersionStringWithOptions")
 
 #endif

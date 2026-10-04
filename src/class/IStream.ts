@@ -1,24 +1,10 @@
 import type { Webview2Funcs } from '../webview2_types.ts';
-import { DoublePointer } from './DoublePointer.ts';
+import { ComPointer } from './ComPointer.ts';
 
-export class IStream extends DoublePointer {
-  //protected stream: DoublePointer = new DoublePointer();
-  constructor(
-    protected libs: Webview2Funcs,
-  ) {
-    super();
+export class IStream extends ComPointer {
+  constructor(libs: Webview2Funcs) {
+    super(libs);
   }
-
-  /**
-   * Gets the raw pointer to the IStream interface.
-   */
-  /*public getDoublePointer(): Deno.PointerValue {
-    return this.stream.getDoublePointer();
-  }
-
-  public getPointer(): Deno.PointerValue {
-    return this.stream.getPointer();
-  }*/
 
   /**
    * Reads data from the stream.
@@ -95,7 +81,11 @@ export class JStream extends IStream implements JStreamFunctions {
   static create(
     stream: JStream,
   ): JStream {
+    if (stream.getPointer()) throw new Error('JStream is already created.');
     const myStream: JStream & IStream & JStreamFunctions = stream;
+    if (myStream.addRef || myStream.release) {
+      throw new Error('JStream reference counting is managed by the DLL.');
+    }
     const queryInterface = myStream.queryInterface
       ? new Deno.UnsafeCallback(
         {
@@ -106,24 +96,6 @@ export class JStream extends IStream implements JStreamFunctions {
           result: 'i32', // HRESULT
         },
         myStream.queryInterface.bind(stream),
-      )
-      : null;
-    const addRef = myStream.addRef
-      ? new Deno.UnsafeCallback(
-        {
-          parameters: [],
-          result: 'u32',
-        },
-        myStream.addRef.bind(stream),
-      )
-      : null;
-    const release = myStream.release
-      ? new Deno.UnsafeCallback(
-        {
-          parameters: [],
-          result: 'u32',
-        },
-        myStream.release.bind(stream),
       )
       : null;
     const read = new Deno.UnsafeCallback(
@@ -255,11 +227,34 @@ export class JStream extends IStream implements JStreamFunctions {
         myStream.clone.bind(stream),
       )
       : null;
+    const callbacks = [
+      queryInterface,
+      read,
+      write,
+      seek,
+      setSize,
+      copyTo,
+      commit,
+      revert,
+      lockRegion,
+      unlockRegion,
+      stat,
+      clone,
+    ];
+    const destroyed = new Deno.UnsafeCallback({
+      parameters: [],
+      result: 'void',
+    }, () => {
+      queueMicrotask(() => {
+        for (const callback of callbacks) callback?.close();
+        destroyed.close();
+      });
+    });
     stream.setPointer(
-      stream.libs.symbols.CreateJStream(
+      stream.libs.symbols.JStream_Create(
         queryInterface ? queryInterface.pointer : null,
-        addRef ? addRef.pointer : null,
-        release ? release.pointer : null,
+        null, // DLL owns AddRef
+        null, // DLL owns Release
         read.pointer,
         write.pointer,
         seek ? seek.pointer : null,
@@ -271,6 +266,7 @@ export class JStream extends IStream implements JStreamFunctions {
         unlockRegion ? unlockRegion.pointer : null,
         stat ? stat.pointer : null,
         clone ? clone.pointer : null,
+        destroyed.pointer,
       ),
     );
 
@@ -303,17 +299,17 @@ export class JStream extends IStream implements JStreamFunctions {
   }*/
 
   public read(
-    pv: Deno.PointerValue,
-    cb: number,
-    pcbRead: Deno.PointerValue,
+    _pv: Deno.PointerValue,
+    _cb: number,
+    _pcbRead: Deno.PointerValue,
   ): number {
     return -2147467263; // E_NOTIMPL
   }
 
   public write(
-    pv: Deno.PointerValue,
-    cb: number,
-    pcbWritten: Deno.PointerValue,
+    _pv: Deno.PointerValue,
+    _cb: number,
+    _pcbWritten: Deno.PointerValue,
   ): number {
     return -2147467263; // E_NOTIMPL
   }

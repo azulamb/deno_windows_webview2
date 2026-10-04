@@ -3,6 +3,8 @@
 #include <windows.h>
 #include <wil/com.h>
 
+// TODO: Add release export functions.
+
 class WebView2 {
 public:
 	wil::com_ptr<ICoreWebView2> webview1;
@@ -12,7 +14,7 @@ public:
 
 class Environments {
 public:
-	ICoreWebView2Environment* env1;
+	wil::com_ptr<ICoreWebView2Environment> env1;
 };
 
 class Settings {

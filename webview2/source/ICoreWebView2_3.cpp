@@ -6,7 +6,7 @@
 * ICoreWebView2_3
 */
 
-EXPORT HRESULT SetVirtualHostNameToFolderMapping(
+EXPORT HRESULT WebView2_SetVirtualHostNameToFolderMapping(
 	WebView2* webview2,
 	LPCWSTR hostName,
 	LPCWSTR folderPath,
@@ -21,7 +21,7 @@ EXPORT HRESULT SetVirtualHostNameToFolderMapping(
 	);
 }
 
-EXPORT HRESULT ClearVirtualHostNameToFolderMapping(
+EXPORT HRESULT WebView2_ClearVirtualHostNameToFolderMapping(
 	WebView2* webview2,
 	LPCWSTR hostName
 ) {
@@ -30,13 +30,13 @@ EXPORT HRESULT ClearVirtualHostNameToFolderMapping(
 	return webview2->webview3->ClearVirtualHostNameToFolderMapping(hostName);
 }
 
-EXPORT HRESULT get_IsSuspended(WebView2* webview2, BOOL* isSuspended) {
+EXPORT HRESULT WebView2_get_IsSuspended(WebView2* webview2, BOOL* isSuspended) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview3);
 	return webview2->webview3->get_IsSuspended(isSuspended);
 }
 
-EXPORT HRESULT TrySuspend(WebView2* webview2, HRESULT(*callback)(HRESULT errorCode, BOOL isSuccessful)) {
+EXPORT HRESULT WebView2_TrySuspend(WebView2* webview2, HRESULT(*callback)(HRESULT errorCode, BOOL isSuccessful)) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview3);
 	return webview2->webview3->TrySuspend(
@@ -49,7 +49,7 @@ EXPORT HRESULT TrySuspend(WebView2* webview2, HRESULT(*callback)(HRESULT errorCo
 	);
 }
 
-EXPORT HRESULT Resume(WebView2* webview2) {
+EXPORT HRESULT WebView2_Resume(WebView2* webview2) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview3);
 	return webview2->webview3->Resume();
