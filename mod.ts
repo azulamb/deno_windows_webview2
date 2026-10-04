@@ -16,6 +16,13 @@ import { createDLLPath } from './tools/dll_path.ts';
 import type { Webview2Funcs } from './src/webview2_types.ts';
 import { WebView2 } from './src/webview2.ts';
 export * from './src/webview2.ts';
+export { ProcessFailedEventArgs } from './src/class/ProcessFailedEventArgs.ts';
+export { SourceChangedEventArgs } from './src/class/SourceChangedEventArgs.ts';
+export {
+  AcceleratorKeyPressedEventArgs,
+  type PhysicalKeyStatus,
+} from './src/class/AcceleratorKeyPressedEventArgs.ts';
+export { WebResourceRequestSourceKinds } from './src/constants/WEB_RESOURCE_REQUEST_SOURCE_KINDS.ts';
 export { NavigationStartingEventArgs } from './src/class/NavigationStartingEventArgs.ts';
 export { NavigationCompletedEventArgs } from './src/class/NavigationCompletedEventArgs.ts';
 export { NewWindowRequestedEventArgs } from './src/class/NewWindowRequestedEventArgs.ts';

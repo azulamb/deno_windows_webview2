@@ -1,4 +1,7 @@
 import type { HRESULT, LPVOID } from './winapi.ts';
+import { ProcessFailedEventArgs } from '../class/ProcessFailedEventArgs.ts';
+import { SourceChangedEventArgs } from '../class/SourceChangedEventArgs.ts';
+import { WebResourceRequestSourceKinds } from '../constants/WEB_RESOURCE_REQUEST_SOURCE_KINDS.ts';
 import { NavigationStartingEventArgs } from '../class/NavigationStartingEventArgs.ts';
 import { NavigationCompletedEventArgs } from '../class/NavigationCompletedEventArgs.ts';
 import { NewWindowRequestedEventArgs } from '../class/NewWindowRequestedEventArgs.ts';
@@ -8,6 +11,7 @@ import {
   createStringBuffer,
   createStringPointer,
   getBool,
+  getString,
   getWString,
 } from './convert.ts';
 import type {
@@ -50,7 +54,14 @@ export class Core {
     const func = new Deno.UnsafeCallback({
       parameters: ['pointer', 'pointer'],
       result: 'i32',
-    }, callback);
+    }, (sender, args) => {
+      try {
+        return callback(sender, args);
+      } catch (error) {
+        console.error(error);
+        return -2147467259;
+      }
+    });
     const result = add(this.core, func.pointer, token);
     if (result < 0) {
       func.close();
@@ -127,6 +138,136 @@ export class Core {
   }
   public removePermissionRequested(token: EventRegistrationToken): HRESULT {
     return this.removeEvent(token);
+  }
+
+  public get documentTitle(): string {
+    return getString(this.core, this.libs.symbols.WebView2_get_DocumentTitle);
+  }
+  public get source(): string {
+    return getString(this.core, this.libs.symbols.WebView2_get_Source);
+  }
+  public openDevToolsWindow(): HRESULT {
+    return this.libs.symbols.WebView2_OpenDevToolsWindow(this.core);
+  }
+  /** Register before navigation; wait for the completion callback before navigating. */
+  public addScriptToExecuteOnDocumentCreated(
+    source: string,
+    callback: (errorCode: HRESULT, scriptID: string) => HRESULT,
+  ): HRESULT {
+    const buffer = createStringBuffer(source);
+    const func = this.context.completions.create(
+      (errorCode, id) => callback(errorCode, getWString(id)),
+      [buffer],
+    );
+    const result = this.libs.symbols
+      .WebView2_AddScriptToExecuteOnDocumentCreated(
+        this.core,
+        Deno.UnsafePointer.of(buffer),
+        func.pointer,
+      );
+    if (result < 0) this.context.completions.cancel(func);
+    return result;
+  }
+  public removeScriptToExecuteOnDocumentCreated(scriptID: string): HRESULT {
+    const buffer = createStringBuffer(scriptID);
+    return this.libs.symbols.WebView2_RemoveScriptToExecuteOnDocumentCreated(
+      this.core,
+      Deno.UnsafePointer.of(buffer),
+    );
+  }
+  /** Event arguments, when present, are borrowed during this synchronous STA callback. */
+  public addProcessFailed(
+    callback: (sender: LPVOID, args: ProcessFailedEventArgs) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender, pointer) =>
+        callback(sender, new ProcessFailedEventArgs(this.libs, pointer)),
+      this.libs.symbols.WebView2_add_ProcessFailed,
+      this.libs.symbols.WebView2_remove_ProcessFailed,
+    );
+  }
+  public removeProcessFailed(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+  /** Event arguments, when present, are borrowed during this synchronous STA callback. */
+  public addWindowCloseRequested(
+    callback: (sender: LPVOID) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender) => callback(sender),
+      this.libs.symbols.WebView2_add_WindowCloseRequested,
+      this.libs.symbols.WebView2_remove_WindowCloseRequested,
+    );
+  }
+  public removeWindowCloseRequested(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+  /** Event arguments, when present, are borrowed during this synchronous STA callback. */
+  public addDocumentTitleChanged(
+    callback: (sender: LPVOID) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender) => callback(sender),
+      this.libs.symbols.WebView2_add_DocumentTitleChanged,
+      this.libs.symbols.WebView2_remove_DocumentTitleChanged,
+    );
+  }
+  public removeDocumentTitleChanged(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+  /** Event arguments, when present, are borrowed during this synchronous STA callback. */
+  public addSourceChanged(
+    callback: (sender: LPVOID, args: SourceChangedEventArgs) => HRESULT,
+  ): EventRegistrationToken {
+    return this.addEvent(
+      (sender, pointer) =>
+        callback(sender, new SourceChangedEventArgs(this.libs, pointer)),
+      this.libs.symbols.WebView2_add_SourceChanged,
+      this.libs.symbols.WebView2_remove_SourceChanged,
+    );
+  }
+  public removeSourceChanged(token: EventRegistrationToken): HRESULT {
+    return this.removeEvent(token);
+  }
+  /** Select document/Worker sources explicitly. Requires a Runtime supporting ICoreWebView2_22. */
+  public addWebResourceRequestedFilterWithRequestSourceKinds(
+    uri: string,
+    resourceContext: WEB_RESOURCE_CONTEXT_TYPES = 0,
+    requestSourceKinds: WebResourceRequestSourceKinds =
+      WebResourceRequestSourceKinds.All,
+  ): HRESULT {
+    if (
+      !Number.isInteger(requestSourceKinds) || requestSourceKinds < 0 ||
+      requestSourceKinds > 7
+    ) throw new TypeError('Invalid request source flags.');
+    const buffer = createStringBuffer(uri);
+    return this.libs.symbols
+      .WebView2_AddWebResourceRequestedFilterWithRequestSourceKinds(
+        this.core,
+        Deno.UnsafePointer.of(buffer),
+        resourceContext,
+        requestSourceKinds,
+      );
+  }
+  /** Select document/Worker sources explicitly. Requires a Runtime supporting ICoreWebView2_22. */
+  public removeWebResourceRequestedFilterWithRequestSourceKinds(
+    uri: string,
+    resourceContext: WEB_RESOURCE_CONTEXT_TYPES = 0,
+    requestSourceKinds: WebResourceRequestSourceKinds =
+      WebResourceRequestSourceKinds.All,
+  ): HRESULT {
+    if (
+      !Number.isInteger(requestSourceKinds) || requestSourceKinds < 0 ||
+      requestSourceKinds > 7
+    ) throw new TypeError('Invalid request source flags.');
+    const buffer = createStringBuffer(uri);
+    return this.libs.symbols
+      .WebView2_RemoveWebResourceRequestedFilterWithRequestSourceKinds(
+        this.core,
+        Deno.UnsafePointer.of(buffer),
+        resourceContext,
+        requestSourceKinds,
+      );
   }
 
   protected core: Deno.PointerValue<unknown>;

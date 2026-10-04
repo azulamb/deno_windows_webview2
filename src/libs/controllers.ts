@@ -1,7 +1,9 @@
 import type { MOVE_FOCUS_REASON_TYPES } from '../constants/MOVE_FOCUS_REASON.ts';
 import type { Webview2Funcs } from '../webview2_types.ts';
 import type { Webview2Context } from './types.ts';
-import type { HRESULT, Rect } from './winapi.ts';
+import type { HRESULT, LPVOID, Rect } from './winapi.ts';
+import type { EventRegistrationToken } from '../webview2_types.ts';
+import { AcceleratorKeyPressedEventArgs } from '../class/AcceleratorKeyPressedEventArgs.ts';
 
 /** WebView2 background channels. Alpha supports only 0 (transparent) or 255 (opaque). */
 export interface BackgroundColor {
@@ -12,6 +14,62 @@ export interface BackgroundColor {
 }
 
 export class Controllers {
+  private callbacks: Map<EventRegistrationToken, { close(): void }> = new Map();
+  /** Register a synchronous keyboard handler on this controller's STA. */
+  public addAcceleratorKeyPressed(
+    callback: (sender: LPVOID, args: AcceleratorKeyPressedEventArgs) => HRESULT,
+  ): EventRegistrationToken {
+    const token = this.context.eventRegistrationToken.create();
+    const func = new Deno.UnsafeCallback({
+      parameters: ['pointer', 'pointer'],
+      result: 'i32',
+    }, (sender, pointer) => {
+      try {
+        return callback(
+          sender,
+          new AcceleratorKeyPressedEventArgs(this.libs, pointer),
+        );
+      } catch (error) {
+        console.error(error);
+        return -2147467259;
+      }
+    });
+    const result = this.libs.symbols.Controllers_add_AcceleratorKeyPressed(
+      this.controllers,
+      func.pointer,
+      token,
+    );
+    if (result < 0) {
+      func.close();
+      this.context.eventRegistrationToken.remove(token);
+      throw new Error(`Add keyboard event failed: ${result}`);
+    }
+    this.callbacks.set(token, func);
+    return token;
+  }
+  public removeAcceleratorKeyPressed(token: EventRegistrationToken): HRESULT {
+    const func = this.callbacks.get(token);
+    if (!func) {
+      throw new Error('Unknown or already removed keyboard event token.');
+    }
+    const result = this.libs.symbols.Controllers_remove_AcceleratorKeyPressed(
+      this.controllers,
+      token,
+    );
+    if (result < 0) return result;
+    this.callbacks.delete(token);
+    this.context.eventRegistrationToken.remove(token);
+    queueMicrotask(() => func.close());
+    return result;
+  }
+  public closeEvents(): void {
+    for (const token of [...this.callbacks.keys()]) {
+      const result = this.removeAcceleratorKeyPressed(token);
+      if (result < 0) {
+        throw new Error(`Remove keyboard event failed: ${result}`);
+      }
+    }
+  }
   public get defaultBackgroundColor(): BackgroundColor {
     const bytes = new Uint8Array(4);
     const result = this.libs.symbols.Controllers_get_DefaultBackgroundColor(
@@ -86,6 +144,7 @@ export class Controllers {
   }
 
   public close(): HRESULT {
+    this.closeEvents();
     return this.libs.symbols.Controllers_Close(this.controllers);
   }
 

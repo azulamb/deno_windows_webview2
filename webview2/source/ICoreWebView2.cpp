@@ -75,11 +75,16 @@ EXPORT HRESULT WebView2_remove_DocumentTitleChanged(
 
 EXPORT HRESULT WebView2_get_DocumentTitle(
 	WebView2* webview2,
-	/* [retval][out] */ LPWSTR* title
+	LPWSTR title,
+	rsize_t* size
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->get_DocumentTitle(title);
+	wil::unique_cotaskmem_string value;
+	HRESULT result = webview2->webview1->get_DocumentTitle(&value);
+	if (FAILED(result)) { if (size) *size = 0; return result; }
+	CopyString(value.get(), size, title);
+	return result;
 }
 
 /* History */
@@ -414,11 +419,16 @@ EXPORT HRESULT WebView2_RemoveHostObjectFromScript(
 
 EXPORT HRESULT WebView2_get_Source(
 	WebView2* webview2,
-	/* [retval][out] */ LPWSTR* uri
+	LPWSTR uri,
+	rsize_t* size
 ) {
 	Log(__FUNCTIONW__ L"\n");
 	CHECK(webview2->webview1);
-	return webview2->webview1->get_Source(uri);
+	wil::unique_cotaskmem_string value;
+	HRESULT result = webview2->webview1->get_Source(&value);
+	if (FAILED(result)) { if (size) *size = 0; return result; }
+	CopyString(value.get(), size, uri);
+	return result;
 }
 
 EXPORT HRESULT WebView2_add_SourceChanged(

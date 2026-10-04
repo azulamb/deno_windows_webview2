@@ -151,6 +151,47 @@ Deno.test({
             blue: 255,
           };
           winApi.user.ShowWindow(handle, 5);
+          const processToken = webview.core.addProcessFailed(
+            (_sender, args) => {
+              equal(typeof args.ProcessFailedKind, 'number');
+              return 0;
+            },
+          );
+          check(webview.core.removeProcessFailed(processToken));
+          const keyToken = webview.controllers.addAcceleratorKeyPressed(() =>
+            0
+          );
+          check(webview.controllers.removeAcceleratorKeyPressed(keyToken));
+          // Also leave subscriptions for shutdown to remove automatically.
+          webview.controllers.addAcceleratorKeyPressed(() => 0);
+          webview.core.addProcessFailed(() => 0);
+          let titles = 0, sources = 0;
+          const titleToken = webview.core.addDocumentTitleChanged(() => {
+            ++titles;
+            return 0;
+          });
+          const sourceToken = webview.core.addSourceChanged((_sender, args) => {
+            equal(typeof args.IsNewDocument, 'boolean');
+            ++sources;
+            return 0;
+          });
+          const scriptID = await timeout(
+            new Promise<string>((resolve, reject) => {
+              const result = webview.core.addScriptToExecuteOnDocumentCreated(
+                'globalThis.__initialScript = "日本語😀";',
+                (hr, id) => {
+                  if (hr < 0) reject(new Error(`Initial script failed: ${hr}`));
+                  else resolve(id);
+                  return 0;
+                },
+              );
+              if (result < 0) {
+                reject(new Error(`Initial script start failed: ${result}`));
+              }
+            }),
+            'AddScriptToExecuteOnDocumentCreated',
+          );
+          equal(scriptID.length > 0, true);
           let removedCalled = false;
           const removed = webview.core.addWebMessageReceived(() => {
             removedCalled = true;
@@ -172,7 +213,9 @@ Deno.test({
             failed = reject;
           });
           check(
-            webview.core.addWebResourceRequestedFilter('https://test.local/*'),
+            webview.core.addWebResourceRequestedFilterWithRequestSourceKinds(
+              'https://test.local/*',
+            ),
           );
           const token = webview.core.addWebResourceRequested(
             (_sender, pointer) => {
@@ -274,9 +317,27 @@ Deno.test({
                 }
               }),
             );
+          equal(
+            JSON.parse(await execute('globalThis.__initialScript')),
+            '日本語😀',
+          );
+          check(webview.core.removeScriptToExecuteOnDocumentCreated(scriptID));
+          equal(webview.core.source, 'https://test.local/index');
           equal(JSON.parse(await execute('"日本語😀"')), '日本語😀');
           await execute(`void fetch('/fetch', { method: '${longMethod}' })`);
           await timeout(received);
+          let closedRequested!: () => void;
+          const closeRequest = new Promise<void>((resolve) => {
+            closedRequested = resolve;
+          });
+          const closeToken = webview.core.addWindowCloseRequested(() => {
+            closedRequested();
+            return 0;
+          });
+          // Request close before adding another entry to the document history.
+          await execute('window.close()');
+          await timeout(closeRequest, 'WindowCloseRequested');
+          check(webview.core.removeWindowCloseRequested(closeToken));
           if (iteration === 0) {
             let opened!: () => void;
             const newWindow = new Promise<void>((resolve) => {
@@ -363,6 +424,14 @@ Deno.test({
           );
           await timeout(navigation, 'NavigateToString / NavigationCompleted');
           equal(JSON.parse(await execute('document.title')), 'Embedded HTML');
+          equal(webview.core.documentTitle, 'Embedded HTML');
+          equal(webview.core.source, 'about:blank');
+          equal(
+            JSON.parse(await execute('typeof globalThis.__initialScript')),
+            'undefined',
+          );
+          equal(titles > 0, true);
+          equal(sources > 0, true);
           check(webview.core.navigate('https://test.local/blocked'));
           await timeout(
             new Promise<void>((resolve) => {
@@ -377,6 +446,13 @@ Deno.test({
           equal(JSON.parse(await execute('document.title')), 'Embedded HTML');
           check(webview.core.removeNavigationStarting(startingToken));
           check(webview.core.removeNavigationCompleted(completedToken));
+          check(webview.core.removeDocumentTitleChanged(titleToken));
+          check(webview.core.removeSourceChanged(sourceToken));
+          check(
+            webview.core.removeWebResourceRequestedFilterWithRequestSourceKinds(
+              'https://test.local/*',
+            ),
+          );
           check(webview.core.removeWebResourceRequested(token));
           check(webview.core.removeWebMessageReceived(receive));
           // Native JStream reference counting frees its callbacks on the final Release.

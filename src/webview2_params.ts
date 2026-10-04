@@ -425,7 +425,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   WebView2_get_DocumentTitle: {
-    parameters: ['pointer', 'pointer'],
+    parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
   WebView2_add_HistoryChanged: {
@@ -529,7 +529,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   WebView2_get_Source: {
-    parameters: ['pointer', 'pointer'],
+    parameters: ['pointer', 'pointer', 'pointer'],
     result: 'i32',
   },
   WebView2_add_SourceChanged: {
@@ -898,6 +898,46 @@ export const params: WEBVIEW2_FUNCS = {
   },
   PermissionRequestedEventArgs_GetDeferral: {
     parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  ProcessFailedEventArgs_get_ProcessFailedKind: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  AcceleratorKeyPressedEventArgs_get_KeyEventKind: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  AcceleratorKeyPressedEventArgs_get_VirtualKey: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  AcceleratorKeyPressedEventArgs_get_KeyEventLParam: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  AcceleratorKeyPressedEventArgs_get_Handled: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  AcceleratorKeyPressedEventArgs_put_Handled: {
+    parameters: ['pointer', 'i32'],
+    result: 'i32',
+  },
+  AcceleratorKeyPressedEventArgs_get_PhysicalKeyStatus: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  SourceChangedEventArgs_get_IsNewDocument: {
+    parameters: ['pointer', 'pointer'],
+    result: 'i32',
+  },
+  WebView2_AddWebResourceRequestedFilterWithRequestSourceKinds: {
+    parameters: ['pointer', 'pointer', 'i32', 'i32'],
+    result: 'i32',
+  },
+  WebView2_RemoveWebResourceRequestedFilterWithRequestSourceKinds: {
+    parameters: ['pointer', 'pointer', 'i32', 'i32'],
     result: 'i32',
   },
   HttpResponseHeaders_AppendHeader: {

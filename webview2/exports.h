@@ -447,8 +447,8 @@ EXPORT HRESULT WebView2_remove_DocumentTitleChanged(
 
 EXPORT HRESULT WebView2_get_DocumentTitle(
 	WebView2* webview2,
-	// TODO: LPWSTR
-	/* [retval][out] */ LPWSTR* title
+	LPWSTR title,
+	rsize_t* size
 );
 
 /* History */
@@ -601,8 +601,8 @@ EXPORT HRESULT WebView2_RemoveHostObjectFromScript(
 
 EXPORT HRESULT WebView2_get_Source(
 	WebView2* webview2,
-	// TODO: LPWSTR
-	/* [retval][out] */ LPWSTR* uri
+	LPWSTR uri,
+	rsize_t* size
 );
 
 EXPORT HRESULT WebView2_add_SourceChanged(
@@ -1032,6 +1032,17 @@ EXPORT HRESULT PermissionRequestedEventArgs_get_IsUserInitiated(ICoreWebView2Per
 EXPORT HRESULT PermissionRequestedEventArgs_get_State(ICoreWebView2PermissionRequestedEventArgs* args, COREWEBVIEW2_PERMISSION_STATE* value);
 EXPORT HRESULT PermissionRequestedEventArgs_put_State(ICoreWebView2PermissionRequestedEventArgs* args, COREWEBVIEW2_PERMISSION_STATE value);
 EXPORT HRESULT PermissionRequestedEventArgs_GetDeferral(ICoreWebView2PermissionRequestedEventArgs* args, ICoreWebView2Deferral** value);
+
+EXPORT HRESULT ProcessFailedEventArgs_get_ProcessFailedKind(ICoreWebView2ProcessFailedEventArgs* args, COREWEBVIEW2_PROCESS_FAILED_KIND* value);
+EXPORT HRESULT AcceleratorKeyPressedEventArgs_get_KeyEventKind(ICoreWebView2AcceleratorKeyPressedEventArgs* args, COREWEBVIEW2_KEY_EVENT_KIND* value);
+EXPORT HRESULT AcceleratorKeyPressedEventArgs_get_VirtualKey(ICoreWebView2AcceleratorKeyPressedEventArgs* args, UINT32* value);
+EXPORT HRESULT AcceleratorKeyPressedEventArgs_get_KeyEventLParam(ICoreWebView2AcceleratorKeyPressedEventArgs* args, INT* value);
+EXPORT HRESULT AcceleratorKeyPressedEventArgs_get_Handled(ICoreWebView2AcceleratorKeyPressedEventArgs* args, BOOL* value);
+EXPORT HRESULT AcceleratorKeyPressedEventArgs_put_Handled(ICoreWebView2AcceleratorKeyPressedEventArgs* args, BOOL value);
+EXPORT HRESULT AcceleratorKeyPressedEventArgs_get_PhysicalKeyStatus(ICoreWebView2AcceleratorKeyPressedEventArgs* args, COREWEBVIEW2_PHYSICAL_KEY_STATUS* value);
+EXPORT HRESULT SourceChangedEventArgs_get_IsNewDocument(ICoreWebView2SourceChangedEventArgs* args, BOOL* value);
+EXPORT HRESULT WebView2_AddWebResourceRequestedFilterWithRequestSourceKinds(WebView2* webview2, LPCWSTR uri, COREWEBVIEW2_WEB_RESOURCE_CONTEXT context, COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS kinds);
+EXPORT HRESULT WebView2_RemoveWebResourceRequestedFilterWithRequestSourceKinds(WebView2* webview2, LPCWSTR uri, COREWEBVIEW2_WEB_RESOURCE_CONTEXT context, COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS kinds);
 
 EXPORT HRESULT HttpResponseHeaders_AppendHeader(
 	ICoreWebView2HttpResponseHeaders* headers,

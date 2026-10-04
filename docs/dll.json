@@ -44,7 +44,7 @@
         {
           "name": "get_Source",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "Navigate",
@@ -79,12 +79,12 @@
         {
           "name": "add_SourceChanged",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "remove_SourceChanged",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "add_HistoryChanged",
@@ -149,22 +149,22 @@
         {
           "name": "add_ProcessFailed",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "remove_ProcessFailed",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "AddScriptToExecuteOnDocumentCreated",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "RemoveScriptToExecuteOnDocumentCreated",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "ExecuteScript",
@@ -254,17 +254,17 @@
         {
           "name": "add_DocumentTitleChanged",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "remove_DocumentTitleChanged",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "get_DocumentTitle",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "AddHostObjectToScript",
@@ -279,7 +279,7 @@
         {
           "name": "OpenDevToolsWindow",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "add_ContainsFullScreenElementChanged",
@@ -319,12 +319,12 @@
         {
           "name": "add_WindowCloseRequested",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "remove_WindowCloseRequested",
           "defined": true,
-          "implemented": false
+          "implemented": true
         }
       ]
     },
@@ -764,13 +764,13 @@
       "members": [
         {
           "name": "AddWebResourceRequestedFilterWithRequestSourceKinds",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "RemoveWebResourceRequestedFilterWithRequestSourceKinds",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },
@@ -887,33 +887,33 @@
       "members": [
         {
           "name": "get_KeyEventKind",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_VirtualKey",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_KeyEventLParam",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_PhysicalKeyStatus",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "get_Handled",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         },
         {
           "name": "put_Handled",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },
@@ -1695,12 +1695,12 @@
         {
           "name": "add_AcceleratorKeyPressed",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "remove_AcceleratorKeyPressed",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "get_ParentWindow",
@@ -4350,8 +4350,8 @@
       "members": [
         {
           "name": "get_ProcessFailedKind",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },
@@ -5380,8 +5380,8 @@
       "members": [
         {
           "name": "get_IsNewDocument",
-          "defined": false,
-          "implemented": false
+          "defined": true,
+          "implemented": true
         }
       ]
     },

@@ -23,10 +23,10 @@ versions together while preserving the resource file's encoding.
 
 ### Versions
 
-- Microsoft.Web.WebView2
-  - `1.0.3351.48`
-- Microsoft.Windows.ImplementationLibrary
-  - `1.0.250325.1`
+* Microsoft.Web.WebView2
+  * `1.0.3351.48`
+* Microsoft.Windows.ImplementationLibrary
+  * `1.0.250325.1`
 
 ### File
 
@@ -35,7 +35,7 @@ versions together while preserving the resource file's encoding.
 Copy command.
 
 ```sh
-deno run --allow-read --allow-net --allow-write jsr:@azulamb/webview2@0.6.0/copy [--debug] path
+deno run --allow-read --allow-net --allow-write jsr:@azulamb/webview2@0.7.0/copy [--debug] path
 ```
 
 - `--debug`
@@ -161,6 +161,40 @@ events support asynchronous handling with a deferral: keep an explicit COM
 reference as well, complete and close the deferral, then release that reference
 on the same STA. Navigation cancellation must be decided during the synchronous
 callback. `WebView2.close()` removes outstanding event subscriptions automatically.
+
+### Added in 0.7.0
+
+The following methods are available on `webview.core`:
+
+- `addScriptToExecuteOnDocumentCreated(source, callback)` and
+  `removeScriptToExecuteOnDocumentCreated(scriptID)`. Wait for the registration
+  callback before navigating. The callback receives `(HRESULT, scriptID)` and
+  returns an HRESULT; registration also returns an immediate HRESULT.
+- `addProcessFailed()` / `removeProcessFailed()`, with `ProcessFailedKind`.
+- `addWindowCloseRequested()` / `removeWindowCloseRequested()`. The application
+  decides when to close its native window.
+- `documentTitle` / `addDocumentTitleChanged()` / `removeDocumentTitleChanged()`.
+- `source` / `addSourceChanged()` / `removeSourceChanged()`, with
+  `IsNewDocument` in the source-change arguments.
+- `openDevToolsWindow()`.
+- `addWebResourceRequestedFilterWithRequestSourceKinds()` and its matching
+  remove method. Both accept `(uri, resourceContext, requestSourceKinds)`;
+  the defaults are all resource contexts and `WebResourceRequestSourceKinds.All`.
+  The exported flags support `Document`, `SharedWorker`, and `ServiceWorker`.
+  Removal must use the same URI, context and flags as registration. These
+  methods require a Runtime supporting `ICoreWebView2_22`; an unsupported
+  Runtime returns `E_NOINTERFACE` rather than silently falling back.
+
+`webview.controllers.addAcceleratorKeyPressed()` and
+`removeAcceleratorKeyPressed()` expose `KeyEventKind`, `VirtualKey`,
+`KeyEventLParam`, `PhysicalKeyStatus`, and writable `Handled`. Keyboard handlers
+run synchronously on the controller's STA; set `Handled` before returning.
+Controller subscriptions are also removed automatically during shutdown.
+
+Use the **0.7.0.0 DLL** with this version. The native `DocumentTitle` and `Source`
+getters now copy strings into caller-provided buffers and free the temporary
+COM strings. Applications using the raw FFI exports must adopt their updated
+buffer/size signatures.
 
 ### API coverage report
 

@@ -38,6 +38,7 @@ export class WebView2 implements Webview2Context {
     queueMicrotask(() => {
       try {
         this.core.closeEvents();
+        this.controllers.closeEvents();
         this.completions.close(() => {
           try {
             if (this.ownsPointers) {

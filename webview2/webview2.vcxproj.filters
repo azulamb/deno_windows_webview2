@@ -24,6 +24,9 @@
     <ClCompile Include="source\NavigationEventArgs.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="source\AdditionalEventArgs.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="source\ICoreWebView2Environment.cpp">
       <Filter>Sources</Filter>
     </ClCompile>

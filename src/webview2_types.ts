@@ -442,7 +442,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly WebView2_get_DocumentTitle: {
-    readonly parameters: ['pointer', 'pointer'];
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly WebView2_add_HistoryChanged: {
@@ -546,7 +546,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly WebView2_get_Source: {
-    readonly parameters: ['pointer', 'pointer'];
+    readonly parameters: ['pointer', 'pointer', 'pointer'];
     readonly result: 'i32';
   };
   readonly WebView2_add_SourceChanged: {
@@ -915,6 +915,46 @@ export type WEBVIEW2_FUNCS = {
   };
   readonly PermissionRequestedEventArgs_GetDeferral: {
     readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly ProcessFailedEventArgs_get_ProcessFailedKind: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly AcceleratorKeyPressedEventArgs_get_KeyEventKind: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly AcceleratorKeyPressedEventArgs_get_VirtualKey: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly AcceleratorKeyPressedEventArgs_get_KeyEventLParam: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly AcceleratorKeyPressedEventArgs_get_Handled: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly AcceleratorKeyPressedEventArgs_put_Handled: {
+    readonly parameters: ['pointer', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly AcceleratorKeyPressedEventArgs_get_PhysicalKeyStatus: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly SourceChangedEventArgs_get_IsNewDocument: {
+    readonly parameters: ['pointer', 'pointer'];
+    readonly result: 'i32';
+  };
+  readonly WebView2_AddWebResourceRequestedFilterWithRequestSourceKinds: {
+    readonly parameters: ['pointer', 'pointer', 'i32', 'i32'];
+    readonly result: 'i32';
+  };
+  readonly WebView2_RemoveWebResourceRequestedFilterWithRequestSourceKinds: {
+    readonly parameters: ['pointer', 'pointer', 'i32', 'i32'];
     readonly result: 'i32';
   };
   readonly HttpResponseHeaders_AppendHeader: {
