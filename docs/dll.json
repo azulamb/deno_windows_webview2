@@ -1736,12 +1736,12 @@
         {
           "name": "get_DefaultBackgroundColor",
           "defined": true,
-          "implemented": false
+          "implemented": true
         },
         {
           "name": "put_DefaultBackgroundColor",
           "defined": true,
-          "implemented": false
+          "implemented": true
         }
       ]
     },

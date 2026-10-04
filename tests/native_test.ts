@@ -132,6 +132,24 @@ Deno.test({
           const bounds = winApi.create.rect();
           winApi.user.GetClientRect(handle, bounds.pointer);
           webview.controllers.bounds = bounds;
+          webview.controllers.defaultBackgroundColor = {
+            alpha: 255,
+            red: 18,
+            green: 52,
+            blue: 86,
+          };
+          equal(webview.controllers.defaultBackgroundColor, {
+            alpha: 255,
+            red: 18,
+            green: 52,
+            blue: 86,
+          });
+          webview.controllers.defaultBackgroundColor = {
+            alpha: 255,
+            red: 255,
+            green: 255,
+            blue: 255,
+          };
           winApi.user.ShowWindow(handle, 5);
           let removedCalled = false;
           const removed = webview.core.addWebMessageReceived(() => {

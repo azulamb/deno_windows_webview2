@@ -374,7 +374,7 @@ export type WEBVIEW2_FUNCS = {
     readonly result: 'i32';
   };
   readonly Controllers_put_DefaultBackgroundColor: {
-    readonly parameters: ['pointer', 'buffer'];
+    readonly parameters: ['pointer', 'u32'];
     readonly result: 'i32';
   };
   readonly Controllers_add_RasterizationScaleChanged: {

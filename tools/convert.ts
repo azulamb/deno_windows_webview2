@@ -33,8 +33,9 @@ function convertType(type: string) {
       return 'u32';
     case 'double':
       return 'f64';
-    case 'RECT':
     case 'COREWEBVIEW2_COLOR':
+      return 'u32'; // Four-byte struct passed by value on Windows x64.
+    case 'RECT':
       return 'buffer'; //NativeStructType
   }
   throw new Error(`Unknown type: "${type}"`);

@@ -17,7 +17,7 @@ versions together while preserving the resource file's encoding.
 ## Develop
 
 - Deno
-  - `2.4.2`
+  - `^2.9.7`
 
 ## DLL
 
@@ -35,7 +35,7 @@ versions together while preserving the resource file's encoding.
 Copy command.
 
 ```sh
-deno run --allow-read --allow-net --allow-write jsr:@azulamb/webview2@0.2.4/copy [--debug] path
+deno run --allow-read --allow-net --allow-write jsr:@azulamb/webview2@0.6.0/copy [--debug] path
 ```
 
 - `--debug`

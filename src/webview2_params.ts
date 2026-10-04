@@ -357,7 +357,7 @@ export const params: WEBVIEW2_FUNCS = {
     result: 'i32',
   },
   Controllers_put_DefaultBackgroundColor: {
-    parameters: ['pointer', 'buffer'],
+    parameters: ['pointer', 'u32'],
     result: 'i32',
   },
   Controllers_add_RasterizationScaleChanged: {

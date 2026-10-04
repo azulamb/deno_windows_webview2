@@ -3,7 +3,50 @@ import type { Webview2Funcs } from '../webview2_types.ts';
 import type { Webview2Context } from './types.ts';
 import type { HRESULT, Rect } from './winapi.ts';
 
+/** WebView2 background channels. Alpha supports only 0 (transparent) or 255 (opaque). */
+export interface BackgroundColor {
+  alpha: 0 | 255;
+  red: number;
+  green: number;
+  blue: number;
+}
+
 export class Controllers {
+  public get defaultBackgroundColor(): BackgroundColor {
+    const bytes = new Uint8Array(4);
+    const result = this.libs.symbols.Controllers_get_DefaultBackgroundColor(
+      this.controllers,
+      Deno.UnsafePointer.of(bytes),
+    );
+    if (result < 0) throw new Error(`Get background color failed: ${result}`);
+    return {
+      alpha: bytes[0] as 0 | 255,
+      red: bytes[1],
+      green: bytes[2],
+      blue: bytes[3],
+    };
+  }
+  public set defaultBackgroundColor(color: BackgroundColor) {
+    if (
+      (color.alpha !== 0 && color.alpha !== 255) ||
+      ![color.red, color.green, color.blue].every((value) =>
+        Number.isInteger(value) && value >= 0 && value <= 255
+      )
+    ) {
+      throw new TypeError('Invalid background color channels.');
+    }
+    const bytes = new Uint8Array([
+      color.alpha,
+      color.red,
+      color.green,
+      color.blue,
+    ]);
+    const result = this.libs.symbols.Controllers_put_DefaultBackgroundColor(
+      this.controllers,
+      new DataView(bytes.buffer).getUint32(0, true),
+    );
+    if (result < 0) throw new Error(`Set background color failed: ${result}`);
+  }
   protected controllers!: Deno.PointerValue<unknown>;
 
   public get pointer(): Deno.PointerValue<unknown> {
