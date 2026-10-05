@@ -10,6 +10,10 @@
     "./webview2": "./tools/webview2.ts"
   },
   "lock": false,
+  "minimumDependencyAge": {
+    "age": "P1D",
+    "exclude": ["jsr:@azulamb/winapi"]
+  },
   "imports": {
     "@std/path": "jsr:@std/path@^1.0.8",
     "@azulamb/winapi": "jsr:@azulamb/winapi@^0.4.0",
