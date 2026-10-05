@@ -139,7 +139,7 @@ export class Controllers {
    * Sets the bounds of the WebView2 control.
    * @param bounds The new bounds for the control.
    */
-  public set bounds(bounds: Rect) {
+  public set bounds(bounds: Pick<Rect, 'data'>) {
     this.libs.symbols.Controllers_put_Bounds(this.controllers, bounds.data);
   }
 

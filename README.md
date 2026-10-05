@@ -35,7 +35,7 @@ versions together while preserving the resource file's encoding.
 Copy command.
 
 ```sh
-deno run --allow-read --allow-net --allow-write jsr:@azulamb/webview2@0.7.0/copy [--debug] path
+deno run --allow-read --allow-net --allow-write jsr:@azulamb/webview2@0.7.1/copy [--debug] path
 ```
 
 - `--debug`
