@@ -12,7 +12,7 @@
   "lock": false,
   "imports": {
     "@std/path": "jsr:@std/path@^1.0.8",
-    "@azulamb/winapi": "jsr:@azulamb/winapi@^0.3.2",
+    "@azulamb/winapi": "jsr:@azulamb/winapi@^0.4.0",
     "@azulamb/checker": "jsr:@azulamb/checker@1.2.0",
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom"
   },
