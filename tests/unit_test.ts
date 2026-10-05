@@ -11,6 +11,30 @@ import { updateVersionResource } from '../tools/resource_version.ts';
 import { CompletionCallbacks } from '../src/libs/completion_callbacks.ts';
 import { toFileUrl } from '@std/path';
 import { catalogFromHeader, updateCoverage } from '../tools/report_data.ts';
+import { Controllers } from '../src/libs/controllers.ts';
+import type { Webview2Context } from '../src/libs/types.ts';
+
+Deno.test('controller bounds accepts an independent RECT class with protected members', () => {
+  class CompatibleRect {
+    public data: Int32Array<ArrayBuffer> = new Int32Array([0, 0, 240, 160]);
+    protected dataView: DataView = new DataView(this.data.buffer);
+  }
+  let received: unknown;
+  const controller = new Controllers({
+    lib: {
+      symbols: {
+        Controllers_Create: () => null,
+        Controllers_put_Bounds: (_controller: unknown, data: unknown) => {
+          received = data;
+          return 0;
+        },
+      },
+    },
+  } as unknown as Webview2Context);
+  const rect = new CompatibleRect();
+  controller.bounds = rect;
+  if (received !== rect.data) throw new Error('RECT buffer was not forwarded.');
+});
 
 Deno.test('report parses SDK interfaces and recomputes coverage without stale flags or comments', () => {
   const report = catalogFromHeader(
