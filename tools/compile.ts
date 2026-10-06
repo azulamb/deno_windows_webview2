@@ -1,6 +1,7 @@
 /**
- * Create the command line arguments for the Deno compile command.
- * @module @azulamb/webview2/compile
+ * Generate Deno compile arguments or compile an application and prepare its WebView2 DLL.
+ * Supports embedded files, executable icons and console visibility options.
+ * @module
  */
 
 import { createDllFile } from './webview2.ts';

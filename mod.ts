@@ -1,6 +1,7 @@
 /**
- * This module provides a Windows WebView2 implementation for Deno.
- * @module @azulamb/webview2
+ * WebView2 creation, controller settings, events and resource handling for Windows.
+ * Includes DLL preparation helpers and version information for the native wrapper.
+ * @module
  */
 
 import { copyAtomic } from './tools/copy_file.ts';

@@ -1,6 +1,7 @@
 /**
- * This module provides functions to manage the webview2.dll file.
- * @module @azulamb/webview2/webview2
+ * Read the bundled debug or release WebView2 DLL, or write it to a destination.
+ * Use these functions when build scripts need direct access to the native binary.
+ * @module
  */
 
 import { createDLLPath } from './dll_path.ts';

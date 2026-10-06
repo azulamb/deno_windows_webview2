@@ -1,6 +1,7 @@
 /**
- * Copy webview2.dll to a new location.
- * @module @azulamb/webview2/copy
+ * Copy or ensure the matching WebView2 DLL, with optional file version validation.
+ * Can also be run as a command to prepare a DLL at the requested destination.
+ * @module
  */
 
 import { isAbsolute, join } from '@std/path';
