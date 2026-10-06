@@ -1,7 +1,9 @@
 import type { Webview2Funcs } from '../webview2_types.ts';
 import { ComPointer } from './ComPointer.ts';
 
+/** Owned COM IStream pointer for request and response bodies. */
 export class IStream extends ComPointer {
+  /** Create a stream wrapper using the loaded WebView2 DLL. Assign its native pointer before use. */
   constructor(libs: Webview2Funcs) {
     super(libs);
   }
@@ -77,7 +79,9 @@ interface JStreamFunctions {
   clone?: (ppstm: Deno.PointerValue) => number;
 }
 
+/** COM stream backed by synchronous JavaScript callbacks on the owning thread. Override read/write before creating it. */
 export class JStream extends IStream implements JStreamFunctions {
+  /** Create the native stream and retain synchronous callbacks. The DLL manages reference counting; close the stream after use. */
   static create(
     stream: JStream,
   ): JStream {
@@ -298,6 +302,7 @@ export class JStream extends IStream implements JStreamFunctions {
     return 0;
   }*/
 
+  /** Read callback: fill pv with up to cb bytes, store the byte count in pcbRead and return an HRESULT. Defaults to E_NOTIMPL; override in subclasses. */
   public read(
     _pv: Deno.PointerValue,
     _cb: number,
@@ -306,6 +311,7 @@ export class JStream extends IStream implements JStreamFunctions {
     return -2147467263; // E_NOTIMPL
   }
 
+  /** Write callback: consume up to cb bytes from pv, store the count in pcbWritten and return an HRESULT. Defaults to E_NOTIMPL; override in subclasses. */
   public write(
     _pv: Deno.PointerValue,
     _cb: number,

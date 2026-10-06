@@ -16,16 +16,19 @@ import { Controllers } from './libs/controllers.ts';
  * The WebView2 class provides an interface for interacting with the WebView2 control.
  */
 export class WebView2 implements Webview2Context {
+  /** Tracks native asynchronous completions during shutdown. */
   public readonly completions: CompletionCallbacks = new CompletionCallbacks();
   private closing: boolean = false;
   private disposed: boolean = false;
   private ownsPointers: boolean;
   private resolveClosed!: () => void;
   private rejectClosed!: (error: unknown) => void;
+  /** Resolves after owned wrappers and the DLL are released; rejects if shutdown fails. */
   public readonly closed: Promise<void> = new Promise((resolve, reject) => {
     this.resolveClosed = resolve;
     this.rejectClosed = reject;
   });
+  /** Native FFI library; access throws after the wrapper is disposed. */
   public get lib(): Webview2Funcs {
     if (this.disposed) throw new Error('WebView2 is closed.');
     return this.library;
@@ -64,10 +67,15 @@ export class WebView2 implements Webview2Context {
       }
     });
   }
+  /** Navigation, scripts, messages and events for this WebView2 instance. */
   public core: Core;
+  /** Environment wrapper for controller and resource response creation. */
   public environments: Environments;
+  /** Browser feature settings for this instance. */
   public settings: Settings;
+  /** Controller for bounds, visibility, focus and keyboard events. */
   public controllers!: Controllers;
+  /** Native event registration token factory and storage. */
   public eventRegistrationToken: EventRegistrationToken;
 
   /**
@@ -106,7 +114,10 @@ export class WebView2 implements Webview2Context {
     return str.getCString();
   }
 
-  /** @deprecated Raw pointers are only usable on the creating STA; use message-based UI Worker commands. */
+  /**
+   * Return native wrapper addresses for use on their creating STA only.
+   * @deprecated Use message-based UI Worker commands instead of sharing raw pointers.
+   */
   public exportData(): {
     core: bigint;
     environments: bigint;

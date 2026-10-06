@@ -44,13 +44,16 @@ const WEB_RESOURCE_CONTEXT_TYPES: WEB_RESOURCE_CONTEXT_TYPE_NAMES[] = [
   'OTHER', // 16
 ];
 
+/** Borrowed arguments for an intercepted WebView2 resource request. */
 export class WebResourceRequestedEventArgs {
+  /** Wrap a native WebView2 object or event using its DLL and pointer. */
   constructor(
     protected libs: Webview2Funcs,
     protected args: ICoreWebView2WebResourceRequestedEventArgs,
   ) {
   }
 
+  /** Intercepted request. Close the returned owned request wrapper after use. */
   public get Request(): WebResourceRequest {
     const request = new WebResourceRequest(
       this.libs,
@@ -65,6 +68,7 @@ export class WebResourceRequestedEventArgs {
     return request;
   }
 
+  /** Numeric WebView2 resource category. */
   public get ResourceContextCode(): number {
     const context = new Uint32Array(1);
     const hresult = this.libs.symbols
@@ -78,10 +82,12 @@ export class WebResourceRequestedEventArgs {
     return context[0];
   }
 
+  /** Resource category name, or UNKNOWN for an unrecognized native value. */
   public get ResourceContext(): WEB_RESOURCE_CONTEXT_TYPE_NAMES | 'UNKNOWN' {
     return WEB_RESOURCE_CONTEXT_TYPES[this.ResourceContextCode] || 'UNKNOWN';
   }
 
+  /** Response assigned to this intercepted request. Close retrieved response wrappers after use. */
   public get Response(): WebResourceResponse {
     const response = new WebResourceResponse(
       this.libs,
@@ -96,6 +102,7 @@ export class WebResourceRequestedEventArgs {
     return response;
   }
 
+  /** Assign the intercepted response before completing a deferral. */
   public set Response(response: WebResourceResponse) {
     const result = this.libs.symbols.WebResourceRequestedEventArgs_put_Response(
       this.args,
@@ -106,6 +113,7 @@ export class WebResourceRequestedEventArgs {
     }
   }
 
+  /** Defer event processing. Complete and close the returned deferral after asynchronous work. */
   public getDeferral(): Deferral {
     const deferral = new Deferral(this.libs);
     const result = this.libs.symbols.WebResourceRequestedEventArgs_GetDeferral(

@@ -1,4 +1,5 @@
 // TODO: edit WebResourceRequestedEventArgs.ts
+/** WebView2 resource category flags for request filters. */
 export const WEB_RESOURCE_CONTEXT = {
   ALL: 0,
   DOCUMENT: 1,
@@ -18,5 +19,6 @@ export const WEB_RESOURCE_CONTEXT = {
   CSP_VIOLATION_REPORT: 15,
   OTHER: 16,
 } as const;
+/** Names of resource categories in WEB_RESOURCE_CONTEXT. */
 export type WEB_RESOURCE_CONTEXT_TYPES =
   typeof WEB_RESOURCE_CONTEXT[keyof typeof WEB_RESOURCE_CONTEXT];

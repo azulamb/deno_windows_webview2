@@ -6,12 +6,18 @@
 
 import { createDllFile } from './webview2.ts';
 
+/** Executable compilation and bundled DLL preparation options. */
 export interface COMPILE_OPTION {
+  /** ICO path passed to deno compile's --icon option. */
   icon?: string;
+  /** Destination DLL path to prepare and embed. */
   dllPath?: string;
+  /** Use the bundled debug DLL instead of the release DLL. */
   isDebug?: boolean;
   // version?: string; // Deno Windows Webview2 version(tag)
+  /** Additional files or directories embedded with --include. */
   includes?: string[];
+  /** When true, omit the default --no-terminal option and preserve supplied terminal arguments. */
   disableTerminal?: boolean;
 }
 

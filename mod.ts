@@ -40,6 +40,7 @@ export type PREPARE_WEBVIEW2_DLL_OPTION = {
   debugMode?: boolean; // TODO: debug mode.
 };
 
+/** Initial native window title and dimensions for consumers of this wrapper. */
 export type WEAPN_CONFIG = {
   title?: string;
   width?: number;
